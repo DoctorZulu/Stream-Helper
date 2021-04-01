@@ -1,4 +1,9 @@
 .movieCardMain {
+    margin: 30px;
     width: 350px;
     height: 250px;
+}
+
+.movieCardIcon {
+    margin: 5px;
 }
