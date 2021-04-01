@@ -1,7 +1,7 @@
 import React from 'react';
 /* vendor imports */
-import { Button, Navbar, Alignment } from "@blueprintjs/core";
-
+import { Button, AnchorButton, Navbar, Alignment } from "@blueprintjs/core";
+import { Link } from 'react-router-dom';
 function NavigationBar() {
     return(
         <>
@@ -10,15 +10,36 @@ function NavigationBar() {
                 <Navbar.Heading>StreamHelper</Navbar.Heading>
                 {/* TODO: keep or dlt divider */}
                 <Navbar.Divider />
-                <Button className="bp3-minimal bp3-large" icon="home" text="Home" />
-                <Button className="bp3-minimal bp3-large" icon="film" text="Movies" />
+                <Link to={'/home'}>  
+                <Button  className="bp3-minimal bp3-large" icon="home" text="Home" />
+                </Link>
+
+                <Link to={'/movies'}>  
+                <Button  className="bp3-minimal bp3-large" icon="film" text="Movies" />
+                </Link>
+
+                <Link to={'/watched'}>  
                 <Button className="bp3-minimal bp3-large" icon="history" text="Watched Movies" />
-                <Button className="bp3-minimal bp3-large" icon="floppy-disk" text="Saved Movies" />
+                </Link>
+
+                <Link to={'/saved'}>  
+                <Button  className="bp3-minimal bp3-large" icon="floppy-disk" text="Saved Movies"/>
+                </Link>
+          
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
-                <Button className="bp3-button bp3-minimal bp3-large" icon="user" text="Profile" />
-                <Button className="bp3-button bp3-minimal bp3-large" icon="cog" text="Settings" />
+                
+                <Link to={'/profile'}>  
+                <Button  className="bp3-button bp3-minimal bp3-large" icon="user" text="Profile"/>
+                </Link>
+
+                <Link to={'/home'}>  
+                <Button  className="bp3-button bp3-minimal bp3-large" icon="cog" text="Settings"/>
+                </Link>
+                
             </Navbar.Group>
+
+            
  
         </Navbar>
         </>
