@@ -1,0 +1,19 @@
+.landingContentGrid {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.landingIntroText {
+    color: black;
+    width: 30%;
+
+
+}
+
+.userContentLanding {
+    justify-content: flex-end;
+    width: 60%;
+    text-align: center;
+}
