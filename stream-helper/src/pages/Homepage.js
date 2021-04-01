@@ -6,7 +6,13 @@ function Homepage() {
         <>
         <NavigationBar />
         <h1> homepage here </h1>
+        <div className="movieCardContainer">
         <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        </div>
         </>
     )
 }
