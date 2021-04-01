@@ -4,7 +4,7 @@ import '../../styles/MovieCard.css'
 function MovieCard() {
     return(
         <>
-        <Card interactive={true} elevation={Elevation.TWO} className="movieCardMain">
+        <Card interactive={true} elevation={Elevation.TWO} className="movieCardMain" >
             <h2><a href="#">Movie Title</a></h2>
             <p>Movie Description</p>
             <h5>Main Actors in Movie</h5>

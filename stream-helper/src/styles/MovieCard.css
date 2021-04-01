@@ -6,7 +6,8 @@
 
 .movieCardIcon {
     grid-area: movieCard;
-    align-items: center;
+    margin: 2px;
+    max-height: 250px;
 }
 
 .movieCardContainer {
