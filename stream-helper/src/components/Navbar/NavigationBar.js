@@ -9,24 +9,21 @@ function NavigationBar() {
     return(
         <>
         <Navbar className="mainNavBar">
-            <Navbar.Group align={Alignment.LEFT}>
-                <Navbar.Heading>StreamHelper</Navbar.Heading>
-                {/* TODO: keep or dlt divider */}
-                <Navbar.Divider />
+            <Navbar.Group align={Alignment.LEFT} className="leftNavBar">
                 <Link to={'/home'}>  
-                <Button  className="bp3-minimal bp3-large buttonStyle" icon="home" text="Home" />
+                <Button  className="bp3-minimal bp3-large buttonStyle" text="Home" />
                 </Link>
 
                 <Link to={'/movies'}>  
-                <Button  className="bp3-minimal bp3-large buttonStyle" icon="film" text="Movies" />
+                <Button  className="bp3-minimal bp3-large buttonStyle" text="Movies" />
                 </Link>
 
                 <Link to={'/watched'}>  
-                <Button className="bp3-minimal bp3-large buttonStyle" icon="history" text="Watched" />
+                <Button className="bp3-minimal bp3-large buttonStyle" text="Watched" />
                 </Link>
 
                 <Link to={'/saved'}>  
-                <Button  className="bp3-minimal bp3-large buttonStyle" icon="floppy-disk" text="My list"/>
+                <Button  className="bp3-minimal bp3-large buttonStyle" text="My list"/>
                 </Link>
           
             </Navbar.Group>
