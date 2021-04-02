@@ -1,12 +1,19 @@
 import React from 'react';
 import MovieCard from '../components/MovieCard/MovieCard';
-import NavigationBar from '../components/Navbar/NavigationBar'
+import NavigationBar from '../components/Navbar/NavigationBar';
+import HeroBanner from '../components/HeroBanner/HeroBanner';
 function Homepage() {
     return(
         <>
         <NavigationBar />
-        <h1> homepage here </h1>
+        <HeroBanner />
         <div className="movieCardContainer">
+            {/* TODO: map out moviecards */}
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
         <MovieCard />
         <MovieCard />
         <MovieCard />
