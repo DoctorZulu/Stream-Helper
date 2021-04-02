@@ -1,11 +1,8 @@
 .movieCardMain {
     margin: 30px;
-    width: 300px;
-    height: 250px;
 }
 
 .movieCardIcon {
-    grid-area: movieCard;
     margin: 2px;
     max-height: 250px;
 }
@@ -16,4 +13,10 @@
     grid-template-rows: auto;
     grid-template-areas: 
       "movieCard movieCard movieCard movieCard"
+}
+
+.movieImageCard {
+    width: 200px;
+    height: 250px;
+    grid-area: movieCard;
 }

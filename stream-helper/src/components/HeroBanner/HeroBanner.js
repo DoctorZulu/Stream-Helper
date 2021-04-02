@@ -1,8 +1,8 @@
 import React from 'react'; 
 /* styling */
 import '../../styles/HeroBanner.css'
-/* img import */
-import heroBannerImageMain from '../../media/heroBannerImageMain.jpg'
+
+
 
 function HeroBanner() {
     return(
