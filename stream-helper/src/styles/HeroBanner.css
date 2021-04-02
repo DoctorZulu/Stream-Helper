@@ -1,0 +1,22 @@
+.heroImageMain {
+    min-height: 80vh;
+    z-index: 500;
+    background-size:cover;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    background-image: url('../media/heroBannerImageMain.jpg');
+}
+
+.mainHeroTitle {
+    font-size: 75px;
+}
+
+.mainHeroSubTitle {
+    font-size: 25px;
+}
+
+.heroMainText {
+    position: absolute;
+    top: 15vh;
+    left: 5vh;
+}

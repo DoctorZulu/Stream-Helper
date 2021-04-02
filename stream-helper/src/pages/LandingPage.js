@@ -13,7 +13,7 @@ function LandingPage() {
 
     return(
         <>
-        <div className="landingContentGrid">
+        <div className="landingContentGrid" style={{color: "black"}}>
             <div className="landingLeftCol">
                 <div className="landingLeftText">
                 <h1 className="landingTitle"> A Movie Finder App To Save You Time</h1>
