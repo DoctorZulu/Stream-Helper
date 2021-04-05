@@ -2,6 +2,7 @@
     margin: 30px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 .movieCardIcon {
@@ -11,7 +12,7 @@
 
 .movieCardContainer {
     display: grid;
-    grid-template-columns: 330px 330px 330px 330px;
+    grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: auto;
     grid-template-areas: 
       "movieCard movieCard movieCard movieCard"
@@ -25,11 +26,40 @@
 }
 
 
-.movieCardButtons {
-    transform: translateY(-10px);
-    transition: 0.2s;
+
+.saveMovieButton {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.336);
+    position: absolute;
+    top: 48%;
+    left: 0;
+    width: 33.3%;
+    text-align: center !important;
 }
 
-.movieCardButtons:hover {
-    transform: translateY(0px);
+.watchedMovieButton {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.336);
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    position: absolute;
+    /* FIXME: refactor values to better use */
+    top: 48%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 33.3%;
+    text-align: center !important;
 }
+
+.discardMovieButton {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.336);
+    position: absolute;
+    top: 48%;
+    right: 0;
+    width: 33.3%;
+    text-align: center !important;
+}
+
