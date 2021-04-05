@@ -1,12 +1,15 @@
 import React from 'react';
 import NavigationBar from '../components/Navbar/NavigationBar'
-
+import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 function SavedMovies() {
+    const heroTitle = "Your Saved Movies"
+    const heroText = "You'll Find All Your Hearted Movies Here."
     return(
         <>
         <NavigationBar />
-        <h1> Show page for user's saved movies. Ability to Add &amp; Delete and Update movies they want to watch </h1>
+        <HeroBanner heroText = {heroText} heroTitle = {heroTitle} />
+
         </>
     )
 }

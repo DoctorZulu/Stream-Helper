@@ -1,4 +1,4 @@
-import { Button, Card, Elevation, Icon } from "@blueprintjs/core";
+import { Icon } from "@blueprintjs/core";
 import '../../styles/MovieCard.css'
 /* img import */
 import moviePoster from '../../media/moviePoster.png'
@@ -7,7 +7,9 @@ import { useState } from "react";
 
 function MovieCard() {
     const [isActive, setIsActive] = useState(false)
-    /* TODO: onClick or onSubmit, setShowToggle("none") */
+    
+
+    
     return(
         <>
         <div className="movieCardMain">
