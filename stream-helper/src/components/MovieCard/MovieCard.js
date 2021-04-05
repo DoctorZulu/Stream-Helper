@@ -29,7 +29,7 @@ function MovieCard() {
                 </div>
                 <div className="discardMovieButton" onClick={() => {setIsActive(false); console.log("clicked discard")}}>
 
-                <Icon icon="thumbs-down" color="yellow" iconSize={20}/>  
+                <Icon icon="thumbs-down" color="orange" iconSize={20}/>  
                 </div>
             </div>
             

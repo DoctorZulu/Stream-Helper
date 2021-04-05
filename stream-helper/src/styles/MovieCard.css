@@ -22,11 +22,10 @@
     width: 200px;
     height: 250px;
     grid-area: movieCard;
-    
 }
 
 
-
+/* SECTION: Buttons */
 .saveMovieButton {
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.336);
@@ -35,6 +34,7 @@
     left: 0;
     width: 33.3%;
     text-align: center !important;
+    transition: transform 250ms,  background-color .25s ease;
 }
 
 .watchedMovieButton {
@@ -51,6 +51,7 @@
     right: 0;
     width: 33.3%;
     text-align: center !important;
+    transition: transform 250ms,  background-color .25s ease;
 }
 
 .discardMovieButton {
@@ -61,5 +62,25 @@
     right: 0;
     width: 33.3%;
     text-align: center !important;
+    transition: transform 250ms,  background-color .25s ease;
 }
 
+/* SECTION: Button Hover */
+
+.saveMovieButton:hover  {
+  background-color: black;
+  transform: translateY(-10px);
+  
+}
+
+.watchedMovieButton:hover  {
+    background-color: black;
+    transform: translateY(-10px);
+    border-left:  none;
+    border-right: none;
+}
+
+.discardMovieButton:hover {
+    background-color: black;
+    transform: translateY(-10px);
+}
