@@ -4,14 +4,14 @@ import '../../styles/HeroBanner.css'
 
 
 
-function HeroBanner() {
+function HeroBanner(props) {
     return(
         <>
         <div className="heroImageMain">
         </div>
         <div className="heroMainText">
-            <h1 className="mainHeroTitle"> Welcome To StreamHelper</h1>
-            <h2 className="mainHeroSubTitle">Discover Countless New Movies <br/> Save Them To Your List <br/> Discard Ones You've Already Seen</h2>
+            <h1 className="mainHeroTitle"> {props.heroTitle} </h1>
+            <h2 className="mainHeroSubTitle">{props.heroText}</h2>
         </div>
         </>
     )
