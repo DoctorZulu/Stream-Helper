@@ -39,10 +39,24 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 // testing
 
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          allMovies: {
+            keyArgs: ["type"],
+            merge(existing = [], incoming = []) {
+              return [...existing, ...incoming];
+            },
+          },
+        },
+      },
+    },
+  }),
   // credentials: "include",
   link: concat(authMiddleware, httpLink),
 });
+
 
 ReactDOM.render(
   <React.StrictMode>
