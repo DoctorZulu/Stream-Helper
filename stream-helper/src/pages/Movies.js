@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 /* components */
 import NavigationBar from '../components/Navbar/NavigationBar'
-import MovieCard from '../components/MovieCard/MovieCard'
+import Infinite from '../components/Infinite/Infinite'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 /* vendor imports */
 import { useQuery, gql } from "@apollo/client";
@@ -66,7 +66,7 @@ function Movies() {
         <HeroBanner heroText = {heroText} heroTitle = {heroTitle}/>
         <div className="movieCardContainer">
           { allMovies.length > 1? 
-              <MovieCard {...allMovies}/>
+              <Infinite {...allMovies}/>
         :
         <h1> There are No Movies To Load </h1>}
        
