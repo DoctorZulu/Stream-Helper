@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 /* components */
 import NavigationBar from '../components/Navbar/NavigationBar'
 import MovieCard from '../components/MovieCard/MovieCard'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 /* vendor imports */
 import { useQuery, gql } from "@apollo/client";
+
+
 function Movies() {
     /* Hero banner content */
     const heroTitle = "Find Your Next Movie"
@@ -52,6 +54,18 @@ function Movies() {
         allMoviesMyCursor: end,
     },
   });
+
+
+  useEffect(() => {
+    if (loading === false && data) {
+      console.log(data, "DATA");
+      setAllMovies(data);
+      console.log("movies set");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, data]);
+
+  console.log(allMovies, "test")
 
 
     return(
