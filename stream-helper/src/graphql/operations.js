@@ -29,4 +29,42 @@ const LOGIN = gql`
   }
 `;
 
-export { SIGNUP, LOGIN };
+const ALLMOVIES = gql`
+  query Query {
+    allMovies {
+      id
+      title
+      original_language
+      release_date
+      runetime
+      vote_average
+      overview
+      image
+      genres {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const MOVIE = gql`
+  query Query($movieMovieId: ID!) {
+    movie(movieId: $movieMovieId) {
+      id
+      title
+      original_language
+      release_date
+      runetime
+      vote_average
+      overview
+      image
+      genres {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, ALLMOVIES, MOVIE };

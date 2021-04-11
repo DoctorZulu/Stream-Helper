@@ -42,6 +42,7 @@ function LandingPage() {
         signinUserPassword: password,
       },
     });
+    console.log(email, password);
   };
 
   const submitHandlerSignup = async (e) => {

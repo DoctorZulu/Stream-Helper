@@ -17,7 +17,9 @@ import {
   ApolloLink,
 } from "@apollo/client";
 
-const httpLink = new HttpLink({ uri: "http://localhost:4025/graphql" });
+const httpLink = new HttpLink({
+  uri: "http://localhost:4025/graphql",
+});
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
@@ -28,16 +30,17 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     },
     // looking to gather the cookie
     fetchOptions: {
-      credentials: "same-origin",
+      credentials: "include",
     },
   });
 
   return forward(operation);
 });
+// testing
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  credentials: "include",
+  // credentials: "include",
   link: concat(authMiddleware, httpLink),
 });
 
