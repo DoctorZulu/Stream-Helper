@@ -1,28 +1,27 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
 /* img import */
-import moviePoster from "../../media/moviePoster.png";
+
 import { useState } from "react";
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-
+  console.log(props);
   return (
     <>
       <div className="movieCardMain">
         <img
-          src={moviePoster}
+          src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${props.image}`}
           className="movieImageCard"
           onMouseEnter={() => {
             setIsActive(true);
-            console.log("hovered");
           }}
         />
         <h2>
-          <a href="#">{props.movie.title}</a>
+          <a href="#">{props.title}</a>
         </h2>
-        <p>{props.movie.description}</p>
-        <h5>{props.movie.vote_average}</h5>
+        <p>{props.description}</p>
+        <h5>{props.vote_average}</h5>
         <h5>Genre</h5>
 
         {isActive === true ? (
