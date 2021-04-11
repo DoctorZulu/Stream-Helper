@@ -12,6 +12,8 @@ function LandingPage() {
   const [formShow, setFormShow] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
   const [
     login,
     { loading: loadingL, error: errorL, data: dataL },
@@ -25,6 +27,7 @@ function LandingPage() {
     if (!loadingL && dataL) {
       console.log(dataL);
       const { signinUser } = dataL;
+      // need to set up the cookie setting here
     }
   }, [dataL]);
 
@@ -42,7 +45,6 @@ function LandingPage() {
         signinUserPassword: password,
       },
     });
-    console.log(email, password);
   };
 
   const submitHandlerSignup = async (e) => {
@@ -50,11 +52,9 @@ function LandingPage() {
     await signup({
       variables: {
         signupUserSignupInput: {
-          // fill these out with states and add them to onchanges
-          email: null,
-          firstname: null,
-          lastname: null,
-          password: null,
+          email: email,
+          username: username,
+          password: password,
         },
       },
     });
@@ -146,13 +146,18 @@ function LandingPage() {
               <div className="landingPageForm">
                 <div className="formShowToggle" style={{ display: formShow }}>
                   <FormGroup label="Email" labelFor="email-input">
-                    <InputGroup id="email-input" placeholder="Your Email" />
+                    <InputGroup
+                      id="email-input"
+                      placeholder="Your Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                     {/* </FormGroup> */}
 
                     {/* <FormGroup label="Username" labelFor="username-input"> */}
                     <InputGroup
                       id="username-input"
                       placeholder="Your Username"
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                     {/* </FormGroup> */}
 
@@ -160,6 +165,7 @@ function LandingPage() {
                     <InputGroup
                       id="password-input"
                       placeholder="Your Password"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     {/* </FormGroup> */}
 
@@ -167,6 +173,7 @@ function LandingPage() {
                       icon="tick-circle"
                       className="bp3-outlined bp3-large bp3-intent-success landingSubmitButton"
                       text="Submit"
+                      onClick={submitHandlerSignup}
                     />
                   </FormGroup>
                 </div>
