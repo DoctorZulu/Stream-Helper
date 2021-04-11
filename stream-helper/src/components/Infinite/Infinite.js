@@ -1,20 +1,19 @@
 import React from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import '../../styles/MovieCard.css'
 
 const Infinite = ({ allMovies, onLoadMore }) => {
   const Mapper = () => (
-    <>
+    <div className="movieCardContainer">
       {allMovies.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
-    </>
+    </div>
   );
 
   return (
     <>
-      <div className="container" style={{ padding: 0 }}>
-        <div className="loading">
           {allMovies ? (
             <InfiniteScroll
               dataLength={allMovies.length}
@@ -34,8 +33,6 @@ const Infinite = ({ allMovies, onLoadMore }) => {
             <></>
           )}
           <h2>Load More</h2>
-        </div>
-      </div>
     </>
   );
 };
