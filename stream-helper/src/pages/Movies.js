@@ -19,16 +19,8 @@ function Movies() {
 
 
     const ALLMOVIES = gql`
-    query Query(
-      $allMoviesTake: Int
-      $allMoviesSkip: Int
-      $allMoviesMyCursor: Int
-    ) {
-      allMovies(
-        take: $allMoviesTake
-        skip: $allMoviesSkip
-        myCursor: $allMoviesMyCursor
-      ) {
+    query Query {
+      allMovies {
         id
         title
         original_language
@@ -41,8 +33,8 @@ function Movies() {
           id
           name
         }
-        }
       }
+    }
   `;
 
   
@@ -59,7 +51,7 @@ function Movies() {
   useEffect(() => {
     if (loading === false && data) {
       console.log(data, "DATA");
-      setAllMovies(data);
+      setAllMovies(data.allMovies);
       console.log("movies set");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,7 +65,7 @@ function Movies() {
         <NavigationBar />
         <HeroBanner heroText = {heroText} heroTitle = {heroTitle}/>
         <div className="movieCardContainer">
-          { allMovies ? 
+          { allMovies.length > 1? 
               <MovieCard {...allMovies}/>
         :
         <h1> There are No Movies To Load </h1>}
