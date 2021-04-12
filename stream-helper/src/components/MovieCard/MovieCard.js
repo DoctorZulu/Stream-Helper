@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <div className="movieCardMain">

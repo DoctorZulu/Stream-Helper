@@ -29,42 +29,51 @@ const LOGIN = gql`
   }
 `;
 
+// ================================= MOVIES ================================
+
+/**
+ * used in Homepage
+ * ../pages/Homepage.js
+ */
+
 const ALLMOVIES = gql`
+  query Query(
+    $allMoviesTake: Int
+    $allMoviesSkip: Int
+    $allMoviesMyCursor: Int
+  ) {
+    allMovies(
+      take: $allMoviesTake
+      skip: $allMoviesSkip
+      myCursor: $allMoviesMyCursor
+    ) {
+      id
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+      categoryId
+      genres {
+        id
+        name
+      }
+    }
+  }
+`;
+
+/**
+ * Last movie for paganation used in homepage
+ */
+const LASTMOVIE = gql`
   query Query {
-    allMovies {
+    lastMovie {
       id
-      title
-      original_language
-      release_date
-      runetime
-      vote_average
-      overview
-      image
-      genres {
-        id
-        name
-      }
+      categoryId
     }
   }
 `;
 
-const MOVIE = gql`
-  query Query($movieMovieId: ID!) {
-    movie(movieId: $movieMovieId) {
-      id
-      title
-      original_language
-      release_date
-      runetime
-      vote_average
-      overview
-      image
-      genres {
-        id
-        name
-      }
-    }
-  }
-`;
-
-export { SIGNUP, LOGIN, ALLMOVIES, MOVIE };
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE };
