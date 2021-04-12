@@ -53,10 +53,8 @@ const client = new ApolloClient({
       },
     },
   }),
-  // credentials: "include",
   link: concat(authMiddleware, httpLink),
 });
-
 
 ReactDOM.render(
   <React.StrictMode>

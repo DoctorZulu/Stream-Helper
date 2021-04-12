@@ -1,73 +1,89 @@
-import React, { useState, useEffect }  from 'react';
-import NavigationBar from '../components/Navbar/NavigationBar';
-import HeroBanner from '../components/HeroBanner/HeroBanner';
+import React, { useState, useEffect } from "react";
+import NavigationBar from "../components/Navbar/NavigationBar";
+import HeroBanner from "../components/HeroBanner/HeroBanner";
 
 /* vendor imports */
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
 
+import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
 
 function Homepage() {
-    const heroTitle = "Welcome To StreamHelper"
-    const heroText = "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen"
+  const heroTitle = "Welcome To StreamHelper";
+  const heroText =
+    "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen";
 
-     /* base states */
+  /* base states */
   const [allMovies, setAllMovies] = useState([]);
-  const [take] = useState(10);
-  const [end, setEnd] = useState(54);
-  const [skip] = useState(0);
+  const [take] = useState(5);
+  const [end, setEnd] = useState(1);
+  const [skip, setSkip] = useState(0);
 
-  const ALLMOVIES = gql`
-    query Query {
-      allMovies {
-        id
-        title
-        original_language
-        release_date
-        runetime
-        vote_average
-        overview
-        image
-        genres {
-          id
-          name
-        }
-      }
-    }
-  `;
+  const scrollData = {
+    allMoviesTake: take,
+    allMoviesSkip: skip,
+    allMoviesMyCursor: end,
+  };
 
-  const { loading, data, fetchMore } = useQuery(ALLMOVIES, {
-    variables: {
-      allMoviesTake: take,
-      allMoviesSkip: skip,
-      allMoviesMyCursor: end,
+  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
+    ALLMOVIES,
+    {
+      variables: {
+        ...scrollData,
+      },
     },
-  });
+  );
+  console.log(scrollData);
+
+  // const { data: dataLastMovie, loading: loadingLastMovie } = useQuery(
+  //   LASTMOVIE,
+  // );
+
+  // useEffect(() => {
+  //   if (loadingLastMovie === false && dataLastMovie) {
+  //     console.log(dataLastMovie, "================================");
+  //     setEnd(Number(dataLastMovie.lastMovie.categoryId));
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [loadingLastMovie, dataLastMovie]);
 
   useEffect(() => {
-    if (loading === false && data) {
-      console.log(data, "DATA");
-      setAllMovies(data.allMovies);
-      console.log("movies set");
+    if (loadingAll === false && dataAll) {
+      console.log(dataAll, "DATA");
+      setAllMovies(dataAll.allMovies);
+      // console.log("movies set");
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, data]);
+  }, [loadingAll, dataAll]);
 
+  const bigFetch = () => {
+    fetchMore(
+      {
+        variables: {
+          allMoviesMyCursor: end + take,
+        },
+      },
+      setEnd(allMovies[allMovies.length - 1].categoryId),
+      setSkip(1),
+    );
+  };
+  console.log(end, "this is the end");
 
-
-    return(
-        <>
-        <NavigationBar />
-        <HeroBanner heroText = {heroText} heroTitle = {heroTitle} />
-        <>
-                {allMovies.length > 1 ? (
-                <Infinite allMovies={allMovies}/>
-                ) : (
-                <h1> There are No Movies To Load </h1>
-                )}
-        </>
-        </>
-    )
+  return (
+    <>
+      <NavigationBar />
+      <HeroBanner heroText={heroText} heroTitle={heroTitle} />
+      <>
+        <button onClick={bigFetch}>FetchMore </button>
+        {allMovies.length > 0 ? (
+          <Infinite allMovies={allMovies} /* onLoadMore={bigFetch} */ />
+        ) : (
+          <h1> There are No Movies To Load </h1>
+        )}
+      </>
+    </>
+  );
 }
 
-export default Homepage
+export default Homepage;
