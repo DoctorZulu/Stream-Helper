@@ -61,7 +61,7 @@ function Homepage() {
     fetchMore(
       {
         variables: {
-          allMoviesMyCursor: end + take,
+          allMoviesMyCursor: allMovies.length - 1 /* end + take */,
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
