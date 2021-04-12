@@ -29,6 +29,22 @@ const LOGIN = gql`
   }
 `;
 
+/**
+ * used in
+ * "../pages/Profile.js"
+ *   */
+ const UPDATEUSER = gql`
+ mutation Mutation($updateUserUpdateInput: UpdateInput) {
+   updateUser(updateInput: $updateUserUpdateInput) {
+     firstname
+     lastname
+     username
+     email
+     token
+   }
+ }
+`;
+
 const ALLMOVIES = gql`
   query Query {
     allMovies {
@@ -67,4 +83,4 @@ const MOVIE = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, ALLMOVIES, MOVIE };
+export { SIGNUP, LOGIN, UPDATEUSER, ALLMOVIES, MOVIE };
