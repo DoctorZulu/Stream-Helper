@@ -34,15 +34,14 @@ const LOGIN = gql`
  * "../pages/Profile.js"
  *   */
  const UPDATEUSER = gql`
- mutation Mutation($updateUserUpdateInput: UpdateInput) {
-   updateUser(updateInput: $updateUserUpdateInput) {
-     firstname
-     lastname
-     username
-     email
-     token
-   }
- }
+ mutation Mutation($updateUserFirstname: String, $updateUserLastname: String, $updateUserEmail: String, $updateUserUsername: String) {
+  updateUser(firstname: $updateUserFirstname, lastname: $updateUserLastname, email: $updateUserEmail, username: $updateUserUsername) {
+    firstname
+    lastname
+    username
+    email
+  }
+}
 `;
 
 const ALLMOVIES = gql`

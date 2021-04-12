@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import NavigationBar from '../components/Navbar/NavigationBar'
 /* styling */
 import { Button, FormGroup, InputGroup, ButtonGroup} from "@blueprintjs/core";
@@ -31,6 +31,16 @@ function Profile() {
         update,
         { loading: loadingS, error: errorS, data: dataS },
       ] = useMutation(UPDATEUSER);
+
+
+      useEffect(() => {
+        if (!loadingS && dataS) {
+          console.log(dataS);
+        }
+      }, [dataS]);
+
+      if (loadingS) return console.log("Loading update");
+      if (errorS) return `Error! ${errorS.message}`;
 
     const submitHandlerSignup = async (e) => {
         e.preventDefault();
