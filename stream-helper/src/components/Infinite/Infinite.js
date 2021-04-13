@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import '../../styles/MovieCard.css'
+import "../../styles/MovieCard.css";
 
 const Infinite = ({ allMovies, onLoadMore }) => {
   const Mapper = () => (
@@ -11,28 +11,29 @@ const Infinite = ({ allMovies, onLoadMore }) => {
       ))}
     </div>
   );
+  //
 
   return (
     <>
-          {allMovies ? (
-            <InfiniteScroll
-              dataLength={allMovies.length}
-              hasMore={true}
-              next={onLoadMore}
-              className="scroll"
-              loader={<h4>Loading...</h4>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>End of list</b>
-                </p>
-              }
-            >
-              <Mapper />
-            </InfiniteScroll>
-          ) : (
-            <></>
-          )}
-          <h2>Load More</h2>
+      {allMovies ? (
+        <InfiniteScroll
+          dataLength={allMovies.length}
+          hasMore={true}
+          next={onLoadMore}
+          className="scroll"
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>End of list</b>
+            </p>
+          }
+        >
+          <Mapper />
+        </InfiniteScroll>
+      ) : (
+        <></>
+      )}
+      <h2>Load More</h2>
     </>
   );
 };

@@ -18,8 +18,8 @@ function MovieCard(props) {
     e.preventDefault();
     await update({
       variables: {
-        addMovieToUserMovieId: null,
-        addMovieToUserLiked: null,
+        addMovieToUserMovieId: props.id,
+        addMovieToUserLiked: true,
       },
     });
   };
@@ -28,8 +28,8 @@ function MovieCard(props) {
     e.preventDefault();
     await update({
       variables: {
-        addMovieToUserMovieId: null,
-        addMovieToUserSaved: null,
+        addMovieToUserMovieId: props.id,
+        addMovieToUserSaved: true,
       },
     });
   };
@@ -38,8 +38,8 @@ function MovieCard(props) {
     e.preventDefault();
     await update({
       variables: {
-        addMovieToUserMovieId: null,
-        addMovieToUserWatched: null,
+        addMovieToUserMovieId: props.id,
+        addMovieToUserWatched: true,
       },
     });
   };
