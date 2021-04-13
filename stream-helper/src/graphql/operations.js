@@ -92,6 +92,22 @@ const WATCHEDMOVIES = gql`
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
+    $addMovieToUserWatched: Boolean
+    $addMovieToUserSaved: Boolean
+    $addMovieToUserLiked: Boolean
+  ) {
+    addMovieToUser(
+      movieId: $addMovieToUserMovieId
+      watched: $addMovieToUserWatched
+      saved: $addMovieToUserSaved
+      liked: $addMovieToUserLiked
+    ) {
+      id
+    }
+  }
+`;
+/*    mutation Mutation(
+    $addMovieToUserMovieId: ID
     $addMovieToUserLiked: Boolean
     $addMovieToUserSaved: Boolean
     $addMovieToUserWatched: Boolean
@@ -109,7 +125,6 @@ const USERUPDATE = gql`
         id
       }
     }
-  }
-`;
+  }  */
 
 export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE };

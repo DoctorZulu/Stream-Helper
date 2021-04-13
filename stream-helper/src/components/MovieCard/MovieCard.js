@@ -1,19 +1,23 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
+import Toasty from "../Toaster/toast";
+import { toast } from "react-toastify";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { USERUPDATE } from "../graphql/operations";
+import { USERUPDATE } from "../../graphql/operations";
+
 /* img import */
 
 import { useState } from "react";
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-  const [addMovie, setAddMovie] = useState();
+  /*   const [addMovie, setAddMovie] = useState();
   const [likeMovie, setLikeMovie] = useState();
   const [saveMovie, setSaveMovie] = useState();
-  const [watchedMovie, setWatchedMovie] = useState();
+  const [watchedMovie, setWatchedMovie] = useState(); */
 
-  const [update, { loading, error, data }] = useMutation(USERUPDATE);
+  const [update, { loading, error }] = useMutation(USERUPDATE);
+  const notifySaved = () => toast(" Movie Saved!");
   const submitLike = async (e) => {
     e.preventDefault();
     await update({
@@ -24,14 +28,15 @@ function MovieCard(props) {
     });
   };
 
-  const submitSave = async (e) => {
-    e.preventDefault();
+  const submitSave = async () => {
     await update({
       variables: {
         addMovieToUserMovieId: props.id,
         addMovieToUserSaved: true,
       },
     });
+    console.log(toast.success);
+    toast.success("message");
   };
 
   const submitWatched = async (e) => {
@@ -65,15 +70,19 @@ function MovieCard(props) {
             <div
               className="saveMovieButton"
               onClick={() => {
+                notifySaved();
+                submitSave();
                 setIsActive(false);
                 console.log("clicked save");
+                toast.success("Movie has been saved!", { autoClose: 2000 });
               }}
             >
               <Icon icon="heart" color="red" iconSize={20} />
             </div>
             <div
               className="watchedMovieButton"
-              onClick={() => {
+              onClick={(e) => {
+                submitWatched(e);
                 setIsActive(false);
                 console.log("clicked watched");
               }}
@@ -82,7 +91,7 @@ function MovieCard(props) {
             </div>
             <div
               className="discardMovieButton"
-              onClick={() => {
+              onClick={(e) => {
                 setIsActive(false);
                 console.log("clicked discard");
               }}
