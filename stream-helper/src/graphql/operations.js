@@ -67,4 +67,27 @@ const MOVIE = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, ALLMOVIES, MOVIE };
+const USERUPDATE = gql`
+  mutation Mutation(
+    $addMovieToUserMovieId: ID
+    $addMovieToUserLiked: Boolean
+    $addMovieToUserSaved: Boolean
+    $addMovieToUserWatched: Boolean
+  ) {
+    addMovieToUser(
+      movieId: $addMovieToUserMovieId
+      liked: $addMovieToUserLiked
+      saved: $addMovieToUserSaved
+      watched: $addMovieToUserWatched
+    ) {
+      movies {
+        saved
+        watched
+        liked
+        id
+      }
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, ALLMOVIES, MOVIE, USERUPDATE };

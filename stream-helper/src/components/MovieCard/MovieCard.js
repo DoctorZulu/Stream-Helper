@@ -1,12 +1,48 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
+import { useQuery, useMutation, gql } from "@apollo/client";
+import { USERUPDATE } from "../graphql/operations";
 /* img import */
 
 import { useState } from "react";
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-  console.log(props);
+  const [addMovie, setAddMovie] = useState();
+  const [likeMovie, setLikeMovie] = useState();
+  const [saveMovie, setSaveMovie] = useState();
+  const [watchedMovie, setWatchedMovie] = useState();
+
+  const [update, { loading, error, data }] = useMutation(USERUPDATE);
+  const submitLike = async (e) => {
+    e.preventDefault();
+    await update({
+      variables: {
+        addMovieToUserMovieId: null,
+        addMovieToUserLiked: null,
+      },
+    });
+  };
+
+  const submitSave = async (e) => {
+    e.preventDefault();
+    await update({
+      variables: {
+        addMovieToUserMovieId: null,
+        addMovieToUserSaved: null,
+      },
+    });
+  };
+
+  const submitWatched = async (e) => {
+    e.preventDefault();
+    await update({
+      variables: {
+        addMovieToUserMovieId: null,
+        addMovieToUserWatched: null,
+      },
+    });
+  };
   return (
     <>
       <div className="movieCardMain">
