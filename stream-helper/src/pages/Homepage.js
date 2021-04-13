@@ -65,7 +65,7 @@ function Homepage() {
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
-      setSkip(1),
+      setSkip(2),
     );
   };
   console.log(end, "this is the end");
