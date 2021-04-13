@@ -1,13 +1,15 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
 import Toasty from "../Toaster/toast";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
 /* img import */
 
 import { useState } from "react";
+toast.configure();
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
@@ -17,7 +19,6 @@ function MovieCard(props) {
   const [watchedMovie, setWatchedMovie] = useState(); */
 
   const [update, { loading, error }] = useMutation(USERUPDATE);
-  const notifySaved = () => toast(" Movie Saved!");
   const submitLike = async (e) => {
     e.preventDefault();
     await update({
@@ -35,8 +36,6 @@ function MovieCard(props) {
         addMovieToUserSaved: true,
       },
     });
-    console.log(toast.success);
-    toast.success("message");
   };
 
   const submitWatched = async (e) => {
@@ -70,11 +69,18 @@ function MovieCard(props) {
             <div
               className="saveMovieButton"
               onClick={() => {
-                notifySaved();
                 submitSave();
                 setIsActive(false);
                 console.log("clicked save");
-                toast.success("Movie has been saved!", { autoClose: 2000 });
+                toast("	🎥 Movie Saved!", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="heart" color="red" iconSize={20} />
