@@ -72,7 +72,8 @@ function MovieCard(props) {
                 submitSave();
                 setIsActive(false);
                 console.log("clicked save");
-                toast("	🎥 Movie Saved!", {
+                toast.warning("	🎥 Movie Saved!", {
+                  className: "movieSaved",
                   position: "top-right",
                   autoClose: 5000,
                   hideProgressBar: false,
@@ -91,6 +92,16 @@ function MovieCard(props) {
                 submitWatched(e);
                 setIsActive(false);
                 console.log("clicked watched");
+                toast.warning("	👍 Added to Watched", {
+                  className: "movieSaved",
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="eye-on" color="orange" iconSize={20} />
@@ -100,6 +111,16 @@ function MovieCard(props) {
               onClick={(e) => {
                 setIsActive(false);
                 console.log("clicked discard");
+                toast.warning("	👎 Disliked Movie", {
+                  className: "movieSaved",
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="thumbs-down" color="orange" iconSize={20} />
