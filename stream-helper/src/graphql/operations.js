@@ -92,15 +92,15 @@ const WATCHEDMOVIES = gql`
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
-    $addMovieToUserWatched: Boolean
+    $addMovieToUserDisliked: Boolean
     $addMovieToUserSaved: Boolean
-    $addMovieToUserLiked: Boolean
+    $addMovieToUserWatched: Boolean
   ) {
     addMovieToUser(
       movieId: $addMovieToUserMovieId
-      watched: $addMovieToUserWatched
+      disliked: $addMovieToUserDisliked
       saved: $addMovieToUserSaved
-      liked: $addMovieToUserLiked
+      watched: $addMovieToUserWatched
     ) {
       id
     }
