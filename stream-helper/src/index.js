@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Cookies from "js-cookie";
 import "./index.css";
 import "normalize.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -25,7 +26,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
   operation.setContext({
     headers: {
-      authorization: localStorage.getItem("uid") || null,
+      authorization: Cookies.get("cookie") || null,
       // cookie: null,
     },
     // looking to gather the cookie
@@ -53,11 +54,9 @@ const client = new ApolloClient({
       },
     },
   }),
-  // credentials: "include",
   link: concat(authMiddleware, httpLink),
 });
-
-
+console.log(Cookies.get("cookie"));
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

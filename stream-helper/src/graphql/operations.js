@@ -43,18 +43,33 @@ const LOGIN = gql`
   }
 }
 `;
+// ================================= MOVIES ================================
+
+/**
+ * used in Homepage
+ * ../pages/Homepage.js
+ */
 
 const ALLMOVIES = gql`
-  query Query {
-    allMovies {
+  query Query(
+    $allMoviesTake: Int
+    $allMoviesSkip: Int
+    $allMoviesMyCursor: Int
+  ) {
+    allMovies(
+      take: $allMoviesTake
+      skip: $allMoviesSkip
+      myCursor: $allMoviesMyCursor
+    ) {
       id
       title
       original_language
       release_date
-      runetime
+      runtime
       vote_average
       overview
       image
+      categoryId
       genres {
         id
         name
@@ -63,21 +78,14 @@ const ALLMOVIES = gql`
   }
 `;
 
-const MOVIE = gql`
-  query Query($movieMovieId: ID!) {
-    movie(movieId: $movieMovieId) {
+/**
+ * Last movie for paganation used in homepage
+ */
+const LASTMOVIE = gql`
+  query Query {
+    lastMovie {
       id
-      title
-      original_language
-      release_date
-      runetime
-      vote_average
-      overview
-      image
-      genres {
-        id
-        name
-      }
+      categoryId
     }
   }
 `;
