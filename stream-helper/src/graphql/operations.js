@@ -89,4 +89,42 @@ const WATCHEDMOVIES = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES };
+const USERUPDATE = gql`
+  mutation Mutation(
+    $addMovieToUserMovieId: ID
+    $addMovieToUserWatched: Boolean
+    $addMovieToUserSaved: Boolean
+    $addMovieToUserLiked: Boolean
+  ) {
+    addMovieToUser(
+      movieId: $addMovieToUserMovieId
+      watched: $addMovieToUserWatched
+      saved: $addMovieToUserSaved
+      liked: $addMovieToUserLiked
+    ) {
+      id
+    }
+  }
+`;
+/*    mutation Mutation(
+    $addMovieToUserMovieId: ID
+    $addMovieToUserLiked: Boolean
+    $addMovieToUserSaved: Boolean
+    $addMovieToUserWatched: Boolean
+  ) {
+    addMovieToUser(
+      movieId: $addMovieToUserMovieId
+      liked: $addMovieToUserLiked
+      saved: $addMovieToUserSaved
+      watched: $addMovieToUserWatched
+    ) {
+      movies {
+        saved
+        watched
+        liked
+        id
+      }
+    }
+  }  */
+
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE };
