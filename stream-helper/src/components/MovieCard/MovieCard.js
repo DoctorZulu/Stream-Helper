@@ -20,8 +20,8 @@ function MovieCard(props) {
         <h2>
           <a href="#">{props.title}</a>
         </h2>
-        <p>{props.description}</p>
-        <h5>{props.vote_average}</h5>
+        <p>{props.description || null}</p>
+        <h5>{props.vote_average || null}</h5>
         <h5>Genre</h5>
 
         {isActive === true ? (

@@ -76,4 +76,17 @@ const LASTMOVIE = gql`
   }
 `;
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE };
+const WATCHEDMOVIES = gql`
+  query Query {
+    watchedMovies {
+      id
+      title
+      image
+      liked
+      watched
+      saved
+    }
+  }
+`;
+
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES };
