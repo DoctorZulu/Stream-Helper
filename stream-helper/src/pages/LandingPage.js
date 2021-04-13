@@ -5,7 +5,7 @@ import { Button, FormGroup, InputGroup } from "@blueprintjs/core";
 import { useMutation } from "@apollo/client";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 
-function LandingPage() {
+function LandingPage({ history }) {
   const [isNewUser, setIsNewUser] = useState(false);
   /* show info about App if true */
   const [knowMore, setKnowMore] = useState(false);
@@ -27,7 +27,7 @@ function LandingPage() {
     if (!loadingL && dataL) {
       console.log(dataL);
       const { signinUser } = dataL;
-      // need to set up the cookie setting here
+      history.push("/home");
     }
   }, [dataL]);
 

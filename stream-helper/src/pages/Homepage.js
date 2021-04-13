@@ -77,7 +77,7 @@ function Homepage() {
       <>
         <button onClick={bigFetch}>FetchMore </button>
         {allMovies.length > 0 ? (
-          <Infinite allMovies={allMovies} /* onLoadMore={bigFetch} */ />
+          <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
         ) : (
           <h1> There are No Movies To Load </h1>
         )}
