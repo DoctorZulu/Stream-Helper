@@ -1,12 +1,52 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
+import Toasty from "../Toaster/toast";
+import { ToastContainer, toast } from "react-toastify";
+
+import { useQuery, useMutation, gql } from "@apollo/client";
+import { USERUPDATE } from "../../graphql/operations";
+
 /* img import */
 
 import { useState } from "react";
+toast.configure();
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-  // console.log(props);
+  /*   const [addMovie, setAddMovie] = useState();
+  const [likeMovie, setLikeMovie] = useState();
+  const [saveMovie, setSaveMovie] = useState();
+  const [watchedMovie, setWatchedMovie] = useState(); */
+
+  const [update, { loading, error }] = useMutation(USERUPDATE);
+  const submitLike = async (e) => {
+    e.preventDefault();
+    await update({
+      variables: {
+        addMovieToUserMovieId: props.id,
+        addMovieToUserLiked: true,
+      },
+    });
+  };
+
+  const submitSave = async () => {
+    await update({
+      variables: {
+        addMovieToUserMovieId: props.id,
+        addMovieToUserSaved: true,
+      },
+    });
+  };
+
+  const submitWatched = async (e) => {
+    e.preventDefault();
+    await update({
+      variables: {
+        addMovieToUserMovieId: props.id,
+        addMovieToUserWatched: true,
+      },
+    });
+  };
   return (
     <>
       <div className="movieCardMain">
@@ -29,26 +69,58 @@ function MovieCard(props) {
             <div
               className="saveMovieButton"
               onClick={() => {
+                submitSave();
                 setIsActive(false);
                 console.log("clicked save");
+                toast.warning("	🎥 Movie Saved!", {
+                  className: "movieSaved",
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="heart" color="red" iconSize={20} />
             </div>
             <div
               className="watchedMovieButton"
-              onClick={() => {
+              onClick={(e) => {
+                submitWatched(e);
                 setIsActive(false);
                 console.log("clicked watched");
+                toast.warning("	👍 Added to Watched", {
+                  className: "movieSaved",
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="eye-on" color="orange" iconSize={20} />
             </div>
             <div
               className="discardMovieButton"
-              onClick={() => {
+              onClick={(e) => {
                 setIsActive(false);
                 console.log("clicked discard");
+                toast.warning("	👎 Disliked Movie", {
+                  className: "movieSaved",
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: false,
+                  draggable: true,
+                  progress: undefined,
+                });
               }}
             >
               <Icon icon="thumbs-down" color="orange" iconSize={20} />
