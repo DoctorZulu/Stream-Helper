@@ -33,7 +33,7 @@ function Homepage() {
       variables: {
         ...scrollData,
       },
-    },
+    }
   );
   console.log(scrollData);
 
@@ -67,7 +67,7 @@ function Homepage() {
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2),
+      setSkip(2)
     );
   };
   console.log(end, "this is the end");
@@ -77,7 +77,7 @@ function Homepage() {
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
       <>
-        <button onClick={bigFetch}>FetchMore </button>
+        {/* <button onClick={bigFetch}>FetchMore </button> */}
         {allMovies.length > 0 ? (
           <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
         ) : (
