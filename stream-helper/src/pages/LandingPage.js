@@ -79,6 +79,8 @@ function LandingPage({ history }) {
               We'll Recommend You Movies You'd Like <br /> Without Showing You
               Those You've already Seen
             </h3>
+
+          
             <Button
               icon="log-in"
               className="bp3-outlined bp3-large landingPageButton"

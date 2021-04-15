@@ -5,7 +5,7 @@ import { Button, FormGroup, InputGroup, ButtonGroup} from "@blueprintjs/core";
 import '../styles/Profile.css'
 /* GraphQl */
 import { useMutation } from "@apollo/client";
-import { UPDATEUSER } from "../graphql/operations";
+/* import { UPDATEUSER } from "../graphql/operations"; */
 import HeroBanner from '../components/HeroBanner/HeroBanner';
 
 function Profile() {
@@ -27,7 +27,7 @@ function Profile() {
 
     /* GQL */
 
-    const [
+    /* const [
         update,
         { loading: loadingS, error: errorS, data: dataS },
       ] = useMutation(UPDATEUSER);
@@ -41,8 +41,8 @@ function Profile() {
 
       if (loadingS) return console.log("Loading update");
       if (errorS) return `Error! ${errorS.message}`;
-
-    const submitHandlerSignup = async (e) => {
+ */
+ /*    const submitProfileEdit = async (e) => {
         e.preventDefault();
         await update({
           variables: {
@@ -55,7 +55,7 @@ function Profile() {
             },
           },
         });
-      };
+      }; */
 
     return(
         <>
@@ -137,7 +137,7 @@ function Profile() {
                       icon="tick-circle"
                       className="bp3-outlined bp3-large bp3-intent-success landingSubmitButton"
                       text="Submit"
-                      onClick={submitHandlerSignup}
+                      /* onClick={submitProfileEdit} */
                     />
                
                 </div>

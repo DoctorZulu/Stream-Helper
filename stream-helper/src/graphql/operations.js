@@ -33,7 +33,7 @@ const LOGIN = gql`
  * used in
  * "../pages/Profile.js"
  *   */
- const UPDATEUSER = gql`
+/*  const UPDATEUSERPROFILE = gql`
  mutation Mutation($updateUserFirstname: String, $updateUserLastname: String, $updateUserEmail: String, $updateUserUsername: String) {
   updateUser(firstname: $updateUserFirstname, lastname: $updateUserLastname, email: $updateUserEmail, username: $updateUserUsername) {
     firstname
@@ -42,7 +42,7 @@ const LOGIN = gql`
     email
   }
 }
-`;
+`; */
 // ================================= MOVIES ================================
 
 /**
@@ -120,6 +120,9 @@ const USERUPDATE = gql`
     }
   }
 `;
+
+const CHECKCURRENTUSER = gql `
+`
 /*    mutation Mutation(
     $addMovieToUserMovieId: ID
     $addMovieToUserLiked: Boolean
