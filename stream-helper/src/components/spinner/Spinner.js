@@ -1,4 +1,4 @@
-import { Spinner } from "@blueprintjs/core";
+/* import { Spinner } from "@blueprintjs/core";
 import React from "react";
 
 const Loader = () => {
@@ -6,3 +6,4 @@ const Loader = () => {
 };
 
 export default Loader;
+ */
