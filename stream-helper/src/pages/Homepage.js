@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
-
+/* styling */
+import {  EyeSlash, HandThumbsDown, HeartFill  } from 'react-bootstrap-icons';
+import '../styles/Homepage.css'
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
@@ -83,14 +85,19 @@ function Homepage() {
     <>
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
-      <>
+      <div className="homepageTutorial">
+      <h3> <HeartFill color={"red"} /> Adds Movies To Your "Saved Movies".</h3>
+      <h3>  <EyeSlash color={"orange"} />The Eye Icon Discards Movies as "Watched".</h3>
+      <h3> <HandThumbsDown  color={"red"}/> The Thumbs Down Icon Discards Movies as Disliked</h3>
+      </div>
+      <h1>
         {/* <button onClick={bigFetch}>FetchMore </button> */}
         {allMovies.length > 0 ? (
           <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
         ) : (
           <h1> There are No Movies To Load </h1>
         )}
-      </>
+      </h1>
     </>
   );
 }

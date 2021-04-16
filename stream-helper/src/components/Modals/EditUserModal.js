@@ -23,7 +23,7 @@ function EditUserModal({history}) {
       { loading, error, data },
     ] = useMutation(UPDATEUSERPROFILE);
 
-    console.log("BIATCH", data)
+
   
   
     useEffect(() => {
@@ -53,7 +53,7 @@ function EditUserModal({history}) {
     };
 
 
-    console.log(lgShow, "MODAL BITCH")
+
     return(
         <>
          <Button style={{ margin: "25px"}} onClick={() => setLgShow(true)}>Edit Profile</Button>

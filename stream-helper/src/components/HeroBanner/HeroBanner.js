@@ -12,6 +12,7 @@ function HeroBanner(props) {
         <div className="heroMainText">
             <h1 className="mainHeroTitle"> {props.heroTitle} </h1>
             <h2 className="mainHeroSubTitle">{props.heroText}</h2>
+            <h2 className="mainHeroSubTitle">{props.heroExplanation}</h2>
         </div>
         </>
     )

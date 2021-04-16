@@ -1,4 +1,4 @@
-import { Heart, EyeSlash, HandThumbsDownFill  } from 'react-bootstrap-icons';
+import {  EyeSlash, HandThumbsDown, HeartFill  } from 'react-bootstrap-icons';
 import "../../styles/MovieCard.css";
 import Toasty from "../Toaster/toast";
 import { ToastContainer, toast } from "react-toastify";
@@ -87,7 +87,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <Heart color="red" size={20} />
+              <HeartFill color="red" size={20} />
             </div>
             <div
               className="watchedMovieButton"
@@ -127,7 +127,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <HandThumbsDownFill color="purple" size={20} />
+              <HandThumbsDown color="red" size={20} />
             </div>
           </div>
         ) : (

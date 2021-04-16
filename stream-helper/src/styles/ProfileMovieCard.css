@@ -1,0 +1,19 @@
+
+.profileMovieCard {
+    margin: 15px;
+    position: relative;
+}
+
+.profileMovieCardImage {
+    width: 300px;
+    height: 450px;
+    grid-area: movieCard;
+}
+
+.profileMovieCardTitle {
+    color: black !important;
+}
+
+.profileMovieCardTitle a{
+    color: black !important;
+}
