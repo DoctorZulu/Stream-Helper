@@ -16,7 +16,7 @@ export default (
     <Route path="/home" component={Homepage} />
     <Route path="/movies" component={Movies} />
     <Route path="/profile/:id" component={Profile} />
-    <Route path="/movies/:id" component={MovieDetail} />
+    <Route path="/movie/:id" component={MovieDetail} />
     <Route path="/watched" component={WatchedMovies} />
     <Route path="/saved" component={SavedMovies} />
   </Switch>
