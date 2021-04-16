@@ -1,4 +1,4 @@
-import { Icon } from "@blueprintjs/core";
+import { Heart, EyeSlash, HandThumbsDownFill  } from 'react-bootstrap-icons';
 import "../../styles/MovieCard.css";
 import Toasty from "../Toaster/toast";
 import { ToastContainer, toast } from "react-toastify";
@@ -60,9 +60,9 @@ function MovieCard(props) {
             }}
           />
         </Link>
-        <h2>
+        <h3 className="movieCardTitle">
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
-        </h2>
+        </h3>
         <p>{props.description}</p>
         <h5>{props.vote_average}</h5>
         <h5>Genre</h5>
@@ -87,7 +87,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <Icon icon="heart" color="red" iconSize={20} />
+              <Heart color="red" size={20} />
             </div>
             <div
               className="watchedMovieButton"
@@ -107,7 +107,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <Icon icon="eye-on" color="orange" iconSize={20} />
+              <EyeSlash color="orange" size={20} />
             </div>
             <div
               className="discardMovieButton"
@@ -127,7 +127,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <Icon icon="thumbs-down" color="orange" iconSize={20} />
+              <HandThumbsDownFill color="purple" size={20} />
             </div>
           </div>
         ) : (

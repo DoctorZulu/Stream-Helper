@@ -19,6 +19,8 @@ function Homepage() {
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
+
+  console.log()
   const scrollData = {
     allMoviesTake: take,
     allMoviesSkip: skip,

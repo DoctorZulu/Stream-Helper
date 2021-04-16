@@ -1,13 +1,14 @@
 .mainNavBar {
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(26, 26, 26) !important;
     color: whitesmoke;
 }
 
 .buttonStyle {
     color: whitesmoke !important;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
-
-/* .leftNavBar {
-    margin-left: 5%;
-} */
+.buttonStyle a, a:hover{
+    text-decoration: none !important;
+}
