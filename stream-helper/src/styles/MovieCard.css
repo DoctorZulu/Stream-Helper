@@ -1,6 +1,7 @@
 .movieCardMain {
   margin: 30px;
   position: relative;
+  color: whitesmoke !important;
 }
 
 .movieCardTitle a{

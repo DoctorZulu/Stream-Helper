@@ -81,6 +81,63 @@ function LandingPage({ history }) {
           </div>
         </div>
         <div className="landingRightCol">
+
+        {isNewUser === false ? (
+              /* if user clicks login -> */
+              <div className="landingPageForm">
+                <div className="formShowToggle" style={{ display: formShow }}>
+
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email"
+                  onChange={(e) => setEmail(e.target.value)}
+                   />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="username" placeholder="Username" />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" 
+                  onChange={(e) => setPassword(e.target.value)}/>
+                </Form.Group>
+
+                <Button type="submit" onClick={submitHandlerLogin}> Login </Button>
+                </div>
+              </div>
+            ) : (
+              /* if user clicks register -> */
+              <div className="landingPageForm">
+                <div className="formShowToggle" style={{ display: formShow }}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email"
+                  onChange={(e) => setEmail(e.target.value)}
+                   />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formBasicUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="username" placeholder="Username" />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" 
+                  onChange={(e) => setPassword(e.target.value)}/>
+                </Form.Group>
+
+                <Button type="submit" onClick={submitHandlerSignup}> Register </Button>
+                
+                </div>
+              </div>
+                )}
       
         </div>
       </div>
