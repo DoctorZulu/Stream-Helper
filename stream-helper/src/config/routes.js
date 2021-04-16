@@ -10,6 +10,7 @@ import WatchedMovies from "../pages/WatchedMovies";
 import SavedMovies from "../pages/SavedMovies";
 import MovieDetail from "../pages/MovieDetail";
 
+
 export default (
   <Switch>
     <Route exact path="/" component={LandingPage} />

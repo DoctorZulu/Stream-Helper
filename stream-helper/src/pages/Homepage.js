@@ -5,10 +5,17 @@ import HeroBanner from "../components/HeroBanner/HeroBanner";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
-
+/* gql */
 import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
+/* userState via recoil */
+import { userState } from "../recoil/atoms"
+import { useRecoilState } from "recoil"
 
 function Homepage() {
+  /* user state */
+  const [ user, setUser ] = useRecoilState(userState)
+
+  console.log(user, "Current user")
   const heroTitle = "Welcome To StreamHelper";
   const heroText =
     "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen";

@@ -33,16 +33,13 @@ const LOGIN = gql`
  * used in
  * "../pages/Profile.js"
  *   */
-/*  const UPDATEUSERPROFILE = gql`
- mutation Mutation($updateUserFirstname: String, $updateUserLastname: String, $updateUserEmail: String, $updateUserUsername: String) {
-  updateUser(firstname: $updateUserFirstname, lastname: $updateUserLastname, email: $updateUserEmail, username: $updateUserUsername) {
-    firstname
-    lastname
-    username
-    email
+ const UPDATEUSERPROFILE = gql`
+ mutation UpdateUserMutation($updateUserFirstname: String, $updateUserUsername: String, $updateUserEmail: String, $updateUserLastname: String) {
+  updateUser(firstname: $updateUserFirstname, username: $updateUserUsername, email: $updateUserEmail, lastname: $updateUserLastname) {
+    id
   }
 }
-`; */
+`;
 // ================================= MOVIES ================================
 
 /**
@@ -126,4 +123,4 @@ const USERUPDATE = gql`
 ` */
 
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE };
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE, UPDATEUSERPROFILE};
