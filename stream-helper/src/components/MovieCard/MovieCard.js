@@ -25,7 +25,7 @@ function MovieCard(props) {
     await update({
       variables: {
         addMovieToUserMovieId: props.id,
-        addMovieToUserLiked: true,
+        addMovieToUserDisliked: true,
       },
     });
   };

@@ -4,27 +4,28 @@ import { Modal, Button, Container, Row } from 'react-bootstrap';
 import ProfileMovieCard from "../MovieCard/ProfileMovieCard";
 /* GQL */
 import { useQuery } from "@apollo/client";
-import { WATCHEDMOVIES } from "../../graphql/operations";
+import { DISLIKEDMOVIES } from "../../graphql/operations";
 
 
-
-
-function LikedMoviesModal() {
+function DislikedMoviesModal() {
     const [lgShow, setLgShow] = useState(false);
 
-    const [watchedMovies, setWatchedMovies] = useState();
-    const { loading, error, data } = useQuery(WATCHEDMOVIES);
+    const [dislikedMovies, setDislikedMovies] = useState();
+    const { loading, error, data } = useQuery(DISLIKEDMOVIES);
 
     useEffect(() => {
       if (!loading && data) {
-        setWatchedMovies(data);
+        setDislikedMovies(data);
       }
     });
+
+    console.log("DISLIKED", dislikedMovies)
+    
   
     const Mapper = () => (
       <>
  
-        {watchedMovies.watchedMovies.map((movie, i) => (
+        {dislikedMovies.dislikedMovies.map((movie, i) => (
             <ProfileMovieCard {...movie} key={i + 1} />
         ))}
      
@@ -52,7 +53,7 @@ function LikedMoviesModal() {
           <Container>
             <Row>
 
-          {watchedMovies ? <Mapper /> : <h1> error</h1> }
+          {dislikedMovies ? <Mapper /> : <h1> error</h1> }
             </Row>
           </Container>
 
@@ -62,4 +63,4 @@ function LikedMoviesModal() {
     )
 }
 
-export default LikedMoviesModal
+export default DislikedMoviesModal

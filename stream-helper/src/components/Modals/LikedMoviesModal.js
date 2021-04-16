@@ -3,31 +3,31 @@ import { Modal, Button, Container, Row } from 'react-bootstrap';
 /* component imports */
 import ProfileMovieCard from "../MovieCard/ProfileMovieCard";
 /* GQL */
-import { useQuery } from "@apollo/client";
-import { WATCHEDMOVIES } from "../../graphql/operations";
-
+/* import { useQuery } from "@apollo/client";
+import { LIKEDMOVIES } from "../../graphql/operations";
+ */
 function LikedMoviesModal() {
     const [lgShow, setLgShow] = useState(false);
-    const [watchedMovies, setWatchedMovies] = useState();
-    const { loading, error, data } = useQuery(WATCHEDMOVIES);
-
-    useEffect(() => {
+  /*   const [likedMovies, setLikedMovies] = useState();
+    const { loading, error, data } = useQuery(LIKEDMOVIES);
+ */
+   /*  useEffect(() => {
       if (!loading && data) {
-        setWatchedMovies(data);
+        setLikedMovies(data);
       }
     });
-  
-    const Mapper = () => (
+   */
+   /*  const Mapper = () => (
       <>
  
-        {watchedMovies.watchedMovies.map((movie, i) => (
+        {likedMovies.likedMovies.map((movie, i) => (
             <ProfileMovieCard {...movie} key={i + 1} />
         ))}
      
  
  
       </>
-    );
+    ); */
     return(
         <>
        <Button style={{ paddingRight: "30px"}} onClick={() => setLgShow(true)}>Liked Movies</Button>
@@ -47,7 +47,7 @@ function LikedMoviesModal() {
         <Container>
           <Row>
 
-        {watchedMovies ? <Mapper /> : <h1> error</h1> }
+    {/*     {likedMovies ? <Mapper /> : <h1> error</h1> } */}
           </Row>
         </Container>
 

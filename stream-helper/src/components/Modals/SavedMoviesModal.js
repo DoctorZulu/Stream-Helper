@@ -4,25 +4,25 @@ import { Modal, Button, Container, Row } from 'react-bootstrap';
 import ProfileMovieCard from "../MovieCard/ProfileMovieCard";
 /* GQL */
 import { useQuery } from "@apollo/client";
-import { WATCHEDMOVIES } from "../../graphql/operations";
+import { SAVEDMOVIES } from "../../graphql/operations";
 
 
 function SavedMoviesModal() {
     const [lgShow, setLgShow] = useState(false);
 
-    const [watchedMovies, setWatchedMovies] = useState();
-    const { loading, error, data } = useQuery(WATCHEDMOVIES);
+    const [savedMovies, setSavedMovies] = useState();
+    const { loading, error, data } = useQuery(SAVEDMOVIES);
 
     useEffect(() => {
       if (!loading && data) {
-        setWatchedMovies(data);
+        setSavedMovies(data);
       }
     });
   
     const Mapper = () => (
       <>
  
-        {watchedMovies.watchedMovies.map((movie, i) => (
+        {savedMovies.savedMovies.map((movie, i) => (
             <ProfileMovieCard {...movie} key={i + 1} />
         ))}
      
@@ -50,7 +50,7 @@ function SavedMoviesModal() {
        <Container>
           <Row>
 
-        {watchedMovies ? <Mapper /> : <h1> error</h1> }
+        {savedMovies ? <Mapper /> : <h1> error</h1> }
           </Row>
         </Container>
 

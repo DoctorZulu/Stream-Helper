@@ -93,12 +93,36 @@ const WATCHEDMOVIES = gql`
       id
       title
       image
-      liked
+      disliked
       watched
       saved
     }
   }
 `;
+
+const SAVEDMOVIES = gql `
+query Query {
+  savedMovies {
+    id
+    title
+    image
+    disliked
+    watched
+    saved
+  }
+}`
+
+const DISLIKEDMOVIES = gql `
+query Query {
+  dislikedMovies {
+    id
+    title
+    image
+    disliked
+    watched
+    saved
+  }
+}`
 
 const USERUPDATE = gql`
   mutation Mutation(
@@ -123,4 +147,4 @@ const USERUPDATE = gql`
 ` */
 
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE, UPDATEUSERPROFILE};
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERUPDATE, UPDATEUSERPROFILE};
