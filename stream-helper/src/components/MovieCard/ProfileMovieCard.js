@@ -1,4 +1,4 @@
-import {  EyeSlash, HandThumbsDown, HeartFill  } from 'react-bootstrap-icons';
+
 import "../../styles/ProfileMovieCard.css";
 import Toasty from "../Toaster/toast";
 import { ToastContainer, toast } from "react-toastify";

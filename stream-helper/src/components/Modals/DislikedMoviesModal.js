@@ -1,7 +1,37 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Modal, Button, Container, Row } from 'react-bootstrap';
+/* component imports */
+import ProfileMovieCard from "../MovieCard/ProfileMovieCard";
+/* GQL */
+import { useQuery } from "@apollo/client";
+import { WATCHEDMOVIES } from "../../graphql/operations";
+
+
+
+
 function LikedMoviesModal() {
     const [lgShow, setLgShow] = useState(false);
+
+    const [watchedMovies, setWatchedMovies] = useState();
+    const { loading, error, data } = useQuery(WATCHEDMOVIES);
+
+    useEffect(() => {
+      if (!loading && data) {
+        setWatchedMovies(data);
+      }
+    });
+  
+    const Mapper = () => (
+      <>
+ 
+        {watchedMovies.watchedMovies.map((movie, i) => (
+            <ProfileMovieCard {...movie} key={i + 1} />
+        ))}
+     
+ 
+ 
+      </>
+    );
  
     return(
         <>
@@ -18,7 +48,15 @@ function LikedMoviesModal() {
               Movies You've Disliked
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body> show movies here</Modal.Body>
+        <Modal.Body> 
+          <Container>
+            <Row>
+
+          {watchedMovies ? <Mapper /> : <h1> error</h1> }
+            </Row>
+          </Container>
+
+        </Modal.Body>
       </Modal>
         </>
     )
