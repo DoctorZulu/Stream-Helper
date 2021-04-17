@@ -25,7 +25,7 @@ function MovieCard(props) {
 
   const [update, { loading, error }] = useMutation(USERUPDATE);
 
-  console.log(props, "movie card props!!!!!");
+  // console.log(props, "movie card props!!!!!");
   const submitDislike = async (e) => {
     e.preventDefault();
     await update({

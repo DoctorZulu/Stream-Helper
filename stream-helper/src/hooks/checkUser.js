@@ -6,7 +6,9 @@ import { VERIFY } from "../graphql/operations";
 
 const CheckUser = () => {
   const [user, setUser] = useRecoilState(userState);
-  const { loading, error, data } = useQuery(VERIFY);
+  const { loading, error, data } = useQuery(VERIFY, {
+    fetchPolicy: "network-only",
+  });
 
   useEffect(async () => {
     if (!user) {

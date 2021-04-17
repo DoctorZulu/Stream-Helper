@@ -9,7 +9,6 @@ import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
 import CheckUser from "../hooks/checkUser";
 
-import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
 /* gql */
 import { ALLMOVIES } from "../graphql/operations";
 /* userState via recoil */
@@ -18,7 +17,7 @@ import { useRecoilState } from "recoil";
 
 function Homepage() {
   /* user state */
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
 
   console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
@@ -62,7 +61,7 @@ function Homepage() {
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
-      console.log(dataAll, "DATA");
+      // console.log(dataAll, "DATA");
       setAllMovies(dataAll.allMovies);
     }
 
