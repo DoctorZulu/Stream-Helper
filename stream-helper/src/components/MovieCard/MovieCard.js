@@ -98,7 +98,7 @@ function MovieCard(props) {
                  removeWatched();
                  removeSaved();
                  setIsActive(false);
-                 toast.warning("	🎥 Movie No Longer Marked as Watched", {
+                 toast.warning("	🎥 Movie No Longer Marked as Watched or Saved", {
                    className: "movieSaved",
                    position: "top-right",
                    autoClose: 5000,

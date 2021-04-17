@@ -6,7 +6,7 @@ import { DropdownButton, Dropdown, ButtonGroup, Image, Row } from 'react-bootstr
 import '../styles/Profile.css'
 import SavedMoviesModal from '../components/Modals/SavedMoviesModal';
 import EditUserModal from '../components/Modals/EditUserModal';
-import LikedMoviesModal from '../components/Modals/LikedMoviesModal';
+import WatchedMoviesModal from '../components/Modals/WatchedMoviesModal';
 import DislikedMoviesModal from '../components/Modals/DislikedMoviesModal';
 
 function Profile({ history }) {
@@ -31,8 +31,8 @@ function Profile({ history }) {
             <h1> User Bio here: A bunch of random string text and Charfield <br/>content to fill up this space</h1>
 
             {/* Modal For Liked Movies */}
-            <DropdownButton as={ButtonGroup} title="Liked/Disliked Movies" id="bg-nested-dropdown">
-              <Dropdown.Item eventKey="1"><LikedMoviesModal /></Dropdown.Item>
+            <DropdownButton as={ButtonGroup} title="Watched/Disliked Movies" id="bg-nested-dropdown">
+              <Dropdown.Item eventKey="1"><WatchedMoviesModal /></Dropdown.Item>
               <Dropdown.Item eventKey="2"><DislikedMoviesModal/></Dropdown.Item>
             </DropdownButton>
             
