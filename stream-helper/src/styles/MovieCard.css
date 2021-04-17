@@ -72,6 +72,17 @@
 .movieSaved {
   background-color: rgb(22, 22, 22);
 }
+
+/* REMOVE MOVIE BUTTON */
+
+.removeMovieIcon {
+  position: absolute;
+  right: 0;
+  padding: 15px;
+  bottom: 335px;
+}
+
+
 .Toastify__progress-bar--default {
   background-color: red;
   color: red;

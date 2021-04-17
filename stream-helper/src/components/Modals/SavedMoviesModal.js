@@ -18,16 +18,14 @@ function SavedMoviesModal() {
         setSavedMovies(data);
       }
     });
+
+    
   
     const Mapper = () => (
       <>
- 
         {savedMovies.savedMovies.map((movie, i) => (
             <ProfileMovieCard {...movie} key={i + 1} />
         ))}
-     
- 
- 
       </>
     );
  

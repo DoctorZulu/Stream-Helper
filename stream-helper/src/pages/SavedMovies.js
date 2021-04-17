@@ -16,6 +16,9 @@ function SavedMovies() {
         setSavedMovies(data);
       }
     });
+
+
+
   
     const Mapper = () => (
       <>
