@@ -1,8 +1,11 @@
 .movieCardMain {
   margin: 30px;
-  margin-left: auto;
-  margin-right: auto;
   position: relative;
+  color: whitesmoke !important;
+}
+
+.movieCardTitle a{
+  color: whitesmoke !important;
 }
 
 .movieCardIcon {
@@ -17,6 +20,12 @@
   grid-template-areas: "movieCard movieCard movieCard movieCard";
 }
 
+.movieButtonContainer {
+  position: absolute;
+  width: 300px !important;
+  top: 75%;
+}
+
 .movieImageCard {
   width: 300px;
   height: 450px;
@@ -28,7 +37,6 @@
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.336);
   position: absolute;
-  top: 69%;
   left: 0;
   width: 33.3%;
   text-align: center !important;
@@ -42,7 +50,6 @@
   border-right: 1px solid white;
   position: absolute;
   /* FIXME: refactor values to better use */
-  top: 69%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -56,7 +63,6 @@
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.336);
   position: absolute;
-  top: 69%;
   right: 0;
   width: 33.3%;
   text-align: center !important;

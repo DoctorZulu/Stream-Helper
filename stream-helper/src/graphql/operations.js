@@ -29,6 +29,20 @@ const LOGIN = gql`
   }
 `;
 
+/**
+ * used in
+ * "../pages/Profile.js"
+ *   */
+/*  const UPDATEUSERPROFILE = gql`
+ mutation Mutation($updateUserFirstname: String, $updateUserLastname: String, $updateUserEmail: String, $updateUserUsername: String) {
+  updateUser(firstname: $updateUserFirstname, lastname: $updateUserLastname, email: $updateUserEmail, username: $updateUserUsername) {
+    firstname
+    lastname
+    username
+    email
+  }
+}
+`; */
 // ================================= MOVIES ================================
 
 /**
@@ -106,25 +120,10 @@ const USERUPDATE = gql`
     }
   }
 `;
-/*    mutation Mutation(
-    $addMovieToUserMovieId: ID
-    $addMovieToUserLiked: Boolean
-    $addMovieToUserSaved: Boolean
-    $addMovieToUserWatched: Boolean
-  ) {
-    addMovieToUser(
-      movieId: $addMovieToUserMovieId
-      liked: $addMovieToUserLiked
-      saved: $addMovieToUserSaved
-      watched: $addMovieToUserWatched
-    ) {
-      movies {
-        saved
-        watched
-        liked
-        id
-      }
-    }
-  }  */
+
+/* const CHECKCURRENTUSER = gql `
+  mutation Mutation($checkCurrentUser)
+` */
+
 
 export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import MovieCard from "../components/MovieCard/MovieCard";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
-import Spinner from "../components/spinner/Spinner";
 import { useQuery } from "@apollo/client";
 
 import { WATCHEDMOVIES } from "../graphql/operations";
@@ -35,7 +34,7 @@ function WatchedMovies() {
       <HeroBanner heroTitle={heroTitle} heroText={heroText} />
       <div className="movieCardContainer">
         {error ? <h1>{error}</h1> : null}
-        {watchedMovies ? <Mapper /> : <Spinner />}
+        {watchedMovies ? <Mapper /> : <h1> error</h1> }
       </div>
     </>
   );

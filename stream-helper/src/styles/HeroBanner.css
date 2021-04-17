@@ -9,14 +9,17 @@
 
 .mainHeroTitle {
     font-size: 75px;
+    color: whitesmoke !important;
 }
 
 .mainHeroSubTitle {
     font-size: 25px;
+    color: whitesmoke !important;
 }
 
 .heroMainText {
     position: absolute;
     top: 15vh;
     left: 5vh;
+    color: whitesmoke !important;
 }
