@@ -5,6 +5,7 @@ import HeroBanner from "../components/HeroBanner/HeroBanner";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
+import CheckUser from "../hooks/checkUser";
 
 import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
 
@@ -19,8 +20,7 @@ function Homepage() {
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
-
-  console.log()
+  // console.log();
   const scrollData = {
     allMoviesTake: take,
     allMoviesSkip: skip,
@@ -33,9 +33,9 @@ function Homepage() {
       variables: {
         ...scrollData,
       },
-    }
+    },
   );
-  console.log(scrollData);
+  // console.log(scrollData);
 
   // const { data: dataLastMovie, loading: loadingLastMovie } = useQuery(
   //   LASTMOVIE,
@@ -67,13 +67,14 @@ function Homepage() {
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2)
+      setSkip(2),
     );
   };
-  console.log(end, "this is the end");
+  // console.log(end, "this is the end");
 
   return (
     <>
+      <CheckUser />
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
       <>

@@ -28,6 +28,21 @@ const LOGIN = gql`
     }
   }
 `;
+/**
+ * USED FOR VERIFING USERS ON EACH PAGE
+ */
+const VERIFY = gql`
+  query Query {
+    verifyUser {
+      id
+      firstname
+      lastname
+      username
+      email
+      password
+    }
+  }
+`;
 
 /**
  * used in
@@ -125,5 +140,12 @@ const USERUPDATE = gql`
   mutation Mutation($checkCurrentUser)
 ` */
 
-
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, USERUPDATE };
+export {
+  SIGNUP,
+  LOGIN,
+  VERIFY,
+  ALLMOVIES,
+  LASTMOVIE,
+  WATCHEDMOVIES,
+  USERUPDATE,
+};
