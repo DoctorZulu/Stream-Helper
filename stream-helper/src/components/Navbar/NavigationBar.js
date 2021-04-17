@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 /* styling */
 import '../../styles/NavigationBar.css'
 import { Nav, Navbar } from 'react-bootstrap';
+/* import userState from Recoil */
+import { userState } from "../../recoil/atoms"
+import { useRecoilState } from "recoil"
 
 function NavigationBar() {
+    const [ user, setUser ] = useRecoilState(userState)
+  
     return(
         <>
       
@@ -30,7 +35,7 @@ function NavigationBar() {
                     <Nav.Item  className="buttonStyle"> My Saved Movies </Nav.Item>
                     </Link>
         </Nav>
-                    <Link to={'/profile'}>  
+                    <Link to={`/profile/${user && user.id }`}>  
                     <Nav.Item  className="buttonStyle"> Profile </Nav.Item>
                     </Link>
     </Navbar>

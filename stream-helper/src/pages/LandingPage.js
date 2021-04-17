@@ -78,12 +78,16 @@ function LandingPage({ history }) {
               We'll Recommend You Movies You'd Like <br /> Without Showing You
               Those You've already Seen
             </h3>
+          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(true); setFormShow(false)}}> Register </Button>
+          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(false); setFormShow(false)}}> Already A Member? </Button>
+          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(true); setFormShow(true)}}> Learn More </Button>
           </div>
+
         </div>
         <div className="landingRightCol">
 
         {isNewUser === false ? (
-              /* if user clicks login -> */
+          /* if user clicks login -> */
               <div className="landingPageForm">
                 <div className="formShowToggle" style={{ display: formShow }}>
 
@@ -92,11 +96,6 @@ function LandingPage({ history }) {
                   <Form.Control type="email" placeholder="Enter email"
                   onChange={(e) => setEmail(e.target.value)}
                    />
-                </Form.Group>
-
-                <Form.Group controlId="formBasicUsername">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Username" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -124,7 +123,8 @@ function LandingPage({ history }) {
 
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Username" />
+                  <Form.Control type="username" placeholder="Username" 
+                  onChange={(e) => setUsername(e.target.value)}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">

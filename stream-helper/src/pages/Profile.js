@@ -2,56 +2,21 @@ import React, {useState, useEffect} from 'react';
 import NavigationBar from '../components/Navbar/NavigationBar'
 import HeroBanner from '../components/HeroBanner/HeroBanner';
 /* styling */
-import { Button, Col, Image, Row } from 'react-bootstrap';
+import { DropdownButton, Dropdown, ButtonGroup, Image, Row } from 'react-bootstrap';
 import '../styles/Profile.css'
 import SavedMoviesModal from '../components/Modals/SavedMoviesModal';
 import EditUserModal from '../components/Modals/EditUserModal';
-import LikedMoviesModal from '../components/Modals/LikedMoviesModal';
+import WatchedMoviesModal from '../components/Modals/WatchedMoviesModal';
+import DislikedMoviesModal from '../components/Modals/DislikedMoviesModal';
 
-/* GraphQl */
-/* import { useMutation } from "@apollo/client"; */
-/* import { UPDATEUSER } from "../graphql/operations"; */
-
-function Profile() {
-
+function Profile({ history }) {
 
     /* Hero Banner */
     const heroTitle = `Hey CurrentUserName!`
     const heroText = "Edit Your Profile Details Or View Some Of Your Curated Lists Below"
 
-  
-
-    /* GQL */
-
-    /* const [
-        update,
-        { loading: loadingS, error: errorS, data: dataS },
-      ] = useMutation(UPDATEUSER);
 
 
-      useEffect(() => {
-        if (!loadingS && dataS) {
-          console.log(dataS);
-        }
-      }, [dataS]);
-
-      if (loadingS) return console.log("Loading update");
-      if (errorS) return `Error! ${errorS.message}`;
- */
- /*    const submitProfileEdit = async (e) => {
-        e.preventDefault();
-        await update({
-          variables: {
-            updateUserDetails: {
-                firstname: firstname,
-                lastname: lastname,
-                email: email,
-                username: username,
-                password: password,
-            },
-          },
-        });
-      }; */
 
     return(
         <>
@@ -63,16 +28,20 @@ function Profile() {
           <div className="profileContentItems">
             {/* user Profile Image */}
             <Image src="" rounded />
-            <h1> bio here</h1>
+            <h1> User Bio here: A bunch of random string text and Charfield <br/>content to fill up this space</h1>
 
             {/* Modal For Liked Movies */}
-            <LikedMoviesModal />
+            <DropdownButton as={ButtonGroup} title="Watched/Disliked Movies" id="bg-nested-dropdown">
+              <Dropdown.Item eventKey="1"><WatchedMoviesModal /></Dropdown.Item>
+              <Dropdown.Item eventKey="2"><DislikedMoviesModal/></Dropdown.Item>
+            </DropdownButton>
+            
 
             {/* Modal For Saved Movies*/}
             <SavedMoviesModal />
             
             {/* Modal For Profile Edit */}
-            <EditUserModal />
+            <EditUserModal history = {history}/>
           </div>
         </div>
 
