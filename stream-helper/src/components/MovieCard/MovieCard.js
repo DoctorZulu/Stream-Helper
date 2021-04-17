@@ -1,9 +1,8 @@
 import { Icon } from "@blueprintjs/core";
 import "../../styles/MovieCard.css";
-import Toasty from "../Toaster/toast";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
 /* img import */

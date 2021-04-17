@@ -11,13 +11,15 @@ function WatchedMovies() {
   const [watchedMovies, setWatchedMovies] = useState();
   const heroTitle = "Your Watched Movies List";
   const heroText = "These Movies Won't Show Up in your Recommendations";
-  const { loading, error, data } = useQuery(WATCHEDMOVIES);
+  const { loading, error, data } = useQuery(WATCHEDMOVIES, {
+    fetchPolicy: "network-only",
+  });
 
   useEffect(() => {
     if (!loading && data) {
       setWatchedMovies(data);
     }
-  });
+  }, [data]);
 
   const Mapper = () => (
     <>
