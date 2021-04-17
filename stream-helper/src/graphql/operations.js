@@ -142,9 +142,25 @@ const USERUPDATE = gql`
   }
 `;
 
+const USERMOVIERECOMMENDATIONS = gql `
+query Query($userMovieRecommendationsTake: Int, $userMovieRecommendationsSkip: Int, $userMovieRecommendationsMyCursor: Int) {
+  userMovieRecommendations(take: $userMovieRecommendationsTake, skip: $userMovieRecommendationsSkip, myCursor: $userMovieRecommendationsMyCursor) {
+    id
+    categoryId
+    title
+    original_language
+    release_date
+    runtime
+    vote_average
+    overview
+    image
+  }
+}
+`
+
 /* const CHECKCURRENTUSER = gql `
   mutation Mutation($checkCurrentUser)
 ` */
 
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERUPDATE, UPDATEUSERPROFILE};
+export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERMOVIERECOMMENDATIONS, USERUPDATE, UPDATEUSERPROFILE};
