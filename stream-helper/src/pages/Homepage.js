@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 /* styling */
-import {  EyeSlash, HandThumbsDown, HeartFill  } from 'react-bootstrap-icons';
-import '../styles/Homepage.css'
+import { EyeSlash, HandThumbsDown, HeartFill } from "react-bootstrap-icons";
+import "../styles/Homepage.css";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
@@ -13,14 +13,14 @@ import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
 /* gql */
 import { ALLMOVIES } from "../graphql/operations";
 /* userState via recoil */
-import { userState } from "../recoil/atoms"
-import { useRecoilState } from "recoil"
+import { userState } from "../recoil/atoms";
+import { useRecoilState } from "recoil";
 
 function Homepage() {
   /* user state */
-  const [ user, setUser ] = useRecoilState(userState)
+  const [user, setUser] = useRecoilState(userState);
 
-  console.log(user, "Current user")
+  console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
   const heroText =
     "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen";
@@ -31,10 +31,7 @@ function Homepage() {
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
-<<<<<<< HEAD
   // console.log();
-=======
->>>>>>> bfd0b28c93b85ed8c0504ed338687b018486177a
   const scrollData = {
     allMoviesTake: take,
     allMoviesSkip: skip,
@@ -49,7 +46,6 @@ function Homepage() {
       },
     },
   );
-<<<<<<< HEAD
   // console.log(scrollData);
 
   // const { data: dataLastMovie, loading: loadingLastMovie } = useQuery(
@@ -63,8 +59,6 @@ function Homepage() {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [loadingLastMovie, dataLastMovie]);
-=======
->>>>>>> bfd0b28c93b85ed8c0504ed338687b018486177a
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
@@ -94,9 +88,20 @@ function Homepage() {
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
       <div className="homepageTutorial">
-      <h3> <HeartFill color={"red"} /> Adds Movies To Your "Saved Movies".</h3>
-      <h3>  <EyeSlash color={"orange"} />The Eye Icon Discards Movies as "Watched".</h3>
-      <h3> <HandThumbsDown  color={"red"}/> The Thumbs Down Icon Discards Movies as Disliked</h3>
+        <h3>
+          {" "}
+          <HeartFill color={"red"} /> Adds Movies To Your "Saved Movies".
+        </h3>
+        <h3>
+          {" "}
+          <EyeSlash color={"orange"} />
+          The Eye Icon Discards Movies as "Watched".
+        </h3>
+        <h3>
+          {" "}
+          <HandThumbsDown color={"red"} /> The Thumbs Down Icon Discards Movies
+          as Disliked
+        </h3>
       </div>
       <h1>
         {/* <button onClick={bigFetch}>FetchMore </button> */}
