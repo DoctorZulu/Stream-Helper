@@ -8,7 +8,7 @@ import '../styles/Homepage.css'
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
 /* gql */
-import { ALLMOVIES, LASTMOVIE } from "../graphql/operations";
+import { ALLMOVIES } from "../graphql/operations";
 /* userState via recoil */
 import { userState } from "../recoil/atoms"
 import { useRecoilState } from "recoil"
@@ -28,8 +28,6 @@ function Homepage() {
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
-
-  console.log()
   const scrollData = {
     allMoviesTake: take,
     allMoviesSkip: skip,
@@ -44,25 +42,11 @@ function Homepage() {
       },
     }
   );
-  console.log(scrollData);
-
-  // const { data: dataLastMovie, loading: loadingLastMovie } = useQuery(
-  //   LASTMOVIE,
-  // );
-
-  // useEffect(() => {
-  //   if (loadingLastMovie === false && dataLastMovie) {
-  //     console.log(dataLastMovie, "================================");
-  //     setEnd(Number(dataLastMovie.lastMovie.categoryId));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [loadingLastMovie, dataLastMovie]);
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
       console.log(dataAll, "DATA");
       setAllMovies(dataAll.allMovies);
-      // console.log("movies set");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -143,8 +143,16 @@ const USERUPDATE = gql`
 `;
 
 const USERMOVIERECOMMENDATIONS = gql `
-query Query($userMovieRecommendationsTake: Int, $userMovieRecommendationsSkip: Int, $userMovieRecommendationsMyCursor: Int) {
-  userMovieRecommendations(take: $userMovieRecommendationsTake, skip: $userMovieRecommendationsSkip, myCursor: $userMovieRecommendationsMyCursor) {
+query Query(
+  $userMovieRecommendationsTake: Int,
+  $userMovieRecommendationsSkip: Int,
+  $userMovieRecommendationsMyCursor: Int
+  ) {
+  userMovieRecommendations(
+    take: $userMovieRecommendationsTake,
+    skip: $userMovieRecommendationsSkip, 
+    myCursor: $userMovieRecommendationsMyCursor
+    ) {
     id
     categoryId
     title

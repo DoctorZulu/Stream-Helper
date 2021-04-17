@@ -6,7 +6,8 @@ import MovieCard from '../components/MovieCard/MovieCard'
 /* gql */
 import { useQuery } from "@apollo/client";
 import { USERMOVIERECOMMENDATIONS } from "../graphql/operations";
-
+/* vendor imports */
+import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
 
 function Movies() {
   /* Hero banner content */
@@ -14,38 +15,68 @@ function Movies() {
   const heroText =
     "Click On The Thumbs Down If You Dislike That Recommendation";
     const [userMovieRecommendations, setUserMovieRecommendations] = useState();
-    const { loading, error, data } = useQuery(USERMOVIERECOMMENDATIONS);
+    const { loading, error, data } = useQuery(USERMOVIERECOMMENDATIONS);     
+    /* base states */
+  const [take] = useState(5);
+  const [end, setEnd] = useState(1);
+  const [skip, setSkip] = useState(0);
 
-    useEffect(() => {
-      if (!loading && data) {
-        setUserMovieRecommendations(data);
-      }
-    });
-    
-    const Mapper = () => (
-      <>
-        {console.log(userMovieRecommendations.userMovieRecommendations, "TEST")}
-        {userMovieRecommendations.userMovieRecommendations.map((movie, i) => (
-          <MovieCard {...movie} key={i + 1} />
-        ))}
-      </>
-    );        
+  const scrollData = {
+    userMovieRecommendationsTake: take,
+    userMovieRecommendationsSkip: skip,
+    userMovieRecommendationsMyCursor: end,
+  };
+
+  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
+    USERMOVIERECOMMENDATIONS,
+    {
+      variables: {
+        ...scrollData,
+      },
+    }
+  );
+  console.log(scrollData, "scroll data log");
+
+ 
+
+  useEffect(() => {
+    if (loadingAll === false && dataAll) {
+      console.log(dataAll.userMovieRecommendations, "DATA");
+      setUserMovieRecommendations(dataAll.userMovieRecommendations);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingAll, dataAll]);
+
+  const bigFetch = () => {
+    fetchMore(
+      {
+        variables: {
+          userMovieRecommendationsMyCursor: userMovieRecommendations.length - 1 /* end + take */,
+        },
+      },
+      setEnd(userMovieRecommendations[userMovieRecommendations.length - 1].categoryId),
+      setSkip(2)
+    );
+  };
+  console.log(end, "this is the end");
+
 
     
   return (
     <>
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
-      <div className="movieCardContainer">
-      {allMovies.length > 0 ? (
-          <Infinite userMovieRecommendations={userMovieRecommendations} onLoadMore={bigFetch} />
+     
+      {userMovieRecommendations ? (
+          <InfiniteRecommendations userMovieRecommendations={userMovieRecommendations} onLoadMore={bigFetch} />
         ) : (
           <h1> There are No Movies To Load </h1>
         )}
-  {/*   {userMovieRecommendations ? <Mapper /> : <h1> error</h1> } */}
-      </div>
+     
     </>
   );
 }
 
 export default Movies;
+ 

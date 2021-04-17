@@ -9,7 +9,7 @@ import Profile from "../pages/Profile";
 import WatchedMovies from "../pages/WatchedMovies";
 import SavedMovies from "../pages/SavedMovies";
 import MovieDetail from "../pages/MovieDetail";
-
+import NotFound from "../pages/NotFound";
 
 export default (
   <Switch>
@@ -20,5 +20,6 @@ export default (
     <Route path="/movie/:id" component={MovieDetail} />
     <Route path="/watched" component={WatchedMovies} />
     <Route path="/saved" component={SavedMovies} />
+    <Route component={NotFound} />
   </Switch>
 );

@@ -30,7 +30,7 @@ function LikedMoviesModal() {
     ); */
     return(
         <>
-       <Button style={{ paddingRight: "30px"}} onClick={() => setLgShow(true)}>Liked Movies</Button>
+       <Button style={{ paddingRight: "5px"}} onClick={() => setLgShow(true)}>Watched Movies</Button>
      
       <Modal
         size="lg"
@@ -40,7 +40,7 @@ function LikedMoviesModal() {
       >
         <Modal.Header closeButton>
           <Modal.Title color={"black"} id="example-modal-sizes-title-lg">
-              Movies You've Liked
+              Movies You've Watched
           </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
