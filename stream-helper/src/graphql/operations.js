@@ -48,16 +48,23 @@ const VERIFY = gql`
  * used in
  * "../pages/Profile.js"
  *   */
-/*  const UPDATEUSERPROFILE = gql`
- mutation Mutation($updateUserFirstname: String, $updateUserLastname: String, $updateUserEmail: String, $updateUserUsername: String) {
-  updateUser(firstname: $updateUserFirstname, lastname: $updateUserLastname, email: $updateUserEmail, username: $updateUserUsername) {
-    firstname
-    lastname
-    username
-    email
+const UPDATEUSERPROFILE = gql`
+  mutation UpdateUserMutation(
+    $updateUserFirstname: String
+    $updateUserUsername: String
+    $updateUserEmail: String
+    $updateUserLastname: String
+  ) {
+    updateUser(
+      firstname: $updateUserFirstname
+      username: $updateUserUsername
+      email: $updateUserEmail
+      lastname: $updateUserLastname
+    ) {
+      id
+    }
   }
-}
-`; */
+`;
 // ================================= MOVIES ================================
 
 /**
@@ -111,7 +118,33 @@ const WATCHEDMOVIES = gql`
       id
       title
       image
-      liked
+      disliked
+      watched
+      saved
+    }
+  }
+`;
+
+const SAVEDMOVIES = gql`
+  query Query {
+    savedMovies {
+      id
+      title
+      image
+      disliked
+      watched
+      saved
+    }
+  }
+`;
+
+const DISLIKEDMOVIES = gql`
+  query Query {
+    dislikedMovies {
+      id
+      title
+      image
+      disliked
       watched
       saved
     }
@@ -136,16 +169,44 @@ const USERUPDATE = gql`
   }
 `;
 
+const USERMOVIERECOMMENDATIONS = gql`
+  query Query(
+    $userMovieRecommendationsTake: Int
+    $userMovieRecommendationsSkip: Int
+    $userMovieRecommendationsMyCursor: Int
+  ) {
+    userMovieRecommendations(
+      take: $userMovieRecommendationsTake
+      skip: $userMovieRecommendationsSkip
+      myCursor: $userMovieRecommendationsMyCursor
+    ) {
+      id
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+    }
+  }
+`;
+
 /* const CHECKCURRENTUSER = gql `
   mutation Mutation($checkCurrentUser)
 ` */
 
 export {
   SIGNUP,
-  LOGIN,
   VERIFY,
+  LOGIN,
   ALLMOVIES,
   LASTMOVIE,
   WATCHEDMOVIES,
+  SAVEDMOVIES,
+  DISLIKEDMOVIES,
+  USERMOVIERECOMMENDATIONS,
   USERUPDATE,
+  UPDATEUSERPROFILE,
 };

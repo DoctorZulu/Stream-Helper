@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 import {
   ApolloClient,
@@ -59,13 +60,13 @@ const client = new ApolloClient({
 console.log(Cookies.get("cookie"));
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <RecoilRoot>
+    <RecoilRoot>
+      <ApolloProvider client={client}>
         <Router>
           <App />
         </Router>
-      </RecoilRoot>
-    </ApolloProvider>
+      </ApolloProvider>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root"),
 );

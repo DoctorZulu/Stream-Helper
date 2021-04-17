@@ -1,9 +1,33 @@
-import React, { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap';
+import React, { useState, useEffect} from 'react'
+import { Modal, Button, Container, Row } from 'react-bootstrap';
+/* component imports */
+import ProfileMovieCard from "../MovieCard/ProfileMovieCard";
+/* GQL */
+import { useQuery } from "@apollo/client";
+import { SAVEDMOVIES } from "../../graphql/operations";
 
 
 function SavedMoviesModal() {
     const [lgShow, setLgShow] = useState(false);
+
+    const [savedMovies, setSavedMovies] = useState();
+    const { loading, error, data } = useQuery(SAVEDMOVIES);
+
+    useEffect(() => {
+      if (!loading && data) {
+        setSavedMovies(data);
+      }
+    });
+
+    
+  
+    const Mapper = () => (
+      <>
+        {savedMovies.savedMovies.map((movie, i) => (
+            <ProfileMovieCard {...movie} key={i + 1} />
+        ))}
+      </>
+    );
  
     return(
         <>
@@ -20,7 +44,15 @@ function SavedMoviesModal() {
            Movies You've Saved 
          </Modal.Title>
        </Modal.Header>
-       <Modal.Body>...</Modal.Body>
+       <Modal.Body>
+       <Container>
+          <Row>
+
+        {savedMovies ? <Mapper /> : <h1> error</h1> }
+          </Row>
+        </Container>
+
+       </Modal.Body>
      </Modal>
         </>
     )

@@ -1,14 +1,19 @@
-import { Heart, EyeSlash, HandThumbsDownFill  } from 'react-bootstrap-icons';
+import {
+  EyeSlash,
+  HandThumbsDown,
+  HeartFill,
+  XCircle,
+  XCircleFill,
+} from "react-bootstrap-icons";
 import "../../styles/MovieCard.css";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Toasty from "../Toaster/toast";
+import { ToastContainer, toast } from "react-toastify";
 
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
-/* img import */
-
-import { useState } from "react";
-import { Link } from "react-router-dom";
 toast.configure();
 
 function MovieCard(props) {
@@ -19,12 +24,14 @@ function MovieCard(props) {
   const [watchedMovie, setWatchedMovie] = useState(); */
 
   const [update, { loading, error }] = useMutation(USERUPDATE);
+
+  console.log(props, "movie card props!!!!!");
   const submitDislike = async (e) => {
     e.preventDefault();
     await update({
       variables: {
         addMovieToUserMovieId: props.id,
-        addMovieToUserLiked: true,
+        addMovieToUserDisliked: true,
       },
     });
   };
@@ -34,6 +41,24 @@ function MovieCard(props) {
       variables: {
         addMovieToUserMovieId: props.id,
         addMovieToUserSaved: true,
+      },
+    });
+  };
+
+  const removeSaved = async () => {
+    await update({
+      variables: {
+        addMovieToUserMovieId: props.id,
+        addMovieToUserSaved: false,
+      },
+    });
+  };
+
+  const removeWatched = async () => {
+    await update({
+      variables: {
+        addMovieToUserMovieId: props.id,
+        addMovieToUserWatched: false,
       },
     });
   };
@@ -68,26 +93,78 @@ function MovieCard(props) {
 
         {isActive === true ? (
           <div className="movieButtonContainer">
-            <div
-              className="saveMovieButton"
-              onClick={() => {
-                submitSave();
-                setIsActive(false);
-                console.log("clicked save");
-                toast.warning("	🎥 Movie Saved!", {
-                  className: "movieSaved",
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-                });
-              }}
-            >
-              <Heart color="red" size={20} />
-            </div>
+            {props.watched === true || props.saved === true ? (
+              <>
+                <div
+                  className="removeMovieIcon"
+                  onClick={() => {
+                    removeWatched();
+                    removeSaved();
+                    setIsActive(false);
+                    toast.warning(
+                      "	🎥 Movie No Longer Marked as Watched or Saved",
+                      {
+                        className: "movieSaved",
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                      },
+                    );
+                  }}
+                >
+                  <XCircleFill color="white" size={32} />
+                </div>
+
+                <div
+                  className="saveMovieButton"
+                  onClick={() => {
+                    removeSaved();
+                    setIsActive(false);
+                    console.log("discarded save");
+                    toast.warning("	🎥 Movie Removed From Saved List", {
+                      className: "movieSaved",
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                    });
+                  }}
+                >
+                  <XCircle color="red" size={20} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="saveMovieButton"
+                  onClick={() => {
+                    submitSave();
+                    setIsActive(false);
+                    console.log("clicked save");
+                    toast.warning("	🎥 Movie Saved!", {
+                      className: "movieSaved",
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                    });
+                  }}
+                >
+                  <HeartFill color="red" size={20} />
+                </div>
+              </>
+            )}
+
             <div
               className="watchedMovieButton"
               onClick={(e) => {
@@ -126,7 +203,7 @@ function MovieCard(props) {
                 });
               }}
             >
-              <HandThumbsDownFill color="purple" size={20} />
+              <HandThumbsDown color="red" size={20} />
             </div>
           </div>
         ) : (
