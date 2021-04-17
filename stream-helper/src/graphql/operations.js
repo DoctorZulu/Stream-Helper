@@ -166,9 +166,21 @@ query Query(
 }
 `
 
-/* const CHECKCURRENTUSER = gql `
-  mutation Mutation($checkCurrentUser)
-` */
+const MOVIEDETAIL = gql `
+query Query($movieMovieId: ID!) {
+  movie(movieId: $movieMovieId) {
+    id
+    categoryId
+    title
+    original_language
+    release_date
+    runtime
+    vote_average
+    overview
+    image
+  }
+  }
+`
 
 
-export { SIGNUP, LOGIN, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERMOVIERECOMMENDATIONS, USERUPDATE, UPDATEUSERPROFILE};
+export { SIGNUP, LOGIN, MOVIEDETAIL, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERMOVIERECOMMENDATIONS, USERUPDATE, UPDATEUSERPROFILE};
