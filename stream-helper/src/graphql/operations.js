@@ -118,6 +118,7 @@ const WATCHEDMOVIES = gql`
       id
       title
       image
+      liked
       disliked
       watched
       saved
@@ -131,6 +132,7 @@ const SAVEDMOVIES = gql`
       id
       title
       image
+      liked
       disliked
       watched
       saved
@@ -144,6 +146,21 @@ const DISLIKEDMOVIES = gql`
       id
       title
       image
+      liked
+      disliked
+      watched
+      saved
+    }
+  }
+`;
+
+const LIKEDMOVIES = gql`
+  query Query {
+    likedMovies {
+      id
+      title
+      image
+      liked
       disliked
       watched
       saved
@@ -154,12 +171,14 @@ const DISLIKEDMOVIES = gql`
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
+    $addMovieToUserLiked: Boolean
     $addMovieToUserDisliked: Boolean
     $addMovieToUserSaved: Boolean
     $addMovieToUserWatched: Boolean
   ) {
     addMovieToUser(
       movieId: $addMovieToUserMovieId
+      liked: $addMovieToUserLiked
       disliked: $addMovieToUserDisliked
       saved: $addMovieToUserSaved
       watched: $addMovieToUserWatched
@@ -197,7 +216,6 @@ const MOVIEDETAIL = gql`
   query Query($movieMovieId: ID!) {
     movie(movieId: $movieMovieId) {
       id
-      categoryId
       title
       original_language
       release_date
@@ -205,6 +223,15 @@ const MOVIEDETAIL = gql`
       vote_average
       overview
       image
+      genres {
+        id
+      }
+      credits {
+        cast
+      }
+      watchproviders {
+        providers
+      }
     }
   }
 `;
@@ -222,4 +249,5 @@ export {
   USERMOVIERECOMMENDATIONS,
   USERUPDATE,
   UPDATEUSERPROFILE,
+  LIKEDMOVIES,
 };
