@@ -98,6 +98,7 @@ const USERUPDATE = gql`
   ) {
     addMovieToUser(
       movieId: $addMovieToUserMovieId
+      liked: $addMovieToUserLiked
       disliked: $addMovieToUserDisliked
       saved: $addMovieToUserSaved
       watched: $addMovieToUserWatched
