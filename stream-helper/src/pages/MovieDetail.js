@@ -31,8 +31,6 @@ function MovieDetail(props) {
     },
   });
 
-  console.log(data);
-
   useEffect(() => {
     if (!loading && data) {
       /* console.log(data, "movieDetail page") */
