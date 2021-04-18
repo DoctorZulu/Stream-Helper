@@ -28,17 +28,42 @@ const LOGIN = gql`
     }
   }
 `;
+/**
+ * USED FOR VERIFING USERS ON EACH PAGE
+ */
+const VERIFY = gql`
+  query Query {
+    verifyUser {
+      id
+      firstname
+      lastname
+      username
+      email
+      password
+    }
+  }
+`;
 
 /**
  * used in
  * "../pages/Profile.js"
  *   */
- const UPDATEUSERPROFILE = gql`
- mutation UpdateUserMutation($updateUserFirstname: String, $updateUserUsername: String, $updateUserEmail: String, $updateUserLastname: String) {
-  updateUser(firstname: $updateUserFirstname, username: $updateUserUsername, email: $updateUserEmail, lastname: $updateUserLastname) {
-    id
+const UPDATEUSERPROFILE = gql`
+  mutation UpdateUserMutation(
+    $updateUserFirstname: String
+    $updateUserUsername: String
+    $updateUserEmail: String
+    $updateUserLastname: String
+  ) {
+    updateUser(
+      firstname: $updateUserFirstname
+      username: $updateUserUsername
+      email: $updateUserEmail
+      lastname: $updateUserLastname
+    ) {
+      id
+    }
   }
-}
 `;
 // ================================= MOVIES ================================
 
@@ -100,29 +125,31 @@ const WATCHEDMOVIES = gql`
   }
 `;
 
-const SAVEDMOVIES = gql `
-query Query {
-  savedMovies {
-    id
-    title
-    image
-    disliked
-    watched
-    saved
+const SAVEDMOVIES = gql`
+  query Query {
+    savedMovies {
+      id
+      title
+      image
+      disliked
+      watched
+      saved
+    }
   }
-}`
+`;
 
-const DISLIKEDMOVIES = gql `
-query Query {
-  dislikedMovies {
-    id
-    title
-    image
-    disliked
-    watched
-    saved
+const DISLIKEDMOVIES = gql`
+  query Query {
+    dislikedMovies {
+      id
+      title
+      image
+      disliked
+      watched
+      saved
+    }
   }
-}`
+`;
 
 const USERUPDATE = gql`
   mutation Mutation(
@@ -142,45 +169,57 @@ const USERUPDATE = gql`
   }
 `;
 
-const USERMOVIERECOMMENDATIONS = gql `
-query Query(
-  $userMovieRecommendationsTake: Int,
-  $userMovieRecommendationsSkip: Int,
-  $userMovieRecommendationsMyCursor: Int
+const USERMOVIERECOMMENDATIONS = gql`
+  query Query(
+    $userMovieRecommendationsTake: Int
+    $userMovieRecommendationsSkip: Int
+    $userMovieRecommendationsMyCursor: Int
   ) {
-  userMovieRecommendations(
-    take: $userMovieRecommendationsTake,
-    skip: $userMovieRecommendationsSkip, 
-    myCursor: $userMovieRecommendationsMyCursor
+    userMovieRecommendations(
+      take: $userMovieRecommendationsTake
+      skip: $userMovieRecommendationsSkip
+      myCursor: $userMovieRecommendationsMyCursor
     ) {
-    id
-    categoryId
-    title
-    original_language
-    release_date
-    runtime
-    vote_average
-    overview
-    image
+      id
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+    }
   }
-}
-`
+`;
 
-const MOVIEDETAIL = gql `
-query Query($movieMovieId: ID!) {
-  movie(movieId: $movieMovieId) {
-    id
-    categoryId
-    title
-    original_language
-    release_date
-    runtime
-    vote_average
-    overview
-    image
+const MOVIEDETAIL = gql`
+  query Query($movieMovieId: ID!) {
+    movie(movieId: $movieMovieId) {
+      id
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+    }
   }
-  }
-`
+`;
 
-
-export { SIGNUP, LOGIN, MOVIEDETAIL, ALLMOVIES, LASTMOVIE, WATCHEDMOVIES, SAVEDMOVIES, DISLIKEDMOVIES, USERMOVIERECOMMENDATIONS, USERUPDATE, UPDATEUSERPROFILE};
+export {
+  SIGNUP,
+  VERIFY,
+  LOGIN,
+  MOVIEDETAIL,
+  ALLMOVIES,
+  LASTMOVIE,
+  WATCHEDMOVIES,
+  SAVEDMOVIES,
+  DISLIKEDMOVIES,
+  USERMOVIERECOMMENDATIONS,
+  USERUPDATE,
+  UPDATEUSERPROFILE,
+};
