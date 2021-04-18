@@ -19,27 +19,21 @@ function Movies({ history }) {
   const heroText =
     "Click On The Thumbs Down If You Dislike That Recommendation";
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
-  const { loading, error, data } = useQuery(USERMOVIERECOMMENDATIONS);
   /* base states */
   const [take] = useState(5);
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  const scrollData = {
-    userMovieRecommendationsTake: take,
-    userMovieRecommendationsSkip: skip,
-    userMovieRecommendationsMyCursor: end,
-  };
-
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
     {
       variables: {
-        ...scrollData,
+        userMovieRecommendationsTake: take,
+        userMovieRecommendationsSkip: skip,
+        userMovieRecommendationsMyCursor: end,
       },
     },
   );
-  console.log(scrollData, "scroll data log");
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
@@ -72,15 +66,18 @@ function Movies({ history }) {
       <NavigationBar />
       <CheckUser history={history} />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
-
-      {userMovieRecommendations ? (
-        <InfiniteRecommendations
-          userMovieRecommendations={userMovieRecommendations}
-          onLoadMore={bigFetch}
-        />
-      ) : (
-        <h1> There are No Movies To Load </h1>
-      )}
+      {user ? (
+        <>
+          {userMovieRecommendations ? (
+            <InfiniteRecommendations
+              userMovieRecommendations={userMovieRecommendations}
+              onLoadMore={bigFetch}
+            />
+          ) : (
+            <h1> There are No Movies To Load </h1>
+          )}{" "}
+        </>
+      ) : null}
     </>
   );
 }

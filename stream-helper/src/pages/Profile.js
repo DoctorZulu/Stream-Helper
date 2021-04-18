@@ -22,47 +22,52 @@ function Profile({ history }) {
   const [user] = useRecoilState(userState);
 
   /* Hero Banner */
-  const heroTitle = `Hey CurrentUserName!`;
+  const heroTitle = `Hey ${user.username}`;
   const heroText =
     "Edit Your Profile Details Or View Some Of Your Curated Lists Below";
-
   return (
     <>
       <NavigationBar />
       <CheckUser history={history} />
-      <HeroBanner heroText={heroText} heroTitle={heroTitle} />
+      {console.log(user)}
+      {user ? (
+        <>
+          <HeroBanner heroText={heroText} heroTitle={heroTitle} />
 
-      <div className="profileContentContainer">
-        <div className="profileContentItems">
-          {/* user Profile Image */}
-          <Image src="" rounded />
-          <h1>
-            {" "}
-            User Bio here: A bunch of random string text and Charfield <br />
-            content to fill up this space
-          </h1>
+          <div className="profileContentContainer">
+            <div className="profileContentItems">
+              {/* user Profile Image */}
+              <Image src="" rounded />
+              <h1>
+                {" "}
+                User Bio here: A bunch of random string text and Charfield{" "}
+                <br />
+                content to fill up this space
+              </h1>
 
-          {/* Modal For Liked Movies */}
-          <DropdownButton
-            as={ButtonGroup}
-            title="Watched/Disliked Movies"
-            id="bg-nested-dropdown"
-          >
-            <Dropdown.Item eventKey="1">
-              <WatchedMoviesModal />
-            </Dropdown.Item>
-            <Dropdown.Item eventKey="2">
-              <DislikedMoviesModal />
-            </Dropdown.Item>
-          </DropdownButton>
+              {/* Modal For Liked Movies */}
+              <DropdownButton
+                as={ButtonGroup}
+                title="Watched/Disliked Movies"
+                id="bg-nested-dropdown"
+              >
+                <Dropdown.Item eventKey="1">
+                  <WatchedMoviesModal />
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="2">
+                  <DislikedMoviesModal />
+                </Dropdown.Item>
+              </DropdownButton>
 
-          {/* Modal For Saved Movies*/}
-          <SavedMoviesModal />
+              {/* Modal For Saved Movies*/}
+              <SavedMoviesModal />
 
-          {/* Modal For Profile Edit */}
-          <EditUserModal history={history} />
-        </div>
-      </div>
+              {/* Modal For Profile Edit */}
+              <EditUserModal history={history} />
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 }
