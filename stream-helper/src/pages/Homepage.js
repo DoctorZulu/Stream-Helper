@@ -61,7 +61,7 @@ function Homepage() {
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
-      // console.log(dataAll, "DATA");
+      // console.log(dataAll, "DATA");he got
       setAllMovies(dataAll.allMovies);
     }
 
