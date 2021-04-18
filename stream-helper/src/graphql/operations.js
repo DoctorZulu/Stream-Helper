@@ -193,14 +193,27 @@ const USERMOVIERECOMMENDATIONS = gql`
   }
 `;
 
-/* const CHECKCURRENTUSER = gql `
-  mutation Mutation($checkCurrentUser)
-` */
+const MOVIEDETAIL = gql`
+  query Query($movieMovieId: ID!) {
+    movie(movieId: $movieMovieId) {
+      id
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+    }
+  }
+`;
 
 export {
   SIGNUP,
   VERIFY,
   LOGIN,
+  MOVIEDETAIL,
   ALLMOVIES,
   LASTMOVIE,
   WATCHEDMOVIES,
