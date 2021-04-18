@@ -43,7 +43,7 @@ function ProfileEditForm(props) {
   return (
     <>
       {user ? (
-        <Form className="editProfileForm" /* onSubmit={submitProfileEdit} */>
+        <Form className="editProfileForm" onSubmit={submitProfileEdit}>
           <Form.Group controlId="formUpdateFirstName">
             <Form.Label>First Name</Form.Label>
             <Form.Control
@@ -93,7 +93,7 @@ function ProfileEditForm(props) {
           <Button
             variant="primary"
             type="submit"
-            onClick={() => submitProfileEdit /* setLgShow(false) */}
+            onClick={() => /* submitProfileEdit */ setLgShow(false)}
           >
             Submit Changes
           </Button>

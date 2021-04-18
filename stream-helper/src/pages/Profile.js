@@ -22,7 +22,8 @@ function Profile({ history }) {
   const [user] = useRecoilState(userState);
 
   /* Hero Banner */
-  const heroTitle = `Hey ${user.username}`;
+  // not working on update being declared here
+  // const heroTitle = `Hey ${user.username}`;
   const heroText =
     "Edit Your Profile Details Or View Some Of Your Curated Lists Below";
   return (
@@ -32,7 +33,7 @@ function Profile({ history }) {
       {console.log(user)}
       {user ? (
         <>
-          <HeroBanner heroText={heroText} heroTitle={heroTitle} />
+          <HeroBanner heroText={heroText} heroTitle={`Hey ${user.username}`} />
 
           <div className="profileContentContainer">
             <div className="profileContentItems">
@@ -67,7 +68,9 @@ function Profile({ history }) {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <></>
+      )}
     </>
   );
 }
