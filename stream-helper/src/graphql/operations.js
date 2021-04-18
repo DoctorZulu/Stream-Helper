@@ -220,6 +220,7 @@ const MOVIEDETAIL = gql`
   query Query($movieMovieId: ID!) {
     movie(movieId: $movieMovieId) {
       id
+      categoryId
       title
       original_language
       release_date
@@ -227,9 +228,7 @@ const MOVIEDETAIL = gql`
       vote_average
       overview
       image
-      genres {
-        id
-      }
+      genres
       credits {
         cast
       }

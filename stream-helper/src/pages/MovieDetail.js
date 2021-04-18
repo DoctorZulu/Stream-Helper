@@ -28,15 +28,14 @@ function MovieDetail(props) {
       movieMovieId: currentMovieId,
     },
   });
-
+  console.log(data);
   useEffect(() => {
     if (!loading && data) {
-      /* console.log(data, "movieDetail page") */
+      console.log(data, "movieDetail page");
       setCurrentMovieDetails(data);
     }
   });
 
-  // console.log(currentMovieDetails)
   return (
     <>
       <NavigationBar />

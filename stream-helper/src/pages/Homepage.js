@@ -43,7 +43,7 @@ function Homepage({ history }) {
       variables: {
         ...scrollData,
       },
-    },
+    }
   );
   // console.log(scrollData);
 
@@ -77,7 +77,7 @@ function Homepage({ history }) {
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2),
+      setSkip(2)
     );
   };
   // console.log(end, "this is the end");
