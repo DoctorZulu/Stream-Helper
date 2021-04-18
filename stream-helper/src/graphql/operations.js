@@ -28,6 +28,21 @@ const LOGIN = gql`
     }
   }
 `;
+/**
+ * USED FOR VERIFING USERS ON EACH PAGE
+ */
+const VERIFY = gql`
+  query Query {
+    verifyUser {
+      id
+      firstname
+      lastname
+      username
+      email
+      password
+    }
+  }
+`;
 
 /**
  * used in
@@ -223,6 +238,7 @@ const MOVIEDETAIL = gql`
 
 export {
   SIGNUP,
+  VERIFY,
   LOGIN,
   MOVIEDETAIL,
   ALLMOVIES,
