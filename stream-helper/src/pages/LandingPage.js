@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 /* vendor imports */
 import { useMutation } from "@apollo/client";
+import { useRecoilState } from "recoil";
+import { userState } from "../recoil/atoms";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 import { toast } from "react-toastify";
 import { Form, Button } from "react-bootstrap";
+
 function LandingPage({ history }) {
+  const [user, setUser] = useRecoilState(userState);
+
   const [isNewUser, setIsNewUser] = useState(false);
   /* show info about App if true */
   const [knowMore, setKnowMore] = useState(false);
@@ -27,6 +32,7 @@ function LandingPage({ history }) {
     if (!loadingL && dataL) {
       console.log(dataL);
       const { signinUser } = dataL;
+      setUser(signinUser);
       history.push("/home");
     }
   }, [dataL]);

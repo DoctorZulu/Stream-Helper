@@ -15,7 +15,7 @@ import { ALLMOVIES } from "../graphql/operations";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
 
-function Homepage() {
+function Homepage({ history }) {
   /* user state */
   const [user] = useRecoilState(userState);
 
@@ -84,7 +84,7 @@ function Homepage() {
 
   return (
     <>
-      <CheckUser />
+      {/* <CheckUser history={history} /> */}
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} />
       <div className="homepageTutorial">
