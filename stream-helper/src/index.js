@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Cookies from "js-cookie";
 import "./index.css";
-import "normalize.css";
-import "@blueprintjs/core/lib/css/blueprint.css";
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 import {
   ApolloClient,
@@ -60,11 +59,13 @@ const client = new ApolloClient({
 console.log(Cookies.get("cookie"));
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Router>
-        <App />
-      </Router>
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={client}>
+        <Router>
+          <App />
+        </Router>
+      </ApolloProvider>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
 );

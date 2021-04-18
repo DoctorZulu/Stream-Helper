@@ -1,0 +1,10 @@
+.profileContentContainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profileContentItems {
+margin-left: auto;
+margin-right: auto;
+}

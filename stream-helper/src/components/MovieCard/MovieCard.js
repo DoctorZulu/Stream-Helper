@@ -1,53 +1,39 @@
-import { Icon } from "@blueprintjs/core";
+import {  EyeSlash, HandThumbsDown, HeartFill, XCircle, XCircleFill  } from 'react-bootstrap-icons';
 import "../../styles/MovieCard.css";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Toasty from "../Toaster/toast";
 import { ToastContainer, toast } from "react-toastify";
-
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
-/* img import */
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+
 toast.configure();
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
-  /*   const [addMovie, setAddMovie] = useState();
-  const [likeMovie, setLikeMovie] = useState();
-  const [saveMovie, setSaveMovie] = useState();
-  const [watchedMovie, setWatchedMovie] = useState(); */
-
   const [update, { loading, error }] = useMutation(USERUPDATE);
-  const submitDislike = async (e) => {
-    e.preventDefault();
+
+  const removeSaved = async () => {
     await update({
       variables: {
         addMovieToUserMovieId: props.id,
-        addMovieToUserLiked: true,
+        addMovieToUserSaved: false,
       },
     });
   };
 
-  const submitSave = async () => {
+  const removeWatched = async () => {
     await update({
       variables: {
         addMovieToUserMovieId: props.id,
-        addMovieToUserSaved: true,
+        addMovieToUserWatched: false,
       },
     });
   };
 
-  const submitWatched = async (e) => {
-    e.preventDefault();
-    await update({
-      variables: {
-        addMovieToUserMovieId: props.id,
-        addMovieToUserWatched: true,
-      },
-    });
-  };
+
   return (
     <>
       <div className="movieCardMain">
@@ -60,75 +46,46 @@ function MovieCard(props) {
             }}
           />
         </Link>
-        <h2>
+        <h3 className="movieCardTitle">
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
-        </h2>
+        </h3>
         <p>{props.description}</p>
         <h5>{props.vote_average}</h5>
         <h5>Genre</h5>
 
+     
         {isActive === true ? (
           <div className="movieButtonContainer">
-            <div
-              className="saveMovieButton"
-              onClick={() => {
-                submitSave();
-                setIsActive(false);
-                console.log("clicked save");
-                toast.warning("	🎥 Movie Saved!", {
-                  className: "movieSaved",
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-                });
-              }}
-            >
-              <Icon icon="heart" color="red" iconSize={20} />
-            </div>
-            <div
-              className="watchedMovieButton"
-              onClick={(e) => {
-                submitWatched(e);
-                setIsActive(false);
-                console.log("clicked watched");
-                toast.warning("	👍 Added to Watched", {
-                  className: "movieSaved",
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-                });
-              }}
-            >
-              <Icon icon="eye-on" color="orange" iconSize={20} />
-            </div>
-            <div
-              className="discardMovieButton"
-              onClick={(e) => {
-                setIsActive(false);
-                submitDislike(e);
-                console.log("clicked discard");
-                toast.warning("	👎 Disliked Movie", {
-                  className: "movieSaved",
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: true,
-                  progress: undefined,
-                });
-              }}
-            >
-              <Icon icon="thumbs-down" color="orange" iconSize={20} />
-            </div>
+            {props.watched === true  || props.saved === true ? (
+              <>
+               <div
+               className="removeMovieIcon"
+               onClick={() => {
+                 removeWatched();
+                 removeSaved();
+                 setIsActive(false);
+                 toast.warning("	🎥 Movie No Longer Marked as Watched or Saved", {
+                   className: "movieSaved",
+                   position: "top-right",
+                   autoClose: 5000,
+                   hideProgressBar: false,
+                   closeOnClick: true,
+                   pauseOnHover: false,
+                   draggable: true,
+                   progress: undefined,
+                 });
+               }}
+             >
+              <XCircleFill color="rgb(54, 54, 54, 0.85)" size={32}/>
+             </div>
+              </>
+            ) : <> 
+          </>
+            
+            }
+            
+       
+          
           </div>
         ) : (
           <> </>
