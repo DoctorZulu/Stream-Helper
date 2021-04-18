@@ -18,23 +18,40 @@ import {
 import StarRatings from "react-star-ratings";
 import "../styles/MovieDetail.css";
 import ActionButtons from "../components/ActionButtons/ActionButtons";
+import CreditCard from "../components/CreditCardLOL/CreditCard";
 
 function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
+  const [creditsParse, setCreditsParse] = useState({});
 
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
       movieMovieId: currentMovieId,
     },
   });
-  console.log(data);
+
   useEffect(() => {
     if (!loading && data) {
-      console.log(data, "movieDetail page");
       setCurrentMovieDetails(data);
     }
   });
+
+  useEffect(() => {
+    if (currentMovieDetails != undefined) {
+      setCreditsParse(JSON.parse(currentMovieDetails.movie.credits[0].cast));
+    }
+  }, [currentMovieDetails]);
+
+  console.log(creditsParse);
+
+  /*   const Mapper = () => (
+    <div className="movieCardContainer">
+      {cast.map((actor, i) => (
+        <CreditCard {...actor} key={i + 1} />
+      ))}
+    </div>
+  ); */
 
   return (
     <>
@@ -99,7 +116,7 @@ function MovieDetail(props) {
                 </h4>
                 <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4>
               </div>
-              <Col></Col>
+              <Col> </Col>
             </Row>
             <Row>
               <Col>1 of 2</Col>
