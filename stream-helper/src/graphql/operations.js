@@ -39,7 +39,6 @@ const VERIFY = gql`
       lastname
       username
       email
-      password
     }
   }
 `;
@@ -84,6 +83,7 @@ const ALLMOVIES = gql`
       myCursor: $allMoviesMyCursor
     ) {
       id
+      categoryId
       title
       original_language
       release_date
@@ -91,11 +91,7 @@ const ALLMOVIES = gql`
       vote_average
       overview
       image
-      categoryId
-      genres {
-        id
-        name
-      }
+      genres
     }
   }
 `;

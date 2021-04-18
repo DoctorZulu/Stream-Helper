@@ -19,7 +19,7 @@ function Homepage() {
   /* user state */
   const [user] = useRecoilState(userState);
 
-  console.log(user, "Current user");
+  // console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
   const heroText =
     "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen";
@@ -60,8 +60,9 @@ function Homepage() {
   // }, [loadingLastMovie, dataLastMovie]);
 
   useEffect(() => {
-    if (loadingAll === false && dataAll) {
-      // console.log(dataAll, "DATA");he got
+    // console.log("useEffect");
+    if (!loadingAll && dataAll) {
+      // console.log(dataAll, "DATA");
       setAllMovies(dataAll.allMovies);
     }
 

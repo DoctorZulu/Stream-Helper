@@ -3,7 +3,8 @@ import "../styles/LandingPage.css";
 /* vendor imports */
 import { useMutation } from "@apollo/client";
 import { SIGNUP, LOGIN } from "../graphql/operations";
-import { Form, Button } from 'react-bootstrap';
+import { toast } from "react-toastify";
+import { Form, Button } from "react-bootstrap";
 function LandingPage({ history }) {
   const [isNewUser, setIsNewUser] = useState(false);
   /* show info about App if true */
@@ -57,6 +58,17 @@ function LandingPage({ history }) {
         },
       },
     });
+    toast.success("	User created", {
+      // className: "movieSaved",
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+    setIsNewUser(false);
   };
 
   if (loadingS) return "Loading...";
@@ -78,44 +90,78 @@ function LandingPage({ history }) {
               We'll Recommend You Movies You'd Like <br /> Without Showing You
               Those You've already Seen
             </h3>
-          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(true); setFormShow(false)}}> Register </Button>
-          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(false); setFormShow(false)}}> Already A Member? </Button>
-          <Button style={{margin: "25px" , marginTop: "100px"}} onClick={() => {setIsNewUser(true); setFormShow(true)}}> Learn More </Button>
+            <Button
+              style={{ margin: "25px", marginTop: "100px" }}
+              onClick={() => {
+                setIsNewUser(true);
+                setFormShow(false);
+              }}
+            >
+              {" "}
+              Register{" "}
+            </Button>
+            <Button
+              style={{ margin: "25px", marginTop: "100px" }}
+              onClick={() => {
+                setIsNewUser(false);
+                setFormShow(false);
+              }}
+            >
+              {" "}
+              Already A Member?{" "}
+            </Button>
+            <Button
+              style={{ margin: "25px", marginTop: "100px" }}
+              onClick={() => {
+                setIsNewUser(true);
+                setFormShow(true);
+              }}
+            >
+              {" "}
+              Learn More{" "}
+            </Button>
           </div>
-
         </div>
         <div className="landingRightCol">
-
-        {isNewUser === false ? (
-          /* if user clicks login -> */
-              <div className="landingPageForm">
-                <div className="formShowToggle" style={{ display: formShow }}>
-
+          {isNewUser === false ? (
+            /* if user clicks login -> */
+            <div className="landingPageForm">
+              <div className="formShowToggle" style={{ display: formShow }}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email"
-                  onChange={(e) => setEmail(e.target.value)}
-                   />
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" 
-                  onChange={(e) => setPassword(e.target.value)}/>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
 
-                <Button type="submit" onClick={submitHandlerLogin}> Login </Button>
-                </div>
+                <Button type="submit" onClick={submitHandlerLogin}>
+                  {" "}
+                  Login{" "}
+                </Button>
               </div>
-            ) : (
-              /* if user clicks register -> */
-              <div className="landingPageForm">
-                <div className="formShowToggle" style={{ display: formShow }}>
+            </div>
+          ) : (
+            /* if user clicks register -> */
+            <div className="landingPageForm">
+              <div className="formShowToggle" style={{ display: formShow }}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email"
-                  onChange={(e) => setEmail(e.target.value)}
-                   />
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                   <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text>
@@ -123,22 +169,29 @@ function LandingPage({ history }) {
 
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="username" placeholder="Username" 
-                  onChange={(e) => setUsername(e.target.value)}/>
+                  <Form.Control
+                    type="username"
+                    placeholder="Username"
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" 
-                  onChange={(e) => setPassword(e.target.value)}/>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
 
-                <Button type="submit" onClick={submitHandlerSignup}> Register </Button>
-                
-                </div>
+                <Button type="submit" onClick={submitHandlerSignup}>
+                  {" "}
+                  Register{" "}
+                </Button>
               </div>
-                )}
-      
+            </div>
+          )}
         </div>
       </div>
     </>
