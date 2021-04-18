@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import MovieCard from "../components/MovieCard/MovieCard";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
+import CheckUser from "../hooks/checkUser";
 import { useQuery } from "@apollo/client";
+import { userState } from "../recoil/atoms";
+import { useRecoilState } from "recoil";
 
 import { WATCHEDMOVIES } from "../graphql/operations";
 
-function WatchedMovies() {
+function WatchedMovies({ history }) {
+  const [user] = useRecoilState(userState);
   const [watchedMovies, setWatchedMovies] = useState();
   const heroTitle = "Your Watched Movies List";
   const heroText = "These Movies Won't Show Up in your Recommendations";
@@ -31,10 +35,17 @@ function WatchedMovies() {
   return (
     <>
       <NavigationBar />
+      {<CheckUser history={history} />}
       <HeroBanner heroTitle={heroTitle} heroText={heroText} />
       <div className="movieCardContainer">
-        {error ? <h1>{error}</h1> : null}
-        {watchedMovies ? <Mapper /> : <h1> error</h1> }
+        {user ? (
+          <>
+            {error ? <h1>{error}</h1> : null}
+            {watchedMovies ? <Mapper /> : <h1> error</h1>}{" "}
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

@@ -25,6 +25,10 @@ const LOGIN = gql`
   mutation Mutation($signinUserEmail: String!, $signinUserPassword: String!) {
     signinUser(email: $signinUserEmail, password: $signinUserPassword) {
       id
+      firstname
+      lastname
+      username
+      email
     }
   }
 `;
@@ -39,7 +43,6 @@ const VERIFY = gql`
       lastname
       username
       email
-      password
     }
   }
 `;
@@ -49,19 +52,23 @@ const VERIFY = gql`
  * "../pages/Profile.js"
  *   */
 const UPDATEUSERPROFILE = gql`
-  mutation UpdateUserMutation(
+  mutation SigninUserMutation(
     $updateUserFirstname: String
+    $updateUserLastname: String
     $updateUserUsername: String
     $updateUserEmail: String
-    $updateUserLastname: String
   ) {
     updateUser(
       firstname: $updateUserFirstname
+      lastname: $updateUserLastname
       username: $updateUserUsername
       email: $updateUserEmail
-      lastname: $updateUserLastname
     ) {
       id
+      firstname
+      lastname
+      username
+      email
     }
   }
 `;
@@ -84,6 +91,7 @@ const ALLMOVIES = gql`
       myCursor: $allMoviesMyCursor
     ) {
       id
+      categoryId
       title
       original_language
       release_date
@@ -91,11 +99,7 @@ const ALLMOVIES = gql`
       vote_average
       overview
       image
-      categoryId
-      genres {
-        id
-        name
-      }
+      genres
     }
   }
 `;

@@ -6,11 +6,10 @@ import {
   XCircleFill,
 } from "react-bootstrap-icons";
 import "../../styles/MovieCard.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Toasty from "../Toaster/toast";
-import { ToastContainer, toast } from "react-toastify";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
 toast.configure();

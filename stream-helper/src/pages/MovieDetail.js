@@ -23,8 +23,6 @@ function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
 
-  console.log(props, "MYYYY PROPPPPPSSSS DETAILS");
-
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
       movieMovieId: currentMovieId,
@@ -38,7 +36,7 @@ function MovieDetail(props) {
     }
   });
 
-  console.log(currentMovieDetails);
+  // console.log(currentMovieDetails)
   return (
     <>
       <NavigationBar />
