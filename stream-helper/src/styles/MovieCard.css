@@ -1,86 +1,109 @@
 .movieCardMain {
-    margin: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
+  margin: 30px;
+  position: relative;
+  color: whitesmoke !important;
+}
+
+.movieCardTitle a{
+  color: whitesmoke !important;
 }
 
 .movieCardIcon {
-    margin: 2px;
-    max-height: 250px;
+  margin: 2px;
+  max-height: 250px;
 }
 
 .movieCardContainer {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: auto;
-    grid-template-areas: 
-      "movieCard movieCard movieCard movieCard"
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: auto;
+  grid-template-areas: "movieCard movieCard movieCard movieCard";
+}
+
+.movieButtonContainer {
+  position: absolute;
+  width: 300px !important;
+  top: 75%;
 }
 
 .movieImageCard {
-    width: 200px;
-    height: 250px;
-    grid-area: movieCard;
+  width: 300px;
+  height: 450px;
+  grid-area: movieCard;
 }
-
 
 /* SECTION: Buttons */
 .saveMovieButton {
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.336);
-    position: absolute;
-    top: 48%;
-    left: 0;
-    width: 33.3%;
-    text-align: center !important;
-    transition: transform 250ms,  background-color .25s ease;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.336);
+  position: absolute;
+  left: 0;
+  width: 33.3%;
+  text-align: center !important;
+  transition: transform 250ms, background-color 0.25s ease;
 }
 
 .watchedMovieButton {
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.336);
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    position: absolute;
-    /* FIXME: refactor values to better use */
-    top: 48%;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    width: 33.3%;
-    text-align: center !important;
-    transition: transform 250ms,  background-color .25s ease;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.336);
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  position: absolute;
+  /* FIXME: refactor values to better use */
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 33.3%;
+  text-align: center !important;
+  transition: transform 250ms, background-color 0.25s ease;
 }
 
 .discardMovieButton {
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.336);
-    position: absolute;
-    top: 48%;
-    right: 0;
-    width: 33.3%;
-    text-align: center !important;
-    transition: transform 250ms,  background-color .25s ease;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.336);
+  position: absolute;
+  right: 0;
+  width: 33.3%;
+  text-align: center !important;
+  transition: transform 250ms, background-color 0.25s ease;
+}
+
+.movieSaved {
+  background-color: rgb(22, 22, 22);
+}
+
+/* REMOVE MOVIE BUTTON */
+
+.removeMovieIcon {
+  position: absolute;
+  right: 0;
+  padding: 15px;
+  bottom: 340px;
+  right: -5px;
+}
+
+
+.Toastify__progress-bar--default {
+  background-color: red;
+  color: red;
 }
 
 /* SECTION: Button Hover */
 
-.saveMovieButton:hover  {
+.saveMovieButton:hover {
   background-color: black;
   transform: translateY(-10px);
-  
 }
 
-.watchedMovieButton:hover  {
-    background-color: black;
-    transform: translateY(-10px);
-    border-left:  none;
-    border-right: none;
+.watchedMovieButton:hover {
+  background-color: black;
+  transform: translateY(-10px);
+  border-left: none;
+  border-right: none;
 }
 
 .discardMovieButton:hover {
-    background-color: black;
-    transform: translateY(-10px);
+  background-color: black;
+  transform: translateY(-10px);
 }
