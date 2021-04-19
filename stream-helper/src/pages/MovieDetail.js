@@ -19,11 +19,17 @@ import StarRatings from "react-star-ratings";
 import "../styles/MovieDetail.css";
 import ActionButtons from "../components/ActionButtons/ActionButtons";
 import CreditCard from "../components/CreditCardLOL/CreditCard";
+import {
+  Providers,
+  ProvidersBuy,
+  // ProvidersRent,
+} from "../components/providers/Providers";
 
 function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
   const [creditsParse, setCreditsParse] = useState({});
+  const [providers, setProviders] = useState();
   const [cast, setCast] = useState();
   const [crew, setCrew] = useState();
 
@@ -39,9 +45,11 @@ function MovieDetail(props) {
     if (!loading && data) {
       setCurrentMovieDetails(data);
       setCreditsParse(JSON.parse(data.movie.credits[0].cast));
+      setProviders(JSON.parse(data.movie.watchproviders[0].providers));
     }
   }, [data, loading]);
-  console.log(currentMovieDetails, "currentmoviedetail");
+  // console.log(currentMovieDetails, "currentmoviedetail");
+  console.log(providers, "providers");
 
   // useEffect(() => {
   //   if (currentMovieDetails != undefined) {
@@ -55,7 +63,6 @@ function MovieDetail(props) {
       setCrew(creditsParse.crew);
     }
   }, [creditsParse]);
-  // console.log(creditsParse);
 
   const Mapper = () => (
     <div className="movieCardContainer">
@@ -117,7 +124,16 @@ function MovieDetail(props) {
               <div className="streamProviderContainer">
                 <p> Watch Now On:</p>
                 <div className="streamProviderBox">
-                  <p> Amazon Box Here</p>
+                  <Row>
+                    <Col>
+                      <Providers providers={providers} />
+                    </Col>
+                    <Col>
+                      <ProvidersBuy providers={providers} />
+                    </Col>
+                  </Row>
+
+                  {/* <ProvidersRent providers={providers} /> */}
                 </div>
               </div>
               <div className="movieDetailContent">

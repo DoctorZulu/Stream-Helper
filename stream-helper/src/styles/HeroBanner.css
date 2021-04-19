@@ -1,25 +1,25 @@
 .heroImageMain {
-    min-height: 80vh;
-    z-index: 500;
-    background-size:cover;
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
-    background-image: url('../media/heroBannerImageMain.jpg');
+  min-height: 60vh;
+  z-index: 500;
+  background-size: cover;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+  background-image: url("../media/heroBannerImageMain.jpg");
 }
 
 .mainHeroTitle {
-    font-size: 75px;
-    color: whitesmoke !important;
+  font-size: 75px;
+  color: whitesmoke !important;
 }
 
 .mainHeroSubTitle {
-    font-size: 25px;
-    color: whitesmoke !important;
+  font-size: 25px;
+  color: whitesmoke !important;
 }
 
 .heroMainText {
-    position: absolute;
-    top: 15vh;
-    left: 5vh;
-    color: whitesmoke !important;
+  position: absolute;
+  top: 15vh;
+  left: 5vh;
+  color: whitesmoke !important;
 }
