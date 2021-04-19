@@ -24,6 +24,8 @@ function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
   const [creditsParse, setCreditsParse] = useState({});
+  const [cast, setCast] = useState();
+  const [crew, setCrew] = useState();
 
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
@@ -43,15 +45,21 @@ function MovieDetail(props) {
     }
   }, [currentMovieDetails]);
 
-  console.log(creditsParse);
+  useEffect(() => {
+    if (creditsParse.cast) {
+      setCast(creditsParse.cast);
+      setCrew(creditsParse.crew);
+    }
+  }, [creditsParse]);
+  // console.log(creditsParse);
 
-  /*   const Mapper = () => (
+  const Mapper = () => (
     <div className="movieCardContainer">
       {cast.map((actor, i) => (
         <CreditCard {...actor} key={i + 1} />
       ))}
     </div>
-  ); */
+  );
 
   return (
     <>
@@ -116,7 +124,7 @@ function MovieDetail(props) {
                 </h4>
                 <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4>
               </div>
-              <Col> </Col>
+              <Col> {cast && crew ? <Mapper /> : null} </Col>
             </Row>
             <Row>
               <Col>1 of 2</Col>
