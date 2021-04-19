@@ -29,4 +29,20 @@ const LOGIN = gql`
   }
 `;
 
+/* SECTION: MOVIES OPERATIONS */
+
+
+/**
+ * used in
+ * "../pages/Movies.js"
+ *   */
+ const GETMOVIE = gql`
+ mutation Mutation($signinUserEmail: String!, $signinUserPassword: String!) {
+   signinUser(email: $signinUserEmail, password: $signinUserPassword) {
+     id
+   }
+ }
+`;
+
+
 export { SIGNUP, LOGIN };
