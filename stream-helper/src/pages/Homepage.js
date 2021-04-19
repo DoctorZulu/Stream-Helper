@@ -43,21 +43,9 @@ function Homepage({ history }) {
       variables: {
         ...scrollData,
       },
-    }
+    },
   );
   // console.log(scrollData);
-
-  // const { data: dataLastMovie, loading: loadingLastMovie } = useQuery(
-  //   LASTMOVIE,
-  // );
-
-  // useEffect(() => {
-  //   if (loadingLastMovie === false && dataLastMovie) {
-  //     console.log(dataLastMovie, "================================");
-  //     setEnd(Number(dataLastMovie.lastMovie.categoryId));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [loadingLastMovie, dataLastMovie]);
 
   useEffect(() => {
     // console.log("useEffect");
@@ -77,7 +65,7 @@ function Homepage({ history }) {
         },
       },
       setEnd(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2)
+      setSkip(2),
     );
   };
   // console.log(end, "this is the end");
