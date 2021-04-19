@@ -1,0 +1,18 @@
+.providersContainer {
+  max-width: 40px;
+}
+.providersImage {
+  width: 44px;
+  padding: 4px;
+  border-radius: 30%;
+}
+.streamContainer {
+  display: flex;
+}
+.buyContainer {
+  display: flex;
+}
+
+.providerText {
+  margin-top: 7px;
+}
