@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
-import MovieCard from "../components/MovieCard/MovieCard";
+// import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
 /* gql */
 import { useQuery } from "@apollo/client";
@@ -20,7 +20,7 @@ function Movies({ history }) {
     "Click On The Thumbs Down If You Dislike That Recommendation";
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
-  const [take] = useState(5);
+  const [take] = useState(10);
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 
@@ -48,15 +48,14 @@ function Movies({ history }) {
     fetchMore(
       {
         variables: {
-          userMovieRecommendationsMyCursor:
-            userMovieRecommendations.length - 1 /* end + take */,
+          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
         },
       },
       setEnd(
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      setSkip(2),
+      setSkip(3),
     );
   };
   console.log(end, "this is the end");

@@ -33,17 +33,21 @@ function MovieDetail(props) {
     },
   });
 
+  console.log(data);
+
   useEffect(() => {
     if (!loading && data) {
       setCurrentMovieDetails(data);
+      setCreditsParse(JSON.parse(data.movie.credits[0].cast));
     }
-  });
+  }, [data, loading]);
+  console.log(currentMovieDetails, "currentmoviedetail");
 
-  useEffect(() => {
-    if (currentMovieDetails != undefined) {
-      setCreditsParse(JSON.parse(currentMovieDetails.movie.credits[0].cast));
-    }
-  }, [currentMovieDetails]);
+  // useEffect(() => {
+  //   if (currentMovieDetails != undefined) {
+  //     setCreditsParse(JSON.parse(currentMovieDetails.movie.credits[0].cast));
+  //   }
+  // }, [currentMovieDetails]);
 
   useEffect(() => {
     if (creditsParse.cast) {

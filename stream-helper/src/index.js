@@ -50,6 +50,12 @@ const client = new ApolloClient({
               return [...existing, ...incoming];
             },
           },
+          userMovieRecommendations: {
+            keyArgs: ["type"],
+            merge(existing = [], incoming = []) {
+              return [...existing, ...incoming];
+            },
+          },
         },
       },
     },

@@ -1,7 +1,8 @@
 {
   "peacock.color": "#0de435",
   "cSpell.words": [
-    "ALLMOVIES"
+    "ALLMOVIES",
+    "usermovierecommendations"
   ],
   "cSpell.ignoreWords": [
     "lastmovie"
