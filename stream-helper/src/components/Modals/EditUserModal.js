@@ -62,7 +62,7 @@ function EditUserModal({ history }) {
       <Modal
         size="lg"
         show={lgShow}
-        // onHide={() => setLgShow(false)}
+        onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>
