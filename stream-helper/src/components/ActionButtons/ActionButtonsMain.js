@@ -14,6 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 
 function ActionButtonsMain(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
+
+  
   const submitLike = async (e) => {
     e.preventDefault();
     await update({
@@ -83,7 +85,6 @@ function ActionButtonsMain(props) {
       className="mainActionBox"
       onClick={() => {
         submitSave();
-
         console.log("clicked save");
         toast.warning("🎥 Movie Saved!", {
           className: "movieSaved",
