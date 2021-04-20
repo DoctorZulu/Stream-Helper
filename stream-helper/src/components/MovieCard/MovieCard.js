@@ -12,11 +12,13 @@ import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 import StarRatings from "react-star-ratings";
+import ActionButtonsMain from "../ActionButtons/ActionButtonsMain";
 
 toast.configure();
 
 function MovieCard(props) {
   const [isActive, setIsActive] = useState(false);
+  const [isInactive, setIsInactive] = useState(true);
   const [update, { loading, error }] = useMutation(USERUPDATE);
 
   const removeSaved = async () => {
@@ -47,13 +49,18 @@ function MovieCard(props) {
             onMouseEnter={() => {
               setIsActive(true);
             }}
+           
+           
           />
         </Link>
         <h3 className="movieCardTitle">
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
         </h3>
         <p>{props.description}</p>
-        {/* <h5>{props.vote_average}</h5> */}
+        {/* buttons */}
+        <div className="movieButtonContainer">
+        <ActionButtonsMain {...props} isActive = {isActive}  />
+        </div>
         <h4>
           {" "}
           {props.vote_average ? (

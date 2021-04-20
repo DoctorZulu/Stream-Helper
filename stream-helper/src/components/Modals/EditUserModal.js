@@ -17,7 +17,6 @@ function EditUserModal({ history }) {
   const [lastname, setLastName] = useState();
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
-
   const [update, { loading, error, data }] = useMutation(UPDATEUSERPROFILE);
 
   useEffect(() => {

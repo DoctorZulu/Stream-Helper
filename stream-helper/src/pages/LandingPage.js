@@ -96,8 +96,9 @@ function LandingPage({ history }) {
               We'll Recommend You Movies You'd Like <br /> Without Showing You
               Those You've already Seen
             </h3>
+            <div className="landingButtonsContainer">
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(true);
                 setFormShow(false);
@@ -107,7 +108,7 @@ function LandingPage({ history }) {
               Register{" "}
             </Button>
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(false);
                 setFormShow(false);
@@ -117,7 +118,7 @@ function LandingPage({ history }) {
               Already A Member?{" "}
             </Button>
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(true);
                 setFormShow(true);
@@ -126,6 +127,7 @@ function LandingPage({ history }) {
               {" "}
               Learn More{" "}
             </Button>
+            </div>
           </div>
         </div>
         <div className="landingRightCol">

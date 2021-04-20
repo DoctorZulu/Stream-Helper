@@ -2,9 +2,9 @@
   min-height: 60vh;
   z-index: 500;
   background-size: cover;
-  filter: blur(4px);
+  filter: blur(4px) , brightness(50%);
   -webkit-filter: blur(4px);
-  background-image: url("../media/heroBannerImageMain.jpg");
+/*   background-image: url("../media/heroBannerImageMain.jpg"); */
 }
 
 .mainHeroTitle {
