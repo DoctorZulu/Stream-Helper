@@ -14,6 +14,7 @@
 
 .mainActionButtons {
     margin-bottom: 10px !important;
+    max-width: 300px !important;
 }
 .mainActionBox {
     width: 73px;
@@ -22,4 +23,5 @@
     background-color: rgb(29, 29, 29) !important;
     border-color:  rgb(29, 29, 29) !important;
 }
+
 

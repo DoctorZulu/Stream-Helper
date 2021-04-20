@@ -8,6 +8,10 @@
   color: whitesmoke !important;
 }
 
+.movieCardTitle {
+  width: 300px !important; 
+}
+
 .movieCardIcon {
   margin: 2px;
   max-height: 250px;

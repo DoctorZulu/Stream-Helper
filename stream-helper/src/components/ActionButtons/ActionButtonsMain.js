@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToggleButton, Button, ToggleButtonGroup } from "react-bootstrap";
 import {
   Bookmark,
@@ -14,7 +14,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 function ActionButtonsMain(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
-
   const submitLike = async (e) => {
     e.preventDefault();
     await update({
@@ -72,112 +71,119 @@ function ActionButtonsMain(props) {
     });
   };
 
+  useEffect(() => {
+
+  } , [props.isActive])
+
   return (
     <>
-      <div className="mainActionButtons">
-        <Button
-          className="mainActionBox"
-          onClick={() => {
-            submitSave();
+    {props.isActive === true ? 
+    <div className="mainActionButtons">
+    <Button
+      className="mainActionBox"
+      onClick={() => {
+        submitSave();
 
-            console.log("clicked save");
-            toast.warning("🎥 Movie Saved!", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          {" "}
-          <Bookmark
-            color={"white"}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Save
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitWatched(e);
+        console.log("clicked save");
+        toast.warning("🎥 Movie Saved!", {
+          className: "movieSaved",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }}
+    >
+      {" "}
+      <Bookmark
+        color={"white"}
+        size={15}
+        className="movieDetailHeartIcon"
+      />{" "}
+      Save
+    </Button>
+    <Button
+      className="mainActionBox"
+      onClick={(e) => {
+        submitWatched(e);
 
-            console.log("clicked watched");
-            toast.warning("	👍 Added to Watched", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          {" "}
-          <Check2
-            color={"white"}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Watched
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitLike(e);
-            console.log("clicked like");
-            toast.warning("	👍 Liked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          {" "}
-          <HandThumbsUp
-            color={"white"}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Like
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitDislike(e);
-            console.log("clicked discard");
-            toast.warning("	👎 Disliked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          {" "}
-          <HandThumbsDown
-            color={"white"}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Dislike
-        </Button>
-      </div>
+        console.log("clicked watched");
+        toast.warning("	👍 Added to Watched", {
+          className: "movieSaved",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }}
+    >
+      {" "}
+      <Check2
+        color={"white"}
+        size={15}
+        className="movieDetailHeartIcon"
+      />{" "}
+      Watched
+    </Button>
+    <Button
+      className="mainActionBox"
+      onClick={(e) => {
+        submitLike(e);
+        console.log("clicked like");
+        toast.warning("	👍 Liked Movie", {
+          className: "movieSaved",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }}
+    >
+      {" "}
+      <HandThumbsUp
+        color={"white"}
+        size={15}
+        className="movieDetailHeartIcon"
+      />{" "}
+      Like
+    </Button>
+    <Button
+      className="mainActionBox"
+      onClick={(e) => {
+        submitDislike(e);
+        console.log("clicked discard");
+        toast.warning("	👎 Disliked Movie", {
+          className: "movieSaved",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }}
+    >
+      {" "}
+      <HandThumbsDown
+        color={"white"}
+        size={15}
+        className="movieDetailHeartIcon"
+      />{" "}
+      Dislike
+    </Button>
+  </div>
+    : <> </>}
+      
     </>
   );
 }
