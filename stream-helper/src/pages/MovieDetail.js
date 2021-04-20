@@ -65,11 +65,14 @@ function MovieDetail(props) {
   }, [creditsParse]);
 
   const Mapper = () => (
-    <div className="movieCardContainer">
+   <>
       {cast.map((actor, i) => (
-        <CreditCard {...actor} key={i + 1} />
+         <div className="creditUniqueDetail">
+           <CreditCard {...actor} key={i + 1} />
+         </div>
       ))}
-    </div>
+    </>
+   
   );
 
   return (
@@ -140,8 +143,9 @@ function MovieDetail(props) {
                     </h4>
                     {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
                   </div>
+                  <h4 style={{color: "whitesmoke"}}>Cast &amp; Crew: </h4>
                 <div className="movieDetailCast">
-                <h4>Cast &amp; Crew: </h4> <p>{cast && crew ? <Mapper /> : null}  </p>
+                 {cast && crew ? <Mapper /> : null}
                 </div>
               
               {/* <Col> Cast &amp; Crew: {cast && crew ? <Mapper /> : null} </Col> */}

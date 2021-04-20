@@ -58,10 +58,16 @@
 }
 
 .movieDetailCast {
-    position: absolute;
+    display: flex;
     color: whitesmoke;
-    top: 60%;
-    left: 45%;
-    width: 500px;
+    width: 90%;
+    height: 100px;
+    overflow: auto;
+    white-space: nowrap;
+}
 
+.creditUniqueDetail {
+    display: flex;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
 }
