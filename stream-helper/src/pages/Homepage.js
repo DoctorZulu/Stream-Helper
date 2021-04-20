@@ -74,7 +74,7 @@ function Homepage({ history }) {
     <>
       {/* <CheckUser history={history} /> */}
       <NavigationBar />
-      <HeroBanner heroText={heroText} heroTitle={heroTitle} />
+      <HeroBanner heroText={heroText} heroTitle={heroTitle}  history = {history} />
       <div className="homepageTutorial">
       <h3> Gone Are The Days Of Looking For Your Next Movie. <br/>
       With Constant New Movie Recommendations Made Just For You, <br/>

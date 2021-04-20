@@ -9,3 +9,17 @@
     background-color: rgb(29, 29, 29) !important;
     border-color:  rgb(29, 29, 29) !important;
 }
+
+/* homepage/movies page button styling */
+
+.mainActionButtons {
+    margin-bottom: 10px !important;
+}
+.mainActionBox {
+    width: 73px;
+    margin-left: 1px;
+    margin-right: 1px;
+    background-color: rgb(29, 29, 29) !important;
+    border-color:  rgb(29, 29, 29) !important;
+}
+

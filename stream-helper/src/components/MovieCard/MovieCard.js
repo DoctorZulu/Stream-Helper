@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 import StarRatings from "react-star-ratings";
+import ActionButtonsMain from "../ActionButtons/ActionButtonsMain";
 
 toast.configure();
 
@@ -54,6 +55,7 @@ function MovieCard(props) {
         </h3>
         <p>{props.description}</p>
         {/* <h5>{props.vote_average}</h5> */}
+        <ActionButtonsMain {...props}/>
         <h4>
           {" "}
           {props.vote_average ? (

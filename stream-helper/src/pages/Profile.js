@@ -33,7 +33,7 @@ function Profile({ history }) {
       {console.log(user)}
       {user ? (
         <>
-          <HeroBanner heroText={heroText} heroTitle={`Hey ${user.username}`} />
+          <HeroBanner heroText={heroText} heroTitle={`Hey ${user.username}`}  history = {history} />
 
           <div className="profileContentContainer">
             <div className="profileContentItems">
