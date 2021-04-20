@@ -85,7 +85,7 @@
     }
     
     .landingLeftText {
-        margin-top: 100%;
+        margin-top: 150px;
         margin-left: 10%;
     }
     
@@ -108,7 +108,7 @@
     }
     
     .landingPageForm {
-        margin-top: 250px;
+        margin-top: 150px;
         color: white;
         width: 200px;
         margin-left: auto;
@@ -138,4 +138,19 @@
     }
 
     
+}
+
+@media only screen and (min-device-width : 375px) and (min-height: 600px) {
+    .landingButtonsContainer {
+        max-width: 200px;
+        min-height: 260px !important;
+    }
+
+    .landingPageButton {
+        margin-top: 20px !important;
+    }
+
+    .landingPageForm {
+        margin-top: 300px;
+    }
 }

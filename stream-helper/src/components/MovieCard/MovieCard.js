@@ -49,9 +49,8 @@ function MovieCard(props) {
             onMouseEnter={() => {
               setIsActive(true);
             }}
-            onMouseLeave={() => {
-              setIsInactive(true);
-            }}
+           
+           
           />
         </Link>
         <h3 className="movieCardTitle">
@@ -59,7 +58,9 @@ function MovieCard(props) {
         </h3>
         <p>{props.description}</p>
         {/* buttons */}
-        <ActionButtonsMain {...props} isActive = {isActive} isInactive = {isInactive}/>
+        <div className="movieButtonContainer">
+        <ActionButtonsMain {...props} isActive = {isActive}  />
+        </div>
         <h4>
           {" "}
           {props.vote_average ? (
