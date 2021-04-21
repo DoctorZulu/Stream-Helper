@@ -107,11 +107,14 @@ function MovieDetail(props) {
   }, [creditsParse]);
 
   const Mapper = () => (
-    <div className="movieCardContainer">
+   <>
       {cast.map((actor, i) => (
-        <CreditCard {...actor} key={i + 1} />
+         <div className="creditUniqueDetail">
+           <CreditCard {...actor} key={i + 1} />
+         </div>
       ))}
-    </div>
+    </>
+   
   );
 
   return (
@@ -131,10 +134,6 @@ function MovieDetail(props) {
 
                 <div className="movieDetailRatings">
                   <div className="movieDetailActionBox">
-                    {/*  <Bookmark color={"white"} size={25} className="movieDetailHeartIcon"/>
-           <Check2 color={"white"} size={25} className="movieDetailHeartIcon"/>
-           <HandThumbsUp color={"white"} size={25} className="movieDetailHeartIcon"/>
-           <HandThumbsDown  color={"white"} size={25} className="movieDetailHeartIcon"/>  */}
                     <ActionButtons currentMovieDetails={currentMovieDetails} />
                   </div>
                   <br />
@@ -179,20 +178,22 @@ function MovieDetail(props) {
                   {/* <ProvidersRent providers={providers} /> */}
                 </div>
               </div>
-              <div className="movieDetailContent">
-                <h2> {currentMovieDetails.movie.title}</h2>
-                <h4>
-                  {" "}
-                  Movie Description: {currentMovieDetails.movie.overview}
-                </h4>
-                <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4>
-              </div>
-              <Col> {cast && crew ? <Mapper /> : null} </Col>
+                  <div className="movieDetailContent">
+                    <h2> {currentMovieDetails.movie.title}</h2>
+                    <h4>
+                      {" "}
+                      Synopsis: {currentMovieDetails.movie.overview}
+                    </h4>
+                    {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
+                  </div>
+                  <h4 style={{color: "whitesmoke"}}>Cast &amp; Crew: </h4>
+                <div className="movieDetailCast">
+                 {cast && crew ? <Mapper /> : null}
+                </div>
+              
+              {/* <Col> Cast &amp; Crew: {cast && crew ? <Mapper /> : null} </Col> */}
             </Row>
-            <Row>
-              <Col>1 of 2</Col>
-              <Col>2 of 2</Col>
-            </Row>
+          
           </Container>
         </>
       ) : (
