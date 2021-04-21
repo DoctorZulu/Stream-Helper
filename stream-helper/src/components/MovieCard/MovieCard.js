@@ -58,9 +58,15 @@ function MovieCard(props) {
         </h3>
         <p>{props.description}</p>
         {/* buttons */}
+        {props.saved === true || props.liked === true || props.watched === true || props.disliked === true ? <> </> :
         <div className="movieButtonContainer">
         <ActionButtonsMain {...props} isActive = {isActive}  />
         </div>
+        }
+        {/* {isActive === true && (props.saved === false) ? (
+        <div className="movieButtonContainer">
+        <ActionButtonsMain {...props} isActive = {isActive}  />
+        </div>) : <> </> }  */}
         <h4>
           {" "}
           {props.vote_average ? (
@@ -76,7 +82,7 @@ function MovieCard(props) {
             <></>
           )}
         </h4>
-        {isActive === true ? (
+        
           <div className="movieButtonContainer">
             {props.watched === true || props.saved === true ? (
               <>
@@ -108,9 +114,7 @@ function MovieCard(props) {
               <></>
             )}
           </div>
-        ) : (
-          <> </>
-        )}
+        
       </div>
     </>
   );

@@ -26,7 +26,7 @@ function Homepage({ history }) {
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
-  const [take] = useState(5);
+  const [take] = useState(10);
   const [end, setEnd] = useState(1);
   const [skip, setSkip] = useState(0);
 

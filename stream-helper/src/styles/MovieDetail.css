@@ -8,8 +8,10 @@
 }
 
 .movieDetailContent {
-    position: relative;
+    position: absolute;
     color: whitesmoke;
+    top: 30%;
+    left: 45%;
     width: 500px;
 }
 
@@ -45,6 +47,7 @@
 
 .streamProviderContainer  {
     color: whitesmoke !important;
+    height: 30%;
 }
 
 .movieDetailHeartIcon {
@@ -52,4 +55,19 @@
     margin-right: 35px;
     margin-top: 15px;
     justify-content: center;
+}
+
+.movieDetailCast {
+    display: flex;
+    color: whitesmoke;
+    width: 90%;
+    height: 100px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.creditUniqueDetail {
+    display: flex;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
 }
