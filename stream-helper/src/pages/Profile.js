@@ -64,15 +64,16 @@ function Profile({ history }) {
   return (
     <>
       <NavigationBar />
-      <CheckUser history={history} />;
+      <CheckUser history={history} />
+
       <>
         {console.log(user)}
         {user && !loading ? (
           <>
-            <HeroBanner
+            {/* <HeroBanner
               heroText={heroText}
               heroTitle={`Hey ${user.username}`}
-            />
+            /> */}
 
             <div className="profileContentContainer">
               <div className="profileContentItems">
@@ -104,14 +105,6 @@ function Profile({ history }) {
 
                 {/* Modal For Profile Edit */}
 
-                <Forum
-                  firstname={(e) => setFirstName(e.target.value)}
-                  lastname={(e) => setLastName(e.target.value)}
-                  email={(e) => setEmail(e.target.value)}
-                  username={(e) => setUserName(e.target.value)}
-                  submit={submitProfileEdit}
-                />
-
                 {/* <EditUserModal
                   firstname={(e) => setFirstName(e.target.value)}
                   lastname={(e) => setLastName(e.target.value)}
@@ -125,6 +118,13 @@ function Profile({ history }) {
         ) : (
           <></>
         )}
+        <Forum
+          firstname={(e) => setFirstName(e.target.value)}
+          lastname={(e) => setLastName(e.target.value)}
+          email={(e) => setEmail(e.target.value)}
+          username={(e) => setUserName(e.target.value)}
+          submit={submitProfileEdit}
+        />
       </>
     </>
   );
