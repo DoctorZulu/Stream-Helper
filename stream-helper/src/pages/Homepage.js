@@ -22,7 +22,7 @@ function Homepage({ history }) {
   // console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
   const heroText =
-    "Discover Countless New Movies Save Them To Your List Discard Ones You've Already Seen";
+    "Your Homepage Will Always Display Movies You've Seen In Case You Want To Rewatch Them";
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
@@ -74,22 +74,12 @@ function Homepage({ history }) {
     <>
       {/* <CheckUser history={history} /> */}
       <NavigationBar />
-      <HeroBanner heroText={heroText} heroTitle={heroTitle} />
+      <HeroBanner heroText={heroText} heroTitle={heroTitle}  history = {history} />
       <div className="homepageTutorial">
-        <h3>
-          {" "}
-          <HeartFill color={"red"} /> Adds Movies To Your "Saved Movies".
-        </h3>
-        <h3>
-          {" "}
-          <EyeSlash color={"orange"} />
-          The Eye Icon Discards Movies as "Watched".
-        </h3>
-        <h3>
-          {" "}
-          <HandThumbsDown color={"red"} /> The Thumbs Down Icon Discards Movies
-          as Disliked
-        </h3>
+      <h3> Gone Are The Days Of Looking For Your Next Movie. <br/>
+      With Constant New Movie Recommendations Made Just For You, <br/>
+      You'll Always Have Something To Play Next </h3>
+      
       </div>
       <h1>
         {/* <button onClick={bigFetch}>FetchMore </button> */}
