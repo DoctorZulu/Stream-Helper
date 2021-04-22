@@ -81,14 +81,14 @@ function Homepage({ history }) {
       You'll Always Have Something To Play Next </h3>
       
       </div>
-      <h1>
+     {/*  <h1> */}
         {/* <button onClick={bigFetch}>FetchMore </button> */}
         {allMovies.length > 0 ? (
           <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
         ) : (
           <h1> There are No Movies To Load </h1>
         )}
-      </h1>
+      {/* </h1> */}
     </>
   );
 }
