@@ -4,8 +4,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
 
 const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
-
-
   const Mapper = () => (
     <div className="movieCardContainer">
       {finalList.map((movie, i) => (
@@ -16,14 +14,12 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
   //
 
   /* console.log("IMP!!!!!!,", userMovieRecommendations)
- */
-  let uniqueList = [...new Set(userMovieRecommendations)]
+   */
+  let uniqueList = [...new Set(userMovieRecommendations)];
 
-  let finalList = [...uniqueList]
+  let finalList = [...uniqueList];
 
-  console.log(finalList, "TEEEEEEEE=============")
-
-/*   let filteredProviderMovies = userMovieRecommendations.filter(function (movie) {
+  /*   let filteredProviderMovies = userMovieRecommendations.filter(function (movie) {
     return movie.categoryId === "Netflix";
 }).map(function (movie, i) {
     <div className="movieCardContainer">
@@ -33,12 +29,7 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
     </div>
 }) */
 
-
-
-
-
-
-/*   const filteredMapper = () => (
+  /*   const filteredMapper = () => (
     <div className="movieCardContainer">
       {userMovieRecommendations.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
@@ -47,14 +38,12 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
   ); */
   //
 
-
-
   return (
     <>
       {userMovieRecommendations ? (
         <InfiniteScroll
           dataLength={userMovieRecommendations.length}
-          hasMore={true}
+          hasMore={false}
           next={onLoadMore}
           className="scroll"
           loader={<h4>Loading...</h4>}
