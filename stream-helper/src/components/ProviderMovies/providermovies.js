@@ -19,6 +19,7 @@ const ProviderMovies = ({ providerprop, county }) => {
   const [counter, setCounter] = useState(0);
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
+    /* { fetchPolicy: "no-cache" }, */
 
     {
       variables: {
@@ -30,9 +31,10 @@ const ProviderMovies = ({ providerprop, county }) => {
     }
   );
 
-  const [getMore, { loading, data }] = useLazyQuery(PROVIDERMOVIEQUERY);
+  /* const [getMore, { loading, data }] = useLazyQuery(PROVIDERMOVIEQUERY); */
 
   useEffect(() => {
+    console.log("USE EFFECT BUT NO LOGIC HIT");
     if (dataAll) {
       setUserMovieRecommendations(dataAll.providerMovieQuery);
       console.log(providerprop, "USE EFFECT IN CHILD HIT");
@@ -43,9 +45,9 @@ const ProviderMovies = ({ providerprop, county }) => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll]);
+  }, [loadingAll, dataAll, providerprop]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log("getmore useeffectg hit");
     getMore({
       variables: {
@@ -55,7 +57,7 @@ const ProviderMovies = ({ providerprop, county }) => {
         providerMovieQueryProviderId: provideridprop,
       },
     });
-  }, [providerprop]);
+  }, [providerprop]); */
 
   const bigFetch = () => {
     fetchMore(

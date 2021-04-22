@@ -78,11 +78,6 @@ function Movies({ history }) {
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
-  const addCount = () => {
-    counter++;
-  };
-
-  console.log(counter, "counter on movies parent");
 
   return (
     <>
@@ -110,7 +105,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(8);
               setProviderfilter(true);
-              addCount();
             }}
             eventKey="link-1"
           >
@@ -126,7 +120,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(384);
               setProviderfilter(true);
-              addCount();
             }}
             eventKey="link-2"
           >
@@ -142,7 +135,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(15);
               setProviderfilter(true);
-              addCount();
             }}
             eventKey="link-3"
           >
@@ -158,7 +150,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(9);
               setProviderfilter(true);
-              addCount();
             }}
             eventKey="link-4"
           >
@@ -174,7 +165,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(337);
               setProviderfilter(true);
-              addCount();
             }}
             eventKey="link-5"
           >
