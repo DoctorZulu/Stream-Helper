@@ -23,7 +23,7 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="mainNavBar">
+      <Navbar bg="dark" variant="dark" className="mainNavBar" sticky="top">
         <Link to={"/home"}>
           <Navbar.Brand>StreamHelper</Navbar.Brand>
         </Link>
