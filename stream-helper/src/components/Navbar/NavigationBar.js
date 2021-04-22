@@ -23,10 +23,12 @@ function NavigationBar() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="mainNavBar" sticky="top">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="mainNavBar" sticky="top">
         <Link to={"/home"}>
           <Navbar.Brand>StreamHelper</Navbar.Brand>
         </Link>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Link to={"/home"}>
             <Nav.Item className="buttonStyle"> Home </Nav.Item>
@@ -56,6 +58,7 @@ function NavigationBar() {
           value={input}
           noChoiceItem={noChoiceItem}
         /> */}
+         </Navbar.Collapse>
       </Navbar>
     </>
   );
