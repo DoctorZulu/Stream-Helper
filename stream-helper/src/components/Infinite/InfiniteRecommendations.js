@@ -4,8 +4,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
 
 const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
-
-
   const Mapper = () => (
     <div className="movieCardContainer">
       {finalList.map((movie, i) => (
@@ -30,7 +28,7 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
       {userMovieRecommendations ? (
         <InfiniteScroll
           dataLength={userMovieRecommendations.length}
-          hasMore={true}
+          hasMore={false}
           next={onLoadMore}
           className="scroll"
           loader={<h4>Loading...</h4>}

@@ -55,6 +55,12 @@ const client = new ApolloClient({
               return [...existing, ...incoming];
             },
           },
+          providerMovieQuery: {
+            keyArgs: ["type"],
+            merge(existing = [], incoming = []) {
+              return [...existing, ...incoming];
+            },
+          },
         },
       },
     },
@@ -72,7 +78,7 @@ ReactDOM.render(
       </ApolloProvider>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
