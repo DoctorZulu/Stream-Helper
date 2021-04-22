@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 /* styling */
 import "../../styles/ProfileEditForm.css";
 
 function EditUserModal({ firstname, lastname, email, username, submit }) {
-  // const [lgShow, setLgShow] = useState(false);
+  const [lgShow, setLgShow] = useState(false);
 
   // useLayoutEffect(() => {
   //   console.log("testy");

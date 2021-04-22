@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap";
 import "../styles/Profile.css";
 import SavedMoviesModal from "../components/Modals/SavedMoviesModal";
-// import EditUserModal from "../components/Modals/EditUserModal";
+import EditUserModal from "../components/Modals/EditUserModal";
 import Forum from "../components/forum/Forum";
 import WatchedMoviesModal from "../components/Modals/WatchedMoviesModal";
 import DislikedMoviesModal from "../components/Modals/DislikedMoviesModal";
@@ -58,8 +58,8 @@ function Profile({ history }) {
       // history.push("/home");
     }
   }, [loading, data]);
-  if (loading) return console.log("Loading update");
-  if (error) return console.log(`Error! ${error.message}`);
+  // if (loading) return console.log("Loading update");
+  // if (error) return console.log(`Error! ${error.message}`);
 
   return (
     <>
@@ -70,10 +70,11 @@ function Profile({ history }) {
         {console.log(user)}
         {user && !loading ? (
           <>
-            {/* <HeroBanner
+            <HeroBanner
               heroText={heroText}
               heroTitle={`Hey ${user.username}`}
-            /> */}
+              history={history}
+            />
 
             <div className="profileContentContainer">
               <div className="profileContentItems">
@@ -105,26 +106,26 @@ function Profile({ history }) {
 
                 {/* Modal For Profile Edit */}
 
-                {/* <EditUserModal
+                <EditUserModal
                   firstname={(e) => setFirstName(e.target.value)}
                   lastname={(e) => setLastName(e.target.value)}
                   email={(e) => setEmail(e.target.value)}
                   username={(e) => setUserName(e.target.value)}
                   submit={submitProfileEdit}
-                /> */}
+                />
               </div>
             </div>
           </>
         ) : (
           <></>
         )}
-        <Forum
+        {/* <Forum
           firstname={(e) => setFirstName(e.target.value)}
           lastname={(e) => setLastName(e.target.value)}
           email={(e) => setEmail(e.target.value)}
           username={(e) => setUserName(e.target.value)}
           submit={submitProfileEdit}
-        />
+        /> */}
       </>
     </>
   );
