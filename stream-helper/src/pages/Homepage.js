@@ -27,14 +27,13 @@ function Homepage({ history }) {
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
   const [take] = useState(10);
-  const [end, setEnd] = useState(1);
+  const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  // console.log();
   const scrollData = {
     allMoviesTake: take,
     allMoviesSkip: skip,
-    allMoviesMyCursor: end,
+    allMoviesMyCursor: cursor,
   };
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
@@ -64,22 +63,22 @@ function Homepage({ history }) {
           allMoviesMyCursor: allMovies.length - 1 /* end + take */,
         },
       },
-      setEnd(allMovies[allMovies.length - 1].categoryId),
+      setCursor(allMovies[allMovies.length - 1].categoryId),
       setSkip(2),
     );
   };
-  // console.log(end, "this is the end");
-
   return (
     <>
       {/* <CheckUser history={history} /> */}
       <NavigationBar />
-      <HeroBanner heroText={heroText} heroTitle={heroTitle}  history = {history} />
+      <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       <div className="homepageTutorial">
-      <h3> Gone Are The Days Of Looking For Your Next Movie. <br/>
-      With Constant New Movie Recommendations Made Just For You, <br/>
-      You'll Always Have Something To Play Next </h3>
-      
+        <h3>
+          {" "}
+          Gone Are The Days Of Looking For Your Next Movie. <br />
+          With Constant New Movie Recommendations Made Just For You, <br />
+          You'll Always Have Something To Play Next{" "}
+        </h3>
       </div>
       <h1>
         {/* <button onClick={bigFetch}>FetchMore </button> */}

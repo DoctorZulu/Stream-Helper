@@ -6,9 +6,12 @@ import { VERIFY } from "../graphql/operations";
 
 const CheckUser = ({ history }) => {
   const [user, setUser] = useRecoilState(userState);
-  const { loading: loadingUser, error, data: dataUser } = useQuery(VERIFY, {
-    fetchPolicy: "network-only",
-  });
+  const { loading: loadingUser, error: errorUser, data: dataUser } = useQuery(
+    VERIFY,
+    {
+      fetchPolicy: "network-only",
+    },
+  );
 
   useEffect(() => {
     try {
@@ -25,7 +28,7 @@ const CheckUser = ({ history }) => {
       console.log(error);
     }
   }, [loadingUser, dataUser]);
-  return <>{error ? error.message : null}</>;
+  return <>{errorUser ? errorUser.message : null}</>;
 };
 
 export default CheckUser;

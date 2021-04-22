@@ -69,7 +69,6 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
       ) : (
         <></>
       )}
-      
     </>
   );
 };

@@ -53,6 +53,7 @@ const client = new ApolloClient({
           userMovieRecommendations: {
             keyArgs: ["type"],
             merge(existing = [], incoming = []) {
+              console.log(existing);
               return [...existing, ...incoming];
             },
           },
