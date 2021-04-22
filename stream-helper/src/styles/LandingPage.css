@@ -80,10 +80,11 @@
       }
     .landingContentGrid {
         display: grid;
-        grid-template-columns: 70% 30%;
+        grid-template-columns: 100%;
         grid-template-rows: auto;
         grid-template-areas: 
-          "landingLeftCol landingRightCol";
+          "landingLeftCol"
+          "landingRightCol"
     }
     
     .landingLeftCol {
@@ -99,8 +100,9 @@
     .landingRightCol {
         grid-area: landingRightCol;
         background-color: black;
-        max-width: 100px;
-        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+     
     }
     
     .landingPageButton {
@@ -108,16 +110,17 @@
     }
     
     .landingTitle {
-        font-size: 35px;
+        font-size: 20px;
         width: 200px;
     }
     
     .landingSubTitle {
-        font-size: 20px;
+        font-size: 15px;
+        width: 200px;
     }
     
     .landingPageForm {
-        margin-top: 150px;
+        margin-top: 15px;
         color: white;
         width: 200px;
         margin-left: auto;
@@ -299,9 +302,7 @@
 
 /* IPAD */
 
-@media only screen and (min-device-width : 375px) and (min-height: 900px) and (max-height: 1024px) {
-
-    
+@media only screen and (min-device-width : 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
 
     .landingContentGrid {
         display: grid;
@@ -319,7 +320,7 @@
     }
     
     .landingLeftText {
-        margin-top: 30%;
+        margin-top: 20%;
         margin-left: 30%;
     }
     
@@ -330,6 +331,7 @@
     }
     
    
+   
     .landingTitle {
         font-size: 25px;
         width: 300px;
@@ -337,6 +339,71 @@
     
     .landingSubTitle {
         font-size: 18px;
+    }
+    
+    .landingPageForm {
+        
+        margin-top: 0px !important;
+    }
+    
+    .landingKnowMore {
+        margin-top: 15% !important;
+        color: black !important;
+    }
+    
+    .infoSign {
+        background-color: whitesmoke;
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .landingPageButton {
+        margin: 10px !important;
+    }
+
+}
+
+/* IPAD PRO / SMALL LAPTOP */
+
+
+@media only screen and (min-device-width : 1024px) and (max-width: 1200px)  {
+
+    .landingContentGrid {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        grid-template-areas: 
+          "landingLeftCol"
+          "landingRightCol";
+    }
+    
+    .landingLeftCol {
+        grid-area: landingLeftCol;
+        background-color: whitesmoke;
+        height: 650px !important;
+    }
+    
+    .landingLeftText {
+        margin-top: 20%;
+        margin-left: 30%;
+    }
+    
+    .landingRightCol {
+        grid-area: landingRightCol;
+        background-color: black;
+        
+    }
+    
+   
+   
+    .landingTitle {
+        font-size: 35px;
+        width: 300px;
+    }
+    
+    .landingSubTitle {
+        font-size: 25px;
     }
     
     .landingPageForm {
