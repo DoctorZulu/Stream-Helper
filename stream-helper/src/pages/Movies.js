@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
-import moviesHeroImage from '../media/moviesHeroImage.jpg'
+import moviesHeroImage from "../media/moviesHeroImage.jpg";
 // import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
 /* gql */
@@ -19,12 +19,14 @@ function Movies({ history }) {
   const heroTitle = "Find Your Next Movie";
   const heroText =
     "Click On The Thumbs Down If You Dislike That Recommendation";
-  const mainImage = {moviesHeroImage}
+  const mainImage = { moviesHeroImage };
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
-  const [end, setEnd] = useState(1);
+  const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
+
+
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -32,19 +34,26 @@ function Movies({ history }) {
       variables: {
         userMovieRecommendationsTake: take,
         userMovieRecommendationsSkip: skip,
-        userMovieRecommendationsMyCursor: end,
+        userMovieRecommendationsMyCursor: cursor,
       },
     },
   );
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
-      console.log(dataAll.userMovieRecommendations, "DATA");
+     
       setUserMovieRecommendations(dataAll.userMovieRecommendations);
     }
-
+    if (userMovieRecommendations) {
+      setCursor(
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      );
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
+
+ 
 
   const bigFetch = () => {
     fetchMore(
@@ -53,20 +62,24 @@ function Movies({ history }) {
           userMovieRecommendationsMyCursor: userMovieRecommendations.length,
         },
       },
-      setEnd(
+      setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      setSkip(3),
+      
     );
   };
-  console.log(end, "this is the end");
 
   return (
     <>
       <NavigationBar />
       <CheckUser history={history} />
-      <HeroBanner heroText={heroText} heroTitle={heroTitle} mainImage ={mainImage}  history = {history}/>
+      <HeroBanner
+        heroText={heroText}
+        heroTitle={heroTitle}
+        mainImage={mainImage}
+        history={history}
+      />
       {user ? (
         <>
           {userMovieRecommendations ? (

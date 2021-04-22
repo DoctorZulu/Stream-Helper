@@ -239,6 +239,33 @@ const MOVIEDETAIL = gql`
   }
 `;
 
+const PROVIDERMOVIEQUERY = gql`
+  query Query(
+    $providerMovieQueryTake: Int
+    $providerMovieQuerySkip: Int
+    $providerMovieQueryMyCursor: Int
+    $providerMovieQueryProviderId: Int
+  ) {
+    providerMovieQuery(
+      take: $providerMovieQueryTake
+      skip: $providerMovieQuerySkip
+      myCursor: $providerMovieQueryMyCursor
+      providerId: $providerMovieQueryProviderId
+    ) {
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+      genres
+      id
+    }
+  }
+`;
+
 export {
   SIGNUP,
   VERIFY,
@@ -253,4 +280,5 @@ export {
   USERUPDATE,
   UPDATEUSERPROFILE,
   LIKEDMOVIES,
+  PROVIDERMOVIEQUERY,
 };

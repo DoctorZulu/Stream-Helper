@@ -18,9 +18,7 @@ function DislikedMoviesModal() {
         setDislikedMovies(data);
       }
     });
-
-    console.log("DISLIKED", dislikedMovies)
-    
+ 
   
     const Mapper = () => (
       <>

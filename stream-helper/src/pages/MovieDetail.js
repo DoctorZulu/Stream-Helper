@@ -32,6 +32,7 @@ function MovieDetail(props) {
   const [providers, setProviders] = useState();
   const [cast, setCast] = useState();
   const [crew, setCrew] = useState();
+  const [genre, setGenre] = useState();
 
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
@@ -39,7 +40,6 @@ function MovieDetail(props) {
     },
   });
 
-  console.log(data);
 
   useEffect(() => {
     if (!loading && data) {
@@ -48,19 +48,55 @@ function MovieDetail(props) {
       setProviders(JSON.parse(data.movie.watchproviders[0].providers));
     }
   }, [data, loading]);
-  // console.log(currentMovieDetails, "currentmoviedetail");
-  console.log(providers, "providers");
 
-  // useEffect(() => {
-  //   if (currentMovieDetails != undefined) {
-  //     setCreditsParse(JSON.parse(currentMovieDetails.movie.credits[0].cast));
-  //   }
-  // }, [currentMovieDetails]);
+
+
 
   useEffect(() => {
     if (creditsParse.cast) {
       setCast(creditsParse.cast);
       setCrew(creditsParse.crew);
+    }
+    if (currentMovieDetails) {
+      if (currentMovieDetails.movie.genres === 28) {
+        setGenre("Action");
+      } else if (currentMovieDetails.movie.genres === 12) {
+        setGenre("Adventure");
+      } else if (currentMovieDetails.movie.genres === 16) {
+        setGenre("Animation");
+      } else if (currentMovieDetails.movie.genres === 35) {
+        setGenre("Comedy");
+      } else if (currentMovieDetails.movie.genres === 80) {
+        setGenre("Crime");
+      } else if (currentMovieDetails.movie.genres === 99) {
+        setGenre("Documentary");
+      } else if (currentMovieDetails.movie.genres === 18) {
+        setGenre("Drama");
+      } else if (currentMovieDetails.movie.genres === 10751) {
+        setGenre("Family");
+      } else if (currentMovieDetails.movie.genres === 14) {
+        setGenre("Fantasy");
+      } else if (currentMovieDetails.movie.genres === 36) {
+        setGenre("History");
+      } else if (currentMovieDetails.movie.genres === 27) {
+        setGenre("Horror");
+      } else if (currentMovieDetails.movie.genres === 10402) {
+        setGenre("Musical");
+      } else if (currentMovieDetails.movie.genres === 9648) {
+        setGenre("Mystery");
+      } else if (currentMovieDetails.movie.genres === 10749) {
+        setGenre("Romance");
+      } else if (currentMovieDetails.movie.genres === 878) {
+        setGenre("Science Fiction");
+      } else if (currentMovieDetails.movie.genres === 10770) {
+        setGenre("TV Movie");
+      } else if (currentMovieDetails.movie.genres === 53) {
+        setGenre("Thriller");
+      } else if (currentMovieDetails.movie.genres === 10752) {
+        setGenre("War");
+      } else if (currentMovieDetails.movie.genres === 37) {
+        setGenre("Western");
+      }
     }
   }, [creditsParse]);
 
@@ -108,6 +144,7 @@ function MovieDetail(props) {
                       name="rating"
                     />
                   </h4>
+                  <h5>Genre: {genre}</h5>
                   <h5>
                     {" "}
                     Original Language:{" "}

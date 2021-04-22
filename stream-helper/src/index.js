@@ -23,13 +23,12 @@ const httpLink = new HttpLink({
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-  // add the authorization to the headers
   operation.setContext({
     headers: {
       authorization: Cookies.get("cookie") || null,
-      // cookie: null,
+     
     },
-    // looking to gather the cookie
+  
     fetchOptions: {
       credentials: "include",
     },
@@ -37,7 +36,6 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
   return forward(operation);
 });
-// testing
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -53,6 +51,7 @@ const client = new ApolloClient({
           userMovieRecommendations: {
             keyArgs: ["type"],
             merge(existing = [], incoming = []) {
+              console.log(existing);
               return [...existing, ...incoming];
             },
           },
