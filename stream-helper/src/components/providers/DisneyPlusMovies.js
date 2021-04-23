@@ -14,7 +14,7 @@ function DisneyPlusMovies({providers}) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
-  const [cursor, setCursor] = useState(15);
+  const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(337);
   const [counter, setCounter] = useState(0);
