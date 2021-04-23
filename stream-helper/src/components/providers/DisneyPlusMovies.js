@@ -10,13 +10,13 @@ import {
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
 
-function HuluMovies({providers}) {
+function DisneyPlusMovies({providers}) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
   const [cursor, setCursor] = useState(15);
   const [skip, setSkip] = useState(0);
-  const [provideridprop, setProvideridprop] = useState(8);
+  const [provideridprop, setProvideridprop] = useState(337);
   const [counter, setCounter] = useState(0);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
@@ -86,4 +86,4 @@ function HuluMovies({providers}) {
     )
 }
 
-export default HuluMovies
+export default DisneyPlusMovies
