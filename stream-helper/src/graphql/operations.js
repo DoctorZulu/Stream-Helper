@@ -252,8 +252,9 @@ const PROVIDERMOVIEQUERY = gql`
       myCursor: $providerMovieQueryMyCursor
       providerId: $providerMovieQueryProviderId
     ) {
-      categoryId
+      id
       title
+      categoryId
       original_language
       release_date
       runtime
@@ -261,7 +262,6 @@ const PROVIDERMOVIEQUERY = gql`
       overview
       image
       genres
-      id
     }
   }
 `;
