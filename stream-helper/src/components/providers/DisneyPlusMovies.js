@@ -10,7 +10,7 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-function DisneyPlusMovies({ providers }) {
+function DisneyPlusMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -28,11 +28,20 @@ function DisneyPlusMovies({ providers }) {
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: cursor,
-        providerMovieQueryProviderId: provideridprop,
+        providerMovieQueryMyCursor: parseInt(cursor),
+        providerMovieQueryProviderId: parseInt(337),
       },
     }
   );
+
+
+  useEffect(() => {
+    console.log('=====RENDERED!');
+
+
+    return () => console.log('====UNMOUNTED...');
+  }, []);
+
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
@@ -64,13 +73,13 @@ function DisneyPlusMovies({ providers }) {
         setMore(false);
       }
     }
-  });
+  }, []);
 
   const bigFetch = () => {
     fetchMore(
       {
         variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
+          providerMovieQueryMyCursor: userMovieRecommendations.length,
         },
       },
       setCursor(
@@ -85,6 +94,7 @@ function DisneyPlusMovies({ providers }) {
       {userMovieRecommendations ? (
         <InfiniteRecommendations
           error={error}
+          more={more}
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
         />

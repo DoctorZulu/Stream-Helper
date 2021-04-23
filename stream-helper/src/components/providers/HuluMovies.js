@@ -28,11 +28,19 @@ function HuluMovies({ providers }) {
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: cursor,
-        providerMovieQueryProviderId: provideridprop,
+        providerMovieQueryMyCursor: parseInt(cursor),
+        providerMovieQueryProviderId: 15,
       },
     }
   );
+
+
+  useEffect(() => {
+    console.log('=====RENDERED!');
+
+
+    return () => console.log('====UNMOUNTED...');
+  }, []);
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
@@ -64,13 +72,15 @@ function HuluMovies({ providers }) {
         setMore(false);
       }
     }
-  });
+  }, []);
+
+  console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
 
   const bigFetch = () => {
     fetchMore(
       {
         variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
+          providerMovieQueryMyCursor: userMovieRecommendations.length,
         },
       },
       setCursor(
@@ -87,6 +97,7 @@ function HuluMovies({ providers }) {
           error={error}
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
+          more={more}
         />
       ) : (
         <h1> There are No Movies To Load </h1>

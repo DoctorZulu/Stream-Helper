@@ -69,15 +69,15 @@ const client = new ApolloClient({
 });
 console.log(Cookies.get("cookie"));
 ReactDOM.render(
-  <React.StrictMode>
+/*   <React.StrictMode> */
     <RecoilRoot>
       <ApolloProvider client={client}>
         <Router>
           <App />
         </Router>
       </ApolloProvider>
-    </RecoilRoot>
-  </React.StrictMode>,
+    </RecoilRoot>,
+/*   </React.StrictMode>, */
   document.getElementById("root")
 );
 

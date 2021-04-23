@@ -35,8 +35,7 @@ function Movies({ history }) {
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
-  const [buttonhide, setButtonhide] = useState(false);
-  let counter = 0;
+
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -48,6 +47,16 @@ function Movies({ history }) {
       },
     }
   );
+
+  /* CLEANUP USEEFFECT */
+
+  useEffect(() => {
+    console.log('=====RENDERED!');
+
+
+    return () => console.log('====UNMOUNTED...');
+  }, []);
+
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
@@ -90,7 +99,7 @@ function Movies({ history }) {
           <Nav.Link
             onClick={() => {
               setProviderfilter(false);
-              setButtonhide(false);
+ 
             }}
             href="/movies"
           >
@@ -102,7 +111,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(8);
               setProviderfilter(true);
-              setButtonhide(true);
+      
             }}
             eventKey="link-1"
           >
@@ -118,7 +127,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(384);
               setProviderfilter(true);
-              setButtonhide(true);
+     
             }}
             eventKey="link-2"
           >
@@ -134,7 +143,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(15);
               setProviderfilter(true);
-              setButtonhide(true);
+      
             }}
             eventKey="link-3"
           >
@@ -150,7 +159,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(9);
               setProviderfilter(true);
-              setButtonhide(true);
+      
             }}
             eventKey="link-4"
           >
@@ -166,7 +175,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(337);
               setProviderfilter(true);
-              setButtonhide(true);
+  
             }}
             eventKey="link-5"
           >
@@ -191,11 +200,11 @@ function Movies({ history }) {
         )}
         ;
       </>
-      <>{providerid === 8 ? <NetflixMovies /> : <></>};</>
-      <>{providerid === 9 ? <AmazonPrimeMovies /> : <></>};</>
-      <>{providerid === 384 ? <HboMaxMovies /> : <></>};</>
-      <>{providerid === 15 ? <HuluMovies /> : <></>};</>
-      <>{providerid === 337 ? <DisneyPlusMovies /> : <></>};</>
+      {providerid === 8 ? <NetflixMovies /> : <></>};
+      {providerid === 9 ? <AmazonPrimeMovies /> : <></>};
+      {providerid === 384 ? <HboMaxMovies /> : <></>};
+      {providerid === 15 ? <HuluMovies /> : <></>};
+     {providerid === 337 ? <DisneyPlusMovies /> : <></>};
     </>
   );
 }
