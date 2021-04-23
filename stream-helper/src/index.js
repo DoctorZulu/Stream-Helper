@@ -26,9 +26,8 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
       authorization: Cookies.get("cookie") || null,
-     
     },
-  
+
     fetchOptions: {
       credentials: "include",
     },
@@ -58,6 +57,7 @@ const client = new ApolloClient({
           providerMovieQuery: {
             keyArgs: ["type"],
             merge(existing = [], incoming = []) {
+              console.log(existing);
               return [...existing, ...incoming];
             },
           },

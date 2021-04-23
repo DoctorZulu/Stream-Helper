@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import {
   USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
@@ -16,17 +17,28 @@ function HboMaxMovies({ providers }) {
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(384);
   const [counter, setCounter] = useState(0);
+  const [more, setMore] = useState(false);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
     /* { fetchPolicy: "no-cache" }, */
 
     {
-      fetchPolicy: "no-cache",
+      fetchPolicy: "network-only",
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: cursor,
+        providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: provideridprop,
+      },
+    }
+  );
+
+  const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
+    FILTEREDLENGTH,
+
+    {
+      variables: {
+        filterLengthProviderId: 384,
       },
     }
   );
@@ -35,13 +47,27 @@ function HboMaxMovies({ providers }) {
     if (dataAll) {
       setUserMovieRecommendations(dataAll.providerMovieQuery);
     }
+    console.log(userMovieRecommendations, "RECOMMENDATIONS");
     if (userMovieRecommendations) {
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
+      console.log(cursor, "CURSOR");
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
+
+  console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
+  useEffect(() => {
+    if (userMovieRecommendations && dataMore) {
+      if (userMovieRecommendations.length < dataMore.filterLength) {
+        setMore(true);
+      } else {
+        setMore(false);
+      }
+    }
+  });
 
   const bigFetch = () => {
     fetchMore(
@@ -61,6 +87,7 @@ function HboMaxMovies({ providers }) {
     <>
       {userMovieRecommendations ? (
         <InfiniteRecommendations
+          more={more}
           error={error}
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}

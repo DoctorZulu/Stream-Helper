@@ -172,6 +172,12 @@ const LIKEDMOVIES = gql`
   }
 `;
 
+const FILTEREDLENGTH = gql`
+  query Query($filterLengthProviderId: Int!) {
+    filterLength(providerId: $filterLengthProviderId)
+  }
+`;
+
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
@@ -281,4 +287,5 @@ export {
   UPDATEUSERPROFILE,
   LIKEDMOVIES,
   PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 };

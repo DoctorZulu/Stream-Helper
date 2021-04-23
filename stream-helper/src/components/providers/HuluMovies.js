@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import {
   USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
@@ -17,17 +18,28 @@ function HuluMovies({ providers }) {
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(15);
   const [counter, setCounter] = useState(0);
+  const [more, setMore] = useState(false);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
     /* { fetchPolicy: "no-cache" }, */
 
     {
-      fetchPolicy: "no-cache",
+      fetchPolicy: "network-only",
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
         providerMovieQueryMyCursor: cursor,
         providerMovieQueryProviderId: provideridprop,
+      },
+    }
+  );
+
+  const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
+    FILTEREDLENGTH,
+
+    {
+      variables: {
+        filterLengthProviderId: 384,
       },
     }
   );
@@ -43,6 +55,16 @@ function HuluMovies({ providers }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
+
+  useEffect(() => {
+    if (userMovieRecommendations && dataMore) {
+      if (userMovieRecommendations.length < dataMore.filterLength) {
+        setMore(true);
+      } else {
+        setMore(false);
+      }
+    }
+  });
 
   const bigFetch = () => {
     fetchMore(
