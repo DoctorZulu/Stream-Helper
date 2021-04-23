@@ -81,121 +81,103 @@ function Movies({ history }) {
         history={history}
       />
 
-      <>
-        {buttonhide === false ? (
-          <Nav variant="pills" defaultActiveKey="/home">
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderfilter(false);
-                  setButtonhide(false);
-                }}
-                href="/movies"
-              >
-                Show All
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderid(8);
-                  setProviderfilter(true);
-                  setButtonhide(true);
-                }}
-                eventKey="link-1"
-              >
-                {" "}
-                <img
-                  src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
-                  className="providersImage"
-                />
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderid(384);
-                  setProviderfilter(true);
-                  setButtonhide(true);
-                }}
-                eventKey="link-2"
-              >
-                {" "}
-                <img
-                  src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
-                  className="providersImage"
-                />
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderid(15);
-                  setProviderfilter(true);
-                  setButtonhide(true);
-                }}
-                eventKey="link-3"
-              >
-                {" "}
-                <img
-                  src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
-                  className="providersImage"
-                />
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderid(9);
-                  setProviderfilter(true);
-                  setButtonhide(true);
-                }}
-                eventKey="link-4"
-              >
-                {" "}
-                <img
-                  src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
-                  className="providersImage"
-                />
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderid(337);
-                  setProviderfilter(true);
-                  setButtonhide(true);
-                }}
-                eventKey="link-5"
-              >
-                {" "}
-                <img
-                  src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
-                  className="providersImage"
-                />
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        ) : (
-          <Nav variant="pills" defaultActiveKey="/home">
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setProviderfilter(false);
-                  setButtonhide(false);
-                }}
-                href="/movies"
-              >
-                Clear Filter
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        )}{" "}
-      </>
+      <Nav variant="pills" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderfilter(false);
+              setButtonhide(false);
+            }}
+            href="/movies"
+          >
+            Show All
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(8);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-1"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(384);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-2"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(15);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-3"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(9);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-4"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(337);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-5"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
 
       <>
-        {providerfilter === true ? (
-          <ProviderMovies providerprop={providerid} county={counter} />
+        {providerid === 8 ? (
+          <NetflixMovies />
         ) : (
           <>
             <InfiniteRecommendations
@@ -205,6 +187,58 @@ function Movies({ history }) {
           </>
         )}
         ;
+      </>
+      <>
+        {providerid === 9 ? (
+          <AmazonPrimeMovies />
+        ) : (
+          <>
+            <InfiniteRecommendations
+              userMovieRecommendations={userMovieRecommendations}
+              onLoadMore={bigFetch}
+            />
+          </>
+        )}
+        ;
+        <>
+          {providerid === 384 ? (
+            <HboMaxMovies />
+          ) : (
+            <>
+              <InfiniteRecommendations
+                userMovieRecommendations={userMovieRecommendations}
+                onLoadMore={bigFetch}
+              />
+            </>
+          )}
+          ;
+        </>
+        <>
+          {providerid === 15 ? (
+            <HuluMovies />
+          ) : (
+            <>
+              <InfiniteRecommendations
+                userMovieRecommendations={userMovieRecommendations}
+                onLoadMore={bigFetch}
+              />
+            </>
+          )}
+          ;
+        </>
+        <>
+          {providerid === 337 ? (
+            <DisneyPlusMovies />
+          ) : (
+            <>
+              <InfiniteRecommendations
+                userMovieRecommendations={userMovieRecommendations}
+                onLoadMore={bigFetch}
+              />
+            </>
+          )}
+          ;
+        </>
       </>
     </>
   );
