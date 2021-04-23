@@ -172,6 +172,12 @@ const LIKEDMOVIES = gql`
   }
 `;
 
+const FILTEREDLENGTH = gql`
+  query Query($filterLengthProviderId: Int!) {
+    filterLength(providerId: $filterLengthProviderId)
+  }
+`;
+
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
@@ -252,8 +258,9 @@ const PROVIDERMOVIEQUERY = gql`
       myCursor: $providerMovieQueryMyCursor
       providerId: $providerMovieQueryProviderId
     ) {
-      categoryId
+      id
       title
+      categoryId
       original_language
       release_date
       runtime
@@ -261,7 +268,6 @@ const PROVIDERMOVIEQUERY = gql`
       overview
       image
       genres
-      id
     }
   }
 `;
@@ -281,4 +287,5 @@ export {
   UPDATEUSERPROFILE,
   LIKEDMOVIES,
   PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Nav, Navbar } from "react-bootstrap";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
 /* components */
@@ -7,12 +8,19 @@ import HeroBanner from "../components/HeroBanner/HeroBanner";
 import moviesHeroImage from "../media/moviesHeroImage.jpg";
 // import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
+import AmazonPrimeMovies from "../components/providers/AmazonPrimeMovies";
+import DisneyPlusMovies from "../components/providers/DisneyPlusMovies";
+import HboMaxMovies from "../components/providers/HboMaxMovies";
+import HuluMovies from "../components/providers/HuluMovies";
+import NetflixMovies from "../components/providers/NetflixMovies";
 /* gql */
 import { useQuery } from "@apollo/client";
-import { USERMOVIERECOMMENDATIONS } from "../graphql/operations";
+import {
+  USERMOVIERECOMMENDATIONS,
+  PROVIDERMOVIEQUERY,
+} from "../graphql/operations";
 /* vendor imports */
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
-
 function Movies({ history }) {
   const [user] = useRecoilState(userState);
   /* Hero banner content */
@@ -25,8 +33,10 @@ function Movies({ history }) {
   const [take] = useState(10);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
-
-  // const { loading, error, data } = useQuery(LASTMOVIE);
+  const [providerfilter, setProviderfilter] = useState(false);
+  const [providerid, setProviderid] = useState();
+  const [buttonhide, setButtonhide] = useState(false);
+  let counter = 0;
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -36,29 +46,20 @@ function Movies({ history }) {
         userMovieRecommendationsSkip: skip,
         userMovieRecommendationsMyCursor: cursor,
       },
-    },
+    }
   );
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
-      console.log(dataAll.userMovieRecommendations, "DATA");
       setUserMovieRecommendations(dataAll.userMovieRecommendations);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll]);
-
-  // useEffect(() => {
-  //   if (!loading && data) {
-  //     // console.log(data.lastMovie.id);
-  //     setEnd(data.lastMovie.id);
-  //   }
-  // });
+  }, [loadingAll, dataAll, providerid]);
 
   const bigFetch = () => {
     fetchMore(
@@ -68,13 +69,10 @@ function Movies({ history }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
-      // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
     );
   };
-  console.log(cursor, "this is the end");
 
   return (
     <>
@@ -86,18 +84,118 @@ function Movies({ history }) {
         mainImage={mainImage}
         history={history}
       />
-      {user ? (
-        <>
-          {userMovieRecommendations ? (
+
+      <Nav variant="pills" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderfilter(false);
+              setButtonhide(false);
+            }}
+            href="/movies"
+          >
+            Show All
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(8);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-1"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(384);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-2"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(15);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-3"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(9);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-4"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              setProviderid(337);
+              setProviderfilter(true);
+              setButtonhide(true);
+            }}
+            eventKey="link-5"
+          >
+            {" "}
+            <img
+              src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
+              className="providersImage"
+            />
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <>
+        {!providerid ? (
+          <>
             <InfiniteRecommendations
               userMovieRecommendations={userMovieRecommendations}
               onLoadMore={bigFetch}
             />
-          ) : (
-            <h1> There are No Movies To Load </h1>
-          )}{" "}
-        </>
-      ) : null}
+          </>
+        ) : (
+          <></>
+        )}
+        ;
+      </>
+      <>{providerid === 8 ? <NetflixMovies /> : <></>};</>
+      <>{providerid === 9 ? <AmazonPrimeMovies /> : <></>};</>
+      <>{providerid === 384 ? <HboMaxMovies /> : <></>};</>
+      <>{providerid === 15 ? <HuluMovies /> : <></>};</>
+      <>{providerid === 337 ? <DisneyPlusMovies /> : <></>};</>
     </>
   );
 }

@@ -43,11 +43,9 @@ function Profile({ history }) {
         updateUserEmail: email,
       },
     });
-    // history.push("/home");
   };
   /* Hero Banner */
-  // not working on update being declared here
-  // const heroTitle = `Hey ${user.username}`;
+
   const heroText =
     "Edit Your Profile Details Or View Some Of Your Curated Lists Below";
   useEffect(() => {
@@ -56,8 +54,6 @@ function Profile({ history }) {
       // history.push("/home");
     }
   }, [loading, data]);
-  // if (loading) return console.log("Loading update");
-  // if (error) return console.log(`Error! ${error.message}`);
 
   return (
     <>
@@ -65,7 +61,6 @@ function Profile({ history }) {
       <CheckUser history={history} />
 
       <>
-        {console.log(user)}
         {user && !loading ? (
           <>
             <HeroBanner
@@ -117,13 +112,6 @@ function Profile({ history }) {
         ) : (
           <></>
         )}
-        {/* <Forum
-          firstname={(e) => setFirstName(e.target.value)}
-          lastname={(e) => setLastName(e.target.value)}
-          email={(e) => setEmail(e.target.value)}
-          username={(e) => setUserName(e.target.value)}
-          submit={submitProfileEdit}
-        /> */}
       </>
     </>
   );

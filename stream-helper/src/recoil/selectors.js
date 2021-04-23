@@ -10,21 +10,12 @@ export const loggedInState = selector({
   },
 });
 
-/* export const userIdState = selector({
-    key: "userIdState",
-    get: ({ get }) => {
-      const user = get(userState);
-     
-      return user._id;
-    },
-  });
-   */
+
 
   export const userIdState = selector({
     key: "userIdState",
     get: ({ get }) => {
       const user = get(userState);
-      /* _id if using localStorage.uid else reg id is fine */
       return user;
     },
   });

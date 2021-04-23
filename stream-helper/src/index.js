@@ -23,13 +23,11 @@ const httpLink = new HttpLink({
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-  // add the authorization to the headers
   operation.setContext({
     headers: {
       authorization: Cookies.get("cookie") || null,
-      // cookie: null,
     },
-    // looking to gather the cookie
+
     fetchOptions: {
       credentials: "include",
     },
@@ -37,7 +35,6 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
   return forward(operation);
 });
-// testing
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
@@ -55,6 +52,47 @@ const client = new ApolloClient({
             merge(existing = [], incoming = []) {
               console.log(existing);
               return [...existing, ...incoming];
+            },
+          },
+          providerMovieQuery: {
+            keyArgs: ["type"],
+            merge(existing = [], incoming = [], { args, readField }) {
+              const merged = existing ? existing.slice(0) : [];
+              const existingIdSet = new Set(
+                merged.map((task) => readField("id", task)),
+              );
+              incoming = incoming.filter(
+                (task) => !existingIdSet.has(readField("id", task)),
+              );
+              const afterIndex = merged.findIndex(
+                (task) => args.afterId === readField("id", task),
+              );
+              if (afterIndex >= 0) {
+                merged.splice(afterIndex + 1, 0, ...incoming);
+              } else {
+                merged.push(...incoming);
+              }
+              console.log(merged);
+              return merged;
+            },
+
+            read(existing = [], { args, readField }) {
+              // if (existing) {
+              //   const afterIndex = existing.findIndex(
+              //     (task) => args.afterId === readField("id", task),
+              //   );
+              //   console.log(existing);
+              //   if (afterIndex >= 0) {
+              //     const page = existing.slice(
+              //       afterIndex + 1,
+              //       afterIndex + 1 + args.limit,
+              //     );
+              //     if (page && page.length > 0) {
+              //       return page;
+              //     }
+              //   }
+              // }
+              return existing;
             },
           },
         },

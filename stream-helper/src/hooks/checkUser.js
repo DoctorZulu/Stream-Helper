@@ -18,7 +18,6 @@ const CheckUser = ({ history }) => {
       if (!user) {
         if (!loadingUser && dataUser) {
           setUser(dataUser.verifyUser);
-          console.log("checked user");
         }
         if (!loadingUser && !user && !dataUser) {
           history.push("/");
