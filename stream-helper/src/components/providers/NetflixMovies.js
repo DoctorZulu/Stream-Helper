@@ -10,14 +10,13 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-function NetflixMovies({ providers }) {
+function NetflixMovies({ providers, providerId }) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(8);
-  const [counter, setCounter] = useState(0);
   const [more, setMore] = useState(false);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
@@ -46,7 +45,12 @@ function NetflixMovies({ providers }) {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
+
+      // setUserMovieRecommendations(dataAll.providerMovieQuery);
     }
     if (userMovieRecommendations) {
       setCursor(
@@ -56,6 +60,7 @@ function NetflixMovies({ providers }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
+  console.log(userMovieRecommendations);
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {

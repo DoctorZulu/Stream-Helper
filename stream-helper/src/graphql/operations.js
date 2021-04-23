@@ -259,8 +259,8 @@ const PROVIDERMOVIEQUERY = gql`
       providerId: $providerMovieQueryProviderId
     ) {
       id
-      title
       categoryId
+      title
       original_language
       release_date
       runtime
@@ -268,6 +268,10 @@ const PROVIDERMOVIEQUERY = gql`
       overview
       image
       genres
+      watchproviders {
+        providerId
+        id
+      }
     }
   }
 `;

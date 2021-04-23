@@ -46,7 +46,10 @@ function DisneyPlusMovies({ providers }) {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
