@@ -10,13 +10,13 @@ import {
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
 
-function NetflixMovies({providers}) {
+function DisneyPlusMovies({providers}) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
-  const [provideridprop, setProvideridprop] = useState(8);
+  const [provideridprop, setProvideridprop] = useState(337);
   const [counter, setCounter] = useState(0);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
@@ -86,4 +86,4 @@ function NetflixMovies({providers}) {
     )
 }
 
-export default NetflixMovies
+export default DisneyPlusMovies
