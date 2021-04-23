@@ -26,7 +26,7 @@ function Movies({ history }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  // const { loading, error, data } = useQuery(LASTMOVIE);
+
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -41,7 +41,7 @@ function Movies({ history }) {
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
-      console.log(dataAll.userMovieRecommendations, "DATA");
+     
       setUserMovieRecommendations(dataAll.userMovieRecommendations);
     }
     if (userMovieRecommendations) {
@@ -53,12 +53,7 @@ function Movies({ history }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
 
-  // useEffect(() => {
-  //   if (!loading && data) {
-  //     // console.log(data.lastMovie.id);
-  //     setEnd(data.lastMovie.id);
-  //   }
-  // });
+ 
 
   const bigFetch = () => {
     fetchMore(
@@ -71,10 +66,9 @@ function Movies({ history }) {
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
+      
     );
   };
-  console.log(cursor, "this is the end");
 
   return (
     <>

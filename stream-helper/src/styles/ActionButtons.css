@@ -14,6 +14,7 @@
 
 .mainActionButtons {
     margin-bottom: 10px !important;
+    margin-top: -55px;
     max-width: 300px !important;
 }
 .mainActionBox {

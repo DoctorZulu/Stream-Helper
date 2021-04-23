@@ -44,12 +44,12 @@ function Homepage({ history }) {
       },
     },
   );
-  // console.log(scrollData);
+
 
   useEffect(() => {
-    // console.log("useEffect");
+ 
     if (!loadingAll && dataAll) {
-      // console.log(dataAll, "DATA");
+  
       setAllMovies(dataAll.allMovies);
     }
 
@@ -69,7 +69,7 @@ function Homepage({ history }) {
   };
   return (
     <>
-      {/* <CheckUser history={history} /> */}
+
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       <div className="homepageTutorial">
@@ -80,14 +80,14 @@ function Homepage({ history }) {
           You'll Always Have Something To Play Next{" "}
         </h3>
       </div>
-      <h1>
-        {/* <button onClick={bigFetch}>FetchMore </button> */}
+    
+      
         {allMovies.length > 0 ? (
           <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
         ) : (
           <h1> There are No Movies To Load </h1>
         )}
-      </h1>
+   
     </>
   );
 }

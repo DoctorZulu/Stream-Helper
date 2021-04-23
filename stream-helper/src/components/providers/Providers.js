@@ -59,7 +59,6 @@ const ProvidersRent = ({ providers }) => {
         {/* <p>{renter.provider_name}</p> */}
       </div>
     ));
-  // console.log(providers.renter);
   return (
     <>
       <Mapper />
