@@ -30,7 +30,7 @@ function HboMaxMovies({ providers }) {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: provideridprop,
       },
-    }
+    },
   );
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
@@ -40,7 +40,7 @@ function HboMaxMovies({ providers }) {
       variables: {
         filterLengthProviderId: 384,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -50,7 +50,8 @@ function HboMaxMovies({ providers }) {
     console.log(userMovieRecommendations, "RECOMMENDATIONS");
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
       console.log(cursor, "CURSOR");
     }
@@ -77,8 +78,9 @@ function HboMaxMovies({ providers }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
