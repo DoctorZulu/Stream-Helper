@@ -8,8 +8,7 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-
-function HboMaxMovies({providers}) {
+function HboMaxMovies({ providers }) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -22,6 +21,7 @@ function HboMaxMovies({providers}) {
     /* { fetchPolicy: "no-cache" }, */
 
     {
+      fetchPolicy: "no-cache",
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
@@ -30,31 +30,18 @@ function HboMaxMovies({providers}) {
       },
     }
   );
-  
-  
-    const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-      USERMOVIERECOMMENDATIONS,
-      {
-        variables: {
-          userMovieRecommendationsTake: take,
-          userMovieRecommendationsSkip: skip,
-          userMovieRecommendationsMyCursor: cursor,
-        },
-      },
-    );
-    useEffect(() => {
 
-      if (dataAll) {
-        setUserMovieRecommendations(dataAll.providerMovieQuery);
-      }
-      if (userMovieRecommendations) {
-        setCursor(
-          userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-        );
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loadingAll, dataAll, providerprop]);
-
+  useEffect(() => {
+    if (dataAll) {
+      setUserMovieRecommendations(dataAll.providerMovieQuery);
+    }
+    if (userMovieRecommendations) {
+      setCursor(
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingAll, dataAll]);
 
   const bigFetch = () => {
     fetchMore(
@@ -69,10 +56,9 @@ function HboMaxMovies({providers}) {
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
-    
 
-    return(
-      <>
+  return (
+    <>
       {userMovieRecommendations ? (
         <InfiniteRecommendations
           error={error}
@@ -83,7 +69,7 @@ function HboMaxMovies({providers}) {
         <h1> There are No Movies To Load </h1>
       )}{" "}
     </>
-    )
+  );
 }
 
-export default HboMaxMovies
+export default HboMaxMovies;

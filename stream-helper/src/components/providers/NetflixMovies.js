@@ -9,8 +9,7 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-
-function NetflixMovies({providers}) {
+function NetflixMovies({ providers }) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -23,6 +22,7 @@ function NetflixMovies({providers}) {
     /* { fetchPolicy: "no-cache" }, */
 
     {
+      fetchPolicy: "no-cache",
       variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
@@ -31,30 +31,18 @@ function NetflixMovies({providers}) {
       },
     }
   );
-  
-    const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-      USERMOVIERECOMMENDATIONS,
-      {
-        variables: {
-          userMovieRecommendationsTake: take,
-          userMovieRecommendationsSkip: skip,
-          userMovieRecommendationsMyCursor: cursor,
-        },
-      },
-    );
-    useEffect(() => {
 
-      if (dataAll) {
-        setUserMovieRecommendations(dataAll.providerMovieQuery);
-      }
-      if (userMovieRecommendations) {
-        setCursor(
-          userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-        );
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loadingAll, dataAll, providerprop]);
-
+  useEffect(() => {
+    if (dataAll) {
+      setUserMovieRecommendations(dataAll.providerMovieQuery);
+    }
+    if (userMovieRecommendations) {
+      setCursor(
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingAll, dataAll]);
 
   const bigFetch = () => {
     fetchMore(
@@ -69,10 +57,9 @@ function NetflixMovies({providers}) {
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
-    
 
-    return(
-      <>
+  return (
+    <>
       {userMovieRecommendations ? (
         <InfiniteRecommendations
           error={error}
@@ -83,7 +70,7 @@ function NetflixMovies({providers}) {
         <h1> There are No Movies To Load </h1>
       )}{" "}
     </>
-    )
+  );
 }
 
-export default NetflixMovies
+export default NetflixMovies;

@@ -8,6 +8,11 @@ import HeroBanner from "../components/HeroBanner/HeroBanner";
 import moviesHeroImage from "../media/moviesHeroImage.jpg";
 // import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
+import AmazonPrimeMovies from "../components/providers/AmazonPrimeMovies";
+import DisneyPlusMovies from "../components/providers/DisneyPlusMovies";
+import HboMaxMovies from "../components/providers/HboMaxMovies";
+import HuluMovies from "../components/providers/HuluMovies";
+import NetflixMovies from "../components/providers/NetflixMovies";
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
@@ -16,7 +21,6 @@ import {
 } from "../graphql/operations";
 /* vendor imports */
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
-import ProviderMovies from "../components/ProviderMovies/providermovies";
 function Movies({ history }) {
   const [user] = useRecoilState(userState);
   /* Hero banner content */
@@ -30,7 +34,7 @@ function Movies({ history }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
-  const [providerid, setProviderid] = useState(0);
+  const [providerid, setProviderid] = useState();
   const [buttonhide, setButtonhide] = useState(false);
   let counter = 0;
 
@@ -174,72 +178,24 @@ function Movies({ history }) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-
       <>
-        {providerid === 8 ? (
-          <NetflixMovies />
-        ) : (
+        {!providerid ? (
           <>
             <InfiniteRecommendations
               userMovieRecommendations={userMovieRecommendations}
               onLoadMore={bigFetch}
             />
           </>
-        )}
-        ;
-      </>
-      <>
-        {providerid === 9 ? (
-          <AmazonPrimeMovies />
         ) : (
-          <>
-            <InfiniteRecommendations
-              userMovieRecommendations={userMovieRecommendations}
-              onLoadMore={bigFetch}
-            />
-          </>
+          <></>
         )}
         ;
-        <>
-          {providerid === 384 ? (
-            <HboMaxMovies />
-          ) : (
-            <>
-              <InfiniteRecommendations
-                userMovieRecommendations={userMovieRecommendations}
-                onLoadMore={bigFetch}
-              />
-            </>
-          )}
-          ;
-        </>
-        <>
-          {providerid === 15 ? (
-            <HuluMovies />
-          ) : (
-            <>
-              <InfiniteRecommendations
-                userMovieRecommendations={userMovieRecommendations}
-                onLoadMore={bigFetch}
-              />
-            </>
-          )}
-          ;
-        </>
-        <>
-          {providerid === 337 ? (
-            <DisneyPlusMovies />
-          ) : (
-            <>
-              <InfiniteRecommendations
-                userMovieRecommendations={userMovieRecommendations}
-                onLoadMore={bigFetch}
-              />
-            </>
-          )}
-          ;
-        </>
       </>
+      <>{providerid === 8 ? <NetflixMovies /> : <></>};</>
+      <>{providerid === 9 ? <AmazonPrimeMovies /> : <></>};</>
+      <>{providerid === 384 ? <HboMaxMovies /> : <></>};</>
+      <>{providerid === 15 ? <HuluMovies /> : <></>};</>
+      <>{providerid === 337 ? <DisneyPlusMovies /> : <></>};</>
     </>
   );
 }

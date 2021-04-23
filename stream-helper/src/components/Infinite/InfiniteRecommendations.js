@@ -26,7 +26,7 @@ const InfiniteRecommendations = ({
       {userMovieRecommendations ? (
         <InfiniteScroll
           dataLength={userMovieRecommendations.length}
-          hasMore={hasMore}
+          hasMore={false}
           next={onLoadMore}
           className="scroll"
           loader={<h4>Loading...</h4>}
