@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
 
-const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
+const InfiniteRecommendations = ({
+  userMovieRecommendations,
+  onLoadMore,
+  error,
+}) => {
+  const [hasMore, setHasMore] = useState(true);
   const Mapper = () => (
     <div className="movieCardContainer">
       {finalList.map((movie, i) => (
@@ -38,12 +43,17 @@ const InfiniteRecommendations = ({ userMovieRecommendations, onLoadMore }) => {
   ); */
   //
 
+  if (error) {
+    console.log(error, "ERRORRRRS");
+    setHasMore(false);
+  }
+
   return (
     <>
       {userMovieRecommendations ? (
         <InfiniteScroll
           dataLength={userMovieRecommendations.length}
-          hasMore={false}
+          hasMore={hasMore}
           next={onLoadMore}
           className="scroll"
           loader={<h4>Loading...</h4>}

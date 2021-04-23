@@ -17,7 +17,7 @@ const ProviderMovies = ({ providerprop, county }) => {
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(providerprop);
   const [counter, setCounter] = useState(0);
-  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
+  const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
     /* { fetchPolicy: "no-cache" }, */
 
@@ -76,6 +76,7 @@ const ProviderMovies = ({ providerprop, county }) => {
     <>
       {userMovieRecommendations ? (
         <InfiniteRecommendations
+          error={error}
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
         />
