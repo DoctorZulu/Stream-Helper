@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 /* gql */
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import {
   USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
