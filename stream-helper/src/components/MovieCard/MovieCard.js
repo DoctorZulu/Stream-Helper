@@ -63,14 +63,12 @@ function MovieCard(props) {
         <ActionButtonsMain {...props} isActive = {isActive}  />
         </div>
         }
-        {/* {isActive === true && (props.saved === false) ? (
-        <div className="movieButtonContainer">
-        <ActionButtonsMain {...props} isActive = {isActive}  />
-        </div>) : <> </> }  */}
-        <h4>
+      
+        <h4 className="starRatingsBox">
           {" "}
           {props.vote_average ? (
             <StarRatings
+            
               rating={props.vote_average / 2}
               starRatedColor="yellow"
               starDimension="35px"

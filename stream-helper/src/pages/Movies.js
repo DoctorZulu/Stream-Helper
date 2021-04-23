@@ -34,8 +34,6 @@ function Movies({ history }) {
   const [buttonhide, setButtonhide] = useState(false);
   let counter = 0;
 
-  // const { loading, error, data } = useQuery(LASTMOVIE);
-
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
     {
@@ -59,13 +57,6 @@ function Movies({ history }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerid]);
 
-  // useEffect(() => {
-  //   if (!loading && data) {
-  //     // console.log(data.lastMovie.id);
-  //     setEnd(data.lastMovie.id);
-  //   }
-  // });
-
   const bigFetch = () => {
     fetchMore(
       {
@@ -76,13 +67,7 @@ function Movies({ history }) {
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       )
-      // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
-  };
-
-  const navStatus = () => {
-    if (buttonhide === true) {
-    }
   };
 
   return (

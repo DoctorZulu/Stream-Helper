@@ -40,20 +40,13 @@
     .mainHeroTitle {
       margin-top: 5vh;
       font-size: 25px;
-      color: whitesmoke !important;
     }
     
     .mainHeroSubTitle {
       font-size: 15px;
-      color: whitesmoke !important;
     }
     
-    .heroMainText {
-      position: absolute;
-      top: 15vh;
-      left: 5vh;
-      color: whitesmoke !important;
-    }
+ 
 
 
   
@@ -66,28 +59,44 @@
   .mainHeroTitle {
     margin-top: 3vh;
     font-size: 23px;
-    color: whitesmoke !important;
   }
   
   .mainHeroSubTitle {
     font-size: 12px;
     width: 200px;
-    color: whitesmoke !important;
   }
-  
+
   .heroMainText {
     position: absolute;
     top: 15vh;
     left: 3vh;
-    color: whitesmoke !important;
   }
-
+  
+  
 
 }
 
 /* IPHONE X */
 
 @media only screen and (min-device-width : 375px) and (min-height: 768px) and (max-height: 820px) {
+
+  .mainHeroTitle {
+    margin-top: 3vh;
+    font-size: 30px;
+
+  }
+  
+  .mainHeroSubTitle {
+    font-size: 20px;
+    width: 300px;
+
+  }
+  
+  .heroMainText {
+    position: absolute;
+    top: 15vh;
+    left: 3vh;
+  }
 
 
 
@@ -99,6 +108,22 @@
 @media only screen and (min-device-width : 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
 
 
+  .mainHeroTitle {
+    margin-top: 3vh;
+    font-size: 30px;
+  }
+  
+  .mainHeroSubTitle {
+    font-size: 20px;
+    width: 400px;
+  }
+  
+  .heroMainText {
+    position: absolute;
+    top: 10vh;
+    left: 3vh;
+  }
+
 }
 
 /* IPAD PRO / SMALL LAPTOP */
@@ -106,6 +131,21 @@
 
 @media only screen and (min-device-width : 1024px) and (max-width: 1200px)  {
 
+  .mainHeroTitle {
+    margin-top: 3vh;
+    font-size: 65px;
+  }
+  
+  .mainHeroSubTitle {
+    font-size: 40px;
+    width: 900px;
+  }
+  
+  .heroMainText {
+    position: absolute;
+    top: 10vh;
+    left: 3vh;
+  }
 
 }
 

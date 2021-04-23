@@ -40,7 +40,6 @@ function MovieDetail(props) {
     },
   });
 
-  console.log(data);
 
   useEffect(() => {
     if (!loading && data) {
@@ -49,14 +48,9 @@ function MovieDetail(props) {
       setProviders(JSON.parse(data.movie.watchproviders[0].providers));
     }
   }, [data, loading]);
-  // console.log(currentMovieDetails, "currentmoviedetail");
-  console.log(providers, "providers");
 
-  // useEffect(() => {
-  //   if (currentMovieDetails != undefined) {
-  //     setCreditsParse(JSON.parse(currentMovieDetails.movie.credits[0].cast));
-  //   }
-  // }, [currentMovieDetails]);
+
+
 
   useEffect(() => {
     if (creditsParse.cast) {

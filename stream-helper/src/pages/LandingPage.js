@@ -30,7 +30,6 @@ function LandingPage({ history }) {
 
   useEffect(() => {
     if (!loadingL && dataL) {
-      console.log(dataL);
       const { signinUser } = dataL;
       setUser(signinUser);
       history.push("/home");
@@ -39,7 +38,6 @@ function LandingPage({ history }) {
 
   useEffect(() => {
     if (!loadingS && dataS) {
-      console.log(dataS);
     }
   }, [dataL]);
 
@@ -65,7 +63,6 @@ function LandingPage({ history }) {
       },
     });
     toast.success("	User created", {
-      // className: "movieSaved",
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

@@ -16,37 +16,10 @@ const InfiniteRecommendations = ({
       ))}
     </div>
   );
-  //
 
-  /* console.log("IMP!!!!!!,", userMovieRecommendations)
-   */
   let uniqueList = [...new Set(userMovieRecommendations)];
 
   let finalList = [...uniqueList];
-
-  /*   let filteredProviderMovies = userMovieRecommendations.filter(function (movie) {
-    return movie.categoryId === "Netflix";
-}).map(function (movie, i) {
-    <div className="movieCardContainer">
-      {userMovieRecommendations.map((movie, i) => (
-        <MovieCard {...movie} key={i + 1} />
-      ))}
-    </div>
-}) */
-
-  /*   const filteredMapper = () => (
-    <div className="movieCardContainer">
-      {userMovieRecommendations.map((movie, i) => (
-        <MovieCard {...movie} key={i + 1} />
-      ))}
-    </div>
-  ); */
-  //
-
-  if (error) {
-    console.log(error, "ERRORRRRS");
-    setHasMore(false);
-  }
 
   return (
     <>

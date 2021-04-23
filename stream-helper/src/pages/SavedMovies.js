@@ -25,7 +25,7 @@ function SavedMovies({ history }) {
 
   const Mapper = () => (
     <>
-      {console.log(savedMovies.savedMovies)}
+    
       {savedMovies.savedMovies.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
