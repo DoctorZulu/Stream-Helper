@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 /* gql */
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery,  NetworkStatus  } from "@apollo/client";
 import {
   USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
@@ -9,55 +9,56 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-const ProviderMovies = ({ providerprop, county }) => {
+const ProviderMovies = ({ providerprop, changedPage }) => {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
-  const [provideridprop, setProvideridprop] = useState(providerprop);
-  const [counter, setCounter] = useState(0);
-  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    PROVIDERMOVIEQUERY,
-    /* { fetchPolicy: "no-cache" }, */
+  const [ isChangedPage, setIsChangedPage] = useState(changedPage);
 
+  const { loading: loadingAll, data: dataAll, error, fetchMore, refetch, networkStatus } = useQuery(
+    PROVIDERMOVIEQUERY,
     {
-      variables: {
+        variables: {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
         providerMovieQueryMyCursor: cursor,
-        providerMovieQueryProviderId: provideridprop,
+        providerMovieQueryProviderId: providerprop,
       },
     }
   );
 
-  /* const [getMore, { loading, data }] = useLazyQuery(PROVIDERMOVIEQUERY); */
+  console.log(cursor, "CURRENT CURSOR")
+  console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
 
   useEffect(() => {
-    console.log("USE EFFECT BUT NO LOGIC HIT");
     if (dataAll) {
+      console.log(dataAll, "======= data all")
       setUserMovieRecommendations(dataAll.providerMovieQuery);
-      console.log(providerprop, "USE EFFECT IN CHILD HIT");
     }
+
     if (userMovieRecommendations) {
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll, providerprop]);
+        );
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loadingAll, dataAll]);
 
-  /*   useEffect(() => {
-    console.log("getmore useeffectg hit");
-    getMore({
-      variables: {
-        providerMovieQueryTake: take,
-        providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: cursor,
-        providerMovieQueryProviderId: provideridprop,
-      },
-    });
-  }, [providerprop]); */
+
+    useEffect(()=> {
+      if(isChangedPage === true ){
+        console.log("HIT")
+
+        setCursor(1);
+      }     
+      refetch();
+    }, [providerprop])
+    
+    if (networkStatus === NetworkStatus.refetch) return 'Refetching!';
+    if (loadingAll) return null;
+    if (error) return `Error! ${error}`;
 
   const bigFetch = () => {
     fetchMore(
@@ -75,11 +76,17 @@ const ProviderMovies = ({ providerprop, county }) => {
   return (
     <>
       {userMovieRecommendations ? (
+        <>
+        <button onClick={() => refetch()}>Refetch!</button>
+        <button onClick={() => setIsChangedPage(false)}> Change Page False</button>
+        <button onClick={() => setIsChangedPage(true)}> Change Page True</button>
+      
         <InfiniteRecommendations
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
         />
-      ) : (
+    
+      </> ): (
         <h1> There are No Movies To Load </h1>
       )}{" "}
     </>

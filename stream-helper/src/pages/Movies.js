@@ -31,7 +31,7 @@ function Movies({ history }) {
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState(0);
-  let counter = 0;
+  const [changedPage, setChangedPage ] = useState(false);
 
 
 
@@ -102,6 +102,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(8);
               setProviderfilter(true);
+              setChangedPage(true);
             }}
             eventKey="link-1"
           >
@@ -117,6 +118,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(384);
               setProviderfilter(true);
+              setChangedPage(true);
             }}
             eventKey="link-2"
           >
@@ -132,6 +134,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(15);
               setProviderfilter(true);
+              setChangedPage(true);
             }}
             eventKey="link-3"
           >
@@ -147,6 +150,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(9);
               setProviderfilter(true);
+              setChangedPage(true);
             }}
             eventKey="link-4"
           >
@@ -162,6 +166,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(337);
               setProviderfilter(true);
+              setChangedPage(true);
             }}
             eventKey="link-5"
           >
@@ -175,7 +180,7 @@ function Movies({ history }) {
       </Nav>
       <>
         {providerfilter === true ? (
-          <ProviderMovies providerprop={providerid} county={counter} />
+          <ProviderMovies providerprop={providerid} changedPage = {changedPage} />
         ) : (
           <>
             <InfiniteRecommendations
