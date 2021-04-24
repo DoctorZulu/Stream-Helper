@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 /* gql */
 import { useQuery } from "@apollo/client";
@@ -29,7 +29,7 @@ function NetflixMovies({ providers }) {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: parseInt(8),
       },
-    }
+    },
   );
 
   const { error: errorMore, loading: loadingMore, data: dataMore, refetch } = useQuery(
@@ -39,7 +39,7 @@ function NetflixMovies({ providers }) {
       variables: {
         filterLengthProviderId: 384,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -48,7 +48,8 @@ function NetflixMovies({ providers }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,10 +84,28 @@ function NetflixMovies({ providers }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
+  };
+
+
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => (mounted.current = false);
+  });
+
+
+  const removeMovies = () => {
+    setTimeout(() => {
+      if (mounted.current) {
+        setUserMovieRecommendations("");
+      }
+    }, 1000);
   };
 
   return (
@@ -97,6 +116,7 @@ function NetflixMovies({ providers }) {
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
           more={more}
+          removeMovies = {removeMovies}
         />
       ) : (
         <h1> There are No Movies To Load </h1>

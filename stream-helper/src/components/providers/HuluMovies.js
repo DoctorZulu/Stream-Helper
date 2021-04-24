@@ -31,7 +31,7 @@ function HuluMovies({ providers }) {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: 15,
       },
-    }
+    },
   );
 
 
@@ -49,7 +49,7 @@ function HuluMovies({ providers }) {
       variables: {
         filterLengthProviderId: 384,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -58,7 +58,8 @@ function HuluMovies({ providers }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,10 +85,18 @@ function HuluMovies({ providers }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
+    if (dataMore) {
+      if (userMovieRecommendations.length < dataMore.filterLength) {
+        setMore(true);
+      } else {
+        setMore(false);
+      }
+    }
   };
 
   return (

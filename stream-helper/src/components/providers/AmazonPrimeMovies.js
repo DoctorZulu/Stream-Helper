@@ -29,7 +29,7 @@ function AmazonPrimeMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: provideridprop,
       },
-    }
+    },
   );
 
 
@@ -48,7 +48,7 @@ function AmazonPrimeMovies() {
       variables: {
         filterLengthProviderId: 384,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -57,7 +57,8 @@ function AmazonPrimeMovies() {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,8 +83,9 @@ function AmazonPrimeMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };

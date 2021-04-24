@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 /* styling */
-import { EyeSlash, HandThumbsDown, HeartFill } from "react-bootstrap-icons";
+// import { EyeSlash, HandThumbsDown, HeartFill } from "react-bootstrap-icons";
 import "../styles/Homepage.css";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
-import CheckUser from "../hooks/checkUser";
+// import CheckUser from "../hooks/checkUser";
 
 /* gql */
 import { ALLMOVIES } from "../graphql/operations";
 /* userState via recoil */
-import { userState } from "../recoil/atoms";
-import { useRecoilState } from "recoil";
+// import { userState } from "../recoil/atoms";
+// import { useRecoilState } from "recoil";
 
 function Homepage({ history }) {
   /* user state */
-  const [user] = useRecoilState(userState);
+  // const [user] = useRecoilState(userState);
 
   // console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
@@ -30,26 +30,19 @@ function Homepage({ history }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  const scrollData = {
-    allMoviesTake: take,
-    allMoviesSkip: skip,
-    allMoviesMyCursor: cursor,
-  };
-
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     ALLMOVIES,
     {
       variables: {
-        ...scrollData,
+        allMoviesTake: take,
+        allMoviesSkip: skip,
+        allMoviesMyCursor: cursor,
       },
     },
   );
 
-
   useEffect(() => {
- 
     if (!loadingAll && dataAll) {
-  
       setAllMovies(dataAll.allMovies);
     }
 
@@ -60,7 +53,7 @@ function Homepage({ history }) {
     fetchMore(
       {
         variables: {
-          allMoviesMyCursor: allMovies.length - 1 /* end + take */,
+          allMoviesMyCursor: allMovies.length - 1,
         },
       },
       setCursor(allMovies[allMovies.length - 1].categoryId),
@@ -69,7 +62,6 @@ function Homepage({ history }) {
   };
   return (
     <>
-
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       <div className="homepageTutorial">
@@ -80,14 +72,12 @@ function Homepage({ history }) {
           You'll Always Have Something To Play Next{" "}
         </h3>
       </div>
-    
-      
-        {allMovies.length > 0 ? (
-          <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
-        ) : (
-          <h1> There are No Movies To Load </h1>
-        )}
-   
+
+      {allMovies.length > 0 ? (
+        <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
+      ) : (
+        <h1> There are No Movies To Load </h1>
+      )}
     </>
   );
 }

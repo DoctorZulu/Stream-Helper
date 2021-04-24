@@ -7,6 +7,7 @@ const InfiniteRecommendations = ({
   userMovieRecommendations,
   onLoadMore,
   error,
+  removeMovies,
   more,
 }) => {
   const [hasMore, setHasMore] = useState(more);
@@ -17,6 +18,18 @@ const InfiniteRecommendations = ({
       ))}
     </div>
   );
+
+
+  
+  useEffect(() => {
+    console.log('=====RENDERED!');
+
+
+    return removeMovies;
+  }, []);
+
+
+  console.log(removeMovies, "HERE")
 
   let uniqueList = [...new Set(userMovieRecommendations)];
 

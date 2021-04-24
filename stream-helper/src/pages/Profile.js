@@ -26,7 +26,7 @@ import { UPDATEUSERPROFILE } from "../graphql/operations";
 function Profile({ history }) {
   const [update, { loading, error, data }] = useMutation(UPDATEUSERPROFILE);
 
-  const [user] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
   /* EDIT PROFILE USER  */
   const [firstname, setFirstName] = useState();
   const [lastname, setLastName] = useState();
@@ -43,7 +43,6 @@ function Profile({ history }) {
         updateUserEmail: email,
       },
     });
- 
   };
   /* Hero Banner */
 
@@ -51,13 +50,10 @@ function Profile({ history }) {
     "Edit Your Profile Details Or View Some Of Your Curated Lists Below";
   useEffect(() => {
     if (!loading && data) {
-      console.log(data);
-   
-      console.log("useeffect setUser");
-   
+      setUser(data.updateUser);
+      // history.push("/home");
     }
   }, [loading, data]);
-
 
   return (
     <>
@@ -65,7 +61,6 @@ function Profile({ history }) {
       <CheckUser history={history} />
 
       <>
-       
         {user && !loading ? (
           <>
             <HeroBanner
@@ -117,7 +112,6 @@ function Profile({ history }) {
         ) : (
           <></>
         )}
-      
       </>
     </>
   );
