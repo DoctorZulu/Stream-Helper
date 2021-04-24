@@ -45,7 +45,10 @@ function HboMaxMovies({ providers }) {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
     }
     console.log(userMovieRecommendations, "RECOMMENDATIONS");
     if (userMovieRecommendations) {
