@@ -60,9 +60,6 @@ function HuluMovies({ providers }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
 
-  // useEffect(() => {
-  // });
-
   const bigFetch = () => {
     fetchMore(
       {

@@ -16,7 +16,6 @@ function HboMaxMovies({ providers }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(384);
-  const [counter, setCounter] = useState(0);
   const [more, setMore] = useState(false);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
@@ -50,19 +49,16 @@ function HboMaxMovies({ providers }) {
       );
       setUserMovieRecommendations(filteredMovies);
     }
-    console.log(userMovieRecommendations, "RECOMMENDATIONS");
     if (userMovieRecommendations) {
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       );
-      console.log(cursor, "CURSOR");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
 
-  console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {
       if (userMovieRecommendations.length < dataMore.filterLength) {

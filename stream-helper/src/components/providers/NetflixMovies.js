@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
-  USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
 } from "../../graphql/operations.js";
@@ -49,8 +48,6 @@ function NetflixMovies({ providers, providerId }) {
         (number) => number.watchproviders[0].providerId === provideridprop,
       );
       setUserMovieRecommendations(filteredMovies);
-
-      // setUserMovieRecommendations(dataAll.providerMovieQuery);
     }
     if (userMovieRecommendations) {
       setCursor(
@@ -60,7 +57,6 @@ function NetflixMovies({ providers, providerId }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
-  console.log(userMovieRecommendations);
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {
@@ -83,7 +79,6 @@ function NetflixMovies({ providers, providerId }) {
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
 
