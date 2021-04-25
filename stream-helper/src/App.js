@@ -6,8 +6,6 @@ import Cookies from 'js-cookie';
 
 function App() {
   const setUser = useSetRecoilState(userState)
-  console.log(Cookies.get().cookie, "-- user --")
-
 
 
 
