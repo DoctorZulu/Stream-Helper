@@ -1,13 +1,17 @@
-import {  EyeSlash, HandThumbsDown, HeartFill, XCircle, XCircleFill  } from 'react-bootstrap-icons';
+import {
+  EyeSlash,
+  HandThumbsDown,
+  HeartFill,
+  XCircle,
+  XCircleFill,
+} from "react-bootstrap-icons";
 import "../../styles/MovieCard.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Toasty from "../Toaster/toast";
-import { ToastContainer, toast } from "react-toastify";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
-
-
+import StarRatings from "react-star-ratings";
 
 toast.configure();
 
@@ -33,7 +37,6 @@ function MovieCard(props) {
     });
   };
 
-
   return (
     <>
       <div className="movieCardMain">
@@ -50,42 +53,53 @@ function MovieCard(props) {
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
         </h3>
         <p>{props.description}</p>
-        <h5>{props.vote_average}</h5>
-        <h5>Genre</h5>
-
-     
+        {/* <h5>{props.vote_average}</h5> */}
+        <h4>
+          {" "}
+          {props.vote_average ? (
+            <StarRatings
+              rating={props.vote_average / 2}
+              starRatedColor="yellow"
+              starDimension="35px"
+              starSpacing="5px"
+              numberOfStars={5}
+              name="rating"
+            />
+          ) : (
+            <></>
+          )}
+        </h4>
         {isActive === true ? (
           <div className="movieButtonContainer">
-            {props.watched === true  || props.saved === true ? (
+            {props.watched === true || props.saved === true ? (
               <>
-               <div
-               className="removeMovieIcon"
-               onClick={() => {
-                 removeWatched();
-                 removeSaved();
-                 setIsActive(false);
-                 toast.warning("	🎥 Movie No Longer Marked as Watched or Saved", {
-                   className: "movieSaved",
-                   position: "top-right",
-                   autoClose: 5000,
-                   hideProgressBar: false,
-                   closeOnClick: true,
-                   pauseOnHover: false,
-                   draggable: true,
-                   progress: undefined,
-                 });
-               }}
-             >
-              <XCircleFill color="rgb(54, 54, 54, 0.85)" size={32}/>
-             </div>
+                <div
+                  className="removeMovieIcon"
+                  onClick={() => {
+                    removeWatched();
+                    removeSaved();
+                    setIsActive(false);
+                    toast.warning(
+                      "	🎥 Movie No Longer Marked as Watched or Saved",
+                      {
+                        className: "movieSaved",
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                      }
+                    );
+                  }}
+                >
+                  <XCircleFill color="rgb(54, 54, 54, 0.85)" size={32} />
+                </div>
               </>
-            ) : <> 
-          </>
-            
-            }
-            
-       
-          
+            ) : (
+              <></>
+            )}
           </div>
         ) : (
           <> </>
