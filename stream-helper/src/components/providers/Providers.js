@@ -9,6 +9,7 @@ const Providers = ({ providers }) => {
         <img
           src={`https://www.themoviedb.org/t/p/original${flatRate.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
         {/* <p>{flatRate.provider_name}</p> */}
       </div>
@@ -32,6 +33,7 @@ const ProvidersBuy = ({ providers }) => {
         <img
           src={`https://www.themoviedb.org/t/p/original${buyer.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
         {/* <p>{buyer.provider_name}</p> */}
       </div>
@@ -55,8 +57,9 @@ const ProvidersRent = ({ providers }) => {
         <img
           src={`https://www.themoviedb.org/t/p/original${renter.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
-        {/* <p>{renter.provider_name}</p> */}
+      
       </div>
     ));
   return (

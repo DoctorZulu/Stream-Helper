@@ -72,7 +72,7 @@ const client = new ApolloClient({
               } else {
                 merged.push(...incoming);
               }
-              console.log(merged);
+              console.log(merged, "MERGED");
               return merged;
             },
 
