@@ -11,7 +11,6 @@ const Providers = ({ providers }) => {
           className="providersImage"
           alt="provider stream platform Icon"
         />
-        {/* <p>{flatRate.provider_name}</p> */}
       </div>
     ));
   return (
@@ -35,7 +34,6 @@ const ProvidersBuy = ({ providers }) => {
           className="providersImage"
           alt="provider stream platform Icon"
         />
-        {/* <p>{buyer.provider_name}</p> */}
       </div>
     ));
   return (
