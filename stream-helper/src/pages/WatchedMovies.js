@@ -22,11 +22,11 @@ function WatchedMovies({ history }) {
     if (!loading && data) {
       setWatchedMovies(data);
     }
-  }, [data]);
+  }, [data, loading]);
 
   const Mapper = () => (
     <>
-      {console.log(watchedMovies.watchedMovies)}
+     
       {watchedMovies.watchedMovies.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
@@ -36,7 +36,7 @@ function WatchedMovies({ history }) {
     <>
       <NavigationBar />
       {<CheckUser history={history} />}
-      <HeroBanner heroTitle={heroTitle} heroText={heroText} />
+      <HeroBanner heroTitle={heroTitle} heroText={heroText}   history = {history}/>
       <div className="movieCardContainer">
         {user ? (
           <>

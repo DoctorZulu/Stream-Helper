@@ -93,7 +93,7 @@ function ProfileEditForm(props) {
           <Button
             variant="primary"
             type="submit"
-            onClick={() => /* submitProfileEdit */ setLgShow(false)}
+            onClick={() => setLgShow(false)}
           >
             Submit Changes
           </Button>

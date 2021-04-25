@@ -172,6 +172,12 @@ const LIKEDMOVIES = gql`
   }
 `;
 
+const FILTEREDLENGTH = gql`
+  query Query($filterLengthProviderId: Int!) {
+    filterLength(providerId: $filterLengthProviderId)
+  }
+`;
+
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
@@ -239,6 +245,37 @@ const MOVIEDETAIL = gql`
   }
 `;
 
+const PROVIDERMOVIEQUERY = gql`
+  query Query(
+    $providerMovieQueryTake: Int
+    $providerMovieQuerySkip: Int
+    $providerMovieQueryMyCursor: Int
+    $providerMovieQueryProviderId: Int
+  ) {
+    providerMovieQuery(
+      take: $providerMovieQueryTake
+      skip: $providerMovieQuerySkip
+      myCursor: $providerMovieQueryMyCursor
+      providerId: $providerMovieQueryProviderId
+    ) {
+      id
+      categoryId
+      title
+      original_language
+      release_date
+      runtime
+      vote_average
+      overview
+      image
+      genres
+      watchproviders {
+        providerId
+        id
+      }
+    }
+  }
+`;
+
 export {
   SIGNUP,
   VERIFY,
@@ -253,4 +290,6 @@ export {
   USERUPDATE,
   UPDATEUSERPROFILE,
   LIKEDMOVIES,
+  PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 };

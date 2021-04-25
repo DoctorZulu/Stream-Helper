@@ -30,7 +30,6 @@ function LandingPage({ history }) {
 
   useEffect(() => {
     if (!loadingL && dataL) {
-      console.log(dataL);
       const { signinUser } = dataL;
       setUser(signinUser);
       history.push("/home");
@@ -39,7 +38,6 @@ function LandingPage({ history }) {
 
   useEffect(() => {
     if (!loadingS && dataS) {
-      console.log(dataS);
     }
   }, [dataL]);
 
@@ -65,7 +63,6 @@ function LandingPage({ history }) {
       },
     });
     toast.success("	User created", {
-      // className: "movieSaved",
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -96,8 +93,9 @@ function LandingPage({ history }) {
               We'll Recommend You Movies You'd Like <br /> Without Showing You
               Those You've already Seen
             </h3>
+            <div className="landingButtonsContainer">
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(true);
                 setFormShow(false);
@@ -107,7 +105,7 @@ function LandingPage({ history }) {
               Register{" "}
             </Button>
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(false);
                 setFormShow(false);
@@ -117,7 +115,7 @@ function LandingPage({ history }) {
               Already A Member?{" "}
             </Button>
             <Button
-              style={{ margin: "25px", marginTop: "100px" }}
+              className="landingPageButton"
               onClick={() => {
                 setIsNewUser(true);
                 setFormShow(true);
@@ -126,6 +124,7 @@ function LandingPage({ history }) {
               {" "}
               Learn More{" "}
             </Button>
+            </div>
           </div>
         </div>
         <div className="landingRightCol">
