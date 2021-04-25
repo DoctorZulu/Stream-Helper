@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
-  USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
 } from "../../graphql/operations.js";
@@ -35,8 +34,6 @@ function AmazonPrimeMovies() {
 
   useEffect(() => {
     console.log('=====RENDERED!');
-
-
     return () => console.log('====UNMOUNTED...');
   }, []);
 
@@ -53,7 +50,10 @@ function AmazonPrimeMovies() {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(

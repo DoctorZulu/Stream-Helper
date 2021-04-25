@@ -101,7 +101,7 @@ const client = new ApolloClient({
   }),
   link: concat(authMiddleware, httpLink),
 });
-console.log(Cookies.get("cookie"));
+
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>

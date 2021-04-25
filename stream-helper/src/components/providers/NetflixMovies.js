@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
-  USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-function NetflixMovies({ providers }) {
+function NetflixMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -44,7 +43,12 @@ function NetflixMovies({ providers }) {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
+
+      // setUserMovieRecommendations(dataAll.providerMovieQuery);
     }
     if (userMovieRecommendations) {
       setCursor(
@@ -54,16 +58,7 @@ function NetflixMovies({ providers }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
-
-
-  console.log(more," SDFSDFSDFSDFS")
-
-  useEffect(() => {
-    console.log('=====RENDERED!');
-
-
-    return () => console.log('====UNMOUNTED...');
-  }, []);
+  
 
 
   useEffect(() => {
@@ -92,21 +87,6 @@ function NetflixMovies({ providers }) {
   };
 
 
-  const mounted = useRef(false);
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => (mounted.current = false);
-  });
-
-
-  const removeMovies = () => {
-    setTimeout(() => {
-      if (mounted.current) {
-        setUserMovieRecommendations("");
-      }
-    }, 1000);
-  };
 
   return (
     <>

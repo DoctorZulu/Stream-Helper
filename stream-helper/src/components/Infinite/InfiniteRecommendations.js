@@ -10,7 +10,6 @@ const InfiniteRecommendations = ({
   removeMovies,
   more,
 }) => {
-  const [hasMore, setHasMore] = useState(more);
   const Mapper = () => (
     <div className="movieCardContainer">
       {finalList.map((movie, i) => (
@@ -22,20 +21,14 @@ const InfiniteRecommendations = ({
 
   
   useEffect(() => {
-    console.log('=====RENDERED!');
-
-
     return removeMovies;
   }, []);
 
-
-  console.log(removeMovies, "HERE")
 
   let uniqueList = [...new Set(userMovieRecommendations)];
 
   let finalList = [...uniqueList];
 
-  console.log(more, "DOES INFINITE HAVE MORE?");
 
   return (
     <>

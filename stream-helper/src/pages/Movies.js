@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
 /* components */
@@ -17,7 +17,6 @@ import NetflixMovies from "../components/providers/NetflixMovies";
 import { useQuery } from "@apollo/client";
 import {
   USERMOVIERECOMMENDATIONS,
-  PROVIDERMOVIEQUERY,
 } from "../graphql/operations";
 /* vendor imports */
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
@@ -45,17 +44,9 @@ function Movies({ history }) {
         userMovieRecommendationsSkip: skip,
         userMovieRecommendationsMyCursor: cursor,
       },
-    }
+    },
   );
 
-  /* CLEANUP USEEFFECT */
-
-  useEffect(() => {
-    console.log('=====RENDERED!');
-
-
-    return () => console.log('====UNMOUNTED...');
-  }, []);
 
 
   useEffect(() => {
@@ -64,7 +55,8 @@ function Movies({ history }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,8 +70,9 @@ function Movies({ history }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
     );
   };
 
@@ -200,11 +193,11 @@ function Movies({ history }) {
         )}
         ;
       </>
-      {providerid === 8 ? <NetflixMovies /> : <></>};
-      {providerid === 9 ? <AmazonPrimeMovies /> : <></>};
-      {providerid === 384 ? <HboMaxMovies /> : <></>};
-      {providerid === 15 ? <HuluMovies /> : <></>};
-     {providerid === 337 ? <DisneyPlusMovies /> : <></>};
+      <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>};</>
+      <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>};</>
+      <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>};</>
+      <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>};</>
+      <>{providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>};</>
     </>
   );
 }

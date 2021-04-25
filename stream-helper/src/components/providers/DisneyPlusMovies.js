@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
-  USERMOVIERECOMMENDATIONS,
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
 } from "../../graphql/operations.js";
@@ -17,12 +16,9 @@ function DisneyPlusMovies() {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [provideridprop, setProvideridprop] = useState(337);
-  const [counter, setCounter] = useState(0);
   const [more, setMore] = useState(false);
   const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     PROVIDERMOVIEQUERY,
-    /* { fetchPolicy: "no-cache" }, */
-
     {
       fetchPolicy: "network-only",
       variables: {
@@ -33,14 +29,6 @@ function DisneyPlusMovies() {
       },
     },
   );
-
-
-  useEffect(() => {
-    console.log('=====RENDERED!');
-
-
-    return () => console.log('====UNMOUNTED...');
-  }, []);
 
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
@@ -55,7 +43,10 @@ function DisneyPlusMovies() {
 
   useEffect(() => {
     if (dataAll) {
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      const filteredMovies = dataAll.providerMovieQuery.filter(
+        (number) => number.watchproviders[0].providerId === provideridprop,
+      );
+      setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
