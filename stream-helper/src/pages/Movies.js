@@ -112,6 +112,7 @@ function Movies({ history }) {
             <img
               src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
               className="providersImage"
+              alt="provider stream platform Icon"
             />
           </Nav.Link>
         </Nav.Item>
@@ -128,6 +129,7 @@ function Movies({ history }) {
             <img
               src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
               className="providersImage"
+              alt="provider stream platform Icon"
             />
           </Nav.Link>
         </Nav.Item>
@@ -144,6 +146,7 @@ function Movies({ history }) {
             <img
               src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
               className="providersImage"
+              alt="provider stream platform Icon"
             />
           </Nav.Link>
         </Nav.Item>
@@ -160,6 +163,7 @@ function Movies({ history }) {
             <img
               src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
               className="providersImage"
+              alt="provider stream platform Icon"
             />
           </Nav.Link>
         </Nav.Item>
@@ -176,6 +180,7 @@ function Movies({ history }) {
             <img
               src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
               className="providersImage"
+              alt="provider stream platform Icon"
             />
           </Nav.Link>
         </Nav.Item>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
@@ -96,7 +95,6 @@ function NetflixMovies() {
           userMovieRecommendations={userMovieRecommendations}
           onLoadMore={bigFetch}
           more={more}
-          removeMovies = {removeMovies}
         />
       ) : (
         <h1> There are No Movies To Load </h1>
