@@ -19,7 +19,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:4025/graphql",
+  uri: "https://stream-helper-api.herokuapp.com/graphql",
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
@@ -108,6 +108,7 @@ const client = new ApolloClient({
               } else {
                 merged.push(...incoming);
               }
+              console.log(merged, "MERGED");
               return merged;
             },
 
