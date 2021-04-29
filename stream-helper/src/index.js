@@ -25,7 +25,8 @@ const httpLink = new HttpLink({
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
-      authorization: Cookies.get("cookie") || null,
+      authorization:
+        Cookies.get("cookie") || localStorage.getItem("uid") || null,
     },
 
     fetchOptions: {

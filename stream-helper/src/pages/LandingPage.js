@@ -32,6 +32,7 @@ function LandingPage({ history }) {
     if (!loadingL && dataL) {
       const { signinUser } = dataL;
       setUser(signinUser);
+      localStorage.setItem("uid", `Bearer ${signinUser.token}`);
       history.push("/home");
     }
   }, [dataL]);
@@ -94,36 +95,36 @@ function LandingPage({ history }) {
               Those You've already Seen
             </h3>
             <div className="landingButtonsContainer">
-            <Button
-              className="landingPageButton"
-              onClick={() => {
-                setIsNewUser(true);
-                setFormShow(false);
-              }}
-            >
-              {" "}
-              Register{" "}
-            </Button>
-            <Button
-              className="landingPageButton"
-              onClick={() => {
-                setIsNewUser(false);
-                setFormShow(false);
-              }}
-            >
-              {" "}
-              Already A Member?{" "}
-            </Button>
-            <Button
-              className="landingPageButton"
-              onClick={() => {
-                setIsNewUser(true);
-                setFormShow(true);
-              }}
-            >
-              {" "}
-              Learn More{" "}
-            </Button>
+              <Button
+                className="landingPageButton"
+                onClick={() => {
+                  setIsNewUser(true);
+                  setFormShow(false);
+                }}
+              >
+                {" "}
+                Register{" "}
+              </Button>
+              <Button
+                className="landingPageButton"
+                onClick={() => {
+                  setIsNewUser(false);
+                  setFormShow(false);
+                }}
+              >
+                {" "}
+                Already A Member?{" "}
+              </Button>
+              <Button
+                className="landingPageButton"
+                onClick={() => {
+                  setIsNewUser(true);
+                  setFormShow(true);
+                }}
+              >
+                {" "}
+                Learn More{" "}
+              </Button>
             </div>
           </div>
         </div>
