@@ -18,7 +18,7 @@ const Providers = ({ providers }) => {
       <Container>
         <h5 className="providerText">Streaming here</h5>
         <div className="streamContainer">
-          <Mapper />
+          {providers.flatrate ? <Mapper /> : <> </>}
         </div>
       </Container>
     </>
@@ -41,7 +41,7 @@ const ProvidersBuy = ({ providers }) => {
       <Container>
         <h5 className="providerText">Buy or Rent</h5>
         <div className="buyContainer">
-          <Mapper />
+          {providers.buy ? <Mapper /> : <> </>}
         </div>
       </Container>
     </>
@@ -57,14 +57,9 @@ const ProvidersRent = ({ providers }) => {
           className="providersImage"
           alt="provider stream platform Icon"
         />
-      
       </div>
     ));
-  return (
-    <>
-      <Mapper />
-    </>
-  );
+  return <>{providers.rent ? <Mapper /> : <> </>}</>;
 };
 
 export { Providers, ProvidersRent, ProvidersBuy };
