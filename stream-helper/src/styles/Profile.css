@@ -1,12 +1,36 @@
 .profileContentContainer {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .profileContentItems {
-margin-left: auto;
-margin-right: auto;
+display: flex;
+}
+
+.likedMoviesModal {
+margin-left: 30px;
+margin-right: 30px;
+}
+
+.savedMoviesModal {
+margin-left: 30px;
+margin-right: 30px;
+}
+
+.savedMoviesModal, .card {
+background-color: black !important;
+}
+
+.editUserModal {
+margin-left: 30px;
+margin-right: 30px;
+}
+
+.profileBioContent {
+max-width: 1200px;
+font-size: 30px;
+color: whitesmoke;
 }
 
 
@@ -14,18 +38,48 @@ margin-right: auto;
 /* IPHONE 5  */
 
 @media only screen and (max-device-width : 375px) and (max-height: 570px) {
-    body {
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-      }
-      
-      html {
-        height: -webkit-fill-available;
-        width: -webkit-fill-available;
-      }
-  
-
+  body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
     
+    html {
+      height: -webkit-fill-available;
+      width: -webkit-fill-available;
+    }
+
+    .profileContentContainer {
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: auto;
+      grid-template-areas: 
+      "likedCard"
+      "savedMoviesCard"
+      "editUserCard";
+    }
+    
+ 
+
+    .likedMoviesModal {
+      margin-left: 5px;
+      margin-right: 5px;
+      grid-area: likedCard
+    }
+    
+    .savedMoviesModal {
+      margin-left: 5px;
+      margin-right: 5px;
+      grid-area: savedMoviesCard
+    }
+
+    .editUserModal {
+      margin-left: 5px;
+      margin-right: 5px;
+      grid-area: editUserCard
+    }
+
+
+  
 }
 
 /* IPHONE 6/7/8 */
@@ -39,7 +93,7 @@ margin-right: auto;
 /* IPHONE X */
 
 @media only screen and (min-device-width : 375px) and (min-height: 768px) and (max-height: 820px) {
- 
+
 
 
 }
@@ -57,7 +111,7 @@ margin-right: auto;
 
 @media only screen and (min-device-width : 1024px) and (max-width: 1200px)  {
 
-  
+
 }
 
 
