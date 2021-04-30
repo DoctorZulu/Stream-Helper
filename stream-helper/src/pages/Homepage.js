@@ -21,8 +21,8 @@ function Homepage({ history }) {
   // const [user] = useRecoilState(userState);
 
   // console.log(user, "Current user");
-  const heroTitle = "Welcome To FlixAlways";
-  const heroText = "Your Homepage Will Always Display Our Entire Catalog";
+  const heroTitle = "All Movies";
+  const heroText = "The Movies Page Will Always Display Our Entire Catalog";
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);

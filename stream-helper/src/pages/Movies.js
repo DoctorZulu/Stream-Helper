@@ -21,8 +21,8 @@ import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendati
 function Movies({ history }) {
   const [user] = useRecoilState(userState);
   /* Hero banner content */
-  const heroTitle = "Find Your Next Movie";
-  const heroText = "Click On The Thumbs Down If You Dislike The Recommendation";
+  const heroTitle = "Welcome To FlixAlways";
+  const heroText = "These Movies Will Update As You Use FlixAlways";
   const mainImage = { moviesHeroImage };
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
