@@ -31,9 +31,10 @@ const InfiniteRecommendations = ({
 
   return (
     <>
+
       {userMovieRecommendations ? (
         <InfiniteScroll
-          dataLength={cursorLength }
+          dataLength={cursorLength || userMovieRecommendations.length}
           hasMore={true}
           next={onLoadMore}
           className="scroll"
@@ -49,9 +50,11 @@ const InfiniteRecommendations = ({
         </InfiniteScroll>
       ) : (
         <>
-          <Loader />
+         
         </>
       )}
+
+
     </>
   );
 };
