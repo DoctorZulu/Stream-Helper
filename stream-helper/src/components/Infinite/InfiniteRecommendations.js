@@ -3,12 +3,14 @@ import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
 import Loader from "../spinner/Spinner";
+import { Button } from "react-bootstrap";
 
 const InfiniteRecommendations = ({
   userMovieRecommendations,
   onLoadMore,
   error,
   removeMovies,
+  cursorLength,
   more,
 }) => {
   const Mapper = () => (
@@ -31,7 +33,7 @@ const InfiniteRecommendations = ({
     <>
       {userMovieRecommendations ? (
         <InfiniteScroll
-          dataLength={userMovieRecommendations.length}
+          dataLength={cursorLength }
           hasMore={true}
           next={onLoadMore}
           className="scroll"
@@ -43,6 +45,7 @@ const InfiniteRecommendations = ({
           }
         >
           <Mapper />
+          
         </InfiniteScroll>
       ) : (
         <>

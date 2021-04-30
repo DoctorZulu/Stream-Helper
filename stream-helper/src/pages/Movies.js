@@ -26,11 +26,15 @@ function Movies({ history }) {
   const mainImage = { moviesHeroImage };
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
-  const [take] = useState(10);
+  const [take] = useState(20);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
+  const [incrementingCursor, setIncrementingCursor] = useState(10);
+  
+
+
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -55,19 +59,26 @@ function Movies({ history }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerid]);
 
+  console.log("CURSOR", cursor)
+
+  console.log(dataAll)
+
   const bigFetch = () => {
     fetchMore(
       {
         variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
+          userMovieRecommendationsMyCursor: /* userMovieRecommendations.length */ incrementingCursor,
         },
+   
       },
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+      ),
+      setIncrementingCursor(incrementingCursor + 20)
     );
   };
 
+  console.log(incrementingCursor, "inc cursor")
   return (
     <>
       <NavigationBar />
@@ -177,6 +188,7 @@ function Movies({ history }) {
             <InfiniteRecommendations
               userMovieRecommendations={userMovieRecommendations}
               onLoadMore={bigFetch}
+              cursorLength={incrementingCursor}
             />
           </>
         ) : (
