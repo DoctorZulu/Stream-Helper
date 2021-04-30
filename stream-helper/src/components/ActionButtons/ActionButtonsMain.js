@@ -121,13 +121,15 @@ function ActionButtonsMain(props) {
         });
       }}
     >
-      {" "}
+      
       <Check2
         color={"white"}
         size={15}
         className="movieDetailHeartIcon"
-      />{" "}
-      Watched
+      />
+  
+        Seen
+     
     </Button>
     <Button
       className="mainActionBox"

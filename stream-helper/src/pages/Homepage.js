@@ -21,7 +21,7 @@ function Homepage({ history }) {
   // const [user] = useRecoilState(userState);
 
   // console.log(user, "Current user");
-  const heroTitle = "Welcome To StreamHelper";
+  const heroTitle = "Welcome To FlixAlways";
   const heroText = "Your Homepage Will Always Display Our Entire Catalog";
 
   /* base states */
