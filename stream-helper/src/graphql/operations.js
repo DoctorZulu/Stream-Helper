@@ -25,6 +25,7 @@ const LOGIN = gql`
   mutation Mutation($signinUserEmail: String!, $signinUserPassword: String!) {
     signinUser(email: $signinUserEmail, password: $signinUserPassword) {
       id
+      token
       firstname
       lastname
       username
@@ -43,6 +44,7 @@ const VERIFY = gql`
       lastname
       username
       email
+      token
     }
   }
 `;

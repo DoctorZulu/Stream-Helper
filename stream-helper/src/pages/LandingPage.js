@@ -39,6 +39,7 @@ function LandingPage({ history }) {
     if (!loadingL && dataL) {
       const { signinUser } = dataL;
       setUser(signinUser);
+      localStorage.setItem("uid", `Bearer ${signinUser.token}`);
       history.push("/home");
     }
   }, [dataL]);
@@ -182,7 +183,7 @@ function LandingPage({ history }) {
                   </Button>
                 </Modal.Footer>
               </Modal>
-    
+  
             </div>
           </div>
         </div>

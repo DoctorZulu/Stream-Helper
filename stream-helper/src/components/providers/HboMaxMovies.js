@@ -31,7 +31,7 @@ function HboMaxMovies() {
     },
   );
 
-  const { error: errorMore, loading: loadingMore, data: dataMore} = useQuery(
+  const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
     {
       variables: {
@@ -57,13 +57,11 @@ function HboMaxMovies() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
 
-/*  TESTING:
+  /*  TESTING:
 
   console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
   console.log(JSON.stringify(errorMore, null, 2), "PARSED JSON ERR");
   console.log(dataMore, "--------") */
-
-
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {

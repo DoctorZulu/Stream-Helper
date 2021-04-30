@@ -30,8 +30,6 @@ function HuluMovies() {
     },
   );
 
-
-
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
 
@@ -69,7 +67,7 @@ function HuluMovies() {
   }, []);
 
   /* console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
- */
+   */
   const bigFetch = () => {
     fetchMore(
       {
