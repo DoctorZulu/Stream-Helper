@@ -25,7 +25,8 @@ const httpLink = new HttpLink({
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
-      authorization: Cookies.get("cookie") || null,
+      authorization:
+        Cookies.get("cookie") || localStorage.getItem("uid") || null,
     },
 
     fetchOptions: {
@@ -43,16 +44,52 @@ const client = new ApolloClient({
         fields: {
           allMovies: {
             keyArgs: ["type"],
-            merge(existing = [], incoming = []) {
-              return [...existing, ...incoming];
+            merge(existing = [], incoming = [], { args, readField }) {
+              const merged = existing ? existing.slice(0) : [];
+              const existingIdSet = new Set(
+                merged.map((task) => readField("id", task)),
+              );
+              incoming = incoming.filter(
+                (task) => !existingIdSet.has(readField("id", task)),
+              );
+              const afterIndex = merged.findIndex(
+                (task) => args.afterId === readField("id", task),
+              );
+              if (afterIndex >= 0) {
+                merged.splice(afterIndex + 1, 0, ...incoming);
+              } else {
+                merged.push(...incoming);
+              }
+              return merged;
             },
+            // merge(existing = [], incoming = []) {
+            //   return [...existing, ...incoming];
+            // },
           },
           userMovieRecommendations: {
             keyArgs: ["type"],
-            merge(existing = [], incoming = []) {
-              console.log(existing);
-              return [...existing, ...incoming];
+            merge(existing = [], incoming = [], { args, readField }) {
+              const merged = existing ? existing.slice(0) : [];
+              const existingIdSet = new Set(
+                merged.map((task) => readField("id", task)),
+              );
+              incoming = incoming.filter(
+                (task) => !existingIdSet.has(readField("id", task)),
+              );
+              const afterIndex = merged.findIndex(
+                (task) => args.afterId === readField("id", task),
+              );
+              if (afterIndex >= 0) {
+                merged.splice(afterIndex + 1, 0, ...incoming);
+              } else {
+                merged.push(...incoming);
+              }
+              return merged;
             },
+            // merge(existing = [], incoming = []) {
+            //   console.log(existing);
+            //   return [...existing, ...incoming];
+            // },
           },
           providerMovieQuery: {
             keyArgs: ["type"],

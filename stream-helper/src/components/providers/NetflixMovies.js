@@ -30,7 +30,12 @@ function NetflixMovies() {
     },
   );
 
-  const { error: errorMore, loading: loadingMore, data: dataMore, refetch } = useQuery(
+  const {
+    error: errorMore,
+    loading: loadingMore,
+    data: dataMore,
+    refetch,
+  } = useQuery(
     FILTEREDLENGTH,
 
     {
@@ -46,8 +51,6 @@ function NetflixMovies() {
         (number) => number.watchproviders[0].providerId === provideridprop,
       );
       setUserMovieRecommendations(filteredMovies);
-
-      // setUserMovieRecommendations(dataAll.providerMovieQuery);
     }
     if (userMovieRecommendations) {
       setCursor(
@@ -57,8 +60,6 @@ function NetflixMovies() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
-  
-
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {
@@ -81,11 +82,8 @@ function NetflixMovies() {
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
-
-
 
   return (
     <>
