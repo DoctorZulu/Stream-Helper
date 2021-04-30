@@ -6,7 +6,10 @@ import { useRecoilState } from "recoil";
 import { userState } from "../recoil/atoms";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 import { toast } from "react-toastify";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal, Carousel } from "react-bootstrap";
+import landingImageOne from '../media/landingImageOne.png';
+import landingImageTwo from '../media/landingImageTwo.png';
+import landingImageThree from '../media/landingImageThree.png';
 
 function LandingPage({ history }) {
   const [user, setUser] = useRecoilState(userState);
@@ -18,6 +21,10 @@ function LandingPage({ history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  /* learn more modal */
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [
     login,
@@ -95,36 +102,88 @@ function LandingPage({ history }) {
               Those You've already Seen
             </h3>
             <div className="landingButtonsContainer">
-              <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setIsNewUser(true);
-                  setFormShow(false);
-                }}
-              >
-                {" "}
-                Register{" "}
-              </Button>
-              <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setIsNewUser(false);
-                  setFormShow(false);
-                }}
-              >
-                {" "}
-                Already A Member?{" "}
-              </Button>
-              <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setIsNewUser(true);
-                  setFormShow(true);
-                }}
-              >
-                {" "}
-                Learn More{" "}
-              </Button>
+            <Button
+              className="landingPageButton"
+              onClick={() => {
+                setIsNewUser(true);
+                setFormShow(false);
+              }}
+            >
+              {" "}
+              Register{" "}
+            </Button>
+            <Button
+              className="landingPageButton"
+              onClick={() => {
+                setIsNewUser(false);
+                setFormShow(false);
+              }}
+            >
+              {" "}
+              Already A Member?{" "}
+            </Button>
+            <Button
+              className="landingPageButton"
+              onClick={() => {
+                setShow(true)
+                setFormShow(true);
+              }}
+            >
+              {" "}
+              Learn More{" "}
+            </Button>
+           
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>About Stream Helper</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Carousel>
+                  <Carousel.Item className="carouselItemDetails">
+                    <img
+                      className="d-block w-100"
+                      src={landingImageOne}
+                      alt="First slide"
+                      
+                    />
+                    <Carousel.Caption>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item className="carouselItemDetails"> 
+                    <img
+                      className="d-block w-100"
+                      src={landingImageTwo}
+                      alt="Second slide"
+                    />
+
+                    <Carousel.Caption>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item className="carouselItemDetails">
+                    <img
+                      className="d-block w-100"
+                      src={landingImageThree}
+                      alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                </Carousel>
+
+
+
+
+
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={handleClose}>
+                    Okay!
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+  
             </div>
           </div>
         </div>
