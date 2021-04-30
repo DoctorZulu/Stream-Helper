@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
+import Spinner from "../spinner/Spinner";
 
 const InfiniteRecommendations = ({
   userMovieRecommendations,
@@ -18,17 +19,13 @@ const InfiniteRecommendations = ({
     </div>
   );
 
-
-  
   useEffect(() => {
     return removeMovies;
   }, []);
 
-
   let uniqueList = [...new Set(userMovieRecommendations)];
 
   let finalList = [...uniqueList];
-
 
   return (
     <>

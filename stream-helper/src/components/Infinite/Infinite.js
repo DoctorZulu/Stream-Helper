@@ -1,7 +1,8 @@
-import React  from "react";
+import React from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
+import Spinner from "../spinner/Spinner";
 
 const Infinite = ({ allMovies, onLoadMore }) => {
   const Mapper = () => (
@@ -32,7 +33,7 @@ const Infinite = ({ allMovies, onLoadMore }) => {
       ) : (
         <></>
       )}
-      <h2>Load More</h2>
+      <h2>Scroll For More</h2>
     </>
   );
 };
