@@ -198,11 +198,11 @@ function Movies({ history }) {
         )}
         ;
       </>
-      <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>};</>
-      <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>};</>
-      <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>};</>
-      <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>};</>
-      <>{providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>};</>
+      <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>}</>
+      <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>}</>
+      <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>}</>
+      <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>}</>
+      <>{providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>}</>
     </>
   );
 }
