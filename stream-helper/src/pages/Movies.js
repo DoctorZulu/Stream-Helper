@@ -59,10 +59,6 @@ function Movies({ history }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerid]);
 
-  console.log("CURSOR", cursor)
-
-  console.log(dataAll)
-
   const bigFetch = () => {
     fetchMore(
       {
@@ -77,8 +73,7 @@ function Movies({ history }) {
       setIncrementingCursor(incrementingCursor + 20)
     );
   };
-
-  console.log(incrementingCursor, "inc cursor")
+  
   return (
     <>
       <NavigationBar />
