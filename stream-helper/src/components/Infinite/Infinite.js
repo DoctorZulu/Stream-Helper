@@ -21,7 +21,7 @@ const Infinite = ({ allMovies, onLoadMore }) => {
           hasMore={true}
           next={onLoadMore}
           className="scroll"
-          loader={<Spinner />}
+          loader={<h4>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>End of list</b>
