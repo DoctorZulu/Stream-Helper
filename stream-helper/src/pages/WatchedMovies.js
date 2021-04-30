@@ -41,7 +41,7 @@ function WatchedMovies({ history }) {
         {user ? (
           <>
             {error ? <h1>{error}</h1> : null}
-            {watchedMovies ? <Mapper /> : <Spinner />}{" "}
+            {watchedMovies ? <Mapper /> : <h1> error</h1>}{" "}
           </>
         ) : (
           <></>

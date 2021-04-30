@@ -39,7 +39,7 @@ function SavedMovies({ history }) {
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       {user ? (
         <div className="movieCardContainer">
-          {savedMovies ? <Mapper /> : <Spinner />}
+          {savedMovies ? <Mapper /> : <h1> You have no saved movies</h1>}
         </div>
       ) : (
         <></>
