@@ -32,9 +32,6 @@ function Movies({ history }) {
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
   const [incrementingCursor, setIncrementingCursor] = useState(10);
-  
-
-
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -65,7 +62,6 @@ function Movies({ history }) {
         variables: {
           userMovieRecommendationsMyCursor: /* userMovieRecommendations.length */ incrementingCursor,
         },
-   
       },
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
@@ -73,7 +69,7 @@ function Movies({ history }) {
       setIncrementingCursor(incrementingCursor + 20)
     );
   };
-  
+
   return (
     <>
       <NavigationBar />
@@ -91,7 +87,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderfilter(false);
             }}
-            href="/movies"
+            href="/home"
           >
             Show All
           </Nav.Link>
