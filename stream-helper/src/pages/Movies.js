@@ -15,17 +15,14 @@ import HuluMovies from "../components/providers/HuluMovies";
 import NetflixMovies from "../components/providers/NetflixMovies";
 /* gql */
 import { useQuery } from "@apollo/client";
-import {
-  USERMOVIERECOMMENDATIONS,
-} from "../graphql/operations";
+import { USERMOVIERECOMMENDATIONS } from "../graphql/operations";
 /* vendor imports */
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
 function Movies({ history }) {
   const [user] = useRecoilState(userState);
   /* Hero banner content */
   const heroTitle = "Find Your Next Movie";
-  const heroText =
-    "Click On The Thumbs Down If You Dislike That Recommendation";
+  const heroText = "Click On The Thumbs Down If You Dislike The Recommendation";
   const mainImage = { moviesHeroImage };
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
@@ -35,7 +32,6 @@ function Movies({ history }) {
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
 
-
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
     {
@@ -44,10 +40,8 @@ function Movies({ history }) {
         userMovieRecommendationsSkip: skip,
         userMovieRecommendationsMyCursor: cursor,
       },
-    },
+    }
   );
-
-
 
   useEffect(() => {
     if (loadingAll === false && dataAll) {
@@ -55,8 +49,7 @@ function Movies({ history }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,9 +63,8 @@ function Movies({ history }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
     );
   };
 
@@ -92,7 +84,6 @@ function Movies({ history }) {
           <Nav.Link
             onClick={() => {
               setProviderfilter(false);
- 
             }}
             href="/movies"
           >
@@ -104,7 +95,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(8);
               setProviderfilter(true);
-      
             }}
             eventKey="link-1"
           >
@@ -121,7 +111,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(384);
               setProviderfilter(true);
-     
             }}
             eventKey="link-2"
           >
@@ -138,7 +127,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(15);
               setProviderfilter(true);
-      
             }}
             eventKey="link-3"
           >
@@ -155,7 +143,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(9);
               setProviderfilter(true);
-      
             }}
             eventKey="link-4"
           >
@@ -172,7 +159,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(337);
               setProviderfilter(true);
-  
             }}
             eventKey="link-5"
           >

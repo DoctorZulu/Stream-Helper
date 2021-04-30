@@ -21,8 +21,7 @@ function Homepage({ history }) {
 
   // console.log(user, "Current user");
   const heroTitle = "Welcome To StreamHelper";
-  const heroText =
-    "Your Homepage Will Always Display Movies You've Seen In Case You Want To Rewatch Them";
+  const heroText = "Your Homepage Will Always Display Our Entire Catalog";
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
@@ -38,7 +37,7 @@ function Homepage({ history }) {
         allMoviesSkip: skip,
         allMoviesMyCursor: cursor,
       },
-    },
+    }
   );
 
   useEffect(() => {
@@ -57,7 +56,7 @@ function Homepage({ history }) {
         },
       },
       setCursor(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2),
+      setSkip(2)
     );
   };
   return (
@@ -69,7 +68,7 @@ function Homepage({ history }) {
           {" "}
           Gone Are The Days Of Looking For Your Next Movie. <br />
           With Constant New Movie Recommendations Made Just For You, <br />
-          You'll Always Have Something To Play Next{" "}
+          You'll Always Have Something To Watch Next{" "}
         </h3>
       </div>
 
