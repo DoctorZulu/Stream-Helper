@@ -182,7 +182,6 @@ function Movies({ history }) {
         ) : (
           <></>
         )}
-        ;
       </>
       <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>}</>
       <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>}</>

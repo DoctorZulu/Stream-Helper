@@ -3,7 +3,7 @@ import NavigationBar from "../components/Navbar/NavigationBar";
 import MovieCard from "../components/MovieCard/MovieCard";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import CheckUser from "../hooks/checkUser";
-import Spinner from "../components/spinner/Spinner";
+import Loader from "../components/spinner/Spinner";
 import { useQuery } from "@apollo/client";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -41,7 +41,7 @@ function WatchedMovies({ history }) {
         {user ? (
           <>
             {error ? <h1>{error}</h1> : null}
-            {watchedMovies ? <Mapper /> : <h1> error</h1>}{" "}
+            {watchedMovies ? <Mapper /> : <Loader />}{" "}
           </>
         ) : (
           <></>

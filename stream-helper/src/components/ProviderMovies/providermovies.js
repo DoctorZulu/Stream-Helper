@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 
 /* gql */
 import { useQuery } from "@apollo/client";
-import {
-  PROVIDERMOVIEQUERY,
-} from "../../graphql/operations.js";
+import { PROVIDERMOVIEQUERY } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+import Loader from "../spinner/Spinner";
 
 const ProviderMovies = ({ providerprop }) => {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
@@ -42,8 +41,6 @@ const ProviderMovies = ({ providerprop }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerprop]);
 
-
-
   const bigFetch = () => {
     fetchMore(
       {
@@ -66,7 +63,7 @@ const ProviderMovies = ({ providerprop }) => {
           onLoadMore={bigFetch}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

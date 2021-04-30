@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
-import Spinner from "../spinner/Spinner";
+import Loader from "../spinner/Spinner";
 
 const InfiniteRecommendations = ({
   userMovieRecommendations,
@@ -45,7 +45,9 @@ const InfiniteRecommendations = ({
           <Mapper />
         </InfiniteScroll>
       ) : (
-        <></>
+        <>
+          <Loader />
+        </>
       )}
     </>
   );

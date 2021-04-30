@@ -69,7 +69,7 @@
 
   html {
     height: -webkit-fill-available;
-    max-width: 320px !important;
+    max-width: 360px !important;
   }
   .landingContentGrid {
     display: grid;
