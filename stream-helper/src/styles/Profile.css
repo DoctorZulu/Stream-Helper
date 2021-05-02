@@ -16,6 +16,8 @@ margin-right: 30px;
 .savedMoviesModal {
 margin-left: 30px;
 margin-right: 30px;
+border: 1px;
+border-radius: 5% !important;
 }
 
 .savedMoviesModal, .card {

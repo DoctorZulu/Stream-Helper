@@ -3,7 +3,7 @@ import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
-import Spinner from "../components/spinner/Spinner";
+import Loader from "../components/spinner/Spinner";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
 import { useQuery } from "@apollo/client";
@@ -39,8 +39,7 @@ function SavedMovies({ history }) {
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       {user ? (
         <div className="movieCardContainer">
-          {error ? <h1>{error}</h1> : null}
-          {savedMovies ? <Mapper /> : <Spinner />}
+          {savedMovies ? <Mapper /> : <Loader />}
         </div>
       ) : (
         <></>

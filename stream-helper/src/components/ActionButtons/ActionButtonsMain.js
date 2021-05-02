@@ -73,13 +73,10 @@ function ActionButtonsMain(props) {
     });
   };
 
-  useEffect(() => {
-
-  } , [props.isActive])
 
   return (
     <>
-    {props.isActive === true ? 
+    
     <div className="mainActionButtons">
     <Button
       className="mainActionBox"
@@ -124,13 +121,15 @@ function ActionButtonsMain(props) {
         });
       }}
     >
-      {" "}
+      
       <Check2
         color={"white"}
         size={15}
         className="movieDetailHeartIcon"
-      />{" "}
-      Watched
+      />
+  
+        Seen
+     
     </Button>
     <Button
       className="mainActionBox"
@@ -183,7 +182,7 @@ function ActionButtonsMain(props) {
       Dislike
     </Button>
   </div>
-    : <> </>}
+  
       
     </>
   );

@@ -28,7 +28,7 @@ function NavigationBar() {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="mainNavBar" sticky="top">
         <Link to={"/home"}>
-          <Navbar.Brand>StreamHelper</Navbar.Brand>
+          <Navbar.Brand>FlixAlways</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 /* gql */
 import { useQuery } from "@apollo/client";
+import Loader from "../spinner/Spinner";
 import {
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
@@ -91,8 +92,8 @@ function DisneyPlusMovies() {
           onLoadMore={bigFetch}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
-      )}
+        <Loader />
+      )}{" "}
     </>
   );
 }

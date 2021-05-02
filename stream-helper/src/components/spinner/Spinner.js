@@ -1,6 +1,7 @@
 import React from "react";
+import { Spinner } from "react-bootstrap";
 
-const Spinner = () => {
+const Loader = () => {
   return (
     <div className="loadingMovieDetail">
       <Spinner animation="grow" variant="success" size="xxl" />
@@ -10,4 +11,4 @@ const Spinner = () => {
   );
 };
 
-export default Spinner;
+export default Loader;

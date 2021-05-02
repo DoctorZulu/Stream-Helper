@@ -10,6 +10,9 @@ import { Form, Button, Modal, Carousel } from "react-bootstrap";
 import landingImageOne from '../media/landingImageOne.png';
 import landingImageTwo from '../media/landingImageTwo.png';
 import landingImageThree from '../media/landingImageThree.png';
+import Loader from "../components/spinner/Spinner";
+
+
 
 function LandingPage({ history }) {
   const [user, setUser] = useRecoilState(userState);
@@ -84,7 +87,11 @@ function LandingPage({ history }) {
 
   if (loadingS) return "Loading...";
   if (errorS) return `Error! ${errorS.message}`;
-  if (loadingL) return "Loading...";
+  if (loadingL) return (
+    <>
+    <Loader/>
+    </>
+  );
   if (errorL) return `Error! ${errorL.message}`;
 
   return (

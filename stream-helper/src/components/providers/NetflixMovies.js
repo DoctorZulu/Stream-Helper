@@ -7,6 +7,7 @@ import {
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+import Loader from "../spinner/Spinner";
 
 function NetflixMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
@@ -27,7 +28,7 @@ function NetflixMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: parseInt(8),
       },
-    },
+    }
   );
 
   const {
@@ -42,20 +43,19 @@ function NetflixMovies() {
       variables: {
         filterLengthProviderId: 384,
       },
-    },
+    }
   );
 
   useEffect(() => {
     if (dataAll) {
       const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) => number.watchproviders[0].providerId === provideridprop,
+        (number) => number.watchproviders[0].providerId === provideridprop
       );
       setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,9 +79,8 @@ function NetflixMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
     );
   };
 
@@ -95,7 +94,7 @@ function NetflixMovies() {
           more={more}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

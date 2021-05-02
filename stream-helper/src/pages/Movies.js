@@ -21,16 +21,17 @@ import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendati
 function Movies({ history }) {
   const [user] = useRecoilState(userState);
   /* Hero banner content */
-  const heroTitle = "Find Your Next Movie";
-  const heroText = "Click On The Thumbs Down If You Dislike The Recommendation";
+  const heroTitle = "Welcome To FlixAlways";
+  const heroText = "These Movies Will Update As You Use FlixAlways";
   const mainImage = { moviesHeroImage };
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
-  const [take] = useState(10);
+  const [take] = useState(20);
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
+  const [incrementingCursor, setIncrementingCursor] = useState(10);
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -59,12 +60,13 @@ function Movies({ history }) {
     fetchMore(
       {
         variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
+          userMovieRecommendationsMyCursor: /* userMovieRecommendations.length */ incrementingCursor,
         },
       },
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+      ),
+      setIncrementingCursor(incrementingCursor + 20)
     );
   };
 
@@ -85,7 +87,7 @@ function Movies({ history }) {
             onClick={() => {
               setProviderfilter(false);
             }}
-            href="/movies"
+            href="/home"
           >
             Show All
           </Nav.Link>
@@ -177,12 +179,12 @@ function Movies({ history }) {
             <InfiniteRecommendations
               userMovieRecommendations={userMovieRecommendations}
               onLoadMore={bigFetch}
+              cursorLength={incrementingCursor}
             />
           </>
         ) : (
           <></>
         )}
-        ;
       </>
       <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>}</>
       <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>}</>
