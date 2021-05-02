@@ -24,9 +24,10 @@ const CheckUser = ({ history }) => {
         if (!loadingUser && !user && !dataUser) {
           history.push("/");
         }
-        if (!authToken) {
-          history.push("/");
-        }
+        // if (authToken.split(" ")[1] === "undefined") {
+        //   console.log(dataUser);
+        //   // history.push("/");
+        // }
       }
     } catch (error) {
       console.log(error);

@@ -30,7 +30,6 @@ function DisneyPlusMovies() {
     },
   );
 
-
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
 
@@ -93,7 +92,7 @@ function DisneyPlusMovies() {
         />
       ) : (
         <h1> There are No Movies To Load </h1>
-      )}{" "}
+      )}
     </>
   );
 }
