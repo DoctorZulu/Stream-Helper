@@ -34,8 +34,8 @@ function WatchedMovies({ history }) {
   );
   return (
     <>
+      {!user && <CheckUser history={history} />}
       <NavigationBar />
-      {<CheckUser history={history} />}
       <HeroBanner heroTitle={heroTitle} heroText={heroText} history={history} />
       <div className="movieCardContainer">
         {user ? (

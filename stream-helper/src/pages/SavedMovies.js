@@ -34,8 +34,9 @@ function SavedMovies({ history }) {
 
   return (
     <>
+      {!user && <CheckUser history={history} />}
       <NavigationBar />
-      <CheckUser history={history} />
+
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       {user ? (
         <div className="movieCardContainer">
