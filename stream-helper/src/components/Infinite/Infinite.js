@@ -7,7 +7,13 @@ import Loader from "../spinner/Spinner";
 const Infinite = ({ allMovies, onLoadMore }) => {
   // this is a filter for dan the great
   const languageFilter = allMovies.filter(
-    (m) => m.original_language != "hi" && "es" && "pk",
+    (m) =>
+      m.original_language != "hi" &&
+      "es" &&
+      "pk" &&
+      m.title != "Gabriel's Inferno" &&
+      m.title != "Gabriel's Inferno Part II" &&
+      m.title != "Gabriel's Inferno Part III",
   );
   console.log(languageFilter);
   const Mapper = () => (
