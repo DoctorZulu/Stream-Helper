@@ -5,9 +5,14 @@ import "../../styles/MovieCard.css";
 import Loader from "../spinner/Spinner";
 
 const Infinite = ({ allMovies, onLoadMore }) => {
+  // this is a filter for dan the great
+  const languageFilter = allMovies.filter(
+    (m) => m.original_language != "hi" && "es" && "pk",
+  );
+  console.log(languageFilter);
   const Mapper = () => (
     <div className="movieCardContainer">
-      {allMovies.map((movie, i) => (
+      {languageFilter.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
     </div>
