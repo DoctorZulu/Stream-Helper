@@ -28,7 +28,7 @@ function DisneyPlusMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: parseInt(337),
       },
-    }
+    },
   );
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
@@ -38,19 +38,20 @@ function DisneyPlusMovies() {
       variables: {
         filterLengthProviderId: 384,
       },
-    }
+    },
   );
 
   useEffect(() => {
     if (dataAll) {
       const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) => number.watchproviders[0].providerId === provideridprop
+        (number) => number.watchproviders[0].providerId === provideridprop,
       );
       setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,8 +75,9 @@ function DisneyPlusMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };

@@ -15,18 +15,11 @@ const CheckUser = ({ history }) => {
 
   useEffect(() => {
     try {
-      if (!user) {
-        const authToken = localStorage.getItem("uid");
-        if (!loadingUser && dataUser) {
-          setUser(dataUser.verifyUser);
-          localStorage.setItem("uid", `Bearer ${dataUser.verifyUser.token}`);
-        }
-        if (!loadingUser && !user && !dataUser) {
-          history.push("/");
-        }
-        if (!authToken) {
-          history.push("/");
-        }
+      if (!loadingUser && dataUser) {
+        setUser(dataUser.verifyUser);
+      }
+      if (!loadingUser && !user && !dataUser) {
+        history.push("/");
       }
     } catch (error) {
       console.log(error);
