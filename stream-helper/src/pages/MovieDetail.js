@@ -35,7 +35,9 @@ function MovieDetail(props) {
     if (!loading && data) {
       setCurrentMovieDetails(data);
       setCreditsParse(JSON.parse(data.movie.credits[0].cast));
-      setProviders(JSON.parse(data.movie.watchproviders[0].providers));
+      if (data.movie.watchproviders[0]) {
+        setProviders(JSON.parse(data.movie.watchproviders[0].providers));
+      }
     }
   }, [data, loading]);
 
@@ -154,10 +156,18 @@ function MovieDetail(props) {
                 <div className="streamProviderBox">
                   <Row>
                     <Col>
-                      <Providers providers={providers} />
+                      {providers ? (
+                        <Providers providers={providers} />
+                      ) : (
+                        <h5 className="unavailable"> Currently Unavailable</h5>
+                      )}
                     </Col>
                     <Col>
-                      <ProvidersBuy providers={providers} />
+                      {providers ? (
+                        <ProvidersBuy providers={providers} />
+                      ) : (
+                        <> </>
+                      )}
                     </Col>
                   </Row>
 
