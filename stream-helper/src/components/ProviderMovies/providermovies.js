@@ -28,10 +28,8 @@ const ProviderMovies = ({ providerprop }) => {
   );
 
   useEffect(() => {
-    console.log("USE EFFECT BUT NO LOGIC HIT");
     if (dataAll) {
       setUserMovieRecommendations(dataAll.providerMovieQuery);
-      console.log(providerprop, "USE EFFECT IN CHILD HIT");
     }
     if (userMovieRecommendations) {
       setCursor(

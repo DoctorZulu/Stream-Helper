@@ -21,9 +21,9 @@ const InfiniteRecommendations = ({
     </div>
   );
 
-  useEffect(() => {
+  /* useEffect(() => {
     return removeMovies;
-  }, []);
+  }, []); */
 
   let uniqueList = [...new Set(userMovieRecommendations)];
 
