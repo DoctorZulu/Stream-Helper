@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
-import { userState } from "../recoil/atoms";
-import { useRecoilState } from "recoil";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
@@ -19,7 +17,6 @@ import { USERMOVIERECOMMENDATIONS } from "../graphql/operations";
 /* vendor imports */
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
 function Movies({ history }) {
-  const [user] = useRecoilState(userState);
   /* Hero banner content */
   const heroTitle = "Welcome To FlixAlways";
   const heroText = "These Movies Will Update As You Use FlixAlways";
@@ -41,7 +38,7 @@ function Movies({ history }) {
         userMovieRecommendationsSkip: skip,
         userMovieRecommendationsMyCursor: cursor,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -50,11 +47,12 @@ function Movies({ history }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll, providerid]);
+  }, [loadingAll, dataAll]);
 
   const bigFetch = () => {
     fetchMore(
@@ -64,9 +62,10 @@ function Movies({ history }) {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       ),
-      setIncrementingCursor(incrementingCursor + 20)
+      setIncrementingCursor(incrementingCursor + 20),
     );
   };
 
@@ -80,117 +79,122 @@ function Movies({ history }) {
         mainImage={mainImage}
         history={history}
       />
-
-      <Nav variant="pills" defaultActiveKey="/home">
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderfilter(false);
-            }}
-            href="/home"
-          >
-            Show All
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderid(8);
-              setProviderfilter(true);
-            }}
-            eventKey="link-1"
-          >
-            {" "}
-            <img
-              src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
-              className="providersImage"
-              alt="provider stream platform Icon"
-            />
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderid(384);
-              setProviderfilter(true);
-            }}
-            eventKey="link-2"
-          >
-            {" "}
-            <img
-              src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
-              className="providersImage"
-              alt="provider stream platform Icon"
-            />
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderid(15);
-              setProviderfilter(true);
-            }}
-            eventKey="link-3"
-          >
-            {" "}
-            <img
-              src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
-              className="providersImage"
-              alt="provider stream platform Icon"
-            />
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderid(9);
-              setProviderfilter(true);
-            }}
-            eventKey="link-4"
-          >
-            {" "}
-            <img
-              src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
-              className="providersImage"
-              alt="provider stream platform Icon"
-            />
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            onClick={() => {
-              setProviderid(337);
-              setProviderfilter(true);
-            }}
-            eventKey="link-5"
-          >
-            {" "}
-            <img
-              src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
-              className="providersImage"
-              alt="provider stream platform Icon"
-            />
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
-      <>
-        {!providerid ? (
+      {userMovieRecommendations ? (
+        <>
+          <Nav variant="pills" defaultActiveKey="/home">
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderfilter(false);
+                }}
+                href="/home"
+              >
+                Show All
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderid(8);
+                  setProviderfilter(true);
+                }}
+                eventKey="link-1"
+              >
+                {" "}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
+                  className="providersImage"
+                  alt="provider stream platform Icon"
+                />
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderid(384);
+                  setProviderfilter(true);
+                }}
+                eventKey="link-2"
+              >
+                {" "}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
+                  className="providersImage"
+                  alt="provider stream platform Icon"
+                />
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderid(15);
+                  setProviderfilter(true);
+                }}
+                eventKey="link-3"
+              >
+                {" "}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
+                  className="providersImage"
+                  alt="provider stream platform Icon"
+                />
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderid(9);
+                  setProviderfilter(true);
+                }}
+                eventKey="link-4"
+              >
+                {" "}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
+                  className="providersImage"
+                  alt="provider stream platform Icon"
+                />
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                onClick={() => {
+                  setProviderid(337);
+                  setProviderfilter(true);
+                }}
+                eventKey="link-5"
+              >
+                {" "}
+                <img
+                  src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
+                  className="providersImage"
+                  alt="provider stream platform Icon"
+                />
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
           <>
-            <InfiniteRecommendations
-              userMovieRecommendations={userMovieRecommendations}
-              onLoadMore={bigFetch}
-              cursorLength={incrementingCursor}
-            />
+            {!providerid ? (
+              <>
+                <InfiniteRecommendations
+                  userMovieRecommendations={userMovieRecommendations}
+                  onLoadMore={bigFetch}
+                  cursorLength={incrementingCursor}
+                />
+              </>
+            ) : (
+              <></>
+            )}
           </>
-        ) : (
-          <></>
-        )}
-      </>
-      <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>}</>
-      <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>}</>
-      <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>}</>
-      <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>}</>
-      <>{providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>}</>
+          <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>}</>
+          <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>}</>
+          <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>}</>
+          <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>}</>
+          <>
+            {providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>}
+          </>
+        </>
+      ) : null}
     </>
   );
 }

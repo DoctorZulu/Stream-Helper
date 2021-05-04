@@ -13,9 +13,19 @@ const InfiniteRecommendations = ({
   cursorLength,
   more,
 }) => {
+  const languageFilter = userMovieRecommendations.filter(
+    (m) =>
+      m.original_language != "hi" &&
+      "es" &&
+      "pk" &&
+      m.title != "Gabriel's Inferno" &&
+      m.title != "Gabriel's Inferno Part II" &&
+      m.title != "Gabriel's Inferno Part III",
+  );
+
   const Mapper = () => (
     <div className="movieCardContainer">
-      {finalList.map((movie, i) => (
+      {languageFilter.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
     </div>
@@ -25,13 +35,14 @@ const InfiniteRecommendations = ({
     return removeMovies;
   }, []);
 
-  let uniqueList = [...new Set(userMovieRecommendations)];
+  // let uniqueList = [...new Set(userMovieRecommendations)];
 
-  let finalList = [...uniqueList];
+  // let finalList = [...uniqueList];
+
+  // console.log(finalList);
 
   return (
     <>
-
       {userMovieRecommendations ? (
         <InfiniteScroll
           dataLength={cursorLength || userMovieRecommendations.length}
@@ -46,15 +57,10 @@ const InfiniteRecommendations = ({
           }
         >
           <Mapper />
-          
         </InfiniteScroll>
       ) : (
-        <>
-         
-        </>
+        <></>
       )}
-
-
     </>
   );
 };
