@@ -28,7 +28,8 @@ function Movies({ history }) {
   const [skip, setSkip] = useState(0);
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
-  const [incrementingCursor, setIncrementingCursor] = useState(10);
+  const [incrementingCursor, setIncrementingCursor] = useState(20);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -65,9 +66,13 @@ function Movies({ history }) {
         userMovieRecommendations[userMovieRecommendations.length - 1]
           .categoryId,
       ),
-      setIncrementingCursor(incrementingCursor + 20),
     );
+    if (loadingAll === false) {
+      setIncrementingCursor(incrementingCursor + 20);
+    }
   };
+
+  console.log(incrementingCursor, "===== movie page");
 
   return (
     <>
