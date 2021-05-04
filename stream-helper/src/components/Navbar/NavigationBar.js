@@ -8,13 +8,14 @@ import { Nav, Navbar } from "react-bootstrap";
 /* import userState from Recoil */
 import { userState } from "../../recoil/atoms";
 import { useRecoilState } from "recoil";
+import { motion } from "framer-motion";
 
 function NavigationBar() {
   const [user, setUser] = useRecoilState(userState);
 
   /* component reqs for Search Bar Feature */
-  
-/*   const [input, setInput] = React.useState("");
+
+  /*   const [input, setInput] = React.useState("");
   const choices = [
     { key: "choice1", description: "A choice" },
     { key: "choice2", description: "Another choice" },
@@ -26,33 +27,40 @@ function NavigationBar() {
  */
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="mainNavBar" sticky="top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        className="mainNavBar"
+        sticky="top"
+      >
         <Link to={"/home"}>
           <Navbar.Brand>FlixAlways</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Link to={"/home"}>
-            <Nav.Item className="buttonStyle"> Home </Nav.Item>
-          </Link>
+          <Nav className="mr-auto">
+            <Link to={"/home"}>
+              <Nav.Item className="buttonStyle"> Home </Nav.Item>
+            </Link>
 
-          <Link to={"/movies"}>
-            <Nav.Item className="buttonStyle"> Movies </Nav.Item>
-          </Link>
+            <Link to={"/movies"}>
+              <Nav.Item className="buttonStyle"> Movies </Nav.Item>
+            </Link>
 
-          <Link to={"/watched"}>
-            <Nav.Item className="buttonStyle"> Watched </Nav.Item>
-          </Link>
+            <Link to={"/watched"}>
+              <Nav.Item className="buttonStyle"> Watched </Nav.Item>
+            </Link>
 
-          <Link to={"/saved"}>
-            <Nav.Item className="buttonStyle"> My Saved Movies </Nav.Item>
+            <Link to={"/saved"}>
+              <Nav.Item className="buttonStyle"> My Saved Movies </Nav.Item>
+            </Link>
+          </Nav>
+          <Link to={`/profile/${user && user.id}`}>
+            <Nav.Item className="buttonStyle"> Profile </Nav.Item>
           </Link>
-        </Nav>
-        <Link to={`/profile/${user && user.id}`}>
-          <Nav.Item className="buttonStyle"> Profile </Nav.Item>
-        </Link>
-        {/*         <SearchPanel
+          {/*         <SearchPanel
           choices={choices}
           onChange={(event) => setInput(event.target.value)}
           onSelectionChange={(selected) => setSelectedKeys(selected)}
@@ -61,7 +69,7 @@ function NavigationBar() {
           value={input}
           noChoiceItem={noChoiceItem}
         /> */}
-         </Navbar.Collapse>
+        </Navbar.Collapse>
       </Navbar>
     </>
   );

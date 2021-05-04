@@ -8,6 +8,7 @@ import "../styles/Homepage.css";
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
 import Loader from "../components/spinner/Spinner.js";
+
 // import CheckUser from "../hooks/checkUser";
 
 /* gql */
@@ -38,7 +39,7 @@ function Homepage({ history }) {
         allMoviesSkip: skip,
         allMoviesMyCursor: cursor,
       },
-    },
+    }
   );
   console.log(dataAll);
 
@@ -58,7 +59,7 @@ function Homepage({ history }) {
         },
       },
       setCursor(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2),
+      setSkip(2)
     );
   };
   return (
