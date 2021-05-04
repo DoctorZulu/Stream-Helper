@@ -19,7 +19,7 @@
     max-width: 300px !important;
 }
 .mainActionBox {
-    width: 60px;
+    width: 60px !important;
     margin-left: 1px;
     margin-right: 1px;
     background-color: rgb(0, 0, 0) !important;

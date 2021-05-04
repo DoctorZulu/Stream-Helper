@@ -79,8 +79,6 @@ const [seenActive, setSeenActive ] = useState("white")
     });
   };
 
-  console.log(props, "==========")
-
 
   return (
     <>
@@ -117,7 +115,7 @@ const [seenActive, setSeenActive ] = useState("white")
         size={15}
         className="movieDetailHeartIcon"
       />{" "}
-      <p>Save</p>
+      Save
     </Button>
     </motion.button>
 

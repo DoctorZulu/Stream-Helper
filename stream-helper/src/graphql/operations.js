@@ -142,6 +142,7 @@ const SAVEDMOVIES = gql`
       disliked
       watched
       saved
+      
     }
   }
 `;
