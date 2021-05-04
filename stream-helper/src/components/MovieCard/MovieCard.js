@@ -52,18 +52,18 @@ function MovieCard(props) {
         </div>
         }
       
-        <div className="starRatingsBox">
-         
           {props.vote_average ? (
            <>
+        <div className="starRatingsBox">
+         
            <div>
           <h5 className="starRatingsContent"> <StarFill/>  {props.vote_average} </h5> 
           </div>
+        </div>
            </>
           ) : (
             <></>
           )}
-        </div>
         
           <div className="movieButtonContainer">
             {props.watched === true || props.saved === true ? (
