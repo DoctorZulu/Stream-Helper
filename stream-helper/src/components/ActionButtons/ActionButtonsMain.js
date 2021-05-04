@@ -11,6 +11,7 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 import Toasty from "../Toaster/toast";
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 
 function ActionButtonsMain(props) {
@@ -85,6 +86,13 @@ const [seenActive, setSeenActive ] = useState("white")
     <>
     
     <div className="mainActionButtons">
+     
+    <motion.button
+          whileHover={{ scale: 1.2}}
+          transition={{ duration: 0.25 }}
+          style={{background: "none", border: "none"}}
+        >
+         
     <Button
       className="mainActionBox"
       onClick={() => {
@@ -111,6 +119,13 @@ const [seenActive, setSeenActive ] = useState("white")
       />{" "}
       Save
     </Button>
+    </motion.button>
+
+    <motion.button
+          whileHover={{ scale: 1.2}}
+          transition={{ duration:0.25 }}
+          style={{background: "none", border: "none"}}
+        >
     <Button
       className="mainActionBox"
       onClick={(e) => {
@@ -139,6 +154,14 @@ const [seenActive, setSeenActive ] = useState("white")
         Seen
      
     </Button>
+
+    </motion.button>
+
+    <motion.button
+          whileHover={{ scale: 1.2}}
+          transition={{ duration: 0.25 }}
+          style={{background: "none", border: "none"}}
+        >
     <Button
       className="mainActionBox"
       onClick={(e) => {
@@ -165,6 +188,13 @@ const [seenActive, setSeenActive ] = useState("white")
       />{" "}
       Like
     </Button>
+    </motion.button>
+
+    <motion.button
+          whileHover={{ scale: 1.2}}
+          transition={{ duration: 0.25 }}
+          style={{background: "none", border: "none"}}
+        >
     <Button
       className="mainActionBox"
       onClick={(e) => {
@@ -191,6 +221,8 @@ const [seenActive, setSeenActive ] = useState("white")
       />{" "}
       Dislike
     </Button>
+    </motion.button>
+    
   </div>
   
       
