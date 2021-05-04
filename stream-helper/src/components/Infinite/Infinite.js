@@ -22,7 +22,7 @@ const Infinite = ({ allMovies, onLoadMore }) => {
       {languageFilter.map((movie, i) => (
         <motion.div
           whileHover={{ scale: 1.1, borderRadius: "100%" }}
-          whileTap={{ scale: 0.8, borderRadius: "100%", rotate: -360 }}
+          whileTap={{ scale: 0.8, borderRadius: "100%" }}
           transition={{ duration: 0.35 }}
         >
           <MovieCard {...movie} key={i + 1} />
