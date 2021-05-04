@@ -10,7 +10,7 @@ import "../../styles/ActionButtons.css";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 import Toasty from "../Toaster/toast";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { motion } from "framer-motion";
 
 
