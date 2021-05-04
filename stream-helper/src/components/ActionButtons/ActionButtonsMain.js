@@ -117,7 +117,7 @@ const [seenActive, setSeenActive ] = useState("white")
         size={15}
         className="movieDetailHeartIcon"
       />{" "}
-      Save
+      <p>Save</p>
     </Button>
     </motion.button>
 
