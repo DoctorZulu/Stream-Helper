@@ -78,6 +78,8 @@ const [seenActive, setSeenActive ] = useState("white")
     });
   };
 
+  console.log(props, "==========")
+
 
   return (
     <>
