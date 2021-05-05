@@ -43,6 +43,7 @@ const InfiniteRecommendations = ({
   // let finalList = [...uniqueList];
 
   // console.log(finalList);
+  console.log(languageFilter);
 
   return (
     <>
