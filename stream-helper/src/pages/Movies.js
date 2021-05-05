@@ -39,7 +39,7 @@ function Movies({ history }) {
         userMovieRecommendationsSkip: skip,
         userMovieRecommendationsMyCursor: cursor,
       },
-    },
+    }
   );
 
   useEffect(() => {
@@ -48,8 +48,7 @@ function Movies({ history }) {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,14 +62,8 @@ function Movies({ history }) {
         },
       },
       setCursor(
-<<<<<<< HEAD
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       )
-=======
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
->>>>>>> fc5717a89a13ec33cf81c241a85ec9fba41ba6fe
     );
     if (loadingAll === false) {
       setIncrementingCursor(incrementingCursor + 20);
