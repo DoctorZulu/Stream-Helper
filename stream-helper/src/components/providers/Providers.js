@@ -6,11 +6,13 @@ const Providers = ({ providers }) => {
   const Mapper = () =>
     providers.flatrate.map((flatRate) => (
       <div className="providersContainer">
+  
         <img
           src={`https://www.themoviedb.org/t/p/original${flatRate.logo_path}`}
           className="providersImage"
           alt="provider stream platform Icon"
         />
+      
       </div>
     ));
   return (

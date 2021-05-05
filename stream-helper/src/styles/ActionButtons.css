@@ -1,28 +1,29 @@
 .actionButtonContainer {
+    margin-top: 10px;
     margin-bottom: 25px !important;
 }
 
 .actionButtonBox {
-    width: 98px;
-    margin-left: 1px;
-    margin-right: 1px;
-    background-color: rgb(29, 29, 29) !important;
-    border-color:  rgb(29, 29, 29) !important;
+    width: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(0, 0, 0) !important;
+    border-color:  rgb(0, 0, 0) !important;
 }
 
 /* homepage/movies page button styling */
 
 .mainActionButtons {
     margin-bottom: 10px !important;
-    margin-top: -55px;
+    margin-top: 20px;
     max-width: 300px !important;
 }
 .mainActionBox {
-    width: 73px;
+    width: 60px !important;
     margin-left: 1px;
     margin-right: 1px;
-    background-color: rgb(29, 29, 29) !important;
-    border-color:  rgb(29, 29, 29) !important;
+    background-color: rgb(0, 0, 0) !important;
+    border-color:  rgb(0, 0, 0) !important;
 }
 
 
@@ -33,6 +34,7 @@
     body {
         min-height: 100vh;
         min-height: -webkit-fill-available;
+        
       }
       
       html {

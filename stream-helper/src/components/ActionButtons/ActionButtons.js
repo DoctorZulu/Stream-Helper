@@ -124,7 +124,7 @@ function ActionButtons(props) {
             size={25}
             className="movieDetailHeartIcon"
           />{" "}
-          Watched
+          Seen
         </Button>
         <Button
           className="actionButtonBox"
