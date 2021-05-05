@@ -10,7 +10,8 @@ import "../../styles/ActionButtons.css";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 import Toasty from "../Toaster/toast";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 function ActionButtonsMain(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
@@ -77,114 +78,139 @@ function ActionButtonsMain(props) {
     });
   };
 
-  // console.log(props, "==========")
-
   return (
     <>
       <div className="mainActionButtons">
-        <Button
-          className="mainActionBox"
-          onClick={() => {
-            submitSave();
-            setSavedActive("green");
-            console.log("clicked save");
-            toast.warning("🎥 Movie Saved!", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <Bookmark
-            color={savedActive}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Save
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitWatched(e);
-            setSeenActive("green");
-            console.log("clicked watched");
-            toast.warning("	👍 Added to Watched", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+          <Button
+            className="mainActionBox"
+            onClick={() => {
+              submitSave();
+              setSavedActive("green");
+              console.log("clicked save");
+              toast.warning("🎥 Movie Saved!", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <Bookmark
+              color={savedActive}
+              size={15}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Save
+          </Button>
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          <Check2
-            color={seenActive}
-            size={15}
-            className="movieDetailHeartIcon"
-          />
-          Seen
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitLike(e);
-            setLikedActive("green");
-            console.log("clicked like");
-            toast.warning("	👍 Liked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+          <Button
+            className="mainActionBox"
+            onClick={(e) => {
+              submitWatched(e);
+              setSeenActive("green");
+              console.log("clicked watched");
+              toast.warning("	👍 Added to Watched", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            <Check2
+              color={seenActive}
+              size={15}
+              className="movieDetailHeartIcon"
+            />
+            Seen
+          </Button>
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <HandThumbsUp
-            color={likedActive}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Like
-        </Button>
-        <Button
-          className="mainActionBox"
-          onClick={(e) => {
-            submitDislike(e);
-            setDislikedActive("green");
-            console.log("clicked discard");
-            toast.warning("	👎 Disliked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+          <Button
+            className="mainActionBox"
+            onClick={(e) => {
+              submitLike(e);
+              setLikedActive("green");
+              console.log("clicked like");
+              toast.warning("	👍 Liked Movie", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <HandThumbsUp
+              color={likedActive}
+              size={15}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Like
+          </Button>
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <HandThumbsDown
-            color={dislikedActive}
-            size={15}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Dislike
-        </Button>
+          <Button
+            className="mainActionBox"
+            onClick={(e) => {
+              submitDislike(e);
+              setDislikedActive("green");
+              console.log("clicked discard");
+              toast.warning("	👎 Disliked Movie", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <HandThumbsDown
+              color={dislikedActive}
+              size={15}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Dislike
+          </Button>
+        </motion.button>
       </div>
     </>
   );

@@ -5,6 +5,26 @@
   height: 575px !important;
 }
 
+.starRatingsBox {
+  position: absolute;
+  top: 400px;
+  left: 20px;
+  display: block;
+  width: 70px;
+  height: 35px;
+  border-radius: 20px;
+  padding: 0.3em 0.3em;
+  background-color: #ffd700 !important;
+  border: 0;
+}
+
+.starRatingsContent {
+  position: absolute;
+  color: black;
+
+}
+
+
 .movieCardTitle a {
   color: whitesmoke !important;
 }

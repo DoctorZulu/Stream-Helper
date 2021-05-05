@@ -62,6 +62,7 @@ function Homepage({ history }) {
       setSkip(2)
     );
   };
+
   return (
     <>
       <NavigationBar />

@@ -1,12 +1,12 @@
-import { XCircleFill } from "react-bootstrap-icons";
+import { Star, XCircleFill } from "react-bootstrap-icons";
 import "../../styles/MovieCard.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
-import StarRatings from "react-star-ratings";
 import ActionButtonsMain from "../ActionButtons/ActionButtonsMain";
+import { StarFill } from "react-bootstrap-icons";
 
 toast.configure();
 
@@ -41,9 +41,9 @@ function MovieCard(props) {
             alt="movie poster image"
           />
         </Link>
-        <h3 className="movieCardTitle">
+       {/*  <h3 className="movieCardTitle">
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
-        </h3>
+        </h3> */}
         <p>{props.description}</p>
         {/* buttons */}
         {props.saved === true || props.liked === true || props.watched === true || props.disliked === true ? <> </> :
@@ -52,22 +52,18 @@ function MovieCard(props) {
         </div>
         }
       
-        <h4 className="starRatingsBox">
-          {" "}
           {props.vote_average ? (
-            <StarRatings
-            
-              rating={props.vote_average / 2}
-              starRatedColor="yellow"
-              starDimension="35px"
-              starSpacing="5px"
-              numberOfStars={5}
-              name="rating"
-            />
+           <>
+        <div className="starRatingsBox">
+         
+           <div>
+          <h5 className="starRatingsContent"> <StarFill/>  {props.vote_average} </h5> 
+          </div>
+        </div>
+           </>
           ) : (
             <></>
           )}
-        </h4>
         
           <div className="movieButtonContainer">
             {props.watched === true || props.saved === true ? (
