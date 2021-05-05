@@ -96,7 +96,10 @@ function LandingPage({ history }) {
 
   return (
     <>
-      <div className="landingContentGrid" style={{ color: "black" }}>
+      <div
+        className="landingContentGrid"
+        style={{ color: "black", background: "whitesmoke" }}
+      >
         <div className="landingLeftCol">
           <div className="landingLeftText">
             <h1 className="landingTitle">
