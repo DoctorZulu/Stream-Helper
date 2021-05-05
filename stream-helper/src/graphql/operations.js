@@ -142,7 +142,6 @@ const SAVEDMOVIES = gql`
       disliked
       watched
       saved
-      
     }
   }
 `;
@@ -232,17 +231,24 @@ const MOVIEDETAIL = gql`
       categoryId
       title
       original_language
-      release_date
       runtime
+      release_date
       vote_average
       overview
       image
       genres
+      backdrop
+      trailers1
+      trailers2
+      trailers3
       credits {
+        id
         cast
       }
       watchproviders {
+        id
         providers
+        providerId
       }
     }
   }
