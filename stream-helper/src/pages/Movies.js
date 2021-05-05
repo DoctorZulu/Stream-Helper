@@ -32,7 +32,7 @@ function Movies({ history }) {
   const [providerfilter, setProviderfilter] = useState(false);
   const [providerid, setProviderid] = useState();
   const [incrementingCursor, setIncrementingCursor] = useState(20);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     USERMOVIERECOMMENDATIONS,
@@ -66,14 +66,14 @@ function Movies({ history }) {
       },
       setCursor(
         userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      ),
-      );
-      if (loadingAll === false ) {
-        setIncrementingCursor(incrementingCursor + 20)
-      }
+      )
+    );
+    if (loadingAll === false) {
+      setIncrementingCursor(incrementingCursor + 20);
+    }
   };
 
-  console.log(incrementingCursor, "===== movie page")
+  console.log(incrementingCursor, "===== movie page");
 
   return (
     <>
