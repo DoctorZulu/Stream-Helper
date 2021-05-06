@@ -11,7 +11,6 @@ const MovieTrailer = ({ currentMovieDetails }) => {
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
 
     </iframe> */}
-      {console.log(link)}
       <iframe
         title="Trailer"
         width="100%"
