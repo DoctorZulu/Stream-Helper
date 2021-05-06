@@ -43,6 +43,8 @@ function MovieDetail(props) {
     }
   }, [data, loading]);
 
+  console.log(currentMovieDetails);
+
   useEffect(() => {
     if (creditsParse.cast) {
       setCast(creditsParse.cast);
@@ -130,8 +132,8 @@ function MovieDetail(props) {
                   <br />
                   <h4>
                     {" "}
-                    Rating: <StarFill/>  {currentMovieDetails.movie.vote_average} 
-                   
+                    Rating: <StarFill />{" "}
+                    {currentMovieDetails.movie.vote_average}
                   </h4>
                   <h5>Genre: {genre}</h5>
                   <h5>
@@ -173,15 +175,12 @@ function MovieDetail(props) {
                 <h2> {currentMovieDetails.movie.title}</h2>
                 <h4> Synopsis: {currentMovieDetails.movie.overview}</h4>
                 {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
-                <MovieTrailer currentMovieDetails={currentMovieDetails}/>
-                
+                <MovieTrailer currentMovieDetails={currentMovieDetails} />
               </div>
               <h4 style={{ color: "whitesmoke" }}>Cast &amp; Crew: </h4>
               <div className="movieDetailCast">
                 {cast && crew ? <Mapper /> : null}
               </div>
-
-              
             </Row>
           </Container>
         </>

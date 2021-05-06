@@ -10,7 +10,7 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-function DisneyPlusMovies() {
+function DisneyPlusMovies({ providerId }) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -66,6 +66,7 @@ function DisneyPlusMovies() {
       }
     }
   }, []);
+  console.log(dataAll);
 
   const bigFetch = () => {
     fetchMore(
