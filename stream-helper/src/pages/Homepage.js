@@ -39,7 +39,7 @@ function Homepage({ history }) {
         allMoviesSkip: skip,
         allMoviesMyCursor: cursor,
       },
-    }
+    },
   );
   console.log(dataAll);
 
@@ -59,7 +59,7 @@ function Homepage({ history }) {
         },
       },
       setCursor(allMovies[allMovies.length - 1].categoryId),
-      setSkip(2)
+      setSkip(2),
     );
   };
 
