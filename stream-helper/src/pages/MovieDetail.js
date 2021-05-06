@@ -175,7 +175,11 @@ function MovieDetail(props) {
                 <h2> {currentMovieDetails.movie.title}</h2>
                 <h4> Synopsis: {currentMovieDetails.movie.overview}</h4>
                 {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
-                <MovieTrailer currentMovieDetails={currentMovieDetails} />
+
+                {/* this is the trailer  */}
+                {currentMovieDetails.movie.trailers1 && (
+                  <MovieTrailer currentMovieDetails={currentMovieDetails} />
+                )}
               </div>
               <h4 style={{ color: "whitesmoke" }}>Cast &amp; Crew: </h4>
               <div className="movieDetailCast">
