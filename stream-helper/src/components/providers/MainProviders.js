@@ -40,7 +40,7 @@ const MainProviders = ({ providerid }) => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll]);
+  }, [loadingAll, dataAll, providerid]);
 
   const bigFetch = () => {
     fetchMore(
@@ -68,23 +68,44 @@ const MainProviders = ({ providerid }) => {
     );
   };
 
-  const WithProvider = () => {
-    return (
-      <>
-        {providerid === 8 ? <NetflixMovies providerId={8} /> : null}
-        {providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : null}
-        {providerid === 384 ? <HboMaxMovies providerId={384} /> : null}
-        {providerid === 15 ? <HuluMovies providerId={15} /> : null}
-        {providerid === 337 ? <DisneyPlusMovies providerId={337} /> : null}
-      </>
-    );
+  // const WithProvider = () => {
+  //   return (
+  //     <>
+  //       {providerid === 8 ? <NetflixMovies providerId={8} /> : null}
+  //       {providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : null}
+  //       {providerid === 384 ? <HboMaxMovies providerId={384} /> : null}
+  //       {providerid === 15 ? <HuluMovies providerId={15} /> : null}
+  //       {providerid === 337 ? <DisneyPlusMovies providerId={337} /> : null}
+  //     </>
+  //   );
+  // };
+
+  const Switch = () => {
+    if (!providerid) {
+      return <WithoutProviders />;
+    }
+    if (providerid === 8) {
+      return <NetflixMovies providerId={8} />;
+    }
+    if (providerid === 9) {
+      return <AmazonPrimeMovies providerId={9} />;
+    }
+    if (providerid === 384) {
+      return <HboMaxMovies providerId={384} />;
+    }
+    if (providerid === 15) {
+      return <HuluMovies providerId={15} />;
+    }
+    if (providerid === 337) {
+      return <DisneyPlusMovies providerId={337} />;
+    }
   };
 
-  const IfProvider = () => {
-    return <>{!providerid ? <WithoutProviders /> : <WithProvider />}</>;
-  };
+  // const IfProvider = () => {
+  //   return <>{!providerid ? <WithoutProviders /> : <WithProvider />}</>;
+  // };
 
-  return <>{userMovieRecommendations ? <IfProvider /> : null}</>;
+  return <>{userMovieRecommendations ? <Switch /> : null}</>;
 };
 
 export default MainProviders;

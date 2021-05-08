@@ -13,55 +13,7 @@ function Movies({ history }) {
   const [isLoading, setIsLoading] = useState(true);
   const mainImage = { moviesHeroImage };
   const [providerfilter, setProviderfilter] = useState(false);
-<<<<<<< HEAD
-  const [providerid, setProviderid] = useState(0);
-  const [changedPage, setChangedPage ] = useState(false);
-
-
-
-  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    USERMOVIERECOMMENDATIONS,
-    {
-      variables: {
-        userMovieRecommendationsTake: take,
-        userMovieRecommendationsSkip: skip,
-        userMovieRecommendationsMyCursor: cursor,
-      },
-    }
-  );
-
-  useEffect(() => {
-    if (loadingAll === false && dataAll) {
-     
-      setUserMovieRecommendations(dataAll.userMovieRecommendations);
-    }
-    if (userMovieRecommendations) {
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll, providerid]);
-
- 
-
-  const bigFetch = () => {
-    fetchMore(
-      {
-        variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
-        },
-      },
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
-      
-    );
-  };
-=======
   const [providerid, setProviderid] = useState();
->>>>>>> f44c61a519d688ac48699ffbc3eaa9f939569458
 
   return (
     <>
@@ -89,7 +41,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(8);
               setProviderfilter(true);
-              setChangedPage(true);
             }}
             eventKey="link-1"
           >
@@ -106,7 +57,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(384);
               setProviderfilter(true);
-              setChangedPage(true);
             }}
             eventKey="link-2"
           >
@@ -123,7 +73,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(15);
               setProviderfilter(true);
-              setChangedPage(true);
             }}
             eventKey="link-3"
           >
@@ -140,7 +89,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(9);
               setProviderfilter(true);
-              setChangedPage(true);
             }}
             eventKey="link-4"
           >
@@ -157,7 +105,6 @@ function Movies({ history }) {
             onClick={() => {
               setProviderid(337);
               setProviderfilter(true);
-              setChangedPage(true);
             }}
             eventKey="link-5"
           >
