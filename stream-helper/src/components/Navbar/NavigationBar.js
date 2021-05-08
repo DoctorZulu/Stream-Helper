@@ -1,30 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 /* vendor imports */
 import { Link } from "react-router-dom";
 /* styling */
 import "../../styles/NavigationBar.css";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, Dropdown } from "react-bootstrap";
 /* import { SearchPanel } from "react-search-panel"; */
 /* import userState from Recoil */
 import { userState } from "../../recoil/atoms";
 import { useRecoilState } from "recoil";
 import { motion } from "framer-motion";
 
+import { useLazyQuery } from "@apollo/client";
+import { MOVIESEARCH } from "../../graphql/operations";
+
 function NavigationBar() {
   const [user, setUser] = useRecoilState(userState);
+  const [searchTerm, setSearchTerm] = useState(undefined);
+  const [results, setResults] = useState();
 
+  const [movieSearch, { loading, data }] = useLazyQuery(MOVIESEARCH);
+
+  console.log(searchTerm);
+
+  if (results != undefined) {
+    console.log(results.movieSearch);
+  }
   /* component reqs for Search Bar Feature */
 
-  /*   const [input, setInput] = React.useState("");
-  const choices = [
-    { key: "choice1", description: "A choice" },
-    { key: "choice2", description: "Another choice" },
-    { key: "choice3", description: "A third choice" },
-  ];
-  const noChoiceItem = { key: "none", description: "None" };
-  const [selectedChoices, setSelectedChoices] = useState(choices);
-  const [, setSelectedKeys] = useState([]);
- */
+  useEffect(() => {
+    if (searchTerm != undefined) {
+      if (data && !loading) {
+        setResults(data);
+      }
+    }
+  }, [data, loading]);
+
+  const onChangeTerm = (e) => {
+    setSearchTerm(e.target.value);
+    movieSearch({ variables: { movieSearchMovieTitle: searchTerm } });
+  };
+
+  const SearchMapper = () => (
+    <>
+      {results ? (
+        <Dropdown>
+          {results.movieSearch.map((movie, i) => (
+            <Dropdown.Item {...movie} key={i + 1}>
+              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+            </Dropdown.Item>
+          ))}
+        </Dropdown>
+      ) : null}
+    </>
+  );
+
   return (
     <>
       <Navbar
@@ -60,15 +89,15 @@ function NavigationBar() {
           <Link to={`/profile/${user && user.id}`}>
             <Nav.Item className="buttonStyle"> Profile </Nav.Item>
           </Link>
-          {/*         <SearchPanel
-          choices={choices}
-          onChange={(event) => setInput(event.target.value)}
-          onSelectionChange={(selected) => setSelectedKeys(selected)}
-          placeholder="Search"
-          selectedChoices={selectedChoices}
-          value={input}
-          noChoiceItem={noChoiceItem}
-        /> */}
+          <Form inline>
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              onChange={(e) => onChangeTerm(e)}
+            />
+          </Form>
+          <SearchMapper />
         </Navbar.Collapse>
       </Navbar>
     </>

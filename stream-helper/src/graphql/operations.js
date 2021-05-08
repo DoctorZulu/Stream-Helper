@@ -253,6 +253,26 @@ const MOVIEDETAIL = gql`
     }
   }
 `;
+const MOVIESEARCH = gql`
+  query Query($movieSearchMovieTitle: String) {
+    movieSearch(movieTitle: $movieSearchMovieTitle) {
+      title
+      categoryId
+      original_language
+      release_date
+      runtime
+      vote_average
+      image
+      overview
+      genres
+      backdrop
+      trailers1
+      trailers2
+      trailers3
+      id
+    }
+  }
+`;
 
 const PROVIDERMOVIEQUERY = gql`
   query Query(
@@ -301,4 +321,5 @@ export {
   LIKEDMOVIES,
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
+  MOVIESEARCH,
 };
