@@ -1,24 +1,16 @@
-import {
-  EyeSlash,
-  HandThumbsDown,
-  HeartFill,
-  XCircle,
-  XCircleFill,
-} from "react-bootstrap-icons";
+import { Star, XCircleFill } from "react-bootstrap-icons";
 import "../../styles/MovieCard.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
-import StarRatings from "react-star-ratings";
 import ActionButtonsMain from "../ActionButtons/ActionButtonsMain";
+import { StarFill } from "react-bootstrap-icons";
 
 toast.configure();
 
 function MovieCard(props) {
-  const [isActive, setIsActive] = useState(false);
-  const [isInactive, setIsInactive] = useState(true);
   const [update, { loading, error }] = useMutation(USERUPDATE);
 
   const removeSaved = async () => {
@@ -41,45 +33,37 @@ function MovieCard(props) {
 
   return (
     <>
-      <div className="movieCardMain">
+      <div className="movieCardMain" >
         <Link to={`/movie/${props.id}`}>
           <img
             src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${props.image}`}
             className="movieImageCard"
-            onMouseEnter={() => {
-              setIsActive(true);
-            }}
-           
-           
+            alt="movie poster image"
           />
         </Link>
-        <h3 className="movieCardTitle">
+       {/*  <h3 className="movieCardTitle">
           <Link to={`/movie/${props.id}`}>{props.title}</Link>
-        </h3>
+        </h3> */}
         <p>{props.description}</p>
         {/* buttons */}
         {props.saved === true || props.liked === true || props.watched === true || props.disliked === true ? <> </> :
         <div className="movieButtonContainer">
-        <ActionButtonsMain {...props} isActive = {isActive}  />
+        <ActionButtonsMain {...props} />
         </div>
         }
       
-        <h4 className="starRatingsBox">
-          {" "}
           {props.vote_average ? (
-            <StarRatings
-            
-              rating={props.vote_average / 2}
-              starRatedColor="yellow"
-              starDimension="35px"
-              starSpacing="5px"
-              numberOfStars={5}
-              name="rating"
-            />
+           <>
+        <div className="starRatingsBox">
+         
+           <div>
+          <h5 className="starRatingsContent"> <StarFill/>  {props.vote_average} </h5> 
+          </div>
+        </div>
+           </>
           ) : (
             <></>
           )}
-        </h4>
         
           <div className="movieButtonContainer">
             {props.watched === true || props.saved === true ? (
@@ -89,7 +73,7 @@ function MovieCard(props) {
                   onClick={() => {
                     removeWatched();
                     removeSaved();
-                    setIsActive(false);
+                   
                     toast.warning(
                       "	🎥 Movie No Longer Marked as Watched or Saved",
                       {

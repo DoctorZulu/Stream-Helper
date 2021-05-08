@@ -5,12 +5,32 @@
   height: 575px !important;
 }
 
-.movieCardTitle a{
+.starRatingsBox {
+  position: absolute;
+  top: 400px;
+  left: 20px;
+  display: block;
+  width: 70px;
+  height: 35px;
+  border-radius: 20px;
+  padding: 0.3em 0.3em;
+  background-color: #ffd700 !important;
+  border: 0;
+}
+
+.starRatingsContent {
+  position: absolute;
+  color: black;
+
+}
+
+
+.movieCardTitle a {
   color: whitesmoke !important;
 }
 
 .movieCardTitle {
-  width: 300px !important; 
+  width: 300px !important;
 }
 
 .movieCardIcon {
@@ -32,14 +52,11 @@
   top: 76%;
 }
 
-
-
 .movieImageCard {
   width: 300px;
   height: 450px;
   grid-area: movieCard;
   border-radius: 12px;
- 
 }
 
 /* SECTION: Buttons */
@@ -67,138 +84,195 @@
   right: -5px;
 }
 
-
 .Toastify__progress-bar--default {
   background-color: red;
   color: red;
 }
 
+/* MOTO G  */
 
+@media only screen and (max-device-width: 360px) and (max-height: 640px) {
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
+
+  .movieCardMain {
+    margin: 30px;
+    position: relative;
+    color: whitesmoke !important;
+  }
+
+  .movieCardTitle a {
+    color: whitesmoke !important;
+  }
+
+  .movieCardTitle {
+    width: 300px !important;
+    font-size: 25px;
+  }
+
+  .movieCardIcon {
+    margin: 2px;
+    max-height: 250px;
+  }
+
+  .movieCardContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas: "movieCard";
+    border-radius: 50px !important;
+  }
+
+  .movieButtonContainer {
+    position: absolute;
+    width: 300px !important;
+    top: 76%;
+  }
+
+  .movieImageCard {
+    width: 280px;
+    height: 420px;
+    grid-area: movieCard;
+    border-radius: 12px;
+  }
+
+  /* SECTION: Buttons */
+  .discardMovieButton {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.336);
+    position: absolute;
+    right: 0;
+    width: 33.3%;
+    text-align: center !important;
+    transition: transform 250ms, background-color 0.25s ease;
+  }
+
+  .movieSaved {
+    background-color: rgb(22, 22, 22);
+  }
+}
 
 /* IPHONE 5  */
 
-@media only screen and (max-device-width : 375px) and (max-height: 570px) {
+@media only screen and (max-device-width: 375px) and (max-height: 570px) {
   body {
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-    }
-    
-    html {
-      height: -webkit-fill-available;
-      width: -webkit-fill-available;
-    }
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
 
-    .movieCardMain {
-      margin: 30px;
-      position: relative;
-      color: whitesmoke !important;
-    
-    }
-    
-    .movieCardTitle a{
-      color: whitesmoke !important;
-    }
-    
-    .movieCardTitle {
-      width: 300px !important; 
-      font-size: 25px;
-    }
-    
-    .movieCardIcon {
-      margin: 2px;
-      max-height: 250px;
-    }
-    
-    .movieCardContainer {
-      display: grid;
-      grid-template-columns: 100%;
-      grid-template-rows: auto;
-      grid-template-areas: 
-      "movieCard";
-      border-radius: 50px !important;
-    }
-    
-    .movieButtonContainer {
-      position: absolute;
-      width: 300px !important;
-      top: 76%;
-    }
-    
-    .movieImageCard {
-      width: 300px;
-      height: 450px;
-      grid-area: movieCard;
-      border-radius: 12px;
-    }
-    
-    /* SECTION: Buttons */
-    .discardMovieButton {
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.336);
-      position: absolute;
-      right: 0;
-      width: 33.3%;
-      text-align: center !important;
-      transition: transform 250ms, background-color 0.25s ease;
-    }
-    
-    .movieSaved {
-      background-color: rgb(22, 22, 22);
-    }
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
 
-    
+  .movieCardMain {
+    margin: 30px;
+    position: relative;
+    color: whitesmoke !important;
+  }
 
+  .movieCardTitle a {
+    color: whitesmoke !important;
+  }
 
-  
+  .movieCardTitle {
+    width: 300px !important;
+    font-size: 25px;
+  }
+
+  .movieCardIcon {
+    margin: 2px;
+    max-height: 250px;
+  }
+
+  .movieCardContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas: "movieCard";
+    border-radius: 50px !important;
+  }
+
+  .movieButtonContainer {
+    position: absolute;
+    width: 300px !important;
+    top: 76%;
+  }
+
+  .movieImageCard {
+    width: 280px;
+    height: 420px;
+    grid-area: movieCard;
+    border-radius: 12px;
+  }
+
+  /* SECTION: Buttons */
+  .discardMovieButton {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.336);
+    position: absolute;
+    right: 0;
+    width: 33.3%;
+    text-align: center !important;
+    transition: transform 250ms, background-color 0.25s ease;
+  }
+
+  .movieSaved {
+    background-color: rgb(22, 22, 22);
+  }
 }
 
 /* IPHONE 6/7/8 */
 
-@media only screen and (min-device-width : 375px) and (min-height: 600px) and (max-height: 768px) {
-
+@media only screen and (min-device-width: 375px) and (min-height: 600px) and (max-height: 768px) {
   .movieCardMain {
     margin: 30px;
     position: relative;
     color: whitesmoke !important;
-  
   }
-  
-  .movieCardTitle a{
+
+  .movieCardTitle a {
     color: whitesmoke !important;
   }
-  
+
   .movieCardTitle {
-    width: 300px !important; 
+    width: 300px !important;
     font-size: 25px;
   }
-  
+
   .movieCardIcon {
     margin: 2px;
     max-height: 250px;
   }
-  
+
   .movieCardContainer {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "movieCard";
+    grid-template-areas: "movieCard";
     border-radius: 50px !important;
   }
-  
+
   .movieButtonContainer {
     position: absolute;
     width: 300px !important;
     top: 76%;
   }
-  
+
   .movieImageCard {
     width: 300px;
     height: 450px;
     grid-area: movieCard;
     border-radius: 12px;
   }
-  
+
   /* SECTION: Buttons */
   .discardMovieButton {
     padding: 15px;
@@ -209,62 +283,56 @@
     text-align: center !important;
     transition: transform 250ms, background-color 0.25s ease;
   }
-  
+
   .movieSaved {
     background-color: rgb(22, 22, 22);
   }
-
-
-
 }
 
 /* IPHONE X */
 
-@media only screen and (min-device-width : 375px) and (min-height: 768px) and (max-height: 820px) {
-
+@media only screen and (min-device-width: 375px) and (min-height: 768px) and (max-height: 820px) {
   .movieCardMain {
     margin: 30px;
     position: relative;
     color: whitesmoke !important;
-  
   }
-  
-  .movieCardTitle a{
+
+  .movieCardTitle a {
     color: whitesmoke !important;
   }
-  
+
   .movieCardTitle {
-    width: 300px !important; 
+    width: 300px !important;
     font-size: 25px;
   }
-  
+
   .movieCardIcon {
     margin: 2px;
     max-height: 250px;
   }
-  
+
   .movieCardContainer {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "movieCard";
+    grid-template-areas: "movieCard";
     border-radius: 50px !important;
   }
-  
+
   .movieButtonContainer {
     position: absolute;
     width: 300px !important;
     top: 76%;
   }
-  
+
   .movieImageCard {
     width: 300px;
     height: 450px;
     grid-area: movieCard;
     border-radius: 12px;
   }
-  
+
   /* SECTION: Buttons */
   .discardMovieButton {
     padding: 15px;
@@ -275,62 +343,56 @@
     text-align: center !important;
     transition: transform 250ms, background-color 0.25s ease;
   }
-  
+
   .movieSaved {
     background-color: rgb(22, 22, 22);
   }
-
-
 }
-
 
 /* IPAD */
 
-@media only screen and (min-device-width : 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
-
+@media only screen and (min-device-width: 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
   .movieCardMain {
     margin: 30px;
     position: relative;
     color: whitesmoke !important;
-  
   }
-  
-  .movieCardTitle a{
+
+  .movieCardTitle a {
     color: whitesmoke !important;
   }
-  
+
   .movieCardTitle {
-    width: 300px !important; 
+    width: 300px !important;
     font-size: 25px;
   }
-  
+
   .movieCardIcon {
     margin: 2px;
     max-height: 250px;
   }
-  
+
   .movieCardContainer {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "movieCard ";
+    grid-template-areas: "movieCard ";
     border-radius: 50px !important;
   }
-  
+
   .movieButtonContainer {
     position: absolute;
     width: 300px !important;
     top: 76%;
   }
-  
+
   .movieImageCard {
     width: 300px;
     height: 450px;
     grid-area: movieCard;
     border-radius: 12px;
   }
-  
+
   /* SECTION: Buttons */
   .discardMovieButton {
     padding: 15px;
@@ -341,62 +403,56 @@
     text-align: center !important;
     transition: transform 250ms, background-color 0.25s ease;
   }
-  
+
   .movieSaved {
     background-color: rgb(22, 22, 22);
   }
-
-
 }
 
 /* IPAD PRO / SMALL LAPTOP */
 
-
-@media only screen and (min-device-width : 1024px) and (max-width: 1200px)  {
-
+@media only screen and (min-device-width: 1024px) and (max-width: 1200px) {
   .movieCardMain {
     margin: 30px;
     position: relative;
     color: whitesmoke !important;
-  
   }
-  
-  .movieCardTitle a{
+
+  .movieCardTitle a {
     color: whitesmoke !important;
   }
-  
+
   .movieCardTitle {
-    width: 300px !important; 
+    width: 300px !important;
     font-size: 25px;
   }
-  
+
   .movieCardIcon {
     margin: 2px;
     max-height: 250px;
   }
-  
+
   .movieCardContainer {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "movieCard";
+    grid-template-areas: "movieCard";
     border-radius: 50px !important;
   }
-  
+
   .movieButtonContainer {
     position: absolute;
     width: 300px !important;
     top: 76%;
   }
-  
+
   .movieImageCard {
     width: 300px;
     height: 450px;
     grid-area: movieCard;
     border-radius: 12px;
   }
-  
+
   /* SECTION: Buttons */
   .discardMovieButton {
     padding: 15px;
@@ -407,11 +463,8 @@
     text-align: center !important;
     transition: transform 250ms, background-color 0.25s ease;
   }
-  
+
   .movieSaved {
     background-color: rgb(22, 22, 22);
   }
-
 }
-
-

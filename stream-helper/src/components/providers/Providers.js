@@ -6,11 +6,13 @@ const Providers = ({ providers }) => {
   const Mapper = () =>
     providers.flatrate.map((flatRate) => (
       <div className="providersContainer">
+  
         <img
           src={`https://www.themoviedb.org/t/p/original${flatRate.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
-        {/* <p>{flatRate.provider_name}</p> */}
+      
       </div>
     ));
   return (
@@ -18,7 +20,7 @@ const Providers = ({ providers }) => {
       <Container>
         <h5 className="providerText">Streaming here</h5>
         <div className="streamContainer">
-          <Mapper />
+          {providers.flatrate ? <Mapper /> : <> </>}
         </div>
       </Container>
     </>
@@ -32,8 +34,8 @@ const ProvidersBuy = ({ providers }) => {
         <img
           src={`https://www.themoviedb.org/t/p/original${buyer.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
-        {/* <p>{buyer.provider_name}</p> */}
       </div>
     ));
   return (
@@ -41,7 +43,7 @@ const ProvidersBuy = ({ providers }) => {
       <Container>
         <h5 className="providerText">Buy or Rent</h5>
         <div className="buyContainer">
-          <Mapper />
+          {providers.buy ? <Mapper /> : <> </>}
         </div>
       </Container>
     </>
@@ -55,15 +57,11 @@ const ProvidersRent = ({ providers }) => {
         <img
           src={`https://www.themoviedb.org/t/p/original${renter.logo_path}`}
           className="providersImage"
+          alt="provider stream platform Icon"
         />
-        {/* <p>{renter.provider_name}</p> */}
       </div>
     ));
-  return (
-    <>
-      <Mapper />
-    </>
-  );
+  return <>{providers.rent ? <Mapper /> : <> </>}</>;
 };
 
 export { Providers, ProvidersRent, ProvidersBuy };

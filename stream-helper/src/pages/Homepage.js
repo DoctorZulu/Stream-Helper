@@ -2,27 +2,28 @@ import React, { useState, useEffect } from "react";
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 /* styling */
-import { EyeSlash, HandThumbsDown, HeartFill } from "react-bootstrap-icons";
+// import { EyeSlash, HandThumbsDown, HeartFill } from "react-bootstrap-icons";
 import "../styles/Homepage.css";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
-import CheckUser from "../hooks/checkUser";
+import Loader from "../components/spinner/Spinner.js";
+
+// import CheckUser from "../hooks/checkUser";
 
 /* gql */
 import { ALLMOVIES } from "../graphql/operations";
 /* userState via recoil */
-import { userState } from "../recoil/atoms";
-import { useRecoilState } from "recoil";
+// import { userState } from "../recoil/atoms";
+// import { useRecoilState } from "recoil";
 
 function Homepage({ history }) {
   /* user state */
-  const [user] = useRecoilState(userState);
+  // const [user] = useRecoilState(userState);
 
   // console.log(user, "Current user");
-  const heroTitle = "Welcome To StreamHelper";
-  const heroText =
-    "Your Homepage Will Always Display Movies You've Seen In Case You Want To Rewatch Them";
+  const heroTitle = "All Movies";
+  const heroText = "The Movies Page Will Always Display Our Entire Catalog";
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
@@ -30,26 +31,20 @@ function Homepage({ history }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  const scrollData = {
-    allMoviesTake: take,
-    allMoviesSkip: skip,
-    allMoviesMyCursor: cursor,
-  };
-
   const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
     ALLMOVIES,
     {
       variables: {
-        ...scrollData,
+        allMoviesTake: take,
+        allMoviesSkip: skip,
+        allMoviesMyCursor: cursor,
       },
     },
   );
-
+  console.log(dataAll);
 
   useEffect(() => {
- 
     if (!loadingAll && dataAll) {
-  
       setAllMovies(dataAll.allMovies);
     }
 
@@ -60,16 +55,16 @@ function Homepage({ history }) {
     fetchMore(
       {
         variables: {
-          allMoviesMyCursor: allMovies.length - 1 /* end + take */,
+          allMoviesMyCursor: allMovies.length - 1,
         },
       },
       setCursor(allMovies[allMovies.length - 1].categoryId),
       setSkip(2),
     );
   };
+
   return (
     <>
-
       <NavigationBar />
       <HeroBanner heroText={heroText} heroTitle={heroTitle} history={history} />
       <div className="homepageTutorial">
@@ -77,17 +72,15 @@ function Homepage({ history }) {
           {" "}
           Gone Are The Days Of Looking For Your Next Movie. <br />
           With Constant New Movie Recommendations Made Just For You, <br />
-          You'll Always Have Something To Play Next{" "}
+          You'll Always Have Something To Watch Next{" "}
         </h3>
       </div>
-    
-      
-        {allMovies.length > 0 ? (
-          <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
-        ) : (
-          <h1> There are No Movies To Load </h1>
-        )}
-   
+
+      {allMovies.length > 0 ? (
+        <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

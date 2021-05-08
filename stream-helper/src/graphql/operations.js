@@ -25,6 +25,7 @@ const LOGIN = gql`
   mutation Mutation($signinUserEmail: String!, $signinUserPassword: String!) {
     signinUser(email: $signinUserEmail, password: $signinUserPassword) {
       id
+      token
       firstname
       lastname
       username
@@ -43,6 +44,7 @@ const VERIFY = gql`
       lastname
       username
       email
+      token
     }
   }
 `;
@@ -172,6 +174,12 @@ const LIKEDMOVIES = gql`
   }
 `;
 
+const FILTEREDLENGTH = gql`
+  query Query($filterLengthProviderId: Int!) {
+    filterLength(providerId: $filterLengthProviderId)
+  }
+`;
+
 const USERUPDATE = gql`
   mutation Mutation(
     $addMovieToUserMovieId: ID
@@ -223,17 +231,24 @@ const MOVIEDETAIL = gql`
       categoryId
       title
       original_language
-      release_date
       runtime
+      release_date
       vote_average
       overview
       image
       genres
+      backdrop
+      trailers1
+      trailers2
+      trailers3
       credits {
+        id
         cast
       }
       watchproviders {
+        id
         providers
+        providerId
       }
     }
   }
@@ -253,8 +268,8 @@ const PROVIDERMOVIEQUERY = gql`
       providerId: $providerMovieQueryProviderId
     ) {
       id
-      title
       categoryId
+      title
       original_language
       release_date
       runtime
@@ -262,6 +277,10 @@ const PROVIDERMOVIEQUERY = gql`
       overview
       image
       genres
+      watchproviders {
+        providerId
+        id
+      }
     }
   }
 `;
@@ -281,4 +300,5 @@ export {
   UPDATEUSERPROFILE,
   LIKEDMOVIES,
   PROVIDERMOVIEQUERY,
+  FILTEREDLENGTH,
 };

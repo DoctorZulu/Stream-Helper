@@ -3,6 +3,7 @@ import NavigationBar from "../components/Navbar/NavigationBar";
 import MovieCard from "../components/MovieCard/MovieCard";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import CheckUser from "../hooks/checkUser";
+import Loader from "../components/spinner/Spinner";
 import { useQuery } from "@apollo/client";
 import { userState } from "../recoil/atoms";
 import { useRecoilState } from "recoil";
@@ -13,7 +14,7 @@ function WatchedMovies({ history }) {
   const [user] = useRecoilState(userState);
   const [watchedMovies, setWatchedMovies] = useState();
   const heroTitle = "Your Watched Movies List";
-  const heroText = "These Movies Won't Show Up in your Recommendations";
+  const heroText = "These Movies Won't Show Up In Your Recommendations";
   const { loading, error, data } = useQuery(WATCHEDMOVIES, {
     fetchPolicy: "network-only",
   });
@@ -22,11 +23,10 @@ function WatchedMovies({ history }) {
     if (!loading && data) {
       setWatchedMovies(data);
     }
-  }, [data]);
+  }, [data, loading]);
 
   const Mapper = () => (
     <>
-     
       {watchedMovies.watchedMovies.map((movie, i) => (
         <MovieCard {...movie} key={i + 1} />
       ))}
@@ -34,14 +34,14 @@ function WatchedMovies({ history }) {
   );
   return (
     <>
+      {!user && <CheckUser history={history} />}
       <NavigationBar />
-      {<CheckUser history={history} />}
-      <HeroBanner heroTitle={heroTitle} heroText={heroText}   history = {history}/>
+      <HeroBanner heroTitle={heroTitle} heroText={heroText} history={history} />
       <div className="movieCardContainer">
         {user ? (
           <>
             {error ? <h1>{error}</h1> : null}
-            {watchedMovies ? <Mapper /> : <h1> error</h1>}{" "}
+            {watchedMovies ? <Mapper /> : <Loader />}{" "}
           </>
         ) : (
           <></>

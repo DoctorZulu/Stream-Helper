@@ -14,8 +14,8 @@ import NotFound from "../pages/NotFound";
 export default (
   <Switch>
     <Route exact path="/" component={LandingPage} />
-    <Route path="/home" component={Homepage} />
-    <Route path="/movies" component={Movies} />
+    <Route path="/home" component={Movies} />
+    <Route path="/movies" component={Homepage} />
     <Route path="/profile/:id" component={Profile} />
     <Route path="/movie/:id" component={MovieDetail} />
     <Route path="/watched" component={WatchedMovies} />

@@ -5,6 +5,51 @@ import "../../styles/ProfileEditForm.css";
 
 function EditUserModal({ firstname, lastname, email, username, submit }) {
   const [lgShow, setLgShow] = useState(false);
+  // const [user, setUser] = useRecoilState(userState);
+
+  // /* EDIT PROFILE USER  */
+  // const [firstname, setFirstName] = useState();
+  // const [lastname, setLastName] = useState();
+  // const [username, setUserName] = useState();
+  // const [email, setEmail] = useState();
+
+  // const [update, { loading, error, data }] = useMutation(UPDATEUSERPROFILE);
+
+  // useEffect(() => {
+  //   if (!loading && data) {
+  //     console.log(data);
+  //     // setUser(data);
+  //     console.log("useeffect setUser");
+  //     history.push("/home");
+  //   }
+  // }, [loading, data]);
+
+  // if (loading) return console.log("Loading update");
+  // if (error) return console.log(`Error! ${error.message}`);
+
+  // const handleOnClick = (e) => {
+  //   e.preventDefault();
+  //   console.log("clicked");
+  //   submitProfileEdit();
+  //   // setInterval(() => {
+  //   setLgShow(false);
+  //   // }, 200);
+  //   setInterval(() => {
+  //     history.push("/home");
+  //   }, 200)
+  // };
+
+  // const submitProfileEdit = async () => {
+  //   console.log("submitProfileEdit");
+  //   await update({
+  //     variables: {
+  //       updateUserFirstname: firstname,
+  //       updateUserLastname: lastname,
+  //       updateUserUsername: username,
+  //       updateUserEmail: email,
+  //     },
+  //   });
+  // };
 
   return (
     <>
@@ -59,8 +104,6 @@ function EditUserModal({ firstname, lastname, email, username, submit }) {
                 onChange={username}
               />
             </Form.Group>
-
-         
 
             <Button variant="primary" type="submit">
               Submit Changes
