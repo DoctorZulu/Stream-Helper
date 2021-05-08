@@ -41,14 +41,13 @@ function MovieDetail(props) {
       if (data.movie.watchproviders[0]) {
         setProviders(JSON.parse(data.movie.watchproviders[0].providers));
       }
+   /*    if (data.movie.backdrop) {
+        setCurrentMovieBackground(currentMovieDetails.movie.backdrop)
+      } */
     }
   }, [data, loading]);
 
-  useEffect(()=> {
-      setCurrentMovieBackground(currentMovieDetails.movie.backdrop)
 
-  }, [currentMovieDetails.movie.backdrop])
-  console.log(currentMovieBackground, "BACKDROP");
 
   useEffect(() => {
     if (creditsParse.cast) {
@@ -191,9 +190,9 @@ function MovieDetail(props) {
                 {cast && crew ? <Mapper /> : null}
               </div>
             </Row>
-            
-            <div className="mainMovieBackground" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${currentMovieBackground})`}}>
-            </div>
+            { currentMovieDetails.movie.backdrop != undefined ? <div className="mainMovieBackground" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${currentMovieDetails.movie.backdrop})`}}>
+            </div>: <> </>}
+          
           </Container>
         </>
       ) : (
