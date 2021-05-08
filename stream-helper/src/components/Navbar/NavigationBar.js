@@ -18,14 +18,9 @@ function NavigationBar() {
   const [searchTerm, setSearchTerm] = useState(undefined);
   const [results, setResults] = useState();
 
-  const [movieSearch, { loading, data }] = useLazyQuery(MOVIESEARCH);
-
-  console.log(searchTerm);
-
-  if (results != undefined) {
-    console.log(results.movieSearch);
-  }
-  /* component reqs for Search Bar Feature */
+  const [movieSearch, { loading, data }] = useLazyQuery(MOVIESEARCH, {
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     if (searchTerm != undefined) {
