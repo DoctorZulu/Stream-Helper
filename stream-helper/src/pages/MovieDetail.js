@@ -26,6 +26,7 @@ function MovieDetail(props) {
   const [cast, setCast] = useState();
   const [crew, setCrew] = useState();
   const [genre, setGenre] = useState();
+  const [currentMovieBackground, setCurrentMovieBackground] = useState();
 
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
@@ -43,7 +44,11 @@ function MovieDetail(props) {
     }
   }, [data, loading]);
 
-  console.log(currentMovieDetails);
+  useEffect(()=> {
+      setCurrentMovieBackground(currentMovieDetails.movie.backdrop)
+
+  }, [currentMovieDetails.movie.backdrop])
+  console.log(currentMovieBackground, "BACKDROP");
 
   useEffect(() => {
     if (creditsParse.cast) {
@@ -186,6 +191,9 @@ function MovieDetail(props) {
                 {cast && crew ? <Mapper /> : null}
               </div>
             </Row>
+            
+            <div className="mainMovieBackground" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${currentMovieBackground})`}}>
+            </div>
           </Container>
         </>
       ) : (
