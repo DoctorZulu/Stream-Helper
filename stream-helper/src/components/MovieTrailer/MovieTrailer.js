@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 /* passing down movie id as props */
 
 const MovieTrailer = ({ currentMovieDetails }) => {
   const [link, setLink] = useState(
-    currentMovieDetails.movie.trailers1.replace(/['"]+/g, ""),
+    currentMovieDetails.movie.trailers1.replace(/['"]+/g, "")
   );
+
+  useEffect(() => {
+    setLink(currentMovieDetails.movie.trailers1.replace(/['"]+/g, ""));
+  }, [currentMovieDetails]);
   return (
     <>
       <iframe
@@ -16,7 +20,6 @@ const MovieTrailer = ({ currentMovieDetails }) => {
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
-
     </>
   );
 };

@@ -28,11 +28,13 @@ function MovieDetail(props) {
   const [genre, setGenre] = useState();
   const [currentMovieBackground, setCurrentMovieBackground] = useState();
 
-  const { loading, data, error } = useQuery(MOVIEDETAIL, {
+  const { loading, data, error, refetch } = useQuery(MOVIEDETAIL, {
     variables: {
       movieMovieId: currentMovieId,
     },
   });
+
+  console.log(props.match.params.id);
 
   useEffect(() => {
     if (!loading && data) {
@@ -42,7 +44,17 @@ function MovieDetail(props) {
         setProviders(JSON.parse(data.movie.watchproviders[0].providers));
       }
     }
-  }, [data, loading]);
+    if (currentMovieId != props.match.params.id) {
+      setCurrentMovieId(props.match.params.id);
+    }
+  }, [data, loading, props.history.location.pathname]);
+
+  /*   useEffect(() => {
+    () => {
+      refetch();
+    };
+    console.log(data, "BALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLAR REFRESH");
+  }, [props.history.location.pathname]); */
 
   /*   useEffect(()=> {
       setCurrentMovieBackground(currentMovieDetails.movie.backdrop)
