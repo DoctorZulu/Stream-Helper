@@ -1,15 +1,16 @@
 import React from "react";
-import {  Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import {
   Bookmark,
   HandThumbsUp,
   HandThumbsDown,
   Check2,
 } from "react-bootstrap-icons";
-import "../../styles/ActionButtons.css";
+import "../../styles/ActionButtonDetail.css";
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 function ActionButtons(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
@@ -43,7 +44,7 @@ function ActionButtons(props) {
     });
   };
 
-/*   const removeSaved = async () => {
+  /*   const removeSaved = async () => {
     await update({
       variables: {
         addMovieToUserMovieId: props.currentMovieDetails.movie.id,
@@ -52,7 +53,7 @@ function ActionButtons(props) {
     });
   }; */
 
- /*  const removeWatched = async () => {
+  /*  const removeWatched = async () => {
     await update({
       variables: {
         addMovieToUserMovieId: props.currentMovieDetails.movie.id,
@@ -74,108 +75,132 @@ function ActionButtons(props) {
   return (
     <>
       <div className="actionButtonContainer">
-        <Button
-          className="actionButtonBox"
-          onClick={() => {
-            submitSave();
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
+        >
+          <Button
+            className="actionButtonBox"
+            onClick={() => {
+              submitSave();
 
-            console.log("clicked save");
-            toast.warning("🎥 Movie Saved!", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+              console.log("clicked save");
+              toast.warning("🎥 Movie Saved!", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <Bookmark
+              color={"white"}
+              size={25}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Save
+          </Button>
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <Bookmark
-            color={"white"}
-            size={25}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Save
-        </Button>
-        <Button
-          className="actionButtonBox"
-          onClick={(e) => {
-            submitWatched(e);
+          <Button
+            className="actionButtonBox"
+            onClick={(e) => {
+              submitWatched(e);
 
-            console.log("clicked watched");
-            toast.warning("	👍 Added to Watched", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+              console.log("clicked watched");
+              toast.warning("	👍 Added to Watched", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <Check2
+              color={"white"}
+              size={25}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Seen
+          </Button>
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <Check2
-            color={"white"}
-            size={25}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Seen
-        </Button>
-        <Button
-          className="actionButtonBox"
-          onClick={(e) => {
-            submitLike(e);
-            console.log("clicked like");
-            toast.warning("	👍 Liked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
+          <Button
+            className="actionButtonBox"
+            onClick={(e) => {
+              submitLike(e);
+              console.log("clicked like");
+              toast.warning("	👍 Liked Movie", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <HandThumbsUp
+              color={"white"}
+              size={25}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Like
+          </Button>
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.25 }}
+          style={{ background: "none", border: "none" }}
         >
-          {" "}
-          <HandThumbsUp
-            color={"white"}
-            size={25}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Like
-        </Button>
-        <Button
-          className="actionButtonBox"
-          onClick={(e) => {
-            submitDislike(e);
-            console.log("clicked discard");
-            toast.warning("	👎 Disliked Movie", {
-              className: "movieSaved",
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
-          }}
-        >
-          {" "}
-          <HandThumbsDown
-            color={"white"}
-            size={25}
-            className="movieDetailHeartIcon"
-          />{" "}
-          Dislike
-        </Button>
+          <Button
+            className="actionButtonBox"
+            onClick={(e) => {
+              submitDislike(e);
+              console.log("clicked discard");
+              toast.warning("	👎 Disliked Movie", {
+                className: "movieSaved",
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            }}
+          >
+            {" "}
+            <HandThumbsDown
+              color={"white"}
+              size={25}
+              className="movieDetailHeartIcon"
+            />{" "}
+            Dislike
+          </Button>
+        </motion.button>
       </div>
     </>
   );
