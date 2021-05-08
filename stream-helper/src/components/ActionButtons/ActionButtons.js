@@ -89,7 +89,7 @@ function ActionButtons(props) {
               toast.warning("🎥 Movie Saved!", {
                 className: "movieSaved",
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -121,7 +121,7 @@ function ActionButtons(props) {
               toast.warning("	👍 Added to Watched", {
                 className: "movieSaved",
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -152,7 +152,7 @@ function ActionButtons(props) {
               toast.warning("	👍 Liked Movie", {
                 className: "movieSaved",
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -183,7 +183,7 @@ function ActionButtons(props) {
               toast.warning("	👎 Disliked Movie", {
                 className: "movieSaved",
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
