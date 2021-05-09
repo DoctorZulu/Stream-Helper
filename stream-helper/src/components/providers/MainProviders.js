@@ -54,7 +54,7 @@ const MainProviders = ({ providerid }) => {
           .categoryId,
       ),
     );
-    if (loadingAll === false ) {
+    if (loadingAll === false  ) {
       setIncrementingCursor(incrementingCursor + 20)
       
     }
