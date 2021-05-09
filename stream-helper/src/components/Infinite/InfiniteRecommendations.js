@@ -44,6 +44,7 @@ const InfiniteRecommendations = ({
 
   // console.log(finalList);
   console.log(languageFilter);
+  console.log(cursorLength, "THIS BITCH HERE")
 
   return (
     <>

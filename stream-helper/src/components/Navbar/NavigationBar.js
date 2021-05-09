@@ -38,13 +38,17 @@ function NavigationBar() {
   const SearchMapper = () => (
     <>
       {results ? (
-        <Dropdown>
+        <ul>
           {results.movieSearch.map((movie, i) => (
-            <Dropdown.Item {...movie} key={i + 1}>
-              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-            </Dropdown.Item>
+            <>
+            <Link to={`/movie/${movie.id}`}>
+            <li {...movie} key={i + 1}>
+              {movie.title}
+            </li>
+            </Link>
+            </>
           ))}
-        </Dropdown>
+        </ul>
       ) : null}
     </>
   );
