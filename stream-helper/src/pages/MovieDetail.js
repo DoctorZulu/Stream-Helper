@@ -201,7 +201,7 @@ function MovieDetail(props) {
                   <MovieTrailer currentMovieDetails={currentMovieDetails} />
                 )}
               </div>
-              <h4 style={{ color: "whitesmoke" }}>Cast &amp; Crew: </h4>
+              <h4 style={{ color: "whitesmoke", marginTop: "100px" }}>Cast &amp; Crew: </h4>
               <div className="movieDetailCast">
                 {cast && crew ? <Mapper /> : null}
               </div>

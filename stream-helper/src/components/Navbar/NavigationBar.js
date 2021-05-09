@@ -42,9 +42,9 @@ function NavigationBar() {
           {results.movieSearch.map((movie, i) => (
             <div className="searchBarBlock">
             <Link to={`/movie/${movie.id}`}>
-            <Dropdown.Item {...movie} key={i + 1} className="searchBarResults">
+            <div {...movie} key={i + 1} className="searchBarResults">
               {movie.title}
-            </Dropdown.Item>
+            </div>
             </Link>
             </div>
           ))}
