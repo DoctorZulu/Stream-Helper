@@ -12,6 +12,17 @@ import landingImageTwo from "../media/landingImageTwo.png";
 import landingImageThree from "../media/landingImageThree.png";
 import Loader from "../components/spinner/Spinner";
 import { motion } from "framer-motion";
+/* image imports for motion framer */
+import movie1 from "../media/movie1.jpg"
+import movie2 from "../media/movie2.jpg"
+import movie3 from "../media/movie3.jpg"
+import movie4 from "../media/movie4.jpg"
+import movie5 from "../media/movie5.jpg"
+import movie6 from "../media/movie6.jpg"
+import movie7 from "../media/movie7.jpg"
+import movie8 from "../media/movie8.jpg"
+import movie9 from "../media/movie9.jpg"
+import movie10 from "../media/movie10.jpg"
 
 function LandingPage({ history }) {
   const [user, setUser] = useRecoilState(userState);

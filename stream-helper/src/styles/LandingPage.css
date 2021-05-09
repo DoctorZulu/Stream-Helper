@@ -27,8 +27,6 @@ body {
 
 .landingRightCol {
   grid-area: landingRightCol;
-
-  /* TODO: add minimal color animation inside RightCol  */
 }
 
 .landingPageButton {
