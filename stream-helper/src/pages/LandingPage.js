@@ -113,12 +113,12 @@ function LandingPage({ history }) {
         <div className="landingLeftCol">
           <motion.div
             initial={{ y: "110vh", x: "0vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "0vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "0vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 1,
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 3,
@@ -129,12 +129,12 @@ function LandingPage({ history }) {
 
           <motion.div
             initial={{ y: "110vh", x: "0vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "0vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "0vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 8,
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 3,
@@ -144,12 +144,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "10vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "10vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "10vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 3,
-              duration: 9,
+              duration: 11,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 5,
@@ -159,12 +159,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "20vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "20vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "20vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 4.5,
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 2,
@@ -174,12 +174,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "20vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "20vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "20vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 9.5,
-              duration: 12,
+              duration: 14,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 2,
@@ -189,12 +189,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "30vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "30vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "30vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 7,
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 3,
@@ -204,12 +204,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "40vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "40vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "40vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 9,
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 4,
@@ -219,12 +219,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "50vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "50vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "50vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 11,
-              duration: 9,
+              duration: 11,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 5,
@@ -234,12 +234,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "50vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "50vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "50vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 18,
-              duration: 14,
+              duration: 19,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 5,
@@ -249,12 +249,12 @@ function LandingPage({ history }) {
           </motion.div>
           <motion.div
             initial={{ y: "110vh", x: "55vw", opacity: 1 }}
-            animate={{ y: "-30vh", x: "55vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "55vw", opacity: 1 }}
             transition={{
               stiffness: 110,
               damping: 20,
               delay: 24,
-              duration: 13,
+              duration: 18,
               repeat: Infinity,
               repeatType: "loop",
               repeatDelay: 5,
