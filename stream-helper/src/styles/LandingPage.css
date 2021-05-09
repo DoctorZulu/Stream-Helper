@@ -65,7 +65,7 @@ body {
 }
 
 .landingRightCol {
-  background: linear-gradient(132deg, #64dfdf, #252525, #6930c3);
+  background: linear-gradient(132deg, #6481df, #252525, #6930c3);
   background-size: 400% 400%;
   animation: Gradient 10s ease infinite;
   position: relative;

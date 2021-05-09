@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button } from "react-bootstrap";
 import {
   Bookmark,
@@ -14,6 +14,10 @@ import { motion } from "framer-motion";
 
 function ActionButtons(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
+  const [dislikedActive, setDislikedActive] = useState("white");
+  const [likedActive, setLikedActive ] = useState("white");
+  const [savedActive, setSavedActive] = useState("white");
+  const [seenActive, setSeenActive] = useState("white");
 
   const submitLike = async (e) => {
     e.preventDefault();
@@ -84,7 +88,7 @@ function ActionButtons(props) {
             className="actionButtonBox"
             onClick={() => {
               submitSave();
-
+              setSavedActive("green");
               console.log("clicked save");
               toast.warning("🎥 Movie Saved!", {
                 className: "movieSaved",
@@ -100,7 +104,7 @@ function ActionButtons(props) {
           >
             {" "}
             <Bookmark
-              color={"white"}
+              color={savedActive}
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
@@ -116,7 +120,7 @@ function ActionButtons(props) {
             className="actionButtonBox"
             onClick={(e) => {
               submitWatched(e);
-
+              setSeenActive("green")
               console.log("clicked watched");
               toast.warning("	👍 Added to Watched", {
                 className: "movieSaved",
@@ -132,7 +136,7 @@ function ActionButtons(props) {
           >
             {" "}
             <Check2
-              color={"white"}
+              color={seenActive}
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
@@ -148,6 +152,7 @@ function ActionButtons(props) {
             className="actionButtonBox"
             onClick={(e) => {
               submitLike(e);
+              setLikedActive("green")
               console.log("clicked like");
               toast.warning("	👍 Liked Movie", {
                 className: "movieSaved",
@@ -163,7 +168,7 @@ function ActionButtons(props) {
           >
             {" "}
             <HandThumbsUp
-              color={"white"}
+              color={likedActive}
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
@@ -179,6 +184,7 @@ function ActionButtons(props) {
             className="actionButtonBox"
             onClick={(e) => {
               submitDislike(e);
+              setDislikedActive("green");
               console.log("clicked discard");
               toast.warning("	👎 Disliked Movie", {
                 className: "movieSaved",
@@ -194,7 +200,7 @@ function ActionButtons(props) {
           >
             {" "}
             <HandThumbsDown
-              color={"white"}
+              color={dislikedActive}
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
