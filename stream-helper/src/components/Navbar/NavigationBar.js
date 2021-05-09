@@ -32,7 +32,7 @@ function NavigationBar() {
 
   const onChangeTerm = (e) => {
     setSearchTerm(e.target.value);
-    movieSearch({ variables: { movieSearchMovieTitle: searchTerm } });
+    movieSearch({ variables: { movieSearchMovieTitle: searchTerm }, notifyOnNetworkStatusChange: true });
   };
 
   const SearchMapper = () => (
