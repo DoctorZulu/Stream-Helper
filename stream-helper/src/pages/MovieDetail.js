@@ -27,6 +27,7 @@ function MovieDetail(props) {
   const [crew, setCrew] = useState();
   const [genre, setGenre] = useState();
   const [currentMovieBackground, setCurrentMovieBackground] = useState();
+  const [currentMovieUrl, setCurrentMovieUrl] = useState()
 
   const { loading, data, error } = useQuery(MOVIEDETAIL, {
     variables: {
@@ -38,6 +39,7 @@ function MovieDetail(props) {
     if (!loading && data) {
       setCurrentMovieDetails(data);
       setCreditsParse(JSON.parse(data.movie.credits[0].cast));
+      setCurrentMovieBackground((`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${data.movie.backdrop}`).replace(/['"]+/g, ""))
       if (data.movie.watchproviders[0]) {
         setProviders(JSON.parse(data.movie.watchproviders[0].providers));
       }
@@ -47,6 +49,8 @@ function MovieDetail(props) {
     }
   }, [data, loading]);
 
+
+  console.log(currentMovieBackground, "BACKDROP");
 
 
   useEffect(() => {
@@ -190,8 +194,10 @@ function MovieDetail(props) {
                 {cast && crew ? <Mapper /> : null}
               </div>
             </Row>
-            { currentMovieDetails.movie.backdrop != undefined ? <div className="mainMovieBackground" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${currentMovieDetails.movie.backdrop})`}}>
-            </div>: <> </>}
+         {/*    { currentMovieDetails.movie.backdrop && <div className="mainMovieBackground" style={{backgroundImage: `url(${currentMovieBackground})`}}>
+            </div>} */}
+
+            {currentMovieDetails.movie.backdrop && <img src={currentMovieBackground} className="mainMovieBackground"/>}
           
           </Container>
         </>
