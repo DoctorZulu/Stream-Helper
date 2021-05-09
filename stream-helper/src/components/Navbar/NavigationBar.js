@@ -38,17 +38,17 @@ function NavigationBar() {
   const SearchMapper = () => (
     <>
       {results ? (
-        <ul>
+        <div className="searchBarContainer">
           {results.movieSearch.map((movie, i) => (
-            <>
+            <div className="searchBarBlock">
             <Link to={`/movie/${movie.id}`}>
-            <li {...movie} key={i + 1}>
+            <div {...movie} key={i + 1} className="searchBarResults">
               {movie.title}
-            </li>
+            </div>
             </Link>
-            </>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : null}
     </>
   );
@@ -88,15 +88,15 @@ function NavigationBar() {
           <Link to={`/profile/${user && user.id}`}>
             <Nav.Item className="buttonStyle"> Profile </Nav.Item>
           </Link>
-          <Form inline>
+          <Form inline className="searchBarForm">
             <FormControl
               type="text"
               placeholder="Search"
               className="mr-sm-2"
               onChange={(e) => onChangeTerm(e)}
             />
-          </Form>
           <SearchMapper />
+          </Form>
         </Navbar.Collapse>
       </Navbar>
     </>
