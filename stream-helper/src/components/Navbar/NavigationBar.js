@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 /* styling */
 import "../../styles/NavigationBar.css";
-import { Nav, Navbar, Form, FormControl, Dropdown } from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, Spinner } from "react-bootstrap";
+
 /* import { SearchPanel } from "react-search-panel"; */
 /* import userState from Recoil */
 import { userState } from "../../recoil/atoms";
