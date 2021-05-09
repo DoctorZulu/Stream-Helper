@@ -30,9 +30,7 @@ a:hover {
   overflow-y: scroll !important;
 }
 
-.searchBarBlock {
-  overflow-y: scroll !important;
-}
+
 
 .searchBarBlock:hover {
   background-color: #007bff31;
