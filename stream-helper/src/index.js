@@ -20,7 +20,9 @@ import {
 } from "@apollo/client";
 
 const httpLink = new HttpLink({
-  uri: "https://stream-helper-api.herokuapp.com/graphql",
+  uri:
+    "http://localhost:4025/graphql" /* ||
+    "https://stream-helper-api.herokuapp.com/graphql", */,
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
@@ -48,13 +50,13 @@ const client = new ApolloClient({
             merge(existing = [], incoming = [], { args, readField }) {
               const merged = existing ? existing.slice(0) : [];
               const existingIdSet = new Set(
-                merged.map((task) => readField("id", task))
+                merged.map((task) => readField("id", task)),
               );
               incoming = incoming.filter(
-                (task) => !existingIdSet.has(readField("id", task))
+                (task) => !existingIdSet.has(readField("id", task)),
               );
               const afterIndex = merged.findIndex(
-                (task) => args.afterId === readField("id", task)
+                (task) => args.afterId === readField("id", task),
               );
               if (afterIndex >= 0) {
                 merged.splice(afterIndex + 1, 0, ...incoming);
@@ -72,13 +74,13 @@ const client = new ApolloClient({
             merge(existing = [], incoming = [], { args, readField }) {
               const merged = existing ? existing.slice(0) : [];
               const existingIdSet = new Set(
-                merged.map((task) => readField("id", task))
+                merged.map((task) => readField("id", task)),
               );
               incoming = incoming.filter(
-                (task) => !existingIdSet.has(readField("id", task))
+                (task) => !existingIdSet.has(readField("id", task)),
               );
               const afterIndex = merged.findIndex(
-                (task) => args.afterId === readField("id", task)
+                (task) => args.afterId === readField("id", task),
               );
               if (afterIndex >= 0) {
                 merged.splice(afterIndex + 1, 0, ...incoming);
@@ -97,13 +99,13 @@ const client = new ApolloClient({
             merge(existing = [], incoming = [], { args, readField }) {
               const merged = existing ? existing.slice(0) : [];
               const existingIdSet = new Set(
-                merged.map((task) => readField("id", task))
+                merged.map((task) => readField("id", task)),
               );
               incoming = incoming.filter(
-                (task) => !existingIdSet.has(readField("id", task))
+                (task) => !existingIdSet.has(readField("id", task)),
               );
               const afterIndex = merged.findIndex(
-                (task) => args.afterId === readField("id", task)
+                (task) => args.afterId === readField("id", task),
               );
               if (afterIndex >= 0) {
                 merged.splice(afterIndex + 1, 0, ...incoming);
@@ -151,7 +153,7 @@ ReactDOM.render(
       </ApolloProvider>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function
