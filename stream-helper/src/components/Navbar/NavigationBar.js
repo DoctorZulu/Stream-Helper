@@ -36,17 +36,26 @@ function NavigationBar() {
     movieSearch({ variables: { movieSearchMovieTitle: searchTerm } });
   };
 
+  const onClickLink = () => {
+    setSearchTerm(undefined);
+  };
+
   const SearchMapper = () => (
     <>
       {results ? (
         <div className="searchBarContainer">
           {results.movieSearch.map((movie, i) => (
             <div className="searchBarBlock">
-            <Link to={`/movie/${movie.id}`}>
-            <div {...movie} key={i + 1} className="searchBarResults">
-              {movie.title}
-            </div>
-            </Link>
+              <Link to={`/movie/${movie.id}`}>
+                <div
+                  {...movie}
+                  key={i + 1}
+                  className="searchBarResults"
+                  onClick={onClickLink}
+                >
+                  {movie.title}
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -96,7 +105,7 @@ function NavigationBar() {
               className="mr-sm-2"
               onChange={(e) => onChangeTerm(e)}
             />
-          <SearchMapper />
+            <SearchMapper />
           </Form>
         </Navbar.Collapse>
       </Navbar>

@@ -21,9 +21,7 @@
 .starRatingsContent {
   position: absolute;
   color: black;
-
 }
-
 
 .movieCardTitle a {
   color: whitesmoke !important;
@@ -80,8 +78,9 @@
   position: absolute;
   right: 0;
   padding: 15px;
-  bottom: 340px;
+  bottom: 375px;
   right: -5px;
+  cursor: pointer;
 }
 
 .Toastify__progress-bar--default {

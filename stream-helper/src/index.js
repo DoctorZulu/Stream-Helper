@@ -21,8 +21,7 @@ import {
 
 const httpLink = new HttpLink({
   uri:
-    "http://localhost:4025/graphql" /* ||
-    "https://stream-helper-api.herokuapp.com/graphql", */,
+    /* "https://stream-helper-api.herokuapp.com/graphql" */ "http://localhost:4025/graphql",
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {

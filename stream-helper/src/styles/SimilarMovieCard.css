@@ -1,0 +1,23 @@
+.similarMovieContainer {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+    overflow: auto;
+    white-space: nowrap;
+    height: 300px;
+    width: 100%;
+}
+
+.similarMovieCard {
+    display: flex;
+    width: 200px;
+    height: 300px;
+    grid-area: similarMovie;
+    border-radius: 12px;
+}
+
+.similarMovieCardLink {
+    width: 200px;
+    height: 300px;
+}
