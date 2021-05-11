@@ -12,6 +12,16 @@ import landingImageTwo from "../media/landingImageTwo.png";
 import landingImageThree from "../media/landingImageThree.png";
 import Loader from "../components/spinner/Spinner";
 import { motion } from "framer-motion";
+import movie1 from "../media/movie1.jpg";
+import movie2 from "../media/movie2.jpg";
+import movie3 from "../media/movie3.jpg";
+import movie4 from "../media/movie4.jpg";
+import movie5 from "../media/movie5.jpg";
+import movie6 from "../media/movie6.jpg";
+import movie7 from "../media/movie7.jpg";
+import movie8 from "../media/movie8.jpg";
+import movie9 from "../media/movie9.jpg";
+import movie10 from "../media/movie10.jpg";
 
 function LandingPage({ history }) {
   const [user, setUser] = useRecoilState(userState);
@@ -101,6 +111,158 @@ function LandingPage({ history }) {
         style={{ color: "black", background: "whitesmoke" }}
       >
         <div className="landingLeftCol">
+          <motion.div
+            initial={{ y: "110vh", x: "0vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "0vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 1,
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 3,
+            }}
+          >
+            <img className="floatingCard" src={movie1} alt="movie card" />
+          </motion.div>
+
+          <motion.div
+            initial={{ y: "110vh", x: "0vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "0vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 8,
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 3,
+            }}
+          >
+            <img className="floatingCard" src={movie7} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "10vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "10vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 3,
+              duration: 11,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 5,
+            }}
+          >
+            <img className="floatingCard" src={movie2} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "20vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "20vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 4.5,
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 2,
+            }}
+          >
+            <img className="floatingCard" src={movie3} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "20vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "20vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 9.5,
+              duration: 14,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 2,
+            }}
+          >
+            <img className="floatingCard" src={movie8} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "30vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "30vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 7,
+              duration: 12,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 3,
+            }}
+          >
+            <img className="floatingCard" src={movie4} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "40vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "40vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 9,
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 4,
+            }}
+          >
+            <img className="floatingCard" src={movie5} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "50vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "50vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 11,
+              duration: 11,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 5,
+            }}
+          >
+            <img className="floatingCard" src={movie6} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "50vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "50vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 18,
+              duration: 19,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 5,
+            }}
+          >
+            <img className="floatingCard" src={movie9} alt="movie card" />
+          </motion.div>
+          <motion.div
+            initial={{ y: "110vh", x: "55vw", opacity: 1 }}
+            animate={{ y: "-100vh", x: "55vw", opacity: 1 }}
+            transition={{
+              stiffness: 110,
+              damping: 20,
+              delay: 24,
+              duration: 18,
+              repeat: Infinity,
+              repeatType: "loop",
+              repeatDelay: 5,
+            }}
+          >
+            <img className="floatingCard" src={movie10} alt="movie card" />
+          </motion.div>
+
           <div className="landingLeftText">
             <h1 className="landingTitle">
               {" "}

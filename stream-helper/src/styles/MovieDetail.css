@@ -17,14 +17,13 @@
 /* background image for movies */
 
 .mainMovieBackground {
-  min-height: 100vh;
-  position: absolute;
-  top: 5vh;
-  background-image: url();
-  z-index: 1;
-  background-size: cover;
-  filter: blur(4px) , brightness(50%);
-  -webkit-filter: blur(4px);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  min-height: 100%;
+  min-width: 100%;
+  filter: brightness(0.5) blur(4px);
+  z-index: -100;
 }
 
 .loadingMovieDetail {
@@ -69,7 +68,7 @@
   display: flex;
   color: whitesmoke;
   width: 90%;
-  height: 100px;
+  height: 90px;
   overflow: auto;
   white-space: nowrap;
 }
