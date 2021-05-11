@@ -86,7 +86,7 @@ function ActionButtonsMain(props) {
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="mainActionBox"
             onClick={() => {
               submitSave();
@@ -110,8 +110,8 @@ function ActionButtonsMain(props) {
               size={15}
               className="movieDetailHeartIcon"
             />{" "}
-            Save
-          </Button>
+            <p style={{color: "white"}}> Save</p>
+          </div>
         </motion.button>
 
         <motion.button
@@ -119,7 +119,7 @@ function ActionButtonsMain(props) {
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="mainActionBox"
             onClick={(e) => {
               submitWatched(e);
@@ -142,8 +142,8 @@ function ActionButtonsMain(props) {
               size={15}
               className="movieDetailHeartIcon"
             />
-            Seen
-          </Button>
+             <p style={{color: "white"}}> Seen</p>
+          </div>
         </motion.button>
 
         <motion.button
@@ -151,7 +151,7 @@ function ActionButtonsMain(props) {
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="mainActionBox"
             onClick={(e) => {
               submitLike(e);
@@ -175,8 +175,8 @@ function ActionButtonsMain(props) {
               size={15}
               className="movieDetailHeartIcon"
             />{" "}
-            Like
-          </Button>
+            <p style={{color: "white"}}> Like</p>
+          </div>
         </motion.button>
 
         <motion.button
@@ -184,7 +184,7 @@ function ActionButtonsMain(props) {
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="mainActionBox"
             onClick={(e) => {
               submitDislike(e);
@@ -208,8 +208,8 @@ function ActionButtonsMain(props) {
               size={15}
               className="movieDetailHeartIcon"
             />{" "}
-            Dislike
-          </Button>
+             <p style={{color: "white"}}> Dislike</p>
+          </div>
         </motion.button>
       </div>
     </>

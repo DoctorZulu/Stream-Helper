@@ -152,7 +152,7 @@ function MovieDetail(props) {
       {currentMovieDetails ? (
         <>
           <Container className="mainMovieDetailContainer">
-            <Row>
+            <Row className="movieDetailsBox">
               {/* SECTION: movie image/rating/base info */}
               <Col>
                 <img

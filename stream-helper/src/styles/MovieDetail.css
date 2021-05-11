@@ -14,7 +14,10 @@
   width: 500px;
 }
 
-/* background image for movies */
+.movieDetailsBox {
+  border: solid 2px;
+  border-radius: 25px;
+}
 
 .mainMovieBackground {
   position: fixed;
