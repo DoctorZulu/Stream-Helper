@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../recoil/atoms";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 import { toast } from "react-toastify";
-import { Form, Button, Modal, Carousel } from "react-bootstrap";
+import { Form, Button, Modal, Carousel, Alert } from "react-bootstrap";
 import landingImageOne from "../media/landingImageOne.png";
 import landingImageTwo from "../media/landingImageTwo.png";
 import landingImageThree from "../media/landingImageThree.png";
@@ -37,6 +37,7 @@ function LandingPage({ history }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [validated, setValidated] = useState(false);
 
   const [
     login,
@@ -52,17 +53,24 @@ function LandingPage({ history }) {
       const { signinUser } = dataL;
       setUser(signinUser);
       localStorage.setItem("uid", `Bearer ${signinUser.token}`);
+      setValidated(true);
+
       history.push("/home");
     }
   }, [dataL]);
 
   useEffect(() => {
     if (!loadingS && dataS) {
+      setValidated(true);
     }
   }, [dataL]);
 
   const submitHandlerLogin = async (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     await login({
       variables: {
         signinUserEmail: email,
@@ -72,7 +80,11 @@ function LandingPage({ history }) {
   };
 
   const submitHandlerSignup = async (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     await signup({
       variables: {
         signupUserSignupInput: {
@@ -91,18 +103,19 @@ function LandingPage({ history }) {
       draggable: true,
       progress: undefined,
     });
-    setIsNewUser(false);
+    if (!loadingS && dataS) {
+      setIsNewUser(false);
+    }
   };
 
   if (loadingS) return "Loading...";
-  if (errorS) return `Error! ${errorS.message}`;
+
   if (loadingL)
     return (
       <>
         <Loader />
       </>
     );
-  if (errorL) return `Error! ${errorL.message}`;
 
   return (
     <>
@@ -363,35 +376,53 @@ function LandingPage({ history }) {
           <div className="landingRightCol">
             {isNewUser === false ? (
               /* if user clicks login -> */
-              <div className="landingPageForm">
-                <div className="formShowToggle" style={{ display: formShow }}>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Enter email"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </Form.Group>
+              <Form noValidate validated={validated}>
+                <div className="landingPageForm">
+                  <div className="formShowToggle" style={{ display: formShow }}>
+                    <Form.Group controlId="formBasicEmail">
+                      {errorL ? (
+                        <Alert variant="danger">{errorL.message}</Alert>
+                      ) : null}
 
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </Form.Group>
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control
+                        required
+                        type="email"
+                        placeholder="Enter email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Please choose a Email.
+                      </Form.Control.Feedback>
+                    </Form.Group>
 
-                  <Button type="submit" onClick={submitHandlerLogin}>
-                    {" "}
-                    Login{" "}
-                  </Button>
+                    <Form.Group controlId="formBasicPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Please choose a Password.
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Button type="submit" onClick={submitHandlerLogin}>
+                      Login
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </Form>
             ) : (
               /* if user clicks register -> */
               <div className="landingPageForm">
+                {/* error handler for Signup */}
+
+                {errorS ? (
+                  <Alert variant="danger">{errorS.message}</Alert>
+                ) : null}
                 <div className="formShowToggle" style={{ display: formShow }}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

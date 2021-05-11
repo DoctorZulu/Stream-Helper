@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "../../styles/MovieCard.css";
 import Loader from "../spinner/Spinner";
 import { motion } from "framer-motion";
+import { v1 as uuidv1 } from "uuid";
 
 const Infinite = ({ allMovies, onLoadMore }) => {
   // this is a filter for dan the great
@@ -14,7 +15,7 @@ const Infinite = ({ allMovies, onLoadMore }) => {
       "pk" &&
       m.title != "Gabriel's Inferno" &&
       m.title != "Gabriel's Inferno Part II" &&
-      m.title != "Gabriel's Inferno Part III"
+      m.title != "Gabriel's Inferno Part III",
   );
   console.log(languageFilter);
   const Mapper = () => (
