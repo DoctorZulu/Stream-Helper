@@ -238,6 +238,8 @@ const MOVIEDETAIL = gql`
       image
       genres
       backdrop
+      movieKeywords
+      similarMovies
       trailers1
       trailers2
       trailers3
