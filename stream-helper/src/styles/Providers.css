@@ -15,6 +15,7 @@
 
 .providerText {
   margin-top: 1px;
+  min-width: 8rem !important;
 }
 
 

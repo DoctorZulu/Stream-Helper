@@ -44,13 +44,12 @@
 
   .actionButtonContainer {
     margin-bottom: 25px !important;
+    width: 300px;
   }
 
   .actionButtonBox {
-    width: 95px;
+    width: 40px;
     margin: 2px;
-    background-color: rgb(29, 29, 29) !important;
-    border-color: rgb(29, 29, 29) !important;
   }
   .mainActionButtons {
     margin-bottom: 10px !important;
