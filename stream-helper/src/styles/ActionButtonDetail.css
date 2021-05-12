@@ -117,6 +117,17 @@
   .mainActionButtons {
     margin-bottom: 10px !important;
     margin-top: -50px;
-    max-width: 300px !important;
+    max-width: 1000px !important;
+  }
+
+  .actionButtonContainer {
+    margin-bottom: 25px !important;
+    width: 500px;
+    margin-left: 75px;
+  }
+
+  .actionButtonBox {
+    width: 80px;
+    margin: 10px;
   }
 }
