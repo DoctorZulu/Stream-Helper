@@ -386,3 +386,7 @@ div.movieDetailCast::-webkit-scrollbar-thumb:hover {
     height: 30%;
   }
 }
+
+.providerText {
+  min-width: 9rem !important;
+}

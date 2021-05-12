@@ -54,9 +54,8 @@ const MainProviders = ({ providerid }) => {
           .categoryId,
       ),
     );
-    if (loadingAll === false  ) {
-      setIncrementingCursor(incrementingCursor + 20)
-      
+    if (loadingAll === false) {
+      setIncrementingCursor(incrementingCursor + 20);
     }
   };
   const WithoutProviders = () => {

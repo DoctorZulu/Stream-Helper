@@ -38,13 +38,7 @@ const InfiniteRecommendations = ({
     </div>
   );
 
-  // let uniqueList = [...new Set(userMovieRecommendations)];
-
-  // let finalList = [...uniqueList];
-
-  // console.log(finalList);
   console.log(languageFilter);
-  console.log(cursorLength, "THIS BITCH HERE")
 
   return (
     <>

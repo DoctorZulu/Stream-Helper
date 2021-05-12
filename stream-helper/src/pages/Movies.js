@@ -3,18 +3,64 @@ import { Nav } from "react-bootstrap";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
-import MainProviders from "../components/providers/MainProviders";
 import moviesHeroImage from "../media/moviesHeroImage.jpg";
 import CheckUser from "../hooks/checkUser";
+import ProvidersHome from "../components/providers/ProvidersHome";
 function Movies({ history }) {
   /* Hero banner content */
   const heroTitle = "Welcome To FlixAlways";
   const heroText = "These Movies Will Update As You Use FlixAlways";
   const [isLoading, setIsLoading] = useState(true);
   const mainImage = { moviesHeroImage };
-  const [providerfilter, setProviderfilter] = useState(false);
-  const [providerid, setProviderid] = useState();
+  const [providerid, setProviderid] = useState({
+    netflix: {
+      id: 8,
+      active: false,
+    },
+    hbomax: {
+      id: 384,
+      active: false,
+    },
+    hulu: {
+      id: 15,
+      active: false,
+    },
+    amazonprime: {
+      id: 9,
+      active: false,
+    },
+    disney: {
+      id: 337,
+      active: false,
+    },
+  });
 
+  const handleNetflixClick = () => {
+    providerid.netflix.active
+      ? setProviderid({ ...providerid, netflix: { active: false } })
+      : setProviderid({ ...providerid, netflix: { active: true } });
+  };
+  const handleHboMaxClick = () => {
+    providerid.hbomax.active
+      ? setProviderid({ ...providerid, hbomax: { active: false } })
+      : setProviderid({ ...providerid, hbomax: { active: true } });
+  };
+  const handleHuluClick = () => {
+    providerid.hulu.active
+      ? setProviderid({ ...providerid, hulu: { active: false } })
+      : setProviderid({ ...providerid, hulu: { active: true } });
+  };
+  const handleAmazonPrimeClick = () => {
+    providerid.amazonprime.active
+      ? setProviderid({ ...providerid, amazonprime: { active: false } })
+      : setProviderid({ ...providerid, amazonprime: { active: true } });
+  };
+
+  const handleDisneyClick = () => {
+    providerid.disney.active
+      ? setProviderid({ ...providerid, disney: { active: false } })
+      : setProviderid({ ...providerid, disney: { active: true } });
+  };
   return (
     <>
       <NavigationBar />
@@ -29,7 +75,7 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderfilter(false);
+              // setProviderfilter(false);
             }}
             href="/home"
           >
@@ -39,8 +85,8 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderid(8);
-              setProviderfilter(true);
+              handleNetflixClick();
+              // setProviderfilter(true);
             }}
             eventKey="link-1"
           >
@@ -55,8 +101,8 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderid(384);
-              setProviderfilter(true);
+              handleHboMaxClick();
+              // setProviderfilter(true);
             }}
             eventKey="link-2"
           >
@@ -71,8 +117,8 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderid(15);
-              setProviderfilter(true);
+              handleHuluClick();
+              // setProviderfilter(true);
             }}
             eventKey="link-3"
           >
@@ -87,8 +133,8 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderid(9);
-              setProviderfilter(true);
+              handleAmazonPrimeClick();
+              // setProviderfilter(true);
             }}
             eventKey="link-4"
           >
@@ -103,8 +149,8 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderid(337);
-              setProviderfilter(true);
+              handleDisneyClick();
+              // setProviderfilter(true);
             }}
             eventKey="link-5"
           >
@@ -117,7 +163,7 @@ function Movies({ history }) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <MainProviders providerid={providerid} />
+      {<ProvidersHome providerid={providerid} />}
     </>
   );
 }

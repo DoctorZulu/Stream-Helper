@@ -281,7 +281,7 @@ const PROVIDERMOVIEQUERY = gql`
     $providerMovieQueryTake: Int
     $providerMovieQuerySkip: Int
     $providerMovieQueryMyCursor: Int
-    $providerMovieQueryProviderId: Int
+    $providerMovieQueryProviderId: [ProviderIds]
   ) {
     providerMovieQuery(
       take: $providerMovieQueryTake
