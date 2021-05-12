@@ -85,6 +85,8 @@
 
 }
 
+
+/* iphone X */
 @media only screen and (min-device-width: 375px) and (min-height: 768px) and (max-height: 820px) {
     .similarMovieContainer {
         display: grid;
@@ -102,6 +104,37 @@
         display: flex;
         width: 125px;
         height: 200px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+/* ipad */
+
+@media only screen and (min-device-width: 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) { 
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 38% 38% 38% 38% 38% 38% 38% 38%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 420px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 250px;
+        height: 400px;
         margin-left: 3px;
         margin-right: 3px;
         grid-area: similarMovie;
