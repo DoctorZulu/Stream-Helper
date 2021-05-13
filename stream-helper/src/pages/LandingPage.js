@@ -115,7 +115,10 @@ function LandingPage({ history }) {
 
   return (
     <>
-      <div className="landingContentGrid">
+      <div
+        className="landingContentGrid"
+        style={{ color: "black", background: "whitesmoke" }}
+      >
         <div className="landingLeftCol">
           <motion.div
             initial={{ y: "110vh", x: "0vw", opacity: 1 }}
