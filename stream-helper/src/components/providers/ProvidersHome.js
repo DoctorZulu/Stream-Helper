@@ -73,7 +73,40 @@ const ProvidersHome = ({ providerid }) => {
 
     {
       variables: {
-        filterLengthProviderId: 384,
+        filterLengthProviderId:
+          providerid.netflix.active ||
+          providerid.hbomax.active ||
+          providerid.hulu.active ||
+          providerid.amazonprime.active ||
+          providerid.disney.active
+            ? [
+                providerid.netflix.active
+                  ? {
+                      id: 8,
+                    }
+                  : { id: 0 },
+                providerid.hbomax.active
+                  ? {
+                      id: 384,
+                    }
+                  : { id: 0 },
+                providerid.hulu.active
+                  ? {
+                      id: 15,
+                    }
+                  : { id: 0 },
+                providerid.amazonprime.active
+                  ? {
+                      id: 9,
+                    }
+                  : { id: 0 },
+                providerid.disney.active
+                  ? {
+                      id: 337,
+                    }
+                  : { id: 0 },
+              ]
+            : null,
       },
     },
   );
@@ -105,27 +138,28 @@ const ProvidersHome = ({ providerid }) => {
         );
         setUserMovieRecommendations(filteredMovies);
       }
-      console.log(filteredMovies);
-      // helper();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerid]);
 
   useEffect(() => {
-    if (userMovieRecommendations) {
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    if (userMovieRecommendations && dataMore) {
-      if (userMovieRecommendations.length < dataMore.filterLength) {
-        setMore(true);
-      } else {
-        setMore(false);
+    if ((!loadingMore, dataMore)) {
+      if (userMovieRecommendations) {
+        setCursor(
+          userMovieRecommendations[userMovieRecommendations.length - 1]
+            .categoryId,
+        );
+      }
+      if (userMovieRecommendations && dataMore) {
+        if (userMovieRecommendations.length < dataMore.filterLength) {
+          setMore(true);
+        } else {
+          setMore(false);
+        }
       }
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingMore, dataMore]);
 
   const bigFetch = () => {
     fetchMore(
