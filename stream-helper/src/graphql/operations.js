@@ -175,7 +175,7 @@ const LIKEDMOVIES = gql`
 `;
 
 const FILTEREDLENGTH = gql`
-  query Query($filterLengthProviderId: Int!) {
+  query Query($filterLengthProviderId: [ProviderIds]) {
     filterLength(providerId: $filterLengthProviderId)
   }
 `;
