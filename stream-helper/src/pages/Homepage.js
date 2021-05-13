@@ -41,7 +41,6 @@ function Homepage({ history }) {
       },
     },
   );
-  console.log(dataAll);
 
   useEffect(() => {
     if (!loadingAll && dataAll) {

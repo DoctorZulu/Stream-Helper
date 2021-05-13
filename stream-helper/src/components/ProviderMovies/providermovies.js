@@ -24,7 +24,7 @@ const ProviderMovies = ({ providerprop }) => {
         providerMovieQueryMyCursor: cursor,
         providerMovieQueryProviderId: provideridprop,
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -33,7 +33,8 @@ const ProviderMovies = ({ providerprop }) => {
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,8 +48,9 @@ const ProviderMovies = ({ providerprop }) => {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
-      )
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
