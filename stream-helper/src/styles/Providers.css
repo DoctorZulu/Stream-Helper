@@ -14,7 +14,8 @@
 }
 
 .providerText {
-  margin-top: 7px;
+  margin-top: 1px;
+  min-width: 8rem !important;
 }
 
 

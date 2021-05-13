@@ -146,7 +146,7 @@ function MovieDetail(props) {
       {currentMovieDetails ? (
         <>
           <Container className="mainMovieDetailContainer">
-            <Row>
+            <Row className="movieDetailsBox">
               {/* SECTION: movie image/rating/base info */}
               <Col>
                 <img
@@ -177,31 +177,37 @@ function MovieDetail(props) {
                 </div>
               </Col>
               {/* SECTION: Movie description/cast/runtime/watchproviders */}
-              <div className="streamProviderContainer">
-                <p> Watch Now On:</p>
-                <div className="streamProviderBox">
-                  <Row>
-                    <Col>
-                      {providers ? (
-                        <Providers providers={providers} />
-                      ) : (
-                        <h5 className="unavailable"> Currently Unavailable</h5>
-                      )}
-                    </Col>
-                    <Col>
-                      {providers ? (
-                        <ProvidersBuy providers={providers} />
-                      ) : (
-                        <> </>
-                      )}
-                    </Col>
-                  </Row>
-                  {/* <ProvidersRent providers={providers} /> */}
-                </div>
-              </div>
               <div className="movieDetailContent">
+                <div className="streamProviderContainer">
+                  <p> Watch Now On:</p>
+                  <div className="streamProviderBox">
+                    <Row>
+                      <Col>
+                        {providers ? (
+                          <Providers providers={providers} />
+                        ) : (
+                          <h5 className="unavailable">
+                            {" "}
+                            Currently Unavailable
+                          </h5>
+                        )}
+                      </Col>
+                      <Col>
+                        {providers ? (
+                          <ProvidersBuy providers={providers} />
+                        ) : (
+                          <> </>
+                        )}
+                      </Col>
+                    </Row>
+                    {/* <ProvidersRent providers={providers} /> */}
+                  </div>
+                </div>
                 <h2> {currentMovieDetails.movie.title}</h2>
-                <h4> Synopsis: {currentMovieDetails.movie.overview}</h4>
+                <h5 style={{ width: "100%" }}>
+                  {" "}
+                  Synopsis: {currentMovieDetails.movie.overview}
+                </h5>
                 {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
                 {/* this is the trailer  */}
                 {currentMovieDetails.movie.trailers1 && (
@@ -210,15 +216,11 @@ function MovieDetail(props) {
               </div>
 
               {/* SECTION: similar movie card */}
-              <h4
-                style={{
-                  color: "whitesmoke",
-                  marginTop: "20px",
-                  marginLeft: "15px",
-                }}
-              >
-                Similar Movies:{" "}
-              </h4>
+              <div className="similarMoviesTitle">
+                <h4 style={{ color: "whitesmoke", marginTop: "20px" }}>
+                  Similar Movies:{" "}
+                </h4>
+              </div>
               <div className="similarMovieContainer">
                 {currentMovieDetails.movie.similarMovies ? (
                   <SimilarMovieMapper />

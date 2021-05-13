@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import {
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
+  USERMOVIERECOMMENDATIONS,
 } from "../../graphql/operations.js";
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
@@ -24,33 +25,40 @@ const ProvidersHome = ({ providerid }) => {
         providerMovieQueryTake: take,
         providerMovieQuerySkip: skip,
         providerMovieQueryMyCursor: parseInt(cursor),
-        providerMovieQueryProviderId: [
-          providerid.netflix.active
-            ? {
-                id: 8,
-              }
-            : { id: 0 },
-          providerid.hbomax.active
-            ? {
-                id: 384,
-              }
-            : { id: 0 },
-          providerid.hulu.active
-            ? {
-                id: 15,
-              }
-            : { id: 0 },
-          providerid.amazonprime.active
-            ? {
-                id: 9,
-              }
-            : { id: 0 },
+        providerMovieQueryProviderId:
+          providerid.netflix.active ||
+          providerid.hbomax.active ||
+          providerid.hulu.active ||
+          providerid.amazonprime.active ||
           providerid.disney.active
-            ? {
-                id: 337,
-              }
-            : { id: 0 },
-        ],
+            ? [
+                providerid.netflix.active
+                  ? {
+                      id: 8,
+                    }
+                  : { id: 0 },
+                providerid.hbomax.active
+                  ? {
+                      id: 384,
+                    }
+                  : { id: 0 },
+                providerid.hulu.active
+                  ? {
+                      id: 15,
+                    }
+                  : { id: 0 },
+                providerid.amazonprime.active
+                  ? {
+                      id: 9,
+                    }
+                  : { id: 0 },
+                providerid.disney.active
+                  ? {
+                      id: 337,
+                    }
+                  : { id: 0 },
+              ]
+            : null,
       },
     },
   );
@@ -69,22 +77,38 @@ const ProvidersHome = ({ providerid }) => {
       },
     },
   );
-  console.log(providerid);
+  let filteredMovies;
   useEffect(() => {
     if (!loadingAll && dataAll) {
-      const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) =>
-          number.watchproviders[0].providerId ===
-            (providerid.netflix.active ? 8 : null) ||
-          (providerid.hbomax.active ? 384 : null) ||
-          (providerid.hulu.active ? 15 : null) ||
-          (providerid.amazonprime.active ? 9 : null) ||
-          (providerid.disney.active ? 337 : null),
-      );
+      if (
+        !providerid.netflix.active &&
+        !providerid.hbomax.active &&
+        !providerid.hulu.active &&
+        !providerid.amazonprime.active &&
+        !providerid.disney.active
+      ) {
+        setUserMovieRecommendations(dataAll.providerMovieQuery);
+      } else {
+        filteredMovies = dataAll.providerMovieQuery.filter((number) =>
+          number.watchproviders
+            ? number.watchproviders[0].providerId ===
+                (providerid.netflix.active ? 8 : null) ||
+              number.watchproviders[0].providerId ===
+                (providerid.hbomax.active ? 384 : null) ||
+              number.watchproviders[0].providerId ===
+                (providerid.hulu.active ? 15 : null) ||
+              number.watchproviders[0].providerId ===
+                (providerid.amazonprime.active ? 9 : null) ||
+              number.watchproviders[0].providerId ===
+                (providerid.disney.active ? 337 : null)
+            : null,
+        );
+        setUserMovieRecommendations(filteredMovies);
+      }
       console.log(filteredMovies);
-      setUserMovieRecommendations(dataAll.providerMovieQuery);
+      // helper();
     }
-  }, [loadingAll, dataAll]);
+  }, [loadingAll, dataAll, providerid]);
 
   useEffect(() => {
     if (userMovieRecommendations) {
@@ -104,19 +128,17 @@ const ProvidersHome = ({ providerid }) => {
   }, []);
 
   const bigFetch = () => {
-    setTimeout(() => {
-      fetchMore(
-        {
-          variables: {
-            providerMovieQueryMyCursor: userMovieRecommendations.length,
-          },
+    fetchMore(
+      {
+        variables: {
+          providerMovieQueryMyCursor: userMovieRecommendations.length,
         },
-        setCursor(
-          userMovieRecommendations[userMovieRecommendations.length - 1]
-            .categoryId,
-        ),
-      );
-    }, 200);
+      },
+      setCursor(
+        userMovieRecommendations[userMovieRecommendations.length - 1]
+          .categoryId,
+      ),
+    );
   };
   // console.log(userMovieRecommendations);
 

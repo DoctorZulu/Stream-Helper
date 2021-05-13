@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Nav } from "react-bootstrap";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
@@ -11,6 +11,11 @@ function Movies({ history }) {
   const heroTitle = "Welcome To FlixAlways";
   const heroText = "These Movies Will Update As You Use FlixAlways";
   const [isLoading, setIsLoading] = useState(true);
+  const [activeStyleOne, setActiveStyleOne] = useState("black");
+  const [activeStyleTwo, setActiveStyleTwo] = useState("black");
+  const [activeStyleThree, setActiveStyleThree] = useState("black");
+  const [activeStyleFour, setActiveStyleFour] = useState("black");
+  const [activeStyleFive, setActiveStyleFive] = useState("black");
   const mainImage = { moviesHeroImage };
   const [providerid, setProviderid] = useState({
     netflix: {
@@ -35,6 +40,34 @@ function Movies({ history }) {
     },
   });
 
+  useEffect(() => {
+    if (providerid.netflix.active === true) {
+      setActiveStyleOne("#007bff");
+    } else if (providerid.netflix.active === false) {
+      setActiveStyleOne("black");
+    }
+    if (providerid.hbomax.active === true) {
+      setActiveStyleTwo("#007bff");
+    } else if (providerid.hbomax.active === false) {
+      setActiveStyleTwo("black");
+    }
+    if (providerid.hulu.active === true) {
+      setActiveStyleThree("#007bff");
+    } else if (providerid.hulu.active === false) {
+      setActiveStyleThree("black");
+    }
+    if (providerid.amazonprime.active === true) {
+      setActiveStyleFour("#007bff");
+    } else if (providerid.amazonprime.active === false) {
+      setActiveStyleFour("black");
+    }
+    if (providerid.disney.active === true) {
+      setActiveStyleFive("#007bff");
+    } else if (providerid.disney.active === false) {
+      setActiveStyleFive("black");
+    }
+  }, [providerid]);
+
   const handleNetflixClick = () => {
     providerid.netflix.active
       ? setProviderid({ ...providerid, netflix: { active: false } })
@@ -45,6 +78,7 @@ function Movies({ history }) {
       ? setProviderid({ ...providerid, hbomax: { active: false } })
       : setProviderid({ ...providerid, hbomax: { active: true } });
   };
+
   const handleHuluClick = () => {
     providerid.hulu.active
       ? setProviderid({ ...providerid, hulu: { active: false } })
@@ -71,7 +105,7 @@ function Movies({ history }) {
         mainImage={mainImage}
         history={history}
       />
-      <Nav variant="pills" defaultActiveKey="/home">
+      <Nav variant="pills">
         <Nav.Item>
           <Nav.Link
             onClick={() => {
@@ -88,10 +122,10 @@ function Movies({ history }) {
               handleNetflixClick();
               // setProviderfilter(true);
             }}
-            eventKey="link-1"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleOne }}
               src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -104,10 +138,10 @@ function Movies({ history }) {
               handleHboMaxClick();
               // setProviderfilter(true);
             }}
-            eventKey="link-2"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleTwo }}
               src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -120,10 +154,10 @@ function Movies({ history }) {
               handleHuluClick();
               // setProviderfilter(true);
             }}
-            eventKey="link-3"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleThree }}
               src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -136,10 +170,10 @@ function Movies({ history }) {
               handleAmazonPrimeClick();
               // setProviderfilter(true);
             }}
-            eventKey="link-4"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleFour }}
               src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -152,10 +186,10 @@ function Movies({ history }) {
               handleDisneyClick();
               // setProviderfilter(true);
             }}
-            eventKey="link-5"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleFive }}
               src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"

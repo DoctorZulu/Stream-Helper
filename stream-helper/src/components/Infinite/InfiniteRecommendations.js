@@ -38,8 +38,6 @@ const InfiniteRecommendations = ({
     </div>
   );
 
-  console.log(languageFilter);
-
   return (
     <>
       {userMovieRecommendations ? (
