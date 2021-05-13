@@ -1,0 +1,76 @@
+#menu {
+  margin: auto;
+  width: 50%;
+  max-width: 1024px;
+  height: 25px;
+}
+#menu .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  animation-delay: 0.5s;
+  animation: extend 2.5s ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+#menu .container .item {
+  width: 100%;
+  cursor: grab;
+}
+#menu .container .item.white {
+  background: #fbfbfb;
+}
+#menu .container .item.yellow {
+  background: #fecd09;
+}
+#menu .container .item.cyan {
+  background: #04ccfe;
+}
+#menu .container .item.green {
+  background: #00d201;
+}
+#menu .container .item.magenta {
+  background: #d300a6;
+}
+#menu .container .item.red {
+  background: #d40202;
+}
+#menu .container .item.blue {
+  background: #0101fe;
+}
+#gif {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+}
+#gif .container {
+  width: 100%;
+  margin: auto;
+}
+@keyframes appear {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes disappear {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0%;
+  }
+}
+@keyframes extend {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

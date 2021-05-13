@@ -39,14 +39,10 @@ function LandingPage({ history }) {
   const handleShow = () => setShow(true);
   const [validated, setValidated] = useState(false);
 
-  const [
-    login,
-    { loading: loadingL, error: errorL, data: dataL },
-  ] = useMutation(LOGIN);
-  const [
-    signup,
-    { loading: loadingS, error: errorS, data: dataS },
-  ] = useMutation(SIGNUP);
+  const [login, { loading: loadingL, error: errorL, data: dataL }] =
+    useMutation(LOGIN);
+  const [signup, { loading: loadingS, error: errorS, data: dataS }] =
+    useMutation(SIGNUP);
 
   useEffect(() => {
     if (!loadingL && dataL) {
@@ -119,10 +115,7 @@ function LandingPage({ history }) {
 
   return (
     <>
-      <div
-        className="landingContentGrid"
-        style={{ color: "black", background: "whitesmoke" }}
-      >
+      <div className="landingContentGrid">
         <div className="landingLeftCol">
           <motion.div
             initial={{ y: "110vh", x: "0vw", opacity: 1 }}
@@ -287,7 +280,27 @@ function LandingPage({ history }) {
               Those You've already Seen
             </h3>
             <div className="landingButtonsContainer">
-              <Button
+              <div className="btn-cont">
+                <a
+                  className="btn landingPageButton"
+                  style={{
+                    backgroundColor: "rgba(245, 245, 245, 0.7)",
+                    zIndex: "100",
+                    maxWidth: "20vw",
+                  }}
+                  onClick={() => {
+                    setIsNewUser(true);
+                    setFormShow(false);
+                  }}
+                >
+                  Register
+                  <span class="line-1"></span>
+                  <span class="line-2"></span>
+                  <span class="line-3"></span>
+                  <span class="line-4"></span>
+                </a>
+              </div>
+              {/*               <Button
                 className="landingPageButton"
                 onClick={() => {
                   setIsNewUser(true);
@@ -296,8 +309,29 @@ function LandingPage({ history }) {
               >
                 {" "}
                 Register{" "}
-              </Button>
-              <Button
+              </Button> */}
+              <div className="btn-cont">
+                <a
+                  className="btn landingPageButton"
+                  style={{
+                    backgroundColor: "rgba(245, 245, 245, 0.7)",
+                    zIndex: "100",
+                    maxWidth: "20vw",
+                  }}
+                  onClick={() => {
+                    setIsNewUser(false);
+                    setFormShow(false);
+                  }}
+                >
+                  Sign In
+                  <span class="line-1"></span>
+                  <span class="line-2"></span>
+                  <span class="line-3"></span>
+                  <span class="line-4"></span>
+                </a>
+              </div>
+
+              {/*  <Button
                 className="landingPageButton"
                 onClick={() => {
                   setIsNewUser(false);
@@ -306,8 +340,29 @@ function LandingPage({ history }) {
               >
                 {" "}
                 Already A Member?{" "}
-              </Button>
-              <Button
+              </Button> */}
+
+              <div className="btn-cont">
+                <a
+                  className="btn landingPageButton"
+                  style={{
+                    backgroundColor: "rgba(245, 245, 245, 0.7)",
+                    zIndex: "100",
+                    maxWidth: "20vw",
+                  }}
+                  onClick={() => {
+                    setShow(true);
+                    setFormShow(true);
+                  }}
+                >
+                  Learn More
+                  <span class="line-1"></span>
+                  <span class="line-2"></span>
+                  <span class="line-3"></span>
+                  <span class="line-4"></span>
+                </a>
+              </div>
+              {/*               <Button
                 className="landingPageButton"
                 onClick={() => {
                   setShow(true);
@@ -316,7 +371,7 @@ function LandingPage({ history }) {
               >
                 {" "}
                 Learn More{" "}
-              </Button>
+              </Button> */}
 
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

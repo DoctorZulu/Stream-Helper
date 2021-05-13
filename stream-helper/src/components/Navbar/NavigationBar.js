@@ -107,6 +107,11 @@ function NavigationBar() {
             />
             <SearchMapper />
           </Form>
+          {user ? (
+            <Link to={""}>
+              <Nav.Item className="buttonStyle"> Log Out </Nav.Item>
+            </Link>
+          ) : null}
         </Navbar.Collapse>
       </Navbar>
     </>
