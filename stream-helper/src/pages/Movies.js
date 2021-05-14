@@ -40,34 +40,6 @@ function Movies({ history }) {
     },
   });
 
-  useEffect(() => {
-    if (providerid.netflix.active === true) {
-      setActiveStyleOne("#007bff");
-    } else if (providerid.netflix.active === false) {
-      setActiveStyleOne("black");
-    }
-    if (providerid.hbomax.active === true) {
-      setActiveStyleTwo("#007bff");
-    } else if (providerid.hbomax.active === false) {
-      setActiveStyleTwo("black");
-    }
-    if (providerid.hulu.active === true) {
-      setActiveStyleThree("#007bff");
-    } else if (providerid.hulu.active === false) {
-      setActiveStyleThree("black");
-    }
-    if (providerid.amazonprime.active === true) {
-      setActiveStyleFour("#007bff");
-    } else if (providerid.amazonprime.active === false) {
-      setActiveStyleFour("black");
-    }
-    if (providerid.disney.active === true) {
-      setActiveStyleFive("#007bff");
-    } else if (providerid.disney.active === false) {
-      setActiveStyleFive("black");
-    }
-  }, [providerid]);
-
   const handleNetflixClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -129,6 +101,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
+              {
+                providerid.netflix.active === true
+                  ? setActiveStyleOne("black")
+                  : setActiveStyleOne("#007bff");
+              }
               handleNetflixClick(e);
               // setProviderfilter(true);
             }}
@@ -145,6 +122,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
+              {
+                providerid.hbomax.active === true
+                  ? setActiveStyleTwo("black")
+                  : setActiveStyleTwo("#007bff");
+              }
               handleHboMaxClick(e);
               // setProviderfilter(true);
             }}
@@ -161,6 +143,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
+              {
+                providerid.hulu.active === true
+                  ? setActiveStyleThree("black")
+                  : setActiveStyleThree("#007bff");
+              }
               handleHuluClick(e);
               // setProviderfilter(true);
             }}
@@ -177,6 +164,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
+              {
+                providerid.amazonprime.active === true
+                  ? setActiveStyleFour("black")
+                  : setActiveStyleFour("#007bff");
+              }
               handleAmazonPrimeClick(e);
               // setProviderfilter(true);
             }}
@@ -193,6 +185,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
+              {
+                providerid.disney.active === true
+                  ? setActiveStyleFive("black")
+                  : setActiveStyleFive("#007bff");
+              }
               handleDisneyClick(e);
               // setProviderfilter(true);
             }}

@@ -17,6 +17,7 @@ import {
 import SimilarMovieCard from "../components/MovieCard/SimilarMovieCard";
 import MovieTrailer from "../components/MovieTrailer/MovieTrailer";
 import { StarFill } from "react-bootstrap-icons";
+import Loader from "../components/spinner/Spinner";
 function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
@@ -32,12 +33,8 @@ function MovieDetail(props) {
       movieMovieId: currentMovieId,
     },
   });
-  console.log(props.match.params.id);
   useEffect(() => {
     if (!loading && data) {
-      {
-        console.log(data);
-      }
       setCurrentMovieDetails(data);
       if (data.movie !== null) {
         setCreditsParse(JSON.parse(data.movie.credits[0].cast));
@@ -63,9 +60,7 @@ function MovieDetail(props) {
     () => {
       refetch();
     };
-    console.log(data, "BALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLAR REFRESH");
   }, [props.history.location.pathname]); */
-  console.log(currentMovieBackground, "BACKDROP");
   useEffect(() => {
     if (creditsParse.cast) {
       setCast(creditsParse.cast);
@@ -267,11 +262,7 @@ function MovieDetail(props) {
               </Container>
             </>
           ) : (
-            <div className="loadingMovieDetail">
-              <Spinner animation="grow" variant="success" size="xxl" />
-              <Spinner animation="grow" variant="success" size="xxl" />
-              <Spinner animation="grow" variant="success" size="xxl" />
-            </div>
+            <Loader />
           )}
         </>
       ) : (

@@ -117,3 +117,14 @@ color: whitesmoke;
 }
 
 
+/* iphone 11 / pro/ pro max */ 
+@media only screen and (min-width: 375px) and (max-width: 767px) { 
+  
+}
+
+/* iphone SE */ @media only screen and (min-width: 320px) and (max-width: 767px) { 
+  
+ }
+/* iphone 12 && PRO  */@media only screen and (min-width: 390px) and (max-width: 767px) {
+  
+ }
