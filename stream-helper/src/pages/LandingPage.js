@@ -283,25 +283,24 @@ function LandingPage({ history }) {
               Those You've already Seen
             </h3>
             <div className="landingButtonsContainer">
-              <div className="btn-cont">
-                <a
-                  className="btn landingPageButton"
+              <div className="btnz-cont">
+                <div
+                  className="btnz landingPageButton"
                   style={{
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
-                    maxWidth: "20vw",
                   }}
                   onClick={() => {
                     setIsNewUser(true);
                     setFormShow(false);
                   }}
                 >
-                  Register
+                  <p className="registerButton">Register</p>
                   <span class="line-1"></span>
                   <span class="line-2"></span>
                   <span class="line-3"></span>
                   <span class="line-4"></span>
-                </a>
+                </div>
               </div>
               {/*               <Button
                 className="landingPageButton"
@@ -313,25 +312,24 @@ function LandingPage({ history }) {
                 {" "}
                 Register{" "}
               </Button> */}
-              <div className="btn-cont">
-                <a
-                  className="btn landingPageButton"
+              <div className="btnz-cont">
+                <div
+                  className="btnz landingPageButton"
                   style={{
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
-                    maxWidth: "20vw",
                   }}
                   onClick={() => {
-                    setIsNewUser(false);
+                    setIsNewUser(true);
                     setFormShow(false);
                   }}
                 >
-                  Sign In
+                  <p className="registerButton">Sign In</p>
                   <span class="line-1"></span>
                   <span class="line-2"></span>
                   <span class="line-3"></span>
                   <span class="line-4"></span>
-                </a>
+                </div>
               </div>
 
               {/*  <Button
@@ -345,25 +343,24 @@ function LandingPage({ history }) {
                 Already A Member?{" "}
               </Button> */}
 
-              <div className="btn-cont">
-                <a
-                  className="btn landingPageButton"
+              <div className="btnz-cont">
+                <div
+                  className="btnz landingPageButton"
                   style={{
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
-                    maxWidth: "20vw",
                   }}
                   onClick={() => {
-                    setShow(true);
-                    setFormShow(true);
+                    setIsNewUser(true);
+                    setFormShow(false);
                   }}
                 >
-                  Learn More
+                  <p className="registerButton">Learn More</p>
                   <span class="line-1"></span>
                   <span class="line-2"></span>
                   <span class="line-3"></span>
                   <span class="line-4"></span>
-                </a>
+                </div>
               </div>
               {/*               <Button
                 className="landingPageButton"
@@ -467,7 +464,11 @@ function LandingPage({ history }) {
                       </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Button type="submit" onClick={submitHandlerLogin}>
+                    <Button
+                      className="loginButton"
+                      type="submit"
+                      onClick={submitHandlerLogin}
+                    >
                       Login
                     </Button>
                   </div>
