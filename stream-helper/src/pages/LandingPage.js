@@ -464,11 +464,7 @@ function LandingPage({ history }) {
                       </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Button
-                      className="loginButton"
-                      type="submit"
-                      onClick={submitHandlerLogin}
-                    >
+                    <Button type="submit" onClick={submitHandlerLogin}>
                       Login
                     </Button>
                   </div>
