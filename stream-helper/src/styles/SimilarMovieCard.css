@@ -5,6 +5,7 @@
     grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
     overflow: auto;
     white-space: nowrap;
+    overflow-y: hidden;
     height: 300px;
     width: 100%;
     margin-left: 15px;
