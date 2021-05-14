@@ -53,8 +53,8 @@ function EditUserModal({ firstname, lastname, email, username, submit }) {
 
   return (
     <>
-      <Button style={{ margin: "25px" }} onClick={() => setLgShow(true)}>
-        Edit Profile
+      <Button className="profileButton" onClick={() => setLgShow(true)}>
+        Edit
       </Button>
       <Modal
         size="lg"

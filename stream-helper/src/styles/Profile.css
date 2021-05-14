@@ -35,6 +35,10 @@ font-size: 30px;
 color: whitesmoke;
 }
 
+.profileButton {
+  margin: 25px;
+}
+
 
 
 /* IPHONE 5  */
@@ -52,7 +56,7 @@ color: whitesmoke;
 
     .profileContentContainer {
       display: grid;
-      grid-template-columns: 100%;
+      grid-template-columns: 80%;
       grid-template-rows: auto;
       grid-template-areas: 
       "likedCard"
@@ -60,24 +64,31 @@ color: whitesmoke;
       "editUserCard";
     }
     
- 
-
     .likedMoviesModal {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 3px;
+      margin-right: 3px;
       grid-area: likedCard
     }
     
     .savedMoviesModal {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 3px;
+      margin-right: 3px;
       grid-area: savedMoviesCard
     }
 
     .editUserModal {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 3px;
+      margin-right: 3px;
       grid-area: editUserCard
+    }
+
+    .profileButton {
+      font-size: small;
+      width: 60px;
+      margin: 0px;
+      justify-content: center;
+      position: relative;
+      max-height: 30px;
     }
 
 
