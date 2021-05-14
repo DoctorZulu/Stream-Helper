@@ -99,7 +99,52 @@ color: whitesmoke;
 
 @media only screen and (min-device-width : 375px) and (min-height: 600px) and (max-height: 768px) {
 
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
 
+  .profileContentContainer {
+    display: grid;
+    grid-template-columns: 80%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "likedCard"
+    "savedMoviesCard"
+    "editUserCard";
+  }
+  
+  .likedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: likedCard
+  }
+  
+  .savedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: savedMoviesCard
+  }
+
+  .editUserModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: editUserCard
+  }
+
+  .profileButton {
+    font-size: small;
+    width: 60px;
+    margin: 0px;
+    justify-content: center;
+    position: relative;
+    max-height: 30px;
+  }
 
 }
 
@@ -107,7 +152,52 @@ color: whitesmoke;
 
 @media only screen and (min-device-width : 375px) and (min-height: 768px) and (max-height: 820px) {
 
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
 
+  .profileContentContainer {
+    display: grid;
+    grid-template-columns: 80%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "likedCard"
+    "savedMoviesCard"
+    "editUserCard";
+  }
+  
+  .likedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: likedCard
+  }
+  
+  .savedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: savedMoviesCard
+  }
+
+  .editUserModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: editUserCard
+  }
+
+  .profileButton {
+    font-size: small;
+    width: 60px;
+    margin: 0px;
+    justify-content: center;
+    position: relative;
+    max-height: 30px;
+  }
 
 }
 
@@ -116,7 +206,25 @@ color: whitesmoke;
 
 @media only screen and (min-device-width : 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
 
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
 
+  .profileContentContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "likedCard"
+    "savedMoviesCard"
+    "editUserCard";
+  }
 }
 
 /* IPAD PRO / SMALL LAPTOP */
@@ -130,12 +238,102 @@ color: whitesmoke;
 
 /* iphone 11 / pro/ pro max */ 
 @media only screen and (min-width: 375px) and (max-width: 767px) { 
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
   
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
+
+  .profileContentContainer {
+    display: grid;
+    grid-template-columns: 80%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "likedCard"
+    "savedMoviesCard"
+    "editUserCard";
+  }
+  
+  .likedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: likedCard
+  }
+  
+  .savedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: savedMoviesCard
+  }
+
+  .editUserModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: editUserCard
+  }
+
+  .profileButton {
+    font-size: small;
+    width: 60px;
+    margin: 0px;
+    justify-content: center;
+    position: relative;
+    max-height: 30px;
+  }
 }
 
 /* iphone SE */ @media only screen and (min-width: 320px) and (max-width: 767px) { 
   
  }
 /* iphone 12 && PRO  */@media only screen and (min-width: 390px) and (max-width: 767px) {
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
   
+  html {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
+
+  .profileContentContainer {
+    display: grid;
+    grid-template-columns: 80%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "likedCard"
+    "savedMoviesCard"
+    "editUserCard";
+  }
+  
+  .likedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: likedCard
+  }
+  
+  .savedMoviesModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: savedMoviesCard
+  }
+
+  .editUserModal {
+    margin-left: 3px;
+    margin-right: 3px;
+    grid-area: editUserCard
+  }
+
+  .profileButton {
+    font-size: small;
+    width: 60px;
+    margin: 0px;
+    justify-content: center;
+    position: relative;
+    max-height: 30px;
+  }
  }
