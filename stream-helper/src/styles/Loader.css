@@ -3,6 +3,10 @@
   width: 50%;
   max-width: 1024px;
   height: 25px;
+ /*  display: flex; */
+  position: absolute;
+  left: 20%;
+  top: 40%;
 }
 #menu .container {
   width: 100%;

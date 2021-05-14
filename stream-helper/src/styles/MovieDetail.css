@@ -33,8 +33,10 @@
 .loadingMovieDetail {
   display: flex;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 40%;
+  height: 10px;
+  width: 350px;
+  top: 40%;
 }
 
 .movieDetailImageCard {
