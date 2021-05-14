@@ -68,29 +68,39 @@ function Movies({ history }) {
     }
   }, [providerid]);
 
-  const handleNetflixClick = () => {
+  const handleNetflixClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     providerid.netflix.active
       ? setProviderid({ ...providerid, netflix: { active: false } })
       : setProviderid({ ...providerid, netflix: { active: true } });
   };
-  const handleHboMaxClick = () => {
+  const handleHboMaxClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     providerid.hbomax.active
       ? setProviderid({ ...providerid, hbomax: { active: false } })
       : setProviderid({ ...providerid, hbomax: { active: true } });
   };
 
-  const handleHuluClick = () => {
+  const handleHuluClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     providerid.hulu.active
       ? setProviderid({ ...providerid, hulu: { active: false } })
       : setProviderid({ ...providerid, hulu: { active: true } });
   };
-  const handleAmazonPrimeClick = () => {
+  const handleAmazonPrimeClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     providerid.amazonprime.active
       ? setProviderid({ ...providerid, amazonprime: { active: false } })
       : setProviderid({ ...providerid, amazonprime: { active: true } });
   };
 
-  const handleDisneyClick = () => {
+  const handleDisneyClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     providerid.disney.active
       ? setProviderid({ ...providerid, disney: { active: false } })
       : setProviderid({ ...providerid, disney: { active: true } });
@@ -118,8 +128,8 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              handleNetflixClick();
+            onClick={(e) => {
+              handleNetflixClick(e);
               // setProviderfilter(true);
             }}
           >
@@ -134,8 +144,8 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              handleHboMaxClick();
+            onClick={(e) => {
+              handleHboMaxClick(e);
               // setProviderfilter(true);
             }}
           >
@@ -150,8 +160,8 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              handleHuluClick();
+            onClick={(e) => {
+              handleHuluClick(e);
               // setProviderfilter(true);
             }}
           >
@@ -166,8 +176,8 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              handleAmazonPrimeClick();
+            onClick={(e) => {
+              handleAmazonPrimeClick(e);
               // setProviderfilter(true);
             }}
           >
@@ -182,8 +192,8 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              handleDisneyClick();
+            onClick={(e) => {
+              handleDisneyClick(e);
               // setProviderfilter(true);
             }}
           >
