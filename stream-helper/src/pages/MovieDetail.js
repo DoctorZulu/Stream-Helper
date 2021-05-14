@@ -36,13 +36,17 @@ function MovieDetail(props) {
   useEffect(() => {
     if (!loading && data) {
       setCurrentMovieDetails(data);
-      setCreditsParse(JSON.parse(data.movie.credits[0].cast));
-      setCurrentMovieBackground(
-        `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${data.movie.backdrop}`.replace(
-          /['"]+/g,
-          "",
-        ),
-      );
+      if(data.movie.credits) {
+        setCreditsParse(JSON.parse(data.movie.credits[0].cast));
+      }
+      if (data.movie.backdrop){
+        setCurrentMovieBackground(
+          `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${data.movie.backdrop}`.replace(
+            /['"]+/g,
+            "",
+          ),
+        );
+      }
       if (data.movie.watchproviders[0]) {
         setProviders(JSON.parse(data.movie.watchproviders[0].providers));
       }
