@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import {
   Bookmark,
@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 function ActionButtons(props) {
   const [update, { loading, error }] = useMutation(USERUPDATE);
   const [dislikedActive, setDislikedActive] = useState("white");
-  const [likedActive, setLikedActive ] = useState("white");
+  const [likedActive, setLikedActive] = useState("white");
   const [savedActive, setSavedActive] = useState("white");
   const [seenActive, setSeenActive] = useState("white");
 
@@ -84,7 +84,7 @@ function ActionButtons(props) {
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="actionButtonBox"
             onClick={() => {
               submitSave();
@@ -109,18 +109,18 @@ function ActionButtons(props) {
               className="movieDetailHeartIcon"
             />{" "}
             Save
-          </Button>
+          </div>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="actionButtonBox"
             onClick={(e) => {
               submitWatched(e);
-              setSeenActive("green")
+              setSeenActive("green");
               console.log("clicked watched");
               toast.warning("	👍 Added to Watched", {
                 className: "movieSaved",
@@ -141,18 +141,18 @@ function ActionButtons(props) {
               className="movieDetailHeartIcon"
             />{" "}
             Seen
-          </Button>
+          </div>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="actionButtonBox"
             onClick={(e) => {
               submitLike(e);
-              setLikedActive("green")
+              setLikedActive("green");
               console.log("clicked like");
               toast.warning("	👍 Liked Movie", {
                 className: "movieSaved",
@@ -173,14 +173,14 @@ function ActionButtons(props) {
               className="movieDetailHeartIcon"
             />{" "}
             Like
-          </Button>
+          </div>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.25 }}
           style={{ background: "none", border: "none" }}
         >
-          <Button
+          <div
             className="actionButtonBox"
             onClick={(e) => {
               submitDislike(e);
@@ -205,7 +205,7 @@ function ActionButtons(props) {
               className="movieDetailHeartIcon"
             />{" "}
             Dislike
-          </Button>
+          </div>
         </motion.button>
       </div>
     </>
