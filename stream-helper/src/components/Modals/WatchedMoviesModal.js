@@ -30,7 +30,7 @@ function WatchedMoviesModal() {
     );
     return(
         <>
-       <Button style={{ paddingRight: "5px"}} onClick={() => setLgShow(true)}>Watched Movies</Button>
+       <Button onClick={() => setLgShow(true)}>Watched Movies</Button>
      
       <Modal
         size="lg"

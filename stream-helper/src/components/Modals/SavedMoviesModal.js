@@ -34,7 +34,7 @@ function SavedMoviesModal() {
  
     return(
         <>
-         <Button style={{ margin: "25px"}} onClick={() => setLgShow(true)}>Saved Movies</Button>
+         <Button className="profileButton" onClick={() => setLgShow(true)}>Saved</Button>
      
      <Modal
        size="lg"

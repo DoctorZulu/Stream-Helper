@@ -260,7 +260,7 @@ div.movieDetailCast::-webkit-scrollbar-thumb:hover {
 
 /* IPHONE X */
 
-@media only screen and (min-device-width: 375px) and (min-height: 768px) and (max-height: 820px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 550px) and (min-height: 768px) and (max-height: 820px) {
   .movieDetailContent {
     position: absolute;
     color: whitesmoke;
@@ -460,6 +460,94 @@ div.movieDetailCast::-webkit-scrollbar-thumb:hover {
 }
 
 
-/* iphone SE */ @media only screen and (min-width: 320px) and (max-width: 767px) { 
+/* macbooks */
+@media only screen and (min-width: 1280px) and (max-width: 1450px)  { 
+  .mainMovieDetailContainer {
+    margin-top: 5vh;
+  }
   
- }
+  .movieDetailRatings {
+    color: whitesmoke;
+  }
+  
+  .movieDetailContent {
+    position: absolute;
+    color: whitesmoke;
+    top: 15%;
+    left: 45%;
+    width: 500px;
+  }
+  
+  .movieDetailsBox {
+    border:solid 2px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.564);
+  }
+  
+  .mainMovieBackground {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-height: 100%;
+    min-width: 100%;
+    filter: brightness(0.5) blur(4px);
+    z-index: -100;
+  }
+  
+  .loadingMovieDetail {
+    display: flex;
+    position: absolute;
+    left: 40%;
+    height: 10px;
+    width: 350px;
+    top: 40%;
+  }
+  
+  .movieDetailImageCard {
+    height: 600px;
+    border-radius: 10px;
+    margin-top: 35px;
+  }
+  
+  .similarMoviesTitle {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 100%;
+  }
+  .movieDetailActionBox {
+    border-radius: 10px;
+    height: 70px;
+    width: 410px;
+  }
+  .streamProviderBox {
+    display: flex;
+    flex-wrap: wrap;
+    contain: content;
+    min-width: 650px;
+    max-width: 800px;
+    height: 100px;
+    border-radius: 10px;
+    border: solid 2.5px rgb(208 166 0 / 100%);
+  }
+  
+  .streamProviderContainer {
+    color: whitesmoke !important;
+    height: 30%;
+  }
+  
+  .movieDetailHeartIcon {
+    margin-top: 15px;
+    justify-content: center;
+  }
+  
+  .movieDetailCast {
+    display: flex;
+    color: whitesmoke;
+    width: 90%;
+    height: 90px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+}
+
+

@@ -75,10 +75,11 @@ function Profile({ history }) {
                   <Card.Img variant="top" src={imgLikedMovies} />
                   <Card.Body>
                     <DropdownButton
+                      className="profileButton"
                       as={ButtonGroup}
-                      title="Show Me!"
+                      title="Movies"
                       id="bg-nested-dropdown"
-                      style={{ paddingTop: "25px" }}
+                     
                     >
                       <Dropdown.Item eventKey="1">
                         <WatchedMoviesModal />

@@ -206,3 +206,33 @@
         height: 300px;
     }
 }
+
+
+@media only screen and (min-width: 1280px) and (max-width: 1450px)  {  
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20% 20% 20% 20%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        overflow: auto;
+        white-space: nowrap;
+        overflow-y: hidden;
+        height: 350px;
+        width: 100%;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 200px;
+        height: 300px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}

@@ -108,7 +108,7 @@ function ActionButtons(props) {
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
-            Save
+             <p style={{color: "white"}}>Save</p>
           </div>
         </motion.button>
         <motion.button
@@ -140,7 +140,7 @@ function ActionButtons(props) {
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
-            Seen
+             <p style={{color: "white"}}>Seen</p>
           </div>
         </motion.button>
         <motion.button
@@ -172,7 +172,7 @@ function ActionButtons(props) {
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
-            Like
+            <p style={{color: "white"}}>Like</p>
           </div>
         </motion.button>
         <motion.button
@@ -204,7 +204,7 @@ function ActionButtons(props) {
               size={25}
               className="movieDetailHeartIcon"
             />{" "}
-            Dislike
+             <p style={{color: "white"}}>Dislike</p>
           </div>
         </motion.button>
       </div>

@@ -1,0 +1,17 @@
+.wrongPageHeading {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25vh;
+}
+
+.notFoundImage {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.notFoundButtons {
+    margin: 25px;
+    padding-left: 20vh;
+    padding-right: 20vh;
+}
