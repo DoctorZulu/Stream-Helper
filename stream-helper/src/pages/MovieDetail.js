@@ -145,7 +145,7 @@ function MovieDetail(props) {
   return (
     <>
       <NavigationBar />
-      {data.movie !== null ? (
+      {data && data.movie !== null && data.movie !== undefined ? (
         <>
           {currentMovieDetails ? (
             <>

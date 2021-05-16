@@ -14,6 +14,7 @@ const InfiniteRecommendations = ({
   cursorLength,
   more,
 }) => {
+  // console.log(userMovieRecommendations);
   const languageFilter = userMovieRecommendations.filter(
     (m) =>
       m.original_language != "hi" &&

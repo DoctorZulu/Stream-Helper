@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Nav } from "react-bootstrap";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
@@ -6,6 +6,15 @@ import HeroBanner from "../components/HeroBanner/HeroBanner";
 import moviesHeroImage from "../media/moviesHeroImage.jpg";
 import CheckUser from "../hooks/checkUser";
 import ProvidersHome from "../components/providers/ProvidersHome";
+
+const ACTIONS = {
+  ACTIONNETFLIX: "actionnetflixs",
+  ACTIONHBOMAX: "actionhbomax",
+  ACTIONHULU: "actionhulu",
+  ACTIONAMAZONPRIME: "actionamazonprime",
+  ACTIONDISNEY: "actiondisney",
+};
+
 function Movies({ history }) {
   /* Hero banner content */
   const heroTitle = "Welcome To FlixAlways";
@@ -17,7 +26,7 @@ function Movies({ history }) {
   const [activeStyleFour, setActiveStyleFour] = useState("black");
   const [activeStyleFive, setActiveStyleFive] = useState("black");
   const mainImage = { moviesHeroImage };
-  const [providerid, setProviderid] = useState({
+  const [stateProviderId, setStateProviderid] = useState({
     netflix: {
       id: 8,
       active: false,
@@ -39,43 +48,124 @@ function Movies({ history }) {
       active: false,
     },
   });
+  const [providersid, dispatch] = useReducer(reducer, stateProviderId);
+
+  function reducer(providersid, action) {
+    switch (action.type) {
+      case ACTIONS.ACTIONNETFLIX:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            netflix: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.netflix.active
+            ? setActiveStyleOne("#007bff")
+            : setActiveStyleOne("black")
+        );
+      case ACTIONS.ACTIONHBOMAX:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            hbomax: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.hbomax.active
+            ? setActiveStyleTwo("#007bff")
+            : setActiveStyleTwo("black")
+        );
+      case ACTIONS.ACTIONHULU:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            hulu: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.hulu.active
+            ? setActiveStyleThree("#007bff")
+            : setActiveStyleThree("black")
+        );
+      case ACTIONS.ACTIONAMAZONPRIME:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            amazonprime: {
+              id: action.payload.id,
+              active: !action.payload.active,
+            },
+          }),
+          stateProviderId.amazonprime.active
+            ? setActiveStyleFour("#007bff")
+            : setActiveStyleFour("black")
+        );
+      case ACTIONS.ACTIONDISNEY:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            disney: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.disney.active
+            ? setActiveStyleFive("#007bff")
+            : setActiveStyleFive("black")
+        );
+      default:
+        return { ...providersid };
+    }
+  }
 
   const handleNetflixClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    providerid.netflix.active
-      ? setProviderid({ ...providerid, netflix: { active: false } })
-      : setProviderid({ ...providerid, netflix: { active: true } });
+    dispatch({
+      type: ACTIONS.ACTIONNETFLIX,
+      payload: {
+        id: stateProviderId.netflix.id,
+        active: stateProviderId.netflix.active,
+      },
+    });
   };
   const handleHboMaxClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    providerid.hbomax.active
-      ? setProviderid({ ...providerid, hbomax: { active: false } })
-      : setProviderid({ ...providerid, hbomax: { active: true } });
+    dispatch({
+      type: ACTIONS.ACTIONHBOMAX,
+      payload: {
+        id: stateProviderId.hbomax.id,
+        active: stateProviderId.hbomax.active,
+      },
+    });
   };
 
   const handleHuluClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    providerid.hulu.active
-      ? setProviderid({ ...providerid, hulu: { active: false } })
-      : setProviderid({ ...providerid, hulu: { active: true } });
+    dispatch({
+      type: ACTIONS.ACTIONHULU,
+      payload: {
+        id: stateProviderId.hulu.id,
+        active: stateProviderId.hulu.active,
+      },
+    });
   };
   const handleAmazonPrimeClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    providerid.amazonprime.active
-      ? setProviderid({ ...providerid, amazonprime: { active: false } })
-      : setProviderid({ ...providerid, amazonprime: { active: true } });
+    dispatch({
+      type: ACTIONS.ACTIONAMAZONPRIME,
+      payload: {
+        id: stateProviderId.amazonprime.id,
+        active: stateProviderId.amazonprime.active,
+      },
+    });
   };
 
   const handleDisneyClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    providerid.disney.active
-      ? setProviderid({ ...providerid, disney: { active: false } })
-      : setProviderid({ ...providerid, disney: { active: true } });
+    dispatch({
+      type: ACTIONS.ACTIONDISNEY,
+      payload: {
+        id: stateProviderId.disney.id,
+        active: stateProviderId.disney.active,
+      },
+    });
   };
   return (
     <>
@@ -101,13 +191,7 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
-              {
-                providerid.netflix.active === true
-                  ? setActiveStyleOne("black")
-                  : setActiveStyleOne("#007bff");
-              }
               handleNetflixClick(e);
-              // setProviderfilter(true);
             }}
           >
             {" "}
@@ -122,11 +206,6 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
-              {
-                providerid.hbomax.active === true
-                  ? setActiveStyleTwo("black")
-                  : setActiveStyleTwo("#007bff");
-              }
               handleHboMaxClick(e);
               // setProviderfilter(true);
             }}
@@ -143,11 +222,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
-              {
-                providerid.hulu.active === true
-                  ? setActiveStyleThree("black")
-                  : setActiveStyleThree("#007bff");
-              }
+              // {
+              //   providerid.hulu.active === true
+              //     ? setActiveStyleThree("black")
+              //     : setActiveStyleThree("#007bff");
+              // }
               handleHuluClick(e);
               // setProviderfilter(true);
             }}
@@ -164,11 +243,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
-              {
-                providerid.amazonprime.active === true
-                  ? setActiveStyleFour("black")
-                  : setActiveStyleFour("#007bff");
-              }
+              // {
+              //   providerid.amazonprime.active === true
+              //     ? setActiveStyleFour("black")
+              //     : setActiveStyleFour("#007bff");
+              // }
               handleAmazonPrimeClick(e);
               // setProviderfilter(true);
             }}
@@ -185,11 +264,11 @@ function Movies({ history }) {
         <Nav.Item>
           <Nav.Link
             onClick={(e) => {
-              {
-                providerid.disney.active === true
-                  ? setActiveStyleFive("black")
-                  : setActiveStyleFive("#007bff");
-              }
+              // {
+              //   providerid.disney.active === true
+              //     ? setActiveStyleFive("black")
+              //     : setActiveStyleFive("#007bff");
+              // }
               handleDisneyClick(e);
               // setProviderfilter(true);
             }}
@@ -204,7 +283,7 @@ function Movies({ history }) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      {<ProvidersHome providerid={providerid} />}
+      {<ProvidersHome providerid={stateProviderId} />}
     </>
   );
 }

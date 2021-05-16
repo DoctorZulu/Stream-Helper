@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 /* gql */
 import { useQuery } from "@apollo/client";
 import {
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
-  USERMOVIERECOMMENDATIONS,
 } from "../../graphql/operations.js";
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+const ACTIONS = {
+  ALLPROVIDERSFALSE: "allprovidersfalse",
+  ACTIVEPROVIDERSTRUE: "activeproviderstrue",
+};
 
 const ProvidersHome = ({ providerid }) => {
+  const { netflix, hbomax, hulu, amazonprime, disney } = providerid;
+
   const [incrementingCursor, setIncrementingCursor] = useState(20);
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
@@ -16,97 +21,87 @@ const ProvidersHome = ({ providerid }) => {
   const [cursor, setCursor] = useState(1);
   const [skip] = useState(0);
   const [more, setMore] = useState(false);
+  const [variables, setVariables] = useState();
+  const [providersid, dispatch] = useReducer(reducer, providerid);
 
-  const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    PROVIDERMOVIEQUERY,
-    {
-      fetchPolicy: "network-only",
-      variables: {
-        providerMovieQueryTake: take,
-        providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: parseInt(cursor),
-        providerMovieQueryProviderId:
-          providerid.netflix.active ||
-          providerid.hbomax.active ||
-          providerid.hulu.active ||
-          providerid.amazonprime.active ||
-          providerid.disney.active
-            ? [
-                providerid.netflix.active
-                  ? {
-                      id: 8,
-                    }
-                  : { id: 0 },
-                providerid.hbomax.active
-                  ? {
-                      id: 384,
-                    }
-                  : { id: 0 },
-                providerid.hulu.active
-                  ? {
-                      id: 15,
-                    }
-                  : { id: 0 },
-                providerid.amazonprime.active
-                  ? {
-                      id: 9,
-                    }
-                  : { id: 0 },
-                providerid.disney.active
-                  ? {
-                      id: 337,
-                    }
-                  : { id: 0 },
-              ]
-            : null,
-      },
-    },
-  );
+  function reducer(providersid, action) {
+    switch (action.type) {
+      case ACTIONS.ALLPROVIDERSFALSE:
+        return null;
+      case ACTIONS.ACTIVEPROVIDERSTRUE:
+        return null;
+      //   return { ...providerid, id: action.payload.id };
+      default:
+        return { ...providersid };
+    }
+  }
 
+  // filteredMovies = dataAll.providerMovieQuery.filter((number) =>
+  //   number.watchproviders
+  //     ? number.watchproviders[0].providerId === (netflix.active ? 8 : null) ||
+  //       number.watchproviders[0].providerId === (hbomax.active ? 384 : null) ||
+  //       number.watchproviders[0].providerId === (hulu.active ? 15 : null) ||
+  //       number.watchproviders[0].providerId ===
+  //         (amazonprime.active ? 9 : null) ||
+  //       number.watchproviders[0].providerId === (disney.active ? 337 : null)
+  //     : null,
+  // );
+
+  const tester =
+    netflix.active ||
+    hbomax.active ||
+    hulu.active ||
+    amazonprime.active ||
+    disney.active
+      ? [
+          netflix.active
+            ? {
+                id: 8,
+              }
+            : { id: 0 },
+          hbomax.active
+            ? {
+                id: 384,
+              }
+            : { id: 0 },
+          hulu.active
+            ? {
+                id: 15,
+              }
+            : { id: 0 },
+          amazonprime.active
+            ? {
+                id: 9,
+              }
+            : { id: 0 },
+          disney.active
+            ? {
+                id: 337,
+              }
+            : { id: 0 },
+        ]
+      : null;
   const {
-    error: errorMore,
-    loading: loadingMore,
-    data: dataMore,
+    error,
+    loading: loadingAll,
+    data: dataAll,
+    fetchMore,
     refetch,
-  } = useQuery(
-    FILTEREDLENGTH,
+  } = useQuery(PROVIDERMOVIEQUERY, {
+    // fetchPolicy: "network-only",
+    variables: {
+      providerMovieQueryTake: take,
+      providerMovieQuerySkip: skip,
+      providerMovieQueryMyCursor: parseInt(cursor),
+      providerMovieQueryProviderId: tester,
+    },
+  });
 
+  const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
+    FILTEREDLENGTH,
     {
       variables: {
-        filterLengthProviderId:
-          providerid.netflix.active ||
-          providerid.hbomax.active ||
-          providerid.hulu.active ||
-          providerid.amazonprime.active ||
-          providerid.disney.active
-            ? [
-                providerid.netflix.active
-                  ? {
-                      id: 8,
-                    }
-                  : { id: 0 },
-                providerid.hbomax.active
-                  ? {
-                      id: 384,
-                    }
-                  : { id: 0 },
-                providerid.hulu.active
-                  ? {
-                      id: 15,
-                    }
-                  : { id: 0 },
-                providerid.amazonprime.active
-                  ? {
-                      id: 9,
-                    }
-                  : { id: 0 },
-                providerid.disney.active
-                  ? {
-                      id: 337,
-                    }
-                  : { id: 0 },
-              ]
-            : null,
+        filterLengthProviderId: tester,
       },
     },
   );
@@ -114,29 +109,41 @@ const ProvidersHome = ({ providerid }) => {
   useEffect(() => {
     if (!loadingAll && dataAll) {
       if (
-        !providerid.netflix.active &&
-        !providerid.hbomax.active &&
-        !providerid.hulu.active &&
-        !providerid.amazonprime.active &&
-        !providerid.disney.active
+        !netflix.active &&
+        !hbomax.active &&
+        !hulu.active &&
+        !amazonprime.active &&
+        !disney.active
       ) {
+        refetch();
         setUserMovieRecommendations(dataAll.providerMovieQuery);
       } else {
+        refetch({
+          variables: {
+            filterLengthProviderId: tester,
+          },
+        });
         filteredMovies = dataAll.providerMovieQuery.filter((number) =>
           number.watchproviders
             ? number.watchproviders[0].providerId ===
-                (providerid.netflix.active ? 8 : null) ||
+                (netflix.active ? 8 : null) ||
               number.watchproviders[0].providerId ===
-                (providerid.hbomax.active ? 384 : null) ||
+                (hbomax.active ? 384 : null) ||
               number.watchproviders[0].providerId ===
-                (providerid.hulu.active ? 15 : null) ||
+                (hulu.active ? 15 : null) ||
               number.watchproviders[0].providerId ===
-                (providerid.amazonprime.active ? 9 : null) ||
+                (amazonprime.active ? 9 : null) ||
               number.watchproviders[0].providerId ===
-                (providerid.disney.active ? 337 : null)
+                (disney.active ? 337 : null)
             : null,
         );
         setUserMovieRecommendations(filteredMovies);
+      }
+      if (dataAll.providerMovieQuery && dataAll.providerMovieQuery.categoryId) {
+        setCursor(
+          dataAll.providerMovieQuery[dataAll.providerMovieQuery.length - 1]
+            .categoryId,
+        );
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -144,12 +151,6 @@ const ProvidersHome = ({ providerid }) => {
 
   useEffect(() => {
     if ((!loadingMore, dataMore)) {
-      if (userMovieRecommendations) {
-        setCursor(
-          userMovieRecommendations[userMovieRecommendations.length - 1]
-            .categoryId,
-        );
-      }
       if (userMovieRecommendations && dataMore) {
         if (userMovieRecommendations.length < dataMore.filterLength) {
           setMore(true);
@@ -162,19 +163,20 @@ const ProvidersHome = ({ providerid }) => {
   }, [loadingMore, dataMore]);
 
   const bigFetch = () => {
-    fetchMore(
-      {
-        variables: {
-          providerMovieQueryMyCursor: userMovieRecommendations.length,
+    if (dataAll.providerMovieQuery) {
+      fetchMore(
+        {
+          variables: {
+            providerMovieQueryMyCursor: userMovieRecommendations.length,
+          },
         },
-      },
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
-    );
+        setCursor(
+          userMovieRecommendations[userMovieRecommendations.length - 1]
+            .categoryId,
+        ),
+      );
+    }
   };
-  // console.log(userMovieRecommendations);
 
   const Mapper = () => {
     return (
@@ -187,8 +189,6 @@ const ProvidersHome = ({ providerid }) => {
       />
     );
   };
-
-  // console.log(providerid);
 
   return <>{userMovieRecommendations ? <Mapper /> : null}</>;
 };
