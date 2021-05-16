@@ -107,6 +107,7 @@ const ProvidersHome = ({ providerid }) => {
   );
   let filteredMovies;
   useEffect(() => {
+    console.log("hello");
     if (!loadingAll && dataAll) {
       if (
         !netflix.active &&
@@ -139,18 +140,21 @@ const ProvidersHome = ({ providerid }) => {
         );
         setUserMovieRecommendations(filteredMovies);
       }
-      if (dataAll.providerMovieQuery && dataAll.providerMovieQuery.categoryId) {
-        setCursor(
-          dataAll.providerMovieQuery[dataAll.providerMovieQuery.length - 1]
-            .categoryId,
-        );
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll, providerid]);
 
   useEffect(() => {
     if ((!loadingMore, dataMore)) {
+      if (
+        userMovieRecommendations &&
+        userMovieRecommendations.categoryId /* dataAll.providerMovieQuery && dataAll.providerMovieQuery.categoryId */
+      ) {
+        setCursor(
+          userMovieRecommendations[userMovieRecommendations.length - 1]
+            .categoryId,
+        );
+      }
       if (userMovieRecommendations && dataMore) {
         if (userMovieRecommendations.length < dataMore.filterLength) {
           setMore(true);
@@ -163,7 +167,7 @@ const ProvidersHome = ({ providerid }) => {
   }, [loadingMore, dataMore]);
 
   const bigFetch = () => {
-    if (dataAll.providerMovieQuery) {
+    if (userMovieRecommendations) {
       fetchMore(
         {
           variables: {
@@ -177,7 +181,8 @@ const ProvidersHome = ({ providerid }) => {
       );
     }
   };
-
+  console.log(more);
+  console.log(cursor);
   const Mapper = () => {
     return (
       <InfiniteRecommendations
