@@ -24,11 +24,10 @@ const httpLink = new HttpLink({
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
-    headers: {
-      authorization: Cookies.get("cookie") || null,
-    },
-
     fetchOptions: {
+      headers: {
+        authorization: Cookies.get("cookie") || null,
+      },
       credentials: "include",
     },
   });
