@@ -17,51 +17,55 @@ const ProvidersHome = ({ providerid }) => {
   const [skip] = useState(0);
   const [more, setMore] = useState(false);
 
-  const { error, loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    PROVIDERMOVIEQUERY,
-    {
-      fetchPolicy: "network-only",
-      variables: {
-        providerMovieQueryTake: take,
-        providerMovieQuerySkip: skip,
-        providerMovieQueryMyCursor: parseInt(cursor),
-        providerMovieQueryProviderId:
-          providerid.netflix.active ||
-          providerid.hbomax.active ||
-          providerid.hulu.active ||
-          providerid.amazonprime.active ||
+  const variables =
+    providerid.netflix.active ||
+    providerid.hbomax.active ||
+    providerid.hulu.active ||
+    providerid.amazonprime.active ||
+    providerid.disney.active
+      ? [
+          providerid.netflix.active
+            ? {
+                id: 8,
+              }
+            : { id: 0 },
+          providerid.hbomax.active
+            ? {
+                id: 384,
+              }
+            : { id: 0 },
+          providerid.hulu.active
+            ? {
+                id: 15,
+              }
+            : { id: 0 },
+          providerid.amazonprime.active
+            ? {
+                id: 9,
+              }
+            : { id: 0 },
           providerid.disney.active
-            ? [
-                providerid.netflix.active
-                  ? {
-                      id: 8,
-                    }
-                  : { id: 0 },
-                providerid.hbomax.active
-                  ? {
-                      id: 384,
-                    }
-                  : { id: 0 },
-                providerid.hulu.active
-                  ? {
-                      id: 15,
-                    }
-                  : { id: 0 },
-                providerid.amazonprime.active
-                  ? {
-                      id: 9,
-                    }
-                  : { id: 0 },
-                providerid.disney.active
-                  ? {
-                      id: 337,
-                    }
-                  : { id: 0 },
-              ]
-            : null,
-      },
+            ? {
+                id: 337,
+              }
+            : { id: 0 },
+        ]
+      : null;
+
+  const {
+    error,
+    loading: loadingAll,
+    data: dataAll,
+    fetchMore,
+  } = useQuery(PROVIDERMOVIEQUERY, {
+    fetchPolicy: "network-only",
+    variables: {
+      providerMovieQueryTake: take,
+      providerMovieQuerySkip: skip,
+      providerMovieQueryMyCursor: parseInt(cursor),
+      providerMovieQueryProviderId: variables,
     },
-  );
+  });
 
   const {
     error: errorMore,
@@ -73,40 +77,7 @@ const ProvidersHome = ({ providerid }) => {
 
     {
       variables: {
-        filterLengthProviderId:
-          providerid.netflix.active ||
-          providerid.hbomax.active ||
-          providerid.hulu.active ||
-          providerid.amazonprime.active ||
-          providerid.disney.active
-            ? [
-                providerid.netflix.active
-                  ? {
-                      id: 8,
-                    }
-                  : { id: 0 },
-                providerid.hbomax.active
-                  ? {
-                      id: 384,
-                    }
-                  : { id: 0 },
-                providerid.hulu.active
-                  ? {
-                      id: 15,
-                    }
-                  : { id: 0 },
-                providerid.amazonprime.active
-                  ? {
-                      id: 9,
-                    }
-                  : { id: 0 },
-                providerid.disney.active
-                  ? {
-                      id: 337,
-                    }
-                  : { id: 0 },
-              ]
-            : null,
+        filterLengthProviderId: variables,
       },
     },
   );
@@ -140,7 +111,7 @@ const ProvidersHome = ({ providerid }) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll, providerid]);
+  }, [dataAll, providerid]);
 
   useEffect(() => {
     if ((!loadingMore, dataMore)) {
@@ -159,7 +130,7 @@ const ProvidersHome = ({ providerid }) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingMore, dataMore]);
+  }, [dataMore]);
 
   const bigFetch = () => {
     fetchMore(
