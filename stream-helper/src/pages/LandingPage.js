@@ -320,7 +320,7 @@ function LandingPage({ history }) {
                     zIndex: "100",
                   }}
                   onClick={() => {
-                    setIsNewUser(true);
+                    setIsNewUser(false);
                     setFormShow(false);
                   }}
                 >
@@ -351,8 +351,8 @@ function LandingPage({ history }) {
                     zIndex: "100",
                   }}
                   onClick={() => {
-                    setIsNewUser(true);
-                    setFormShow(false);
+                    setShow(true);
+                    setFormShow(true);
                   }}
                 >
                   <p className="registerButton">Learn More</p>
