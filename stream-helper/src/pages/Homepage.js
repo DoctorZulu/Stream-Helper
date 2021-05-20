@@ -31,16 +31,17 @@ function Homepage({ history }) {
   const [cursor, setCursor] = useState(1);
   const [skip, setSkip] = useState(0);
 
-  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    ALLMOVIES,
-    {
-      variables: {
-        allMoviesTake: take,
-        allMoviesSkip: skip,
-        allMoviesMyCursor: cursor,
-      },
+  const {
+    loading: loadingAll,
+    data: dataAll,
+    fetchMore,
+  } = useQuery(ALLMOVIES, {
+    variables: {
+      allMoviesTake: take,
+      allMoviesSkip: skip,
+      allMoviesMyCursor: cursor,
     },
-  );
+  });
 
   useEffect(() => {
     if (!loadingAll && dataAll) {
