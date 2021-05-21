@@ -13,6 +13,7 @@ const ACTIONS = {
   ACTIONHULU: "actionhulu",
   ACTIONAMAZONPRIME: "actionamazonprime",
   ACTIONDISNEY: "actiondisney",
+  ACTIONSHOWALL: "actionshowall",
 };
 
 function movieReducer(state, action) {
@@ -45,6 +46,8 @@ function movieReducer(state, action) {
         ...state,
         disney: { id: state.disney.id, active: !state.disney.active },
       };
+    case ACTIONS.ACTIONSHOWALL:
+      return initialState;
     default:
       return { ...state };
   }
@@ -80,7 +83,11 @@ function Movies({ history }) {
   const mainImage = { moviesHeroImage };
   const [state, dispatch] = useReducer(movieReducer, initialState);
 
-  console.log(state);
+  const handleShowall = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({ type: ACTIONS.ACTIONSHOWALL });
+  };
 
   const handleNetflixClick = (e) => {
     e.stopPropagation();
@@ -131,7 +138,11 @@ function Movies({ history }) {
       />
       <Nav variant="pills">
         <Nav.Item>
-          <Nav.Link onClick={() => {}} href="/home">
+          <Nav.Link
+            onClick={(e) => {
+              handleShowall(e);
+            }} /* href="/home" */
+          >
             Show All
           </Nav.Link>
         </Nav.Item>
