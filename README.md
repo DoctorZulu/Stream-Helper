@@ -2,7 +2,7 @@
 App to help select your next viewing experience
 
 
-Live application at [FlixAlways.com]
+Live application at [link text itself]
 
 
 ### Dependencies/Packages
@@ -13,3 +13,6 @@ Live application at [FlixAlways.com]
 - Blueprint.js (CSS Component Library) -@blueprintjs/core
 - Blueprint Icons -@blueprint/icons
 - React-Router-Dom
+
+
+[link text itself]: www.flixalways.com
