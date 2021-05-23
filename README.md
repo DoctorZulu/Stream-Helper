@@ -2,7 +2,7 @@
 App to help select your next viewing experience
 
 
-Live APP at FlixAlways.com
+Live application at [FlixAlways.com]
 
 
 ### Dependencies/Packages
