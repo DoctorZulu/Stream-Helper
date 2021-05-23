@@ -1,8 +1,10 @@
-# Stream-Helper
-App to help select your next viewing experience
+# FlixAlways
+
 
 
 Live application at [FlixAlways.com]
+
+FlixAlways is an application that makes selecting your next viewing experience a painless endeavour. Keep a collection of the movies you've already seen. We'll never recommend you anything you've given the thumbs-down or previously watched. Filter movies by streaming provider for convenience. Find your next movie with Flix Always!
 
 
 ### Dependencies/Packages
@@ -10,9 +12,16 @@ Live application at [FlixAlways.com]
 -- run npm i to check all added dependencies
 
 - React.Js
-- Blueprint.js (CSS Component Library) -@blueprintjs/core
-- Blueprint Icons -@blueprint/icons
+- React-Bootstrap
+- Bootstrap-Icons
 - React-Router-Dom
+- Framer Motion
+- GraphQL
+- Apollo Client
 
 
-[FlixAlways.com]: http://www.flixalways.com
+View the backend repo [here]
+
+[FlixAlways.com]: https://www.flixalways.com
+
+[here]: https://github.com/DoctorZulu/Stream-Helper-API
