@@ -15,4 +15,4 @@ Live application at [FlixAlways.com]
 - React-Router-Dom
 
 
-[FlixAlways.com]: www.flixalways.com
+[FlixAlways.com]: http://www.flixalways.com
