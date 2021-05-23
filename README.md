@@ -2,7 +2,7 @@
 App to help select your next viewing experience
 
 
-Live application at [link text itself]
+Live application at [FlixAlways.com]
 
 
 ### Dependencies/Packages
@@ -15,4 +15,4 @@ Live application at [link text itself]
 - React-Router-Dom
 
 
-[link text itself]: www.flixalways.com
+[FlixAlways.com]: www.flixalways.com
