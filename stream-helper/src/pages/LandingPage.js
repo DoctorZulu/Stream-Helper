@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import "../styles/LandingPage.css";
 /* vendor imports */
 import { useMutation } from "@apollo/client";
@@ -23,73 +23,115 @@ import movie8 from "../media/movie8.jpg";
 import movie9 from "../media/movie9.jpg";
 import movie10 from "../media/movie10.jpg";
 
+const ACTIONS = {
+  HANDLECLOSE: "handleClose",
+  HANDLEOPEN: "handleOpen",
+  SIGNUPBUTTON: "signupButton",
+  LOGINBUTTON: "loginButton",
+  LEARNMOREBUTTON: "learnMoreButton",
+  LOGIN: "login",
+  SIGNUP: "signup",
+};
+
+const initialState = {
+  isNewUser: false,
+  knowMore: false,
+  formShow: false,
+  email: "",
+  password: "",
+  username: "",
+  show: false,
+  validated: false,
+};
 function LandingPage({ history }) {
-  const [user, setUser] = useRecoilState(userState);
-
-  const [isNewUser, setIsNewUser] = useState(false);
-  /* show info about App if true */
-  const [knowMore, setKnowMore] = useState(false);
-  const [formShow, setFormShow] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  /* learn more modal */
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [validated, setValidated] = useState(false);
-
   const [login, { loading: loadingL, error: errorL, data: dataL }] =
     useMutation(LOGIN);
   const [signup, { loading: loadingS, error: errorS, data: dataS }] =
     useMutation(SIGNUP);
+  const [user, setUser] = useRecoilState(userState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "field": {
+        return { ...state, [action.field]: action.value };
+      }
+      case ACTIONS.HANDLECLOSE:
+        return { ...state, show: false };
+      case ACTIONS.HANDLEOPEN:
+        // not sure what this is, but it was in code before refactored
+        break;
+      case ACTIONS.LEARNMOREBUTTON:
+        return {
+          ...state,
+          show: true,
+          formShow: true,
+        };
+      case ACTIONS.SIGNUPBUTTON:
+        return { ...state, isNewUser: true, formShow: false };
+      case ACTIONS.LOGINBUTTON:
+        return {
+          ...state,
+          isNewUser: false,
+          formShow: false,
+          show: false,
+        };
+      case ACTIONS.SIGNUP:
+        signup({
+          variables: {
+            signupUserSignupInput: {
+              email: state.email,
+              username: state.username,
+              password: state.password,
+            },
+          },
+        });
+        return { ...state, isNewUser: false };
+      case ACTIONS.LOGIN:
+        login({
+          variables: {
+            signinUserEmail: state.email,
+            signinUserPassword: state.password,
+          },
+        });
+        return state;
+      default:
+        return state;
+    }
+  }
 
   useEffect(() => {
     if (!loadingL && dataL) {
       const { signinUser } = dataL;
       setUser(signinUser);
       localStorage.setItem("uid", `Bearer ${signinUser.token}`);
-      setValidated(true);
-
+      state.validated = true;
       history.push("/home");
     }
   }, [dataL]);
 
   useEffect(() => {
     if (!loadingS && dataS) {
-      setValidated(true);
+      return { ...state, validated: true, IsNewUser: false };
     }
   }, [dataL]);
 
   const submitHandlerLogin = async (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    await login({
-      variables: {
-        signinUserEmail: email,
-        signinUserPassword: password,
-      },
-    });
+    // const form = e.currentTarget;
+    // if (form.checkValidity() === false) {
+    e.preventDefault();
+    e.stopPropagation();
+    // }
+    await dispatch({ type: ACTIONS.LOGIN });
   };
 
   const submitHandlerSignup = async (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    await signup({
-      variables: {
-        signupUserSignupInput: {
-          email: email,
-          username: username,
-          password: password,
-        },
-      },
-    });
+    // const form = e.currentTarget;
+    // if (form.checkValidity()) {
+    e.preventDefault();
+    e.stopPropagation();
+    // }
+    await dispatch({ type: ACTIONS.SIGNUP });
     toast.success("	User created", {
       position: "top-right",
       autoClose: 5000,
@@ -99,9 +141,6 @@ function LandingPage({ history }) {
       draggable: true,
       progress: undefined,
     });
-    if (!loadingS && dataS) {
-      setIsNewUser(false);
-    }
   };
 
   if (loadingS) return "Loading...";
@@ -290,10 +329,7 @@ function LandingPage({ history }) {
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
                   }}
-                  onClick={() => {
-                    setIsNewUser(true);
-                    setFormShow(false);
-                  }}
+                  onClick={() => dispatch({ type: ACTIONS.SIGNUPBUTTON })}
                 >
                   <p className="registerButton">Register</p>
                   <span class="line-1"></span>
@@ -302,16 +338,6 @@ function LandingPage({ history }) {
                   <span class="line-4"></span>
                 </div>
               </div>
-              {/*               <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setIsNewUser(true);
-                  setFormShow(false);
-                }}
-              >
-                {" "}
-                Register{" "}
-              </Button> */}
               <div className="btnz-cont">
                 <div
                   className="btnz landingPageButton"
@@ -319,10 +345,7 @@ function LandingPage({ history }) {
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
                   }}
-                  onClick={() => {
-                    setIsNewUser(false);
-                    setFormShow(false);
-                  }}
+                  onClick={() => dispatch({ type: ACTIONS.LOGINBUTTON })}
                 >
                   <p className="registerButton">Sign In</p>
                   <span class="line-1"></span>
@@ -332,17 +355,6 @@ function LandingPage({ history }) {
                 </div>
               </div>
 
-              {/*  <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setIsNewUser(false);
-                  setFormShow(false);
-                }}
-              >
-                {" "}
-                Already A Member?{" "}
-              </Button> */}
-
               <div className="btnz-cont">
                 <div
                   className="btnz landingPageButton"
@@ -350,10 +362,7 @@ function LandingPage({ history }) {
                     backgroundColor: "rgba(245, 245, 245, 0.7)",
                     zIndex: "100",
                   }}
-                  onClick={() => {
-                    setShow(true);
-                    setFormShow(true);
-                  }}
+                  onClick={() => dispatch({ type: ACTIONS.LEARNMOREBUTTON })}
                 >
                   <p className="registerButton">Learn More</p>
                   <span class="line-1"></span>
@@ -362,18 +371,10 @@ function LandingPage({ history }) {
                   <span class="line-4"></span>
                 </div>
               </div>
-              {/*               <Button
-                className="landingPageButton"
-                onClick={() => {
-                  setShow(true);
-                  setFormShow(true);
-                }}
+              <Modal
+                show={state.show}
+                onHide={() => dispatch({ type: ACTIONS.HANDLECLOSE })}
               >
-                {" "}
-                Learn More{" "}
-              </Button> */}
-
-              <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>About Stream Helper</Modal.Title>
                 </Modal.Header>
@@ -408,7 +409,10 @@ function LandingPage({ history }) {
                   </Carousel>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="primary" onClick={handleClose}>
+                  <Button
+                    variant="primary"
+                    onClick={() => dispatch({ type: ACTIONS.HANDLECLOSE })}
+                  >
                     Okay!
                   </Button>
                 </Modal.Footer>
@@ -429,22 +433,30 @@ function LandingPage({ history }) {
           }}
         >
           <div className="landingRightCol">
-            {isNewUser === false ? (
+            {state.isNewUser === false ? (
               /* if user clicks login -> */
-              <Form noValidate validated={validated}>
+              <Form noValidate validated={state.validated}>
                 <div className="landingPageForm">
-                  <div className="formShowToggle" style={{ display: formShow }}>
+                  <div
+                    className="formShowToggle"
+                    style={{ display: state.formShow }}
+                  >
                     <Form.Group controlId="formBasicEmail">
                       {errorL ? (
                         <Alert variant="danger">{errorL.message}</Alert>
                       ) : null}
-
                       <Form.Label>Email address</Form.Label>
                       <Form.Control
                         required
                         type="email"
                         placeholder="Enter email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) =>
+                          dispatch({
+                            type: "field",
+                            field: "email",
+                            value: e.target.value,
+                          })
+                        }
                       />
                       <Form.Control.Feedback type="invalid">
                         Please choose a Email.
@@ -457,7 +469,13 @@ function LandingPage({ history }) {
                         required
                         type="password"
                         placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) =>
+                          dispatch({
+                            type: "field",
+                            field: "password",
+                            value: e.target.value,
+                          })
+                        }
                       />
                       <Form.Control.Feedback type="invalid">
                         Please choose a Password.
@@ -478,13 +496,22 @@ function LandingPage({ history }) {
                 {errorS ? (
                   <Alert variant="danger">{errorS.message}</Alert>
                 ) : null}
-                <div className="formShowToggle" style={{ display: formShow }}>
+                <div
+                  className="formShowToggle"
+                  style={{ display: state.formShow }}
+                >
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Enter email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) =>
+                        dispatch({
+                          type: "field",
+                          field: "email",
+                          value: e.target.value,
+                        })
+                      }
                     />
                     <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
@@ -496,7 +523,13 @@ function LandingPage({ history }) {
                     <Form.Control
                       type="username"
                       placeholder="Username"
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) =>
+                        dispatch({
+                          type: "field",
+                          field: "username",
+                          value: e.target.value,
+                        })
+                      }
                     />
                   </Form.Group>
 
@@ -505,13 +538,18 @@ function LandingPage({ history }) {
                     <Form.Control
                       type="password"
                       placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) =>
+                        dispatch({
+                          type: "field",
+                          field: "password",
+                          value: e.target.value,
+                        })
+                      }
                     />
                   </Form.Group>
 
                   <Button type="submit" onClick={submitHandlerSignup}>
-                    {" "}
-                    Register{" "}
+                    Register
                   </Button>
                 </div>
               </div>
