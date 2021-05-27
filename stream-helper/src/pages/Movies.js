@@ -141,7 +141,7 @@ function Movies({ history }) {
           <Nav.Link
             onClick={(e) => {
               handleShowall(e);
-            }} /* href="/home" */
+            }} 
           >
             Show All
           </Nav.Link>
