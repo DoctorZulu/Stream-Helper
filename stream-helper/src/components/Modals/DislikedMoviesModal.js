@@ -10,7 +10,9 @@ function DislikedMoviesModal() {
   const [lgShow, setLgShow] = useState(false);
 
   const [dislikedMovies, setDislikedMovies] = useState();
-  const { loading, error, data } = useQuery(DISLIKEDMOVIES);
+  const { loading, error, data } = useQuery(DISLIKEDMOVIES, {
+    fetchPolicy: "network-only",
+  });
 
   useEffect(() => {
     if (!loading && data) {
@@ -18,7 +20,6 @@ function DislikedMoviesModal() {
     }
   });
 
-  console.log(data);
   const Mapper = () => (
     <>
       {dislikedMovies.dislikedMovies.map((movie, i) => (
