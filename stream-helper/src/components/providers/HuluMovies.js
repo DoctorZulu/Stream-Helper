@@ -8,6 +8,7 @@ import {
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+import Loader from "../spinner/Spinner";
 
 function HuluMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
@@ -27,10 +28,8 @@ function HuluMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: 15,
       },
-    },
+    }
   );
-
-
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
@@ -39,20 +38,19 @@ function HuluMovies() {
       variables: {
         filterLengthProviderId: 384,
       },
-    },
+    }
   );
 
   useEffect(() => {
     if (dataAll) {
       const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) => number.watchproviders[0].providerId === provideridprop,
+        (number) => number.watchproviders[0].providerId === provideridprop
       );
       setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +67,7 @@ function HuluMovies() {
   }, []);
 
   /* console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
- */
+   */
   const bigFetch = () => {
     fetchMore(
       {
@@ -78,9 +76,8 @@ function HuluMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
     if (dataMore) {
@@ -102,7 +99,7 @@ function HuluMovies() {
           more={more}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

@@ -7,6 +7,8 @@ import "../styles/Homepage.css";
 /* vendor imports */
 import { useQuery } from "@apollo/client";
 import Infinite from "../components/Infinite/Infinite";
+import Loader from "../components/spinner/Spinner.js";
+
 // import CheckUser from "../hooks/checkUser";
 
 /* gql */
@@ -20,9 +22,8 @@ function Homepage({ history }) {
   // const [user] = useRecoilState(userState);
 
   // console.log(user, "Current user");
-  const heroTitle = "Welcome To StreamHelper";
-  const heroText =
-    "Your Homepage Will Always Display Movies You've Seen In Case You Want To Rewatch Them";
+  const heroTitle = "All Movies";
+  const heroText = "The Movies Page Will Always Display Our Entire Catalog";
 
   /* base states */
   const [allMovies, setAllMovies] = useState([]);
@@ -60,6 +61,7 @@ function Homepage({ history }) {
       setSkip(2),
     );
   };
+
   return (
     <>
       <NavigationBar />
@@ -69,14 +71,14 @@ function Homepage({ history }) {
           {" "}
           Gone Are The Days Of Looking For Your Next Movie. <br />
           With Constant New Movie Recommendations Made Just For You, <br />
-          You'll Always Have Something To Play Next{" "}
+          You'll Always Have Something To Watch Next{" "}
         </h3>
       </div>
 
       {allMovies.length > 0 ? (
         <Infinite allMovies={allMovies} onLoadMore={bigFetch} />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}
     </>
   );

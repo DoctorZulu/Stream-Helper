@@ -1,81 +1,172 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Nav } from "react-bootstrap";
-import { userState } from "../recoil/atoms";
-import { useRecoilState } from "recoil";
 /* components */
 import NavigationBar from "../components/Navbar/NavigationBar";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 import moviesHeroImage from "../media/moviesHeroImage.jpg";
-// import MovieCard from "../components/MovieCard/MovieCard";
 import CheckUser from "../hooks/checkUser";
-import AmazonPrimeMovies from "../components/providers/AmazonPrimeMovies";
-import DisneyPlusMovies from "../components/providers/DisneyPlusMovies";
-import HboMaxMovies from "../components/providers/HboMaxMovies";
-import HuluMovies from "../components/providers/HuluMovies";
-import NetflixMovies from "../components/providers/NetflixMovies";
-/* gql */
-import { useQuery } from "@apollo/client";
-import {
-  USERMOVIERECOMMENDATIONS,
-} from "../graphql/operations";
-/* vendor imports */
-import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
+import ProvidersHome from "../components/providers/ProvidersHome";
+
+const ACTIONS = {
+  ACTIONNETFLIX: "actionnetflixs",
+  ACTIONHBOMAX: "actionhbomax",
+  ACTIONHULU: "actionhulu",
+  ACTIONAMAZONPRIME: "actionamazonprime",
+  ACTIONDISNEY: "actiondisney",
+};
+
 function Movies({ history }) {
-  const [user] = useRecoilState(userState);
   /* Hero banner content */
-  const heroTitle = "Find Your Next Movie";
-  const heroText =
-    "Click On The Thumbs Down If You Dislike That Recommendation";
+  const heroTitle = "Welcome To FlixAlways";
+  const heroText = "These Movies Will Update As You Use FlixAlways";
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeStyleOne, setActiveStyleOne] = useState("black");
+  const [activeStyleTwo, setActiveStyleTwo] = useState("black");
+  const [activeStyleThree, setActiveStyleThree] = useState("black");
+  const [activeStyleFour, setActiveStyleFour] = useState("black");
+  const [activeStyleFive, setActiveStyleFive] = useState("black");
   const mainImage = { moviesHeroImage };
-  const [userMovieRecommendations, setUserMovieRecommendations] = useState();
-  /* base states */
-  const [take] = useState(10);
-  const [cursor, setCursor] = useState(1);
-  const [skip, setSkip] = useState(0);
-  const [providerfilter, setProviderfilter] = useState(false);
-  const [providerid, setProviderid] = useState();
-
-
-  const { loading: loadingAll, data: dataAll, fetchMore } = useQuery(
-    USERMOVIERECOMMENDATIONS,
-    {
-      variables: {
-        userMovieRecommendationsTake: take,
-        userMovieRecommendationsSkip: skip,
-        userMovieRecommendationsMyCursor: cursor,
-      },
+  const [stateProviderId, setStateProviderid] = useState({
+    netflix: {
+      id: 8,
+      active: false,
     },
-  );
+    hbomax: {
+      id: 384,
+      active: false,
+    },
+    hulu: {
+      id: 15,
+      active: false,
+    },
+    amazonprime: {
+      id: 9,
+      active: false,
+    },
+    disney: {
+      id: 337,
+      active: false,
+    },
+  });
+  const [providersid, dispatch] = useReducer(reducer, stateProviderId);
 
-
-
-  useEffect(() => {
-    if (loadingAll === false && dataAll) {
-      setUserMovieRecommendations(dataAll.userMovieRecommendations);
+  function reducer(providersid, action) {
+    switch (action.type) {
+      case ACTIONS.ACTIONNETFLIX:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            netflix: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.netflix.active
+            ? setActiveStyleOne("#007bff")
+            : setActiveStyleOne("black")
+        );
+      case ACTIONS.ACTIONHBOMAX:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            hbomax: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.hbomax.active
+            ? setActiveStyleTwo("#007bff")
+            : setActiveStyleTwo("black")
+        );
+      case ACTIONS.ACTIONHULU:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            hulu: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.hulu.active
+            ? setActiveStyleThree("#007bff")
+            : setActiveStyleThree("black")
+        );
+      case ACTIONS.ACTIONAMAZONPRIME:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            amazonprime: {
+              id: action.payload.id,
+              active: !action.payload.active,
+            },
+          }),
+          stateProviderId.amazonprime.active
+            ? setActiveStyleFour("#007bff")
+            : setActiveStyleFour("black")
+        );
+      case ACTIONS.ACTIONDISNEY:
+        return (
+          setStateProviderid({
+            ...stateProviderId,
+            disney: { id: action.payload.id, active: !action.payload.active },
+          }),
+          stateProviderId.disney.active
+            ? setActiveStyleFive("#007bff")
+            : setActiveStyleFive("black")
+        );
+      default:
+        return { ...providersid };
     }
-    if (userMovieRecommendations) {
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingAll, dataAll, providerid]);
+  }
 
-  const bigFetch = () => {
-    fetchMore(
-      {
-        variables: {
-          userMovieRecommendationsMyCursor: userMovieRecommendations.length,
-        },
+  const handleNetflixClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({
+      type: ACTIONS.ACTIONNETFLIX,
+      payload: {
+        id: stateProviderId.netflix.id,
+        active: stateProviderId.netflix.active,
       },
-      setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
-    );
+    });
+  };
+  const handleHboMaxClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({
+      type: ACTIONS.ACTIONHBOMAX,
+      payload: {
+        id: stateProviderId.hbomax.id,
+        active: stateProviderId.hbomax.active,
+      },
+    });
   };
 
+  const handleHuluClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({
+      type: ACTIONS.ACTIONHULU,
+      payload: {
+        id: stateProviderId.hulu.id,
+        active: stateProviderId.hulu.active,
+      },
+    });
+  };
+  const handleAmazonPrimeClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({
+      type: ACTIONS.ACTIONAMAZONPRIME,
+      payload: {
+        id: stateProviderId.amazonprime.id,
+        active: stateProviderId.amazonprime.active,
+      },
+    });
+  };
+
+  const handleDisneyClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({
+      type: ACTIONS.ACTIONDISNEY,
+      payload: {
+        id: stateProviderId.disney.id,
+        active: stateProviderId.disney.active,
+      },
+    });
+  };
   return (
     <>
       <NavigationBar />
@@ -86,30 +177,26 @@ function Movies({ history }) {
         mainImage={mainImage}
         history={history}
       />
-
-      <Nav variant="pills" defaultActiveKey="/home">
+      <Nav variant="pills">
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              setProviderfilter(false);
- 
+              // setProviderfilter(false);
             }}
-            href="/movies"
+            href="/home"
           >
             Show All
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              setProviderid(8);
-              setProviderfilter(true);
-      
+            onClick={(e) => {
+              handleNetflixClick(e);
             }}
-            eventKey="link-1"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleOne }}
               src={`https://www.themoviedb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -118,15 +205,14 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              setProviderid(384);
-              setProviderfilter(true);
-     
+            onClick={(e) => {
+              handleHboMaxClick(e);
+              // setProviderfilter(true);
             }}
-            eventKey="link-2"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleTwo }}
               src={`https://www.themoviedb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -135,15 +221,19 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              setProviderid(15);
-              setProviderfilter(true);
-      
+            onClick={(e) => {
+              // {
+              //   providerid.hulu.active === true
+              //     ? setActiveStyleThree("black")
+              //     : setActiveStyleThree("#007bff");
+              // }
+              handleHuluClick(e);
+              // setProviderfilter(true);
             }}
-            eventKey="link-3"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleThree }}
               src={`https://www.themoviedb.org/t/p/original//giwM8XX4V2AQb9vsoN7yti82tKK.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -152,15 +242,19 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              setProviderid(9);
-              setProviderfilter(true);
-      
+            onClick={(e) => {
+              // {
+              //   providerid.amazonprime.active === true
+              //     ? setActiveStyleFour("black")
+              //     : setActiveStyleFour("#007bff");
+              // }
+              handleAmazonPrimeClick(e);
+              // setProviderfilter(true);
             }}
-            eventKey="link-4"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleFour }}
               src={`https://www.themoviedb.org/t/p/original/68MNrwlkpF7WnmNPXLah69CR5cb.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -169,15 +263,19 @@ function Movies({ history }) {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            onClick={() => {
-              setProviderid(337);
-              setProviderfilter(true);
-  
+            onClick={(e) => {
+              // {
+              //   providerid.disney.active === true
+              //     ? setActiveStyleFive("black")
+              //     : setActiveStyleFive("#007bff");
+              // }
+              handleDisneyClick(e);
+              // setProviderfilter(true);
             }}
-            eventKey="link-5"
           >
             {" "}
             <img
+              style={{ backgroundColor: activeStyleFive }}
               src={`https://www.themoviedb.org/t/p/original/dgPueyEdOwpQ10fjuhL2WYFQwQs.jpg`}
               className="providersImage"
               alt="provider stream platform Icon"
@@ -185,24 +283,7 @@ function Movies({ history }) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <>
-        {!providerid ? (
-          <>
-            <InfiniteRecommendations
-              userMovieRecommendations={userMovieRecommendations}
-              onLoadMore={bigFetch}
-            />
-          </>
-        ) : (
-          <></>
-        )}
-        ;
-      </>
-      <>{providerid === 8 ? <NetflixMovies providerId={8} /> : <></>};</>
-      <>{providerid === 9 ? <AmazonPrimeMovies providerId={9} /> : <></>};</>
-      <>{providerid === 384 ? <HboMaxMovies providerId={384} /> : <></>};</>
-      <>{providerid === 15 ? <HuluMovies providerId={15} /> : <></>};</>
-      <>{providerid === 337 ? <DisneyPlusMovies providerId={337} /> : <></>};</>
+      {<ProvidersHome providerid={stateProviderId} />}
     </>
   );
 }

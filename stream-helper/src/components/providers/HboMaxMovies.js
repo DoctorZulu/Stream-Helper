@@ -7,6 +7,7 @@ import {
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+import Loader from "../spinner/Spinner";
 
 function HboMaxMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
@@ -28,42 +29,39 @@ function HboMaxMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: parseInt(384),
       },
-    },
+    }
   );
 
-  const { error: errorMore, loading: loadingMore, data: dataMore} = useQuery(
+  const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
     {
       variables: {
         filterLengthProviderId: 384,
       },
-    },
+    }
   );
 
   useEffect(() => {
     if (dataAll) {
       const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) => number.watchproviders[0].providerId === provideridprop,
+        (number) => number.watchproviders[0].providerId === provideridprop
       );
       setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
 
-/*  TESTING:
+  /*  TESTING:
 
   console.log(JSON.stringify(error, null, 2), "PARSED JSON ERR");
   console.log(JSON.stringify(errorMore, null, 2), "PARSED JSON ERR");
   console.log(dataMore, "--------") */
-
-
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {
@@ -83,9 +81,8 @@ function HboMaxMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
@@ -100,7 +97,7 @@ function HboMaxMovies() {
           onLoadMore={bigFetch}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

@@ -8,6 +8,7 @@ import {
 } from "../../graphql/operations.js";
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
+import Loader from "../spinner/Spinner";
 
 function AmazonPrimeMovies() {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
@@ -28,15 +29,13 @@ function AmazonPrimeMovies() {
         providerMovieQueryMyCursor: parseInt(cursor),
         providerMovieQueryProviderId: provideridprop,
       },
-    },
+    }
   );
 
-
   useEffect(() => {
-    console.log('=====RENDERED!');
-    return () => console.log('====UNMOUNTED...');
+    console.log("=====RENDERED!");
+    return () => console.log("====UNMOUNTED...");
   }, []);
-
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
@@ -45,25 +44,23 @@ function AmazonPrimeMovies() {
       variables: {
         filterLengthProviderId: 384,
       },
-    },
+    }
   );
 
   useEffect(() => {
     if (dataAll) {
       const filteredMovies = dataAll.providerMovieQuery.filter(
-        (number) => number.watchproviders[0].providerId === provideridprop,
+        (number) => number.watchproviders[0].providerId === provideridprop
       );
       setUserMovieRecommendations(filteredMovies);
     }
     if (userMovieRecommendations) {
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingAll, dataAll]);
-
 
   useEffect(() => {
     if (userMovieRecommendations && dataMore) {
@@ -83,9 +80,8 @@ function AmazonPrimeMovies() {
         },
       },
       setCursor(
-        userMovieRecommendations[userMovieRecommendations.length - 1]
-          .categoryId,
-      ),
+        userMovieRecommendations[userMovieRecommendations.length - 1].categoryId
+      )
       // setSkip(userMovieRecommendations[userMovieRecommendations.length - 1]),
     );
   };
@@ -100,7 +96,7 @@ function AmazonPrimeMovies() {
           more={more}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

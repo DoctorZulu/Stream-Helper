@@ -6,7 +6,6 @@ import { useQuery } from "@apollo/client";
 import { MOVIEDETAIL } from "../graphql/operations";
 /* vendor styles */
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import StarRatings from "react-star-ratings";
 import "../styles/MovieDetail.css";
 import ActionButtons from "../components/ActionButtons/ActionButtons";
 import CreditCard from "../components/CreditCardLOL/CreditCard";
@@ -15,7 +14,9 @@ import {
   ProvidersBuy,
   // ProvidersRent,
 } from "../components/providers/Providers";
-
+import SimilarMovieCard from "../components/MovieCard/SimilarMovieCard";
+import MovieTrailer from "../components/MovieTrailer/MovieTrailer";
+import { StarFill } from "react-bootstrap-icons";
 function MovieDetail(props) {
   const [currentMovieDetails, setCurrentMovieDetails] = useState();
   const [currentMovieId, setCurrentMovieId] = useState(props.match.params.id);
@@ -24,25 +25,46 @@ function MovieDetail(props) {
   const [cast, setCast] = useState();
   const [crew, setCrew] = useState();
   const [genre, setGenre] = useState();
-
-  const { loading, data, error } = useQuery(MOVIEDETAIL, {
+  const [currentMovieBackground, setCurrentMovieBackground] = useState();
+  const [currentMovieUrl, setCurrentMovieUrl] = useState();
+  const { loading, data, error, refetch } = useQuery(MOVIEDETAIL, {
     variables: {
       movieMovieId: currentMovieId,
     },
   });
-
-
+  console.log(props.match.params.id);
   useEffect(() => {
     if (!loading && data) {
       setCurrentMovieDetails(data);
-      setCreditsParse(JSON.parse(data.movie.credits[0].cast));
-      setProviders(JSON.parse(data.movie.watchproviders[0].providers));
+      if(data.movie.credits) {
+        setCreditsParse(JSON.parse(data.movie.credits[0].cast));
+      }
+      if (data.movie.backdrop){
+        setCurrentMovieBackground(
+          `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${data.movie.backdrop}`.replace(
+            /['"]+/g,
+            "",
+          ),
+        );
+      }
+      if (data.movie.watchproviders[0]) {
+        setProviders(JSON.parse(data.movie.watchproviders[0].providers));
+      }
+      /*    if (data.movie.backdrop) {
+        setCurrentMovieBackground(currentMovieDetails.movie.backdrop)
+      } */
     }
-  }, [data, loading]);
-
-
-
-
+    if (currentMovieId != props.match.params.id) {
+      setCurrentMovieId(props.match.params.id);
+    }
+  }, [data, loading, props.history.location.pathname]);
+  /*   useEffect(() => {
+    () => {
+      refetch();
+    };
+    console.log(data, "BALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLAR REFRESH");
+  }, [props.history.location.pathname]); */
+  console.log(currentMovieBackground, "BACKDROP");
   useEffect(() => {
     if (creditsParse.cast) {
       setCast(creditsParse.cast);
@@ -90,33 +112,51 @@ function MovieDetail(props) {
       }
     }
   }, [creditsParse]);
-
   const Mapper = () => (
-   <>
-      {cast.map((actor, i) => (
-         <div className="creditUniqueDetail">
-           <CreditCard {...actor} key={i + 1} />
-         </div>
-      ))}
+    <>
+      {cast ? (
+        <>
+          {cast.map((actor, i) => (
+            <div className="creditUniqueDetail">
+              <CreditCard {...actor} key={i + 1} />
+            </div>
+          ))}
+        </>
+      ) : (
+        <> </>
+      )}
     </>
-   
+  );
+
+  const SimilarMovieMapper = () => (
+    <>
+      {currentMovieDetails.movie.similarMovies ? (
+        <>
+          {currentMovieDetails.movie.similarMovies.map((similarMovie, i) => (
+            <>
+              <SimilarMovieCard similarMovie={similarMovie} />
+            </>
+          ))}
+        </>
+      ) : (
+        <></>
+      )}
+    </>
   );
 
   return (
     <>
       <NavigationBar />
-
       {currentMovieDetails ? (
         <>
           <Container className="mainMovieDetailContainer">
-            <Row>
+            <Row className="movieDetailsBox">
               {/* SECTION: movie image/rating/base info */}
               <Col>
                 <img
                   src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${currentMovieDetails.movie.image}`}
                   className="movieDetailImageCard"
                 />
-
                 <div className="movieDetailRatings">
                   <div className="movieDetailActionBox">
                     <ActionButtons currentMovieDetails={currentMovieDetails} />
@@ -125,15 +165,8 @@ function MovieDetail(props) {
                   <br />
                   <h4>
                     {" "}
-                    Rating: {currentMovieDetails.movie.vote_average / 2}
-                    <StarRatings
-                      rating={currentMovieDetails.movie.vote_average / 2}
-                      starRatedColor="yellow"
-                      starDimension="35px"
-                      starSpacing="5px"
-                      numberOfStars={5}
-                      name="rating"
-                    />
+                    Rating: <StarFill />{" "}
+                    {currentMovieDetails.movie.vote_average}
                   </h4>
                   <h5>Genre: {genre}</h5>
                   <h5>
@@ -148,37 +181,79 @@ function MovieDetail(props) {
                 </div>
               </Col>
               {/* SECTION: Movie description/cast/runtime/watchproviders */}
-              <div className="streamProviderContainer">
-                <p> Watch Now On:</p>
-                <div className="streamProviderBox">
-                  <Row>
-                    <Col>
-                      <Providers providers={providers} />
-                    </Col>
-                    <Col>
-                      <ProvidersBuy providers={providers} />
-                    </Col>
-                  </Row>
-
-                  {/* <ProvidersRent providers={providers} /> */}
-                </div>
-              </div>
-                  <div className="movieDetailContent">
-                    <h2> {currentMovieDetails.movie.title}</h2>
-                    <h4>
-                      {" "}
-                      Synopsis: {currentMovieDetails.movie.overview}
-                    </h4>
-                    {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
+              <div className="movieDetailContent">
+                <div className="streamProviderContainer">
+                  <p> Watch Now On:</p>
+                  <div className="streamProviderBox">
+                    <Row>
+                      <Col>
+                        {providers ? (
+                          <Providers providers={providers} />
+                        ) : (
+                          <h5 className="unavailable">
+                            {" "}
+                            Currently Unavailable
+                          </h5>
+                        )}
+                      </Col>
+                      <Col>
+                        {providers ? (
+                          <ProvidersBuy providers={providers} />
+                        ) : (
+                          <> </>
+                        )}
+                      </Col>
+                    </Row>
+                    {/* <ProvidersRent providers={providers} /> */}
                   </div>
-                  <h4 style={{color: "whitesmoke"}}>Cast &amp; Crew: </h4>
-                <div className="movieDetailCast">
-                 {cast && crew ? <Mapper /> : null}
                 </div>
-              
-              {/* <Col> Cast &amp; Crew: {cast && crew ? <Mapper /> : null} </Col> */}
+                <h2> {currentMovieDetails.movie.title}</h2>
+                <h5 style={{ width: "100%" }}>
+                  {" "}
+                  Synopsis: {currentMovieDetails.movie.overview}
+                </h5>
+                {/* <h4> Total Runtime: {currentMovieDetails.movie.runtime} </h4> */}
+                {/* this is the trailer  */}
+                {currentMovieDetails.movie.trailers1 && (
+                  <MovieTrailer currentMovieDetails={currentMovieDetails} />
+                )}
+              </div>
+
+              {/* SECTION: similar movie card */}
+              <div className="similarMoviesTitle">
+                <h4 style={{ color: "whitesmoke", marginTop: "20px" }}>
+                  Similar Movies:{" "}
+                </h4>
+              </div>
+              <div className="similarMovieContainer">
+                {currentMovieDetails.movie.similarMovies ? (
+                  <SimilarMovieMapper />
+                ) : null}
+              </div>
+
+              {/* END SECTION */}
+
+              <h4
+                style={{
+                  color: "whitesmoke",
+                  marginTop: "50px",
+                  marginLeft: "15px",
+                }}
+              >
+                Cast &amp; Crew:{" "}
+              </h4>
+              <div className="movieDetailCast">
+                {cast && crew ? <Mapper /> : null}
+              </div>
             </Row>
-          
+            {/*    { currentMovieDetails.movie.backdrop && <div className="mainMovieBackground" style={{backgroundImage: `url(${currentMovieBackground})`}}>
+            </div>} */}
+            {currentMovieDetails.movie.backdrop && (
+              <img
+                src={currentMovieBackground}
+                className="mainMovieBackground"
+              />
+            )}
           </Container>
         </>
       ) : (
@@ -191,5 +266,4 @@ function MovieDetail(props) {
     </>
   );
 }
-
 export default MovieDetail;

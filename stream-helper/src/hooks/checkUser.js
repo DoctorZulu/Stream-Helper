@@ -15,13 +15,11 @@ const CheckUser = ({ history }) => {
 
   useEffect(() => {
     try {
-      if (!user) {
-        if (!loadingUser && dataUser) {
-          setUser(dataUser.verifyUser);
-        }
-        if (!loadingUser && !user && !dataUser) {
-          history.push("/");
-        }
+      if (!loadingUser && dataUser) {
+        setUser(dataUser.verifyUser);
+      }
+      if (!loadingUser && !user && !dataUser) {
+        history.push("/");
       }
     } catch (error) {
       console.log(error);

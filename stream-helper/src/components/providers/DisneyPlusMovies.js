@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 /* gql */
 import { useQuery } from "@apollo/client";
+import Loader from "../spinner/Spinner";
 import {
   PROVIDERMOVIEQUERY,
   FILTEREDLENGTH,
@@ -9,7 +10,7 @@ import {
 /* vendor imports */
 import InfiniteRecommendations from "../Infinite/InfiniteRecommendations";
 
-function DisneyPlusMovies() {
+function DisneyPlusMovies({ providerId }) {
   const [userMovieRecommendations, setUserMovieRecommendations] = useState();
   /* base states */
   const [take] = useState(10);
@@ -29,7 +30,6 @@ function DisneyPlusMovies() {
       },
     },
   );
-
 
   const { error: errorMore, loading: loadingMore, data: dataMore } = useQuery(
     FILTEREDLENGTH,
@@ -66,6 +66,7 @@ function DisneyPlusMovies() {
       }
     }
   }, []);
+  console.log(dataAll);
 
   const bigFetch = () => {
     fetchMore(
@@ -92,7 +93,7 @@ function DisneyPlusMovies() {
           onLoadMore={bigFetch}
         />
       ) : (
-        <h1> There are No Movies To Load </h1>
+        <Loader />
       )}{" "}
     </>
   );

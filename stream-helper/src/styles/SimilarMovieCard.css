@@ -1,0 +1,238 @@
+.similarMovieContainer {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+    overflow: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+    height: 350px;
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.similarMovieCard {
+    display: flex;
+    width: 200px;
+    height: 300px;
+    grid-area: similarMovie;
+    border-radius: 12px;
+}
+
+.similarMovieCardLink {
+    width: 200px;
+    height: 300px;
+}
+
+/* iphone 5 */
+@media only screen and (max-device-width: 375px) and (max-height: 570px) {
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 35% 35% 35% 35% 35% 35% 35% 35%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 200px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 100px;
+        height: 200px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+/* iphone 6/7/8 */
+@media only screen and (min-device-width: 375px) and (min-height: 600px) and (max-height: 768px) { 
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 35% 35% 35% 35% 35% 35% 35% 35%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 200px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 125px;
+        height: 200px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+
+}
+
+
+/* iphone X */
+@media only screen and (min-device-width: 375px) and (min-height: 768px) and (max-height: 820px) {
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 35% 35% 35% 35% 35% 35% 35% 35%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 200px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 125px;
+        height: 200px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+/* ipad */
+
+@media only screen and (min-device-width: 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) { 
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 38% 38% 38% 38% 38% 38% 38% 38%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 420px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 250px;
+        height: 400px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+
+@media only screen and (min-device-width: 1024px) and (max-width: 1200px) {
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 37% 37% 37% 37% 37% 37% 37% 37%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 470px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 300px;
+        height: 450px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+/* iphone 12 && PRO  */@media only screen and (min-width: 390px) and (max-width: 767px) {
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 58% 58% 58% 58% 58% 58% 58% 58%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        height: 320px;
+        width: 100%;
+        overflow-y: hidden;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 200px;
+        height: 300px;
+        margin-left: 3px;
+        margin-right: 3px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+
+@media only screen and (min-width: 1280px) and (max-width: 1450px)  {  
+    .similarMovieContainer {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20% 20% 20% 20%;
+        grid-template-rows: auto;
+        grid-template-areas: "similarMovie similarMovie similarMovie similarMovie";
+        overflow: auto;
+        white-space: nowrap;
+        overflow-y: hidden;
+        height: 350px;
+        width: 100%;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .similarMovieCard {
+        display: flex;
+        width: 200px;
+        height: 300px;
+        grid-area: similarMovie;
+        border-radius: 12px;
+    }
+    
+    .similarMovieCardLink {
+        width: 200px;
+        height: 300px;
+    }
+}
