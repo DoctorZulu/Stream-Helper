@@ -2,6 +2,11 @@
   "peacock.color": "#0de435",
   "cSpell.words": [
     "ALLMOVIES",
+    "handleclose",
+    "handleopen",
+    "learnmorebutton",
+    "loginbutton",
+    "signupbutton",
     "usermovierecommendations"
   ],
   "cSpell.ignoreWords": [
