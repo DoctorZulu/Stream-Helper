@@ -343,7 +343,7 @@ body {
 
 /* IPHONE X */
 
-@media only screen and (min-width: 600px) and (max-width: 767) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
   .landingContentGrid {
     display: grid;
     grid-template-columns: 100%;
@@ -459,7 +459,7 @@ body {
 
 /* IPAD PRO / SMALL LAPTOP */
 
-@media only screen and (min-width: 992px) and (max-width: 1199) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
   .landingContentGrid {
     display: grid;
     grid-template-columns: 100%;
