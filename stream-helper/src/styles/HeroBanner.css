@@ -54,7 +54,7 @@
 
 /* IPHONE 6/7/8 */
 
-@media only screen and (min-device-width : 375px) and (min-height: 600px) and (max-height: 768px) {
+@media only screen and (min-device-width : 375px) and (max-width: 600px) {
 
   .mainHeroTitle {
     margin-top: 3vh;
@@ -77,8 +77,7 @@
 }
 
 /* IPHONE X */
-
-@media only screen and (min-device-width : 375px) and (min-height: 768px) and (max-height: 820px) {
+@media only screen and (min-width: 600px) and (max-width: 767px) {
 
   .mainHeroTitle {
     margin-top: 3vh;
@@ -104,9 +103,7 @@
 
 
 /* IPAD */
-
-@media only screen and (min-device-width : 700px) and (max-width: 800px) and (min-height: 900px) and (max-height: 1024px) {
-
+@media only screen and (min-width: 767px) and (max-width: 800px) {
 
   .mainHeroTitle {
     margin-top: 3vh;
@@ -128,9 +125,7 @@
 
 /* IPAD PRO / SMALL LAPTOP */
 
-
-@media only screen and (min-device-width : 1024px) and (max-width: 1200px)  {
-
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
   .mainHeroTitle {
     margin-top: 3vh;
     font-size: 65px;
