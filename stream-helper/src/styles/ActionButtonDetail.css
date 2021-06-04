@@ -129,3 +129,25 @@
     margin: 10px;
   }
 }
+
+
+/* lg desktop */
+
+@media only screen and (min-width: 1200px) and (max-width: 2000px) {
+  .mainActionButtons {
+    margin-bottom: 10px !important;
+    margin-top: -50px;
+    max-width: 1000px !important;
+  }
+
+  .actionButtonContainer {
+    margin-bottom: 25px !important;
+    width: 400px;
+    margin-left: 5px;
+  }
+
+  .actionButtonBox {
+    width: 50px;
+    margin: 5px;
+  }
+}
