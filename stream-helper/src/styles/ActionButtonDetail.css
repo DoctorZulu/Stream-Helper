@@ -133,7 +133,7 @@
 
 /* lg desktop */
 
-@media only screen and (min-width: 1200px) and (max-width: 2000px) {
+@media only screen and (min-width: 1200px) and (max-width: 3600px) {
   .mainActionButtons {
     margin-bottom: 10px !important;
     margin-top: -50px;
